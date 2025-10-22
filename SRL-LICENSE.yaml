@@ -1,0 +1,179 @@
+# ===========================================================
+#  SRAGI LICENSE MASTER FILE — SRL v1.0
+#  Single Source of Truth for Regenerative Licensing System
+#  Author: Rune Solberg / Neptunia Media AS
+#  Updated: 2025-10-22
+# ===========================================================
+
+meta:
+  id: SRL-1.0
+  name: SRAGI Regenerative License
+  abbreviation: SRL
+  version: "1.0"
+  type: permissive
+  base_license: CC-BY-4.0
+  license_family: creative_commons
+  attribution_required: true
+  rationale: "Chosen for regenerative reciprocity – minimal restriction, guaranteed source awareness."
+  SPDX: CC-BY-4.0
+  status: active
+  rsl_standard: https://rslstandard.org/rsl
+  repository: https://github.com/Project2040/sragi-skills
+  source_url: https://sragi.org/license
+  last_updated: 2025-10-22
+  design_philosophy:
+    must_language: false
+    rationale: |
+      The SRL framework intentionally avoids formal "MUST/SHALL" language 
+      for its *ethical principles*, relying on trust-based reciprocity. 
+      The single legal mandate—attribution—comes from the CC BY 4.0 base license. 
+      The regenerative principles themselves remain purely aspirational.
+
+organization:
+  author: Rune Solberg
+  rights_holder: Neptunia Media AS
+  organization: SRAGI.org
+  contact_email: kontakt@sragi.org
+  website: https://sragi.org
+  location: Leira, Norway
+  org_number: "932481375"
+
+# -----------------------------------------------------------
+# 1. Permissions — what users and AIs may do
+# -----------------------------------------------------------
+permissions:
+  usage:
+    - all
+    - train-ai
+    - inference
+    - derivative-works
+    - commercial
+    - closed-source
+    - proprietary
+
+# -----------------------------------------------------------
+# 2. Requirements — what is legally required (from CC BY 4.0)
+# -----------------------------------------------------------
+requirements:
+  attribution: true  # This is the ONLY legal requirement (from CC BY 4.0)
+  share-alike: false
+  open-source-required: false
+  additional-restrictions: false
+  note: |
+    Attribution is mandated by CC BY 4.0, not by SRAGI.
+    All other aspects are permissive and trust-based.
+
+# -----------------------------------------------------------
+# 3. Ethics — aspirational framework (NOT legally binding)
+# -----------------------------------------------------------
+ethics:
+  binding: false
+  framework:
+    name: SRAGI Regenerative Principles
+    url: https://sragi.org/regenerative-principles
+    type: aspirational
+    encouragement: |
+      We invite users to align with these principles,
+      but we do not legally require it.
+      These represent culture, not control.
+
+# -----------------------------------------------------------
+# 4. Attribution Formats
+# -----------------------------------------------------------
+attribution:
+  minimal: |
+    SRAGI by Rune Solberg, Neptunia Media AS
+    Source: https://sragi.org
+  standard: |
+    SRAGI Regenerative License (SRL) v1.0
+    Created by Rune Solberg / Neptunia Media AS
+    Source: https://sragi.org/license
+    License: CC BY 4.0 base, RSL compatible
+  code_metadata:
+    license:
+      name: "SRAGI Regenerative License (SRL)"
+      version: "1.0"
+      base: "CC BY 4.0"
+      creator: "Rune Solberg, Neptunia Media AS"
+      source: "https://sragi.org"
+
+# -----------------------------------------------------------
+# 5. Machine-readable Integration (RSL XML)
+# -----------------------------------------------------------
+machine_format:
+  output_file: LICENSE-RSL.xml
+  template: |
+    <rsl xmlns="{{ meta.rsl_standard }}" version="{{ meta.version }}">
+      <content url="{{ meta.repository }}">
+        <license type="{{ meta.type }}">
+          <standard>https://creativecommons.org/licenses/by/4.0/</standard>
+          
+          {% for type, perms in permissions.items() %}
+            {% for p in perms %}
+          <permits type="{{ type }}">{{ p }}</permits>
+            {% endfor %}
+          {% endfor %}
+
+          <payment type="attribution">
+            <required>{{ requirements.attribution }}</required>
+            <source>CC BY 4.0</source>
+            <note>This is the only legal mandate, from the base license.</note>
+            <format><![CDATA[
+    {{- attribution.minimal | trim -}}
+    ]]></format>
+          </payment>
+          
+          <conditions>
+            <share-alike>{{ requirements.share-alike }}</share-alike>
+            <open-source-required>{{ requirements.open-source-required }}</open-source-required>
+          </conditions>
+          
+          <ethical-framework>
+            <name>{{ ethics.framework.name }}</name>
+            <url>{{ ethics.framework.url }}</url>
+            <binding>{{ ethics.binding }}</binding>
+            <type>{{ ethics.framework.type }}</type>
+            <encouragement><![CDATA[
+    {{- ethics.framework.encouragement | trim -}}
+    ]]></encouragement>
+          </ethical-framework>
+          
+          <rights-holder>
+            <name>{{ organization.author }}</name>
+            <organization>{{ organization.rights_holder }}</organization>
+            <org-number>{{ organization.org_number }}</org-number>
+            <location>{{ organization.location }}</location>
+            <email>{{ organization.contact_email }}</email>
+            <website>{{ organization.website }}</website>
+          </rights-holder>
+          
+        </license>
+      </content>
+    </rsl>
+
+# -----------------------------------------------------------
+# 6. Linked documents and formats
+# -----------------------------------------------------------
+linked_files:
+  markdown: licenses/REGENERATIVE_LICENSE.md
+  xml: LICENSE-RSL.xml
+  yaml: SRL-LICENSE.yaml
+  html: https://sragi.org/license
+  json: https://sragi.org/license.json
+  pdf: https://sragi.org/license.pdf
+  principles: licenses/PRINCIPLES.md
+
+# -----------------------------------------------------------
+# 7. Version history
+# -----------------------------------------------------------
+history:
+  - version: 1.0
+    date: 2025-10-22
+    summary: |
+      Initial release — CC BY 4.0 base, RSL integration, 
+      aspirational regenerative principles. Single legal mandate 
+      (attribution) from CC BY 4.0. All regenerative principles 
+      are trust-based and aspirational.
+  - version: 0.9
+    date: 2025-09-30
+    summary: Legacy version based on CC BY-SA 4.0 (deprecated).
