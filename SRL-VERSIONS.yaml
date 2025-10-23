@@ -1,0 +1,79 @@
+# ===========================================================
+#  SRL VERSION TRACKING FILE — SRAGI Regenerative License
+#  Maintained by Rune Solberg / Neptunia Media AS
+#  Repository: https://github.com/Project2040/sragi.org
+# ===========================================================
+
+meta:
+  id: SRL-VERSIONS
+  project: SRAGI.org
+  type: version-tracking
+  description: |
+    Central version index for SRAGI Regenerative License (SRL).
+    Each entry corresponds to a release in the SRL-LICENSE.yaml master file.
+  maintainer: Rune Solberg
+  contact: kontakt@sragi.org
+  updated: 2025-10-24
+
+# -----------------------------------------------------------
+# 1. Active Version
+# -----------------------------------------------------------
+active:
+  current_version: 1.01
+  status: stable
+  base_license: CC-BY-4.0
+  notes: |
+    Minor update clarifying design philosophy and YAML structure.
+    The CC BY 4.0 foundation and RSL integration remain unchanged.
+
+# -----------------------------------------------------------
+# 2. Version History
+# -----------------------------------------------------------
+versions:
+  - version: 1.01
+    date: 2025-10-24
+    summary: Minor revision; clarified trust-based ethics and structure.
+    files:
+      - /SRL-LICENSE.yaml
+      - /LICENSE-RSL.xml
+      - /content/license/REGENERATIVE_LICENSE.md
+
+  - version: 1.0
+    date: 2025-10-22
+    summary: Initial release — CC BY 4.0 base, RSL integration, aspirational regenerative principles.
+    files:
+      - /SRL-LICENSE.yaml
+      - /LICENSE-RSL.xml
+      - /content/license/REGENERATIVE_LICENSE.md
+
+# -----------------------------------------------------------
+# 3. Planned Versions
+# -----------------------------------------------------------
+roadmap:
+  - version: 1.1
+    target_date: 2025-12-01
+    focus: "Improved AI metadata, SPDX automation, and workflow integration."
+    status: planned
+
+  - version: 2.0
+    target_date: 2026-04-15
+    focus: "Next-generation SRL framework with adaptive attribution and multi-license chaining."
+    status: conceptual
+
+# -----------------------------------------------------------
+# 4. Automation Hooks
+# -----------------------------------------------------------
+automation:
+  workflow_trigger: "/automation/.github/workflows/sync-license.yml"
+  generate_from: "/SRL-LICENSE.yaml"
+  update_on_commit: true
+  sync_targets:
+    - /LICENSE-RSL.xml
+    - /content/license/REGENERATIVE_LICENSE.md
+  notify:
+    - platform: GitHub Actions
+      event: license-update
+      channel: internal-log
+    - platform: WordPress
+      event: webhook-sync
+      endpoint: /wordpress/wpcodebox/sragi_github_sync_secure.php
