@@ -6,10 +6,10 @@
 # ===========================================================
 
 meta:
-  id: SRL-1.0
+  id: SRL-1.01
   name: SRAGI Regenerative License
   abbreviation: SRL
-  version: "1.0"
+  version: "1.01"
   type: permissive
   base_license: CC-BY-4.0
   license_family: creative_commons
@@ -18,7 +18,7 @@ meta:
   SPDX: CC-BY-4.0
   status: active
   rsl_standard: https://rslstandard.org/rsl
-  repository: https://github.com/Project2040/sragi-skills
+  repository: https://github.com/Project2040/sragi.org
   source_url: https://sragi.org/license
   last_updated: 2025-10-22
   design_philosophy:
