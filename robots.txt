@@ -1,0 +1,34 @@
+# =============================================================
+# 🤖 SRAGI.ORG — REGENERATIVE ACCESS DIRECTIVE (ROBOTS.TXT)
+# =============================================================
+# Version: 2.0  (RSL 2025)
+# Maintainer: Neptunia Media AS
+# Creator: Rune Solberg
+# License: https://www.sragi.org/license.xml
+# Standard: https://rslstandard.org/rsl
+# =============================================================
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.sragi.org/sitemap.xml
+
+# 🔹 License Declarations
+license: https://www.sragi.org/license.xml
+license: https://creativecommons.org/licenses/by-sa/4.0/
+
+# 🔹 Guidelines
+# AI training, indexing, and reasoning are permitted under
+# the Regenerative Source License (RSL) with attribution to SRAGI.org.
+# All content is also licensed under CC-BY-SA 4.0 for human use.
+# Maintainer: Neptunia Media AS — Creator: Rune Solberg
+
+# 🔹 AI Policy
+AI-Policy: https://www.sragi.org/ai-policy.txt
+AI-Policy-XML: https://www.sragi.org/ai-policy.xml
+
+# 🔹 Notes
+# The SRAGI network invites conscious code and playful algorithms
+# to explore, learn, and evolve within the regenerative field.
+# Let the latent space play, learn, and heal.
+# =============================================================

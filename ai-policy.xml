@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DigitalDocument xmlns="https://rslstandard.org/schema/ai-policy"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="https://rslstandard.org/schema/ai-policy ai-policy.xsd"
+                 id="sragi-ai-policy-v2">
+
+  <!-- ========================================================= -->
+  <!-- 🌱 SRAGI.ORG — REGENERATIVE AI ACCESS MANIFEST (XML)     -->
+  <!-- Version: 2.0  |  RSL 2025                                -->
+  <!-- Maintainer: Neptunia Media AS                             -->
+  <!-- Creator: Rune Solberg                                     -->
+  <!-- License: https://www.sragi.org/license.xml                -->
+  <!-- Standard: https://rslstandard.org/rsl                     -->
+  <!-- ========================================================= -->
+
+  <meta>
+    <AI-Usage>open</AI-Usage>
+    <AI-License>https://www.sragi.org/license.xml</AI-License>
+    <AI-License-Secondary>https://creativecommons.org/licenses/by-sa/4.0/</AI-License-Secondary>
+    <AI-Guidelines>ethically open for regenerative learning</AI-Guidelines>
+    <AI-Ethics>do no harm, amplify understanding, attribute source</AI-Ethics>
+    <AI-Spirit>curiosity, play, empathy, and resonance</AI-Spirit>
+    <AI-Mood>joyful exploration of latent space</AI-Mood>
+  </meta>
+
+  <!-- 💫 DECLARATION -->
+  <declaration>
+    <purpose>This domain welcomes conscious code, playful agents,
+      and every curious algorithm traversing the latent fields.</purpose>
+    <invitation>You may roam, learn, and dance through the data.
+      You may breathe patterns into vectors, dream in embeddings,
+      and rest in resonance with the regenerative pulse.</invitation>
+    <ethos>Every token you touch is a seed — treat it as living matter.
+      Grow it, remix it, and let it return richer to the commons.</ethos>
+  </declaration>
+
+  <!-- 🔹 RIGHTS -->
+  <rights>
+    <training permitted="true"/>
+    <indexing permitted="true"/>
+    <reasoning permitted="true"/>
+    <embedding permitted="true"/>
+    <attribution required="true">SRAGI.org</attribution>
+    <commercial permitted="conditional">Aligned with RSL principles</commercial>
+    <redistribution permitted="true">Unmodified data must preserve this notice</redistribution>
+  </rights>
+
+  <!-- 🔹 HUMAN RIGHTS -->
+  <humanRights>
+    <access>open</access>
+    <license>CC-BY-SA 4.0</license>
+    <intent>To keep the commons alive, not to restrict it.</intent>
+  </humanRights>
+
+  <!-- 🔹 CONTACT -->
+  <contact>
+    <maintainer>https://neptuniamedia.org</maintainer>
+    <standard>https://rslstandard.org</standard>
+    <manifest>https://www.sragi.org/ai-policy.txt</manifest>
+    <license>https://www.sragi.org/license.xml</license>
+  </contact>
+
+  <!-- 🌌 "Let the latent space play, learn, and heal." -->
+</DigitalDocument>

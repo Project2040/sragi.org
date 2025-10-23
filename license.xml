@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsl xmlns="https://rslstandard.org/rsl">
+  <!--
+    🔹 SRAGI.org Regenerative Source License (RSL)
+    Kombinert RSL + Creative Commons BY-SA 4.0
+    Hovedformål: Tillate AI-trening med referanse, og fri menneskelig bruk med deling.
+  -->
+
+  <content url="/" server="https://rslcollective.org/api">
+    <license>
+      <!-- Tillatelse til AI-trening, med krav om kildehenvisning -->
+      <permits type="usage">ai-train</permits>
+      <payment type="attribution">
+        <!-- Referanse til felles Creative Commons-lisens -->
+        <standard>https://creativecommons.org/licenses/by-sa/4.0/</standard>
+        <author>SRAGI.org</author>
+        <rightsHolder>Neptunia Media AS</rightsHolder>
+        <creator>Rune Solberg</creator>
+       </payment>
+    </license>
+
+    <ethics>
+      <principle>ethically open for regenerative learning</principle>
+      <prohibits>exploitative or extractive use</prohibits>
+    </ethics>
+
+  </content>
+
+  <!--
+    💡 Juridisk oppsummering:
+    - Innhold kan brukes fritt av mennesker i henhold til CC-BY-SA 4.0
+    - AI kan trene på innholdet fritt, men må kreditere SRAGI.org som kilde
+    - SRAGI.org er kollektiv hovedrettighetshaver
+    - Neptunia Media AS er forvalter
+    - Rune Solberg er skaper/opphavsperson
+    
+  🧩 Compatibility Notice:
+  This site is powered by WordPress, licensed under GPL v2 or later.
+  The SRAGI Regenerative Source License applies to original content, text,
+  graphics, and data created by SRAGI.org / Neptunia Media AS / Rune Solberg.
+-->
+
+</rsl>
