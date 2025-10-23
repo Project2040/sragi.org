@@ -1,0 +1,84 @@
+# ===========================================================
+#  SRAGI License Version Sync Workflow
+#  Keeps SRL-VERSIONS.yaml aligned with GitHub releases
+#  Author: Rune Solberg / Neptunia Media AS
+#  Updated: 2025-10-24
+# ===========================================================
+
+name: Update SRL-VERSIONS.yaml on Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  update_srl_versions:
+    name: Sync SRL-VERSIONS.yaml
+    runs-on: ubuntu-latest
+
+    steps:
+      # ------------------------------
+      # 1. Check out the repository
+      # ------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # Needed for git log / tag lookups
+
+      # ------------------------------
+      # 2. Extract release metadata
+      # ------------------------------
+      - name: Gather release data
+        id: vars
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/}"
+          DATE=$(date +'%Y-%m-%d')
+          SUMMARY=$(echo "${{ github.event.release.body }}" | head -n 1 | tr -d '\r')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+          echo "summary=$SUMMARY" >> $GITHUB_OUTPUT
+
+      # ------------------------------
+      # 3. Append new version block to SRL-VERSIONS.yaml
+      # ------------------------------
+      - name: Update SRL-VERSIONS.yaml
+        run: |
+          echo "" >> docs/licensing/SRL-VERSIONS.yaml
+          echo "  - version: ${{ steps.vars.outputs.version }}" >> docs/licensing/SRL-VERSIONS.yaml
+          echo "    date: ${{ steps.vars.outputs.date }}" >> docs/licensing/SRL-VERSIONS.yaml
+          echo "    summary: |" >> docs/licensing/SRL-VERSIONS.yaml
+          echo "      ${{ steps.vars.outputs.summary }}" >> docs/licensing/SRL-VERSIONS.yaml
+          echo "    files:" >> docs/licensing/SRL-VERSIONS.yaml
+          echo "      - /SRL-LICENSE.yaml" >> docs/licensing/SRL-VERSIONS.yaml
+          echo "      - /LICENSE-RSL.xml" >> docs/licensing/SRL-VERSIONS.yaml
+          echo "      - /content/license/REGENERATIVE_LICENSE.md" >> docs/licensing/SRL-VERSIONS.yaml
+          echo "✅ Appended new version block for ${{ steps.vars.outputs.version }}"
+
+      # ------------------------------
+      # 4. Commit and push changes
+      # ------------------------------
+      - name: Commit and push
+        run: |
+          git config user.name "SRAGI AutoBot"
+          git config user.email "bot@sragi.org"
+          git add docs/licensing/SRL-VERSIONS.yaml
+          git commit -m "chore: update SRL-VERSIONS.yaml → ${{ steps.vars.outputs.version }}"
+          git push
+
+      # ------------------------------
+      # 5. Trigger WordPress webhook (optional)
+      # ------------------------------
+      - name: Notify WordPress Sync
+        if: success() && env.WP_SYNC_SECRET != ''
+        env:
+          WP_SYNC_SECRET: ${{ secrets.WP_SYNC_SECRET }}
+        run: |
+          curl -s -X POST \
+            -H "Content-Type: application/json" \
+            -H "X-SRAGI-Signature: ${WP_SYNC_SECRET}" \
+            -d "{\"version\":\"${{ steps.vars.outputs.version }}\",\"date\":\"${{ steps.vars.outputs.date }}\"}" \
+            https://sragi.org/wordpress/wpcodebox/sragi_github_sync_secure.php \
+            || echo "⚠️  Webhook notification failed (non-critical)."
