@@ -1,5 +1,3 @@
----
-
 ```markdown
 # 🧭 SRAGI.org Repository Structure Index
 
