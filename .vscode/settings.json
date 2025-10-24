@@ -1,0 +1,85 @@
+{
+  // 🌍 Generelle filinnstillinger
+  "files.eol": "\n",
+  "files.trimFinalNewlines": true,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+
+  // ⚙️ Formatter automatisk ved lagring
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "boundary",
+  "editor.rulers": [100],
+
+  // 🧹 Prettier - global formatter
+  "prettier.printWidth": 100,
+  "prettier.singleQuote": false,
+  "prettier.trailingComma": "es5",
+  "prettier.proseWrap": "always",
+
+  // 🪶 Markdown
+  "markdownlint.config": {
+    "MD013": false,
+    "MD033": { "allowed_elements": ["br", "sub", "sup", "kbd"] }
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "on"
+  },
+
+  // 🧾 YAML
+  "yaml.validate": true,
+  "yaml.format.enable": true,
+
+  // 💾 JSON
+  "json.format.enable": true,
+  "json.schemas": [],
+
+  // 🐘 PHP
+  "[php]": {
+    "editor.defaultFormatter": "junstyle.php-cs-fixer",
+    "editor.formatOnSave": true
+  },
+  "php-cs-fixer.rules": {
+    "@PSR12": true,
+    "array_syntax": {"syntax": "short"},
+    "binary_operator_spaces": {"default": "single_space"},
+    "no_unused_imports": true,
+    "ordered_imports": {"imports_order": ["class", "function", "const"], "sort_algorithm": "alpha"}
+  },
+  "php-cs-fixer.allowRisky": false,
+
+  // 🐍 Python
+  "[python]": {
+    "editor.formatOnSave": true
+  },
+  "python.formatting.provider": "black",
+  "python.analysis.typeCheckingMode": "basic",
+
+  // 🧩 Jinja (templating)
+  "files.associations": {
+    "*.j2": "jinja",
+    "*.jinja": "jinja"
+  },
+
+  // 🔡 Stavekontroll (CSpell)
+  "cSpell.enableFiletypes": ["markdown", "yaml", "python"],
+  "cSpell.language": "en,en-GB,en-US,no,nb,nn",
+  "cSpell.ignorePaths": [
+    "**/.vscode/extensions.json",
+    "**/node_modules/**",
+    "**/package-lock.json",
+    "**/dist/**"
+  ],
+
+  // 🔍 GitHub Actions
+  "github-actions.workflows.pinned.workflows": [
+    ".github/workflows/build-licenses.yml"
+  ],
+
+  // 🌐 Live Server
+  "liveServer.settings.root": "/",
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.donotShowInfoMsg": true
+}
