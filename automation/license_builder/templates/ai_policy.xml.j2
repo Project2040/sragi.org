@@ -2,5 +2,19 @@
   <training>permitted</training>
   <redistribution>permitted</redistribution>
   <commercial>permitted</commercial>
+  <inference>permitted</inference>
+  <derivative-works>permitted</derivative-works>
+  <source>{{ meta.source_url }}</source>
+  <license-standard>{{ meta.base_license }}</license-standard>
   <ethics>{{ ethics.framework.url }}</ethics>
+  <attribution>
+    <required>{{ requirements.attribution }}</required>
+    <format><![CDATA[{{ attribution.minimal }}]]></format>
+  </attribution>
+  <rights-holder>
+    <name>{{ organization.author }}</name>
+    <organization>{{ organization.rights_holder }}</organization>
+    <email>{{ organization.contact_email }}</email>
+    <website>{{ organization.website }}</website>
+  </rights-holder>
 </ai-policy>
