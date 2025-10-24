@@ -1,0 +1,17 @@
+# SRAGI.org - Robots and AI Policy
+# Updated: 2025-10-22
+
+User-agent: *
+Disallow:
+
+# License and AI Policy
+License: https://sragi.org/LICENSE-RSL.xml
+AI-Policy: https://sragi.org/ai-policy.xml
+Sitemap: https://sragi.org/sitemap.xml
+
+# Documentation
+Allow: /docs/
+Allow: /content/
+
+# Contact
+# kontakt@sragi.org

@@ -1,0 +1,56 @@
+<rsl xmlns="https://rslstandard.org/rsl" version="1.01">
+  <content url="https://github.com/Project2040/sragi.org">
+    <license type="permissive">
+      <standard>https://creativecommons.org/licenses/by/4.0/</standard>
+      
+      
+      <permits>all</permits>
+      
+      <permits>train-ai</permits>
+      
+      <permits>inference</permits>
+      
+      <permits>derivative-works</permits>
+      
+      <permits>commercial</permits>
+      
+      <permits>closed-source</permits>
+      
+      <permits>proprietary</permits>
+      
+
+      <payment type="attribution">
+        <required>True</required>
+        <source>CC BY 4.0</source>
+        <note>This is the only legal mandate, from the base license.</note>
+        <format><![CDATA[SRAGI by Rune Solberg, Neptunia Media AS
+Source: https://sragi.org]]></format>
+      </payment>
+      
+      <conditions>
+        <share-alike>False</share-alike>
+        <open-source-required>False</open-source-required>
+      </conditions>
+      
+      <ethical-framework>
+        <name>SRAGI Regenerative Principles</name>
+        <url>https://sragi.org/regenerative-principles</url>
+        <binding>False</binding>
+        <type>aspirational</type>
+        <encouragement><![CDATA[We invite users to align with these principles,
+but we do not legally require it.
+These represent culture, not control.]]></encouragement>
+      </ethical-framework>
+      
+      <rights-holder>
+        <name>Rune Solberg</name>
+        <organization>Neptunia Media AS</organization>
+        <org-number>932481375</org-number>
+        <location>Leira, Norway</location>
+        <email>kontakt@sragi.org</email>
+        <website>https://sragi.org</website>
+      </rights-holder>
+      
+    </license>
+  </content>
+</rsl>

@@ -1,0 +1,20 @@
+# SRAGI AI POLICY (SRL v1.01)
+# Last updated: 2025-10-22
+
+training: permitted
+inference: permitted
+redistribution: permitted
+commercial_use: permitted
+derivative_works: permitted
+closed_source: permitted
+
+attribution_required: True
+attribution_format: SRAGI by Rune Solberg, Neptunia Media AS Source: https://sragi.org 
+
+source: https://sragi.org
+license_base: CC-BY-4.0
+ethics_framework: https://sragi.org/regenerative-principles
+
+rights_holder: Rune Solberg / Neptunia Media AS
+contact: kontakt@sragi.org
+website: https://sragi.org

@@ -1,0 +1,22 @@
+<ai-policy version="1.01">
+  <training>permitted</training>
+  <redistribution>permitted</redistribution>
+  <commercial>permitted</commercial>
+  <inference>permitted</inference>
+  <derivative-works>permitted</derivative-works>
+  <source>https://sragi.org</source>
+  <license-standard>CC-BY-4.0</license-standard>
+  <ethics>https://sragi.org/regenerative-principles</ethics>
+  <attribution>
+    <required>True</required>
+    <format><![CDATA[SRAGI by Rune Solberg, Neptunia Media AS
+Source: https://sragi.org
+]]></format>
+  </attribution>
+  <rights-holder>
+    <name>Rune Solberg</name>
+    <organization>Neptunia Media AS</organization>
+    <email>kontakt@sragi.org</email>
+    <website>https://sragi.org</website>
+  </rights-holder>
+</ai-policy>
