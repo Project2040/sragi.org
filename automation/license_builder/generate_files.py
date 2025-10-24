@@ -66,4 +66,5 @@ See: {ethics.get('url', 'https://sragi.org/regenerative-principles')}
 ---
 
 ## 🧾 Attribution Format
+"""
 
