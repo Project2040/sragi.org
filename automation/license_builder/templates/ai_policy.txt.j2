@@ -1,6 +1,20 @@
 # SRAGI AI POLICY (SRL v{{ meta.version }})
+# Last updated: {{ meta.last_updated }}
+
 training: permitted
+inference: permitted
 redistribution: permitted
 commercial_use: permitted
-source: https://sragi.org/license
-ethics: {{ ethics.framework.url }}
+derivative_works: permitted
+closed_source: permitted
+
+attribution_required: {{ requirements.attribution }}
+attribution_format: {{ attribution.minimal | replace('\n', ' ') }}
+
+source: {{ meta.source_url }}
+license_base: {{ meta.base_license }}
+ethics_framework: {{ ethics.framework.url }}
+
+rights_holder: {{ organization.author }} / {{ organization.rights_holder }}
+contact: {{ organization.contact_email }}
+website: {{ organization.website }}
