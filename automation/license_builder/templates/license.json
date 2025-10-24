@@ -1,0 +1,22 @@
+# 7. license.json
+# -----------------------------------------------------------
+def generate_license_json(data):
+    from datetime import datetime, timezone
+    meta = data.get("meta", {})
+    linked = data.get("linked_files", {})
+    now = datetime.now(timezone.utc).isoformat()
+
+    json_data = {
+        "id": meta.get("id"),
+        "name": meta.get("name"),
+        "version": meta.get("version"),
+        "base_license": meta.get("base_license"),
+        "updated": now,
+        "author": data.get("organization", {}).get("author"),
+        "rights_holder": data.get("organization", {}).get("rights_holder"),
+        "linked_files": linked
+    }
+
+    import json
+    json_str = json.dumps(json_data, indent=2, ensure_ascii=False)
+    return write_output(os.path.join(BASE_DIR, "content/license/license.json"), json_str)
