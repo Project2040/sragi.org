@@ -7,7 +7,7 @@
 
 import os
 from jinja2 import Template
-from datetime import datetime
+from datetime import datetime, timezone
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 TPL_DIR = os.path.join(os.path.dirname(__file__), "templates")
@@ -73,7 +73,7 @@ def generate_human_license(data):
 Based on **{meta.get('base_license', 'CC-BY-4.0')}**
 
 **Maintainer:** {org.get('author', 'Rune Solberg')} / {org.get('organization', 'SRAGI.org')}  
-**Last updated:** {meta.get('last_updated', datetime.utcnow().strftime('%Y-%m-%d'))}
+**Last updated:** {meta.get('last_updated', datetime.now(timezone.utc).strftime('%Y-%m-%d'))}
 
 ---
 
@@ -99,7 +99,7 @@ See: {ethics.get('url', 'https://sragi.org/regenerative-principles')}
 
 ---
 
-**© {org.get('author', 'Rune Solberg')} / {org.get('rights_holder', 'Neptunia Media AS')} — {meta.get('last_updated', datetime.utcnow().strftime('%Y-%m-%d'))}**
+**© {org.get('author', 'Rune Solberg')} / {org.get('rights_holder', 'Neptunia Media AS')} — {meta.get('last_updated', datetime.now(timezone.utc).strftime('%Y-%m-%d'))}**
 
 **Source:** {meta.get('source_url', 'https://sragi.org/license')}  
 **Repository:** {meta.get('repository', 'https://github.com/Project2040/sragi.org')}
@@ -135,11 +135,11 @@ def generate_robots(data):
 # 6. sitemap.xml (dynamic from YAML linked_files)
 # -----------------------------------------------------------
 def generate_sitemap(data):
-    """ Generate XML sitemap for license and documentation pages."""
+    """Generate XML sitemap for license and documentation pages."""
     meta = data.get("meta", {})
     linked = data.get("linked_files", {})
     base_url = meta.get("source_url", "https://sragi.org")
-    last_updated = meta.get("last_updated", datetime.utcnow().strftime('%Y-%m-%d'))
+    last_updated = meta.get("last_updated", datetime.now(timezone.utc).strftime('%Y-%m-%d'))
     
     # Start XML
     urls = ["<?xml version='1.0' encoding='UTF-8'?>",
