@@ -11,6 +11,9 @@ on:
       - "SRL-LICENSE.yaml"
       - "automation/license_builder/**"
   workflow_dispatch:
+  
+permissions:
+  contents: write  # ✅ gives push permission to github-actions[bot]
 
 jobs:
   build:
@@ -37,7 +40,7 @@ jobs:
       - name: Commit and push generated files
         run: |
           git config user.name "SRAGI Automation"
-          git config user.email "bot@sragi.org"
+          git config user.email "rune@sragi.org"
           git add LICENSE-RSL.xml ai-policy.* robots.txt sitemap.xml content/license/REGENERATIVE_LICENSE.md
           git commit -m "Auto-build license artifacts [skip ci]" || echo "No changes"
           git push
