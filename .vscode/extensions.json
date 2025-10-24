@@ -1,0 +1,26 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "redhat.vscode-yaml",
+    "wholroyd.jinja",
+    "bmewburn.vscode-intelephense-client",
+    "junstyle.php-cs-fixer",
+    "christian-kohler.path-intellisense",
+    "davidanson.vscode-markdownlint",
+    "yzhang.markdown-all-in-one",
+    "shd101wyy.markdown-preview-enhanced",
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker",
+    "eamodio.gitlens",
+    "github.vscode-github-actions",
+    "ritwickdey.liveserver",
+    "wordpresstoolbox.wordpress-toolbox",
+    "aaron-bond.better-comments",
+    "zainchen.json"
+  ],
+  "unwantedRecommendations": [
+    "ms-vscode.test-adapter-converter"
+  ]
+}
