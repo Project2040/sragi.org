@@ -1,0 +1,9 @@
+<rsl version="{{ meta.version }}" xmlns="{{ meta.rsl_standard }}">
+  <license type="{{ meta.type }}" base="{{ meta.base_license }}">
+    {% for p in permissions.usage %}<permits>{{ p }}</permits>{% endfor %}
+    <conditions>
+      <attribution>{{ requirements.attribution }}</attribution>
+    </conditions>
+  </license>
+  <organization>{{ organization.organization }}</organization>
+</rsl>
