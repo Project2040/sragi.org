@@ -1,0 +1,43 @@
+# ===========================================================
+#  SRAGI LICENSE BUILDER — GitHub Workflow
+#  Runs automatically when SRL-LICENSE.yaml changes
+# ===========================================================
+
+name: Build SRAGI Licenses
+
+on:
+  push:
+    paths:
+      - "SRL-LICENSE.yaml"
+      - "automation/license_builder/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml jinja2
+
+      - name: Build licenses
+        run: |
+          cd automation/license_builder
+          python build_licenses.py
+
+      - name: Commit and push generated files
+        run: |
+          git config user.name "SRAGI Automation"
+          git config user.email "bot@sragi.org"
+          git add LICENSE-RSL.xml ai-policy.* robots.txt sitemap.xml content/license/REGENERATIVE_LICENSE.md
+          git commit -m "Auto-build license artifacts [skip ci]" || echo "No changes"
+          git push
