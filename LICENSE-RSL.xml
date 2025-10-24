@@ -1,9 +1,0 @@
-<rsl version="1.01" xmlns="https://rslstandard.org/rsl">
-  <license type="permissive" base="CC-BY-4.0">
-    <permits>all</permits><permits>train-ai</permits><permits>inference</permits><permits>derivative-works</permits><permits>commercial</permits><permits>closed-source</permits><permits>proprietary</permits>
-    <conditions>
-      <attribution>True</attribution>
-    </conditions>
-  </license>
-  <organization>SRAGI.org</organization>
-</rsl>
