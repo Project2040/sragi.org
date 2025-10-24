@@ -8,12 +8,40 @@ Based on **{{ meta.base_license }}**
 ---
 
 ## ✅ Permissions
+
 {{ permissions.usage | join(', ') }}
 
 ## ⚠️ Requirements
-Attribution required: {{ requirements.attribution }}
+
+**Attribution required:** {{ requirements.attribution }}  
+**Share-alike required:** {{ requirements['share-alike'] }}  
+**Open-source required:** {{ requirements['open-source-required'] }}
 
 ## 🌿 Ethics
+
 {{ ethics.framework.encouragement }}
 
-© {{ organization.author }} / {{ organization.rights_holder }} — {{ meta.last_updated }}
+**Framework:** {{ ethics.framework.name }}  
+**Type:** {{ ethics.framework.type }} ({{ 'legally binding' if ethics.binding else 'aspirational' }})  
+**Learn more:** {{ ethics.framework.url }}
+
+---
+
+## 🧾 Attribution Format
+
+### Minimal
+{{ attribution.minimal }}
+
+### Standard
+{{ attribution.standard }}
+
+---
+
+**© {{ organization.author }} / {{ organization.rights_holder }} — {{ meta.last_updated }}**
+
+**Organization Number:** {{ organization.org_number }}  
+**Location:** {{ organization.location }}  
+**Contact:** {{ organization.contact_email }}  
+**Website:** {{ organization.website }}  
+**Source:** {{ meta.source_url }}  
+**Repository:** {{ meta.repository }}
