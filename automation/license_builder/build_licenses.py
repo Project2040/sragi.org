@@ -10,7 +10,7 @@ import os
 import sys
 import yaml
 import json
-from datetime import datetime
+from datetime import datetime, timezone  # ← ENDRING 1: Lagt til timezone
 from generate_files import *
 
 # Paths
@@ -88,7 +88,7 @@ def main():
     # Show debug info if enabled
     show_debug_info(data)
     
-    timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")  # ← ENDRING 2: timezone-aware
     results = {}
     
     print(f"\n🧩 Building SRAGI License Files — {timestamp}\n")
