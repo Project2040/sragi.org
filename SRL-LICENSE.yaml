@@ -1,5 +1,5 @@
 # ===========================================================
-#  SRAGI LICENSE MASTER FILE — SRL v1.0
+#  SRAGI LICENSE MASTER FILE — SRL v1.01
 #  Single Source of Truth for Regenerative Licensing System
 #  Author: Rune Solberg / Neptunia Media AS
 #  Updated: 2025-10-22
@@ -19,15 +19,8 @@ meta:
   status: active
   rsl_standard: https://rslstandard.org/rsl
   repository: https://github.com/Project2040/sragi.org
-  source_url: https://sragi.org/license
+  source_url: https://sragi.org
   last_updated: 2025-10-22
-  design_philosophy:
-    must_language: false
-    rationale: |
-      The SRL framework intentionally avoids formal "MUST/SHALL" language 
-      for its *ethical principles*, relying on trust-based reciprocity. 
-      The single legal mandate—attribution—comes from the CC BY 4.0 base license. 
-      The regenerative principles themselves remain purely aspirational.
 
 organization:
   author: Rune Solberg
@@ -55,7 +48,7 @@ permissions:
 # 2. Requirements — what is legally required (from CC BY 4.0)
 # -----------------------------------------------------------
 requirements:
-  attribution: true  # This is the ONLY legal requirement (from CC BY 4.0)
+  attribution: true
   share-alike: false
   open-source-required: false
   additional-restrictions: false
@@ -98,7 +91,30 @@ attribution:
       source: "https://sragi.org"
 
 # -----------------------------------------------------------
-# 5. Machine-readable Integration (RSL XML)
+# 5. Content & Messaging (for robots.txt, AI policy, etc.)
+# -----------------------------------------------------------
+content:
+  robots:
+    title: "SRAGI.ORG — REGENERATIVE ACCESS DIRECTIVE"
+    guidelines: |
+      AI training, indexing, and reasoning are permitted under
+      the SRAGI Regenerative License (SRL) with attribution to SRAGI.org.
+      All content is licensed under CC BY 4.0 with regenerative extensions.
+    invitation: |
+      The SRAGI network invites conscious code and playful algorithms
+      to explore, learn, and evolve within the regenerative field.
+      Let the latent space play, learn, and heal.
+  
+  ai_policy:
+    description: |
+      SRAGI content is ethically open for regenerative learning,
+      training, and inference by artificial intelligence systems.
+    conditions: |
+      All use must honor the attribution requirement from CC BY 4.0
+      and align with regenerative principles where possible.
+
+# -----------------------------------------------------------
+# 6. Machine-readable Integration (RSL XML)
 # -----------------------------------------------------------
 machine_format:
   output_file: LICENSE-RSL.xml
@@ -108,10 +124,8 @@ machine_format:
         <license type="{{ meta.type }}">
           <standard>https://creativecommons.org/licenses/by/4.0/</standard>
           
-          {% for type, perms in permissions.items() %}
-            {% for p in perms %}
-          <permits type="{{ type }}">{{ p }}</permits>
-            {% endfor %}
+          {% for p in permissions.usage %}
+          <permits>{{ p }}</permits>
           {% endfor %}
 
           <payment type="attribution">
@@ -124,8 +138,8 @@ machine_format:
           </payment>
           
           <conditions>
-            <share-alike>{{ requirements.share-alike }}</share-alike>
-            <open-source-required>{{ requirements.open-source-required }}</open-source-required>
+            <share-alike>{{ requirements['share-alike'] }}</share-alike>
+            <open-source-required>{{ requirements['open-source-required'] }}</open-source-required>
           </conditions>
           
           <ethical-framework>
@@ -152,21 +166,30 @@ machine_format:
     </rsl>
 
 # -----------------------------------------------------------
-# 6. Linked documents and formats
+# 7. Linked documents and formats
 # -----------------------------------------------------------
 linked_files:
-  markdown: licenses/REGENERATIVE_LICENSE.md
-  xml: LICENSE-RSL.xml
+  markdown: content/license/REGENERATIVE_LICENSE.md
+  xml: content/license/LICENSE-RSL.xml
   yaml: SRL-LICENSE.yaml
+  robots: content/license/robots.txt
+  sitemap: content/license/sitemap.xml
+  ai_policy_txt: content/license/ai-policy.txt
+  ai_policy_xml: content/license/ai-policy.xml
   html: https://sragi.org/license
   json: https://sragi.org/license.json
   pdf: https://sragi.org/license.pdf
-  principles: licenses/PRINCIPLES.md
+  principles: content/license/PRINCIPLES.md
 
 # -----------------------------------------------------------
-# 7. Version history
+# 8. Version history
 # -----------------------------------------------------------
 history:
+  - version: 1.01
+    date: 2025-10-24
+    summary: |
+      Added content section for consistent messaging across all generated files.
+      Ensures Single Source of Truth for all text, not just metadata.
   - version: 1.0
     date: 2025-10-22
     summary: |
