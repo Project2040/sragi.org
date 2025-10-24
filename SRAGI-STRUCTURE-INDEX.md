@@ -14,12 +14,19 @@
 
 sragi.org/
 ├── README.md
+
 ├── SRL-LICENSE.yaml
+
 ├── LICENSE-RSL.xml
+
 ├── /docs/
+
 ├── /sync/
+
 ├── /content/
+
 ├── /wordpress/
+
 └── /automation/
 
 ```
@@ -31,12 +38,19 @@ sragi.org/
 | Fil | Formål | Hvorfor den trengs |
 |------|---------|--------------------|
 | **SRL-LICENSE.yaml** | *Single Source of Truth* (SSOT) for SRAGI-lisensen. Inneholder metadata (versjon, tillatelser, krav, etikk, attributter, kontaktinfo og historikk). | Alle andre lisensfiler genereres fra denne og sikrer konsistens på tvers av formater. |
+
 | **LICENSE-RSL.xml** | Maskinlesbar lisens i **Really Simple Licensing (RSL)**-format. Strukturerer `<license>`, `<permits>`, `<conditions>`, `<ethics>`. | Crawlere og AI-systemer forstår lisensreglene direkte. Oppgis i `robots.txt`. |
+
 | **README.md** | Prosjektdokumentasjon for utviklere. Beskriver stack, mappestruktur og peker til lisensfiler. | Gir nye bidragsytere oversikt og hurtig onboarding. |
+
 | **robots.txt** | Angir lisens- og AI-policy-URIer. | Essensielt for søkemotorer og AI-crawlere. |
+
 | **ai-policy.txt / ai-policy.xml** | Tekst- og XML-versjon av AI-policyen. | Definerer hva som er tillatt for AI-trening og redistribusjon. |
+
 | **sitemap.xml** | (Anbefalt) Automatisk generert XML-sitemap. | Sikrer at lisens- og dokumentasjonssider blir indeksert. |
+
 | **HUMANS.txt** | (Valgfritt) Kreditering av team, verktøy og bidragsytere. | Gir et menneskelig preg og transparens. |
+
 | **terms-of-service.html / privacy-policy.html / cookie-policy.html** | (Valgfritt, anbefalt) Juridiske dokumenter generert av Termly e.l. | Oppfyller GDPR og gir juridisk klarhet. |
 
 ---
