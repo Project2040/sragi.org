@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:
+License: https://sragi.org/LICENSE-RSL.xml
+AI-Policy: https://sragi.org/ai-policy.xml
+Sitemap: https://sragi.org/sitemap.xml

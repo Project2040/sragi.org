@@ -1,0 +1,6 @@
+# SRAGI AI POLICY (SRL v1.01)
+training: permitted
+redistribution: permitted
+commercial_use: permitted
+source: https://sragi.org/license
+ethics: https://sragi.org/regenerative-principles
