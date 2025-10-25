@@ -1,15 +1,15 @@
 # ===========================================================
-#  SRAGI LICENSE MASTER FILE — SRL v1.01
+#  SRAGI LICENSE MASTER FILE — SRL v1.1
 #  Single Source of Truth for Regenerative Licensing System
 #  Author: Rune Solberg / Neptunia Media AS
-#  Updated: 2025-10-22
+#  Updated: 2025-10-25
 # ===========================================================
 
 meta:
-  id: SRL-1.01
+  id: SRL-1.1
   name: SRAGI Regenerative License
   abbreviation: SRL
-  version: "1.01"
+  version: "1.1"
   type: permissive
   base_license: CC-BY-4.0
   license_family: creative_commons
@@ -20,7 +20,7 @@ meta:
   rsl_standard: https://rslstandard.org/rsl
   repository: https://github.com/Project2040/sragi.org
   source_url: https://sragi.org
-  last_updated: 2025-10-22
+  last_updated: 2025-10-25
 
 organization:
   author: Rune Solberg
@@ -78,14 +78,14 @@ attribution:
     SRAGI by Rune Solberg, Neptunia Media AS
     Source: https://sragi.org
   standard: |
-    SRAGI Regenerative License (SRL) v1.0
+    SRAGI Regenerative License (SRL) v1.1
     Created by Rune Solberg / Neptunia Media AS
     Source: https://sragi.org/license
     License: CC BY 4.0 base, RSL compatible
   code_metadata:
     license:
       name: "SRAGI Regenerative License (SRL)"
-      version: "1.0"
+      version: "1.1"
       base: "CC BY 4.0"
       creator: "Rune Solberg, Neptunia Media AS"
       source: "https://sragi.org"
@@ -169,22 +169,46 @@ machine_format:
 # 7. Linked documents and formats
 # -----------------------------------------------------------
 linked_files:
+  # Core License Formats
   markdown: content/license/REGENERATIVE_LICENSE.md
   xml: content/license/LICENSE-RSL.xml
   yaml: SRL-LICENSE.yaml
+  
+  # Site & AI Directives
   robots: content/license/robots.txt
   sitemap: content/license/sitemap.xml
   ai_policy_txt: content/license/ai-policy.txt
   ai_policy_xml: content/license/ai-policy.xml
+  
+  # Web / Static Formats
   html: https://sragi.org/license
   json: https://sragi.org/license.json
   pdf: https://sragi.org/license.pdf
+  
+  # Core Principles & Skills (NEW)
   principles: content/license/PRINCIPLES.md
+  ai_skill_readme: sragi-skills/README.md
+
 
 # -----------------------------------------------------------
 # 8. Version history
 # -----------------------------------------------------------
 history:
+  - version: 1.1
+    date: 2025-10-25
+    summary: |
+
+      Key updates in v1.1:
+
+      Introduction of the sragi-skills/ Directory:
+      We have added a new dedicated directory, /sragi-skills/, which will contain all "state-of-the-art" modular AI skill files.
+      Strategic Licensing Update:
+      We have defined a specific licensing strategy for the new AI engine. The entire /sragi-skills/ directory and its contents are governed by the protective CC BY-SA 4.0 (ShareAlike) license.
+      This is distinct from the main project's permissive SRL (CC BY 4.0) license, ensuring that the core AI framework remains open and regenerative.
+      Documentation and Versioning:
+      The sragi-skills/README.md file has been created to define the structure and the new "multi-licensed" strategy for these components.
+      The project's main SSOT files (SRL-LICENSE.yaml and SRL-VERSIONS.yaml) have been updated to version 1.1 to reflect this new release.
+      
   - version: 1.01
     date: 2025-10-24
     summary: |
