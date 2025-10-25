@@ -1,9 +1,9 @@
-# 🌱 SRAGI Regenerative License (SRL) v1.01
+# 🌱 SRAGI Regenerative License (SRL) v1.1
 
 Based on **CC-BY-4.0**
 
 **Maintainer:** Rune Solberg / SRAGI.org  
-**Last updated:** 2025-10-22
+**Last updated:** 2025-10-25
 
 ---
 
@@ -38,7 +38,7 @@ Source: https://sragi.org
 
 
 ### Standard
-SRAGI Regenerative License (SRL) v1.0
+SRAGI Regenerative License (SRL) v1.1
 Created by Rune Solberg / Neptunia Media AS
 Source: https://sragi.org/license
 License: CC BY 4.0 base, RSL compatible
@@ -46,7 +46,7 @@ License: CC BY 4.0 base, RSL compatible
 
 ---
 
-**© Rune Solberg / Neptunia Media AS — 2025-10-22**
+**© Rune Solberg / Neptunia Media AS — 2025-10-25**
 
 **Organization Number:** 932481375  
 **Location:** Leira, Norway  

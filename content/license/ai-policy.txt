@@ -1,5 +1,5 @@
-# SRAGI AI POLICY (SRL v1.01)
-# Last updated: 2025-10-22
+# SRAGI AI POLICY (SRL v1.1)
+# Last updated: 2025-10-25
 
 training: permitted
 inference: permitted
