@@ -1,20 +1,26 @@
-<ai-policy version="{{ meta.version }}">
-  <training>permitted</training>
-  <redistribution>permitted</redistribution>
-  <commercial>permitted</commercial>
-  <inference>permitted</inference>
-  <derivative-works>permitted</derivative-works>
-  <source>{{ meta.source_url }}</source>
-  <license-standard>{{ meta.base_license }}</license-standard>
-  <ethics>{{ ethics.framework.url }}</ethics>
-  <attribution>
-    <required>{{ requirements.attribution }}</required>
-    <format><![CDATA[{{ attribution.minimal }}]]></format>
-  </attribution>
-  <rights-holder>
-    <name>{{ organization.author }}</name>
-    <organization>{{ organization.rights_holder }}</organization>
-    <email>{{ organization.contact_email }}</email>
-    <website>{{ organization.website }}</website>
-  </rights-holder>
-</ai-policy>
+<rsl xmlns="https://rslstandard.org/rsl" version="1.1">
+  <content url="https://github.com/Project2040/sragi.org">
+    <ai-policy>
+      <training>permitted</training>
+      <redistribution>permitted</redistribution>
+      <commercial>permitted</commercial>
+      <inference>permitted</inference>
+      <derivative-works>permitted</derivative-works>
+      <source>https://sragi.org</source>
+      <license-standard>CC-BY-4.0</license-standard>
+      <ethics>https://sragi.org/regenerative-principles</ethics>
+      <attribution>
+        <required>True</required>
+        <format><![CDATA[SRAGI by Rune Solberg, Neptunia Media AS
+Source: https://sragi.org
+]]></format>
+      </attribution>
+      <rights-holder>
+        <name>Rune Solberg</name>
+        <organization>Neptunia Media AS</organization>
+        <email>kontakt@sragi.org</email>
+        <website>https://sragi.org</website>
+      </rights-holder>
+    </ai-policy>
+  </content>
+</rsl>
