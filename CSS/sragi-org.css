@@ -1,0 +1,687 @@
+/* ===========================================================
+   SRAGI Ultimate CSS System v2.0 - White Paper Edition
+   © 2025 Rune Solberg / Neptunia Media AS
+   Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL) v1.1
+   Source: https://sragi.org/license
+   
+   Philosophy: Academic elegance, editorial minimalism, timeless clarity
+   Layers: reset → tokens → typography → base → utilities → components → overrides
+   
+   Usage:
+   1. Save as: /wp-content/themes/bricks-child/sragi.css
+   2. Enqueue in functions.php or @import in Bricks Custom CSS
+   3. Configure Bricks Theme Styles to use CSS variables
+   
+   Compatible with: Bricks Builder 2.1+, WordPress 6.0+
+   =========================================== */
+
+@layer reset, tokens, typography, base, utilities, components, overrides;
+
+/* ================ RESET ================ */
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  img, svg, video, canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  a {
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 0.08em;
+  }
+  
+  :where(h1, h2, h3, h4, h5, h6, p, ul, ol) {
+    margin-block: 0;
+  }
+}
+
+/* ================ TOKENS ================ */
+@layer tokens {
+  /* === CSS Houdini Properties (Design Tokens) === */
+  @property --clr-link {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #0094C6;
+  }
+  
+  @property --space-md {
+    syntax: "<length>";
+    inherits: true;
+    initial-value: 1rem;
+  }
+  
+  :root {
+    /* === Foundation Colors (Editorial B/W) === */
+    --clr-white:       #FFFFFF;
+    --clr-black:       #000000;
+    --clr-off-white:   #F9FAFB;
+    --clr-soft-black:  #0A0F12;
+    
+    /* === Grays (Structure) === */
+    --clr-gray-dark:   #1F2937;
+    --clr-gray-medium: #6B7280;
+    --clr-gray-light:  #D1D5DB;
+    --clr-gray-pale:   #E5E7EB;
+    
+    /* === Accent (Minimal Use) === */
+    --clr-link:        #0094C6;
+    --clr-accent:      #40E0C0;
+    
+    /* === Semantic (Forms Only) === */
+    --clr-success:     #10B981;
+    --clr-warning:     #F59E0B;
+    --clr-error:       #EF4444;
+    --clr-info:        #3B82F6;
+    
+    /* === Semantic Aliases === */
+    --bg:          var(--clr-white);
+    --surface:     var(--clr-off-white);
+    --text:        var(--clr-black);
+    --text-muted:  var(--clr-gray-medium);
+    --border:      var(--clr-gray-light);
+    --link:        var(--clr-link);
+    
+    /* === Typography - Academic Stack === */
+    --ff-serif:  Georgia, system-ui, serif, 'Times New Roman', Times;
+    --ff-sans:   -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                 'Helvetica Neue', Arial, system-ui, sans-serif;
+    --ff-mono:   'Courier New', Courier, ui-monospace, monospace;
+    
+    /* === Modest Type Scale (White Paper Style) === */
+    --fs-base:   clamp(1.00rem, 0.95rem + 0.25vw, 1.125rem);
+    --fs-sm:     clamp(0.875rem, 0.85rem + 0.125vw, 0.95rem);
+    --fs-xs:     clamp(0.75rem, 0.72rem + 0.10vw, 0.813rem);
+    --fs-h1:     clamp(1.75rem, 1.5rem + 0.625vw, 2.00rem);
+    --fs-h2:     clamp(1.50rem, 1.35rem + 0.375vw, 1.65rem);
+    --fs-h3:     clamp(1.25rem, 1.15rem + 0.25vw, 1.375rem);
+    --fs-h4:     clamp(1.125rem, 1.05rem + 0.188vw, 1.25rem);
+    --fs-h5:     var(--fs-base);
+    --fs-h6:     var(--fs-sm);
+    
+    /* === Spacing === */
+    --space-3xs:  0.125rem;
+    --space-2xs:  0.25rem;
+    --space-xs:   0.5rem;
+    --space-sm:   0.75rem;
+    --space-md:   1rem;
+    --space-lg:   1.5rem;
+    --space-xl:   2rem;
+    --space-2xl:  3rem;
+    --space-3xl:  4rem;
+    
+    /* === Line Heights === */
+    --lh-tight:   1.2;
+    --lh-snug:    1.4;
+    --lh-normal:  1.65;
+    --lh-relaxed: 1.8;
+    
+    /* === Containers === */
+    --container-xs:  36rem;
+    --container-sm:  42rem;
+    --container-md:  52rem;
+    --container-lg:  64rem;
+    --container-xl:  72rem;
+    
+    /* === Radius & Shadow === */
+    --radius-sm:  0.125rem;
+    --radius-md:  0.25rem;
+    --radius-lg:  0.375rem;
+    --shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md:  0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-lg:  0 4px 8px rgba(0, 0, 0, 0.08);
+    
+    /* === Motion === */
+    --dur-fast:   120ms;
+    --dur-base:   200ms;
+    --dur-slow:   300ms;
+    --easing:     cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Dark Mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:         var(--clr-soft-black);
+      --surface:    var(--clr-gray-dark);
+      --text:       var(--clr-white);
+      --text-muted: var(--clr-gray-light);
+      --border:     var(--clr-gray-medium);
+      --link:       var(--clr-accent);
+    }
+  }
+}
+
+/* ================ TYPOGRAPHY ================ */
+@layer typography {
+  .text-abstract {
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: var(--lh-relaxed);
+  }
+  
+  .text-meta {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  
+  .text-caption {
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+    line-height: var(--lh-snug);
+  }
+  
+  .serif { font-family: var(--ff-serif); }
+  .sans { font-family: var(--ff-sans); }
+  .mono { font-family: var(--ff-mono); }
+  
+  .measure-narrow { max-width: 45ch; }
+  .measure { max-width: 65ch; }
+  .measure-wide { max-width: 85ch; }
+}
+
+/* ================ BASE ================ */
+@layer base {
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--ff-sans);
+    font-size: var(--fs-base);
+    line-height: var(--lh-normal);
+    font-weight: 400;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--ff-serif);
+    font-weight: 600;
+    line-height: var(--lh-tight);
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  
+  h1 { font-size: var(--fs-h1); margin-block: 0 0.5em; font-weight: 700; }
+  h2 { font-size: var(--fs-h2); margin-block: 2em 0.5em; font-weight: 600; }
+  h3 { font-size: var(--fs-h3); margin-block: 1.5em 0.5em; font-weight: 600; }
+  h4 { font-size: var(--fs-h4); margin-block: 1.25em 0.5em; font-weight: 600; }
+  h5 { font-size: var(--fs-h5); margin-block: 1em 0.5em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+  h6 { font-size: var(--fs-h6); margin-block: 1em 0.5em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  
+  p {
+    margin-block: 0 1em;
+    color: var(--text);
+  }
+  
+  :is(h1, h2, h3, h4, h5, h6) + p {
+    margin-block-start: 0;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color var(--dur-base) var(--easing),
+                border-bottom var(--dur-base) var(--easing);
+  }
+  
+  a:hover {
+    color: var(--link);
+    border-bottom: 1px solid var(--link);
+  }
+  
+  a:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+  
+  code, kbd, pre {
+    font-family: var(--ff-mono);
+    font-size: 0.875em;
+  }
+  
+  code {
+    background: var(--surface);
+    padding: 0.125em 0.375em;
+    border-radius: var(--radius-sm);
+    color: var(--clr-gray-dark);
+    border: 1px solid var(--border);
+  }
+  
+  pre {
+    background: var(--surface);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    line-height: var(--lh-snug);
+  }
+  
+  pre code {
+    background: none;
+    padding: 0;
+    border: none;
+    color: var(--text);
+  }
+  
+  ul, ol {
+    padding-left: 1.75em;
+    margin-block: 0.75em;
+  }
+  
+  li {
+    margin-block: 0.25em;
+  }
+  
+  li > p {
+    margin-block: 0.25em;
+  }
+  
+  blockquote {
+    margin: var(--space-lg) 0;
+    padding-left: var(--space-lg);
+    border-left: 2px solid var(--text);
+    font-style: italic;
+    color: var(--text-muted);
+  }
+  
+  blockquote p {
+    margin-block: 0.5em;
+  }
+  
+  blockquote cite {
+    display: block;
+    margin-block-start: 0.5em;
+    font-style: normal;
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+  }
+  
+  blockquote cite::before {
+    content: "— ";
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-block: var(--space-xl);
+  }
+  
+  strong {
+    font-weight: 600;
+    color: var(--text);
+  }
+  
+  em {
+    font-style: italic;
+  }
+  
+  small {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: var(--space-lg);
+    font-size: var(--fs-sm);
+  }
+  
+  thead {
+    border-bottom: 2px solid var(--text);
+  }
+  
+  th {
+    text-align: left;
+    font-weight: 600;
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  td {
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--border);
+  }
+  
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+/* ================ UTILITIES ================ */
+@layer utilities {
+  .container {
+    max-width: min(100% - 2rem, var(--container-md));
+    margin-inline: auto;
+  }
+  
+  .container-xs {
+    max-width: min(100% - 2rem, var(--container-xs));
+    margin-inline: auto;
+  }
+  
+  .container-sm {
+    max-width: min(100% - 2rem, var(--container-sm));
+    margin-inline: auto;
+  }
+  
+  .container-lg {
+    max-width: min(100% - 2rem, var(--container-lg));
+    margin-inline: auto;
+  }
+  
+  .stack > * + * {
+    margin-block-start: var(--stack-space, var(--space-md));
+  }
+  
+  .stack-sm > * + * {
+    margin-block-start: var(--space-sm);
+  }
+  
+  .stack-lg > * + * {
+    margin-block-start: var(--space-lg);
+  }
+  
+  .grid {
+    display: grid;
+    gap: var(--grid-gap, var(--space-lg));
+  }
+  
+  @media (min-width: 48rem) {
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  }
+  
+  .flex {
+    display: flex;
+    gap: var(--flex-gap, var(--space-md));
+  }
+  
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .section {
+    padding-block: clamp(2rem, 5vw, 3.5rem);
+  }
+  
+  .section-lg {
+    padding-block: clamp(3rem, 8vw, 5rem);
+  }
+  
+  .text-center { text-align: center; }
+  .text-muted { color: var(--text-muted); }
+  .text-sm { font-size: var(--fs-sm); }
+  .text-xs { font-size: var(--fs-xs); }
+  
+  .font-sans { font-family: var(--ff-sans); }
+  .font-serif { font-family: var(--ff-serif); }
+  .font-mono { font-family: var(--ff-mono); }
+  
+  .abstract {
+    font-style: italic;
+    color: var(--text-muted);
+    margin-block: var(--space-lg);
+    padding: var(--space-md);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+  }
+  
+  .abstract::before {
+    content: "Abstract: ";
+    font-weight: 600;
+    font-style: normal;
+    color: var(--text);
+  }
+  
+  .figure {
+    margin-block: var(--space-lg);
+    text-align: center;
+  }
+  
+  .figure-caption {
+    margin-block-start: var(--space-sm);
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  
+  .figure-caption::before {
+    content: "Figure: ";
+    font-weight: 600;
+    font-style: normal;
+  }
+}
+
+/* ================ COMPONENTS ================ */
+@layer components {
+  .btn {
+    --_bg: var(--text);
+    --_fg: var(--bg);
+    --_border: var(--text);
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 0.5rem 1rem;
+    background: var(--_bg);
+    color: var(--_fg);
+    border: 1px solid var(--_border);
+    border-radius: var(--radius-sm);
+    font-family: var(--ff-sans);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all var(--dur-base) var(--easing);
+  }
+  
+  .btn:hover {
+    --_bg: var(--link);
+    --_border: var(--link);
+    --_fg: var(--bg);
+  }
+  
+  .btn:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 2px;
+  }
+  
+  .btn.-ghost {
+    --_bg: transparent;
+    --_fg: var(--text);
+    --_border: var(--border);
+  }
+  
+  .btn.-ghost:hover {
+    --_bg: var(--surface);
+    --_border: var(--text);
+  }
+  
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+  }
+  
+  .card > * + * {
+    margin-block-start: var(--space-sm);
+  }
+  
+  .site-header {
+    padding-block: var(--space-sm);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  
+  .paper-meta {
+    text-align: center;
+    margin-block: var(--space-xl);
+    padding-block: var(--space-lg);
+    border-block: 1px solid var(--border);
+  }
+  
+  .paper-title {
+    font-size: var(--fs-h1);
+    font-weight: 700;
+    margin-block-end: var(--space-md);
+  }
+  
+  .paper-authors {
+    font-size: var(--fs-base);
+    color: var(--text-muted);
+    margin-block-end: var(--space-sm);
+  }
+  
+  .paper-date {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+  }
+  
+  .footnote {
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+    vertical-align: super;
+  }
+  
+  .footnotes {
+    margin-block-start: var(--space-2xl);
+    padding-block-start: var(--space-lg);
+    border-top: 1px solid var(--border);
+    font-size: var(--fs-sm);
+  }
+}
+
+/* ================ OVERRIDES ================ */
+@layer overrides {
+  .brxe-text p:last-child,
+  .brxe-text-basic:last-child {
+    margin-block-end: 0;
+  }
+  
+  .brxe-container {
+    max-width: var(--container-md);
+  }
+  
+  .brxe-section {
+    padding-block: var(--space-lg) !important;
+  }
+  
+  header,
+  .site-header,
+  [class*="header"],
+  #brx-header,
+  [id*="pqwsya"] {
+    padding-block: var(--space-xs) !important;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .sticky-header,
+  [data-sticky="true"],
+  [style*="position: sticky"] {
+    padding-block: var(--space-xs) !important;
+  }
+  
+  .emoji {
+    font-style: normal;
+    font-size: 1.2em;
+    line-height: 1;
+  }
+  
+  *:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 2px;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  @media print {
+    body {
+      background: white;
+      color: black;
+    }
+    
+    a {
+      text-decoration: underline;
+    }
+    
+    a[href]::after {
+      content: " (" attr(href) ")";
+      font-size: 0.8em;
+    }
+    
+    .no-print {
+      display: none !important;
+    }
+  }
+}
+
+/* ================ RESPONSIVE ================ */
+@media (max-width: 48rem) {
+  :root {
+    --fs-base: 1rem;
+    --fs-h1: 1.5rem;
+    --fs-h2: 1.35rem;
+    --fs-h3: 1.2rem;
+  }
+  
+  body {
+    font-size: var(--fs-base);
+  }
+}
+
+/* ================ DARK MODE REFINEMENTS ================ */
+@media (prefers-color-scheme: dark) {
+  code {
+    background: var(--clr-gray-dark);
+    border-color: var(--clr-gray-medium);
+    color: var(--clr-gray-pale);
+  }
+  
+  .card,
+  .abstract {
+    background: var(--clr-gray-dark);
+    border-color: var(--clr-gray-medium);
+  }
+}
+
+/* ===========================================================
+   END OF SRAGI ULTIMATE CSS v2.0
+   
+   For support and updates, visit: https://sragi.org
+   Documentation: /docs/implementation/SRAGI-CSS-BRICKS-GUIDE.md
+   =========================================== */
