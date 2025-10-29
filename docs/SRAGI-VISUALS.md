@@ -22,10 +22,15 @@ They ensure:
 ## 📁 Directory Structure
 
 📂 visuals/
+
 ├── logos/ → SRAGI + Neptunia branding
+
 ├── diagrams/ → Systems, flows, architectures
+
 ├── illustrations/ → Conceptual, symbolic art
+
 ├── ai-renders/ → AI-generated symbolic or documentary visuals
+
 └── icons/ → Small UI or interface symbols
 
 yaml
@@ -58,8 +63,11 @@ Kopier kode
 
 ### Folder Example
 visuals/ai-renders/
+
 ├── regenerative-spiral-network.webp
+
 ├── phoenix-evolution-2025.webp
+
 └── gaia-consciousness-lattice.webp
 
 yaml
