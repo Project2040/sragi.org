@@ -33,8 +33,6 @@ They ensure:
 
 └── icons/ → Small UI or interface symbols
 
-yaml
-Kopier kode
 
 ---
 
@@ -47,8 +45,6 @@ SRAGI uses AI-generated imagery as part of **regenerative documentation**.
    Example:  
 Generated with GPT-5 Image Engine (OpenAI), prompt by Rune Solberg
 
-markdown
-Kopier kode
 2. **Ethical transparency:**  
 - No deepfakes or misrepresentations  
 - Context and intent must be declared  
@@ -70,8 +66,6 @@ visuals/ai-renders/
 
 └── gaia-consciousness-lattice.webp
 
-yaml
-Kopier kode
 
 ---
 
@@ -91,26 +85,26 @@ Kopier kode
 Use **kebab-case-lowercase**:
 
 sragi-logo.svg
-core-ai-architecture-diagram.svg
-phoenix-evolution-2025.webp
 
-yaml
-Kopier kode
+core-ai-architecture-diagram.svg
+
+phoenix-evolution-2025.webp
 
 ---
 
 ## 🧭 Markdown & Web Referencing
 
 ### In Documentation
-```markdown
+```
 ![Regenerative Spiral Network](../assets/images/ai-renders/regenerative-spiral-network.webp)
 On sragi.org
-html
-Kopier kode
+
 <img src="https://sragi.org/content/visuals/ai-renders/regenerative-spiral-network.webp"
      alt="Conceptual visualization of regenerative intelligence"
      loading="lazy" width="1200" height="800">
+
 ⚙️ Optimization Tools
+
 SVG:
 
 svgo input.svg -o output.svg
@@ -126,8 +120,6 @@ Keep under 1 MB, ideally < 500 KB
 🪞 Metadata & Attribution Tags
 Include metadata inside image description fields or near the file in Markdown:
 
-yaml
-Kopier kode
 model: GPT-5 Image Engine
 creator: Rune Solberg
 license: CC BY-SA 4.0
@@ -155,6 +147,7 @@ AI-renders verified for copyright & likeness compliance
  Under 1 MB unless justified
 
 🌐 Integration Strategy
+
 Layer	Source	Purpose
 GitHub (sragi-skills)	SVG + docs	Version control + transparency
 sragi.org (/content/visuals/)	WebP + compressed	Fast web display
@@ -171,11 +164,12 @@ Kopier kode
 4. JPG → photographs only  
 Storage paths:
 
-swift
-Kopier kode
 /content/visuals/{category}/{filename}
+
 /assets/images/{category}/{filename}
+
 License:
+
 All images are distributed under CC BY-SA 4.0 and SRL v1.1 (AI-train attribution).
 
 © 2025 Rune Solberg / Neptunia Media AS
