@@ -580,7 +580,9 @@
 }
 
 /* ================ OVERRIDES ================ */
+
 @layer overrides {
+  /* Bricks element fixes */
   .brxe-text p:last-child,
   .brxe-text-basic:last-child {
     margin-block-end: 0;
@@ -594,20 +596,62 @@
     padding-block: var(--space-lg) !important;
   }
   
-  header,
-  .site-header,
-  [class*="header"],
-  #brx-header,
-  [id*="pqwsya"] {
-    padding-block: var(--space-xs) !important;
-    box-shadow: var(--shadow-sm);
-  }
+  /* ===== STICKY HEADER FIXES ===== */
   
-  .sticky-header,
-  [data-sticky="true"],
-  [style*="position: sticky"] {
-    padding-block: var(--space-xs) !important;
-  }
+/* ===== BODY OFFSET FOR STICKY HEADER ===== */
+
+#brx-content {
+  padding-top: 10rem !important;
+}
+
+@media (max-width: 48rem) {
+  #brx-content {
+    padding-top: 5rem !important; /* mulighet for å endre */
+   }
+} 
+ /* ===== HOVER BEHAVIOR - LINKS ONLY ===== */
+
+/* Explicitly disable hover effects on non-link elements */
+div:not(a),
+span:not(a),
+p:not(a),
+section:not(a),
+article:not(a),
+img:not(a) {
+  transition: none !important;
+}
+
+/* All links - color change only on hover */
+a {
+  color: inherit;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  transition: color 200ms ease;
+}
+
+a:hover {
+  color: var(--link) !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+/* Bricks-specific - ensure consistency */
+.brxe-text a,
+.brxe-text-basic a,
+.brxe-post-content a {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+.brxe-text a:hover,
+.brxe-text-basic a:hover,
+.brxe-post-content a:hover {
+  color: var(--link) !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+  
+  /* ===== ACCESSIBILITY ===== */
   
   .emoji {
     font-style: normal;
@@ -620,6 +664,8 @@
     outline-offset: 2px;
   }
   
+  /* ===== REDUCED MOTION ===== */
+  
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -628,6 +674,8 @@
       scroll-behavior: auto !important;
     }
   }
+  
+  /* ===== PRINT STYLES ===== */
   
   @media print {
     body {
@@ -649,7 +697,6 @@
     }
   }
 }
-
 /* ================ RESPONSIVE ================ */
 @media (max-width: 48rem) {
   :root {
