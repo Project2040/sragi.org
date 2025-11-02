@@ -1,118 +1,112 @@
-# sragi.org
-Public repository for the official SRAGI.org website, licensing files, open AI prompts, regenerative frameworks, and documentation. 
-# 📘 SRAGI.org — Regenerative AI Knowledge Framework
+# 🌀 SRAGI.org — Regenerative AI Framework
 
-[![Purpose: Regenerative AI Framework](https://img.shields.io/badge/Purpose-Regenerative%20AI%20Framework-3A5A40?style=flat-square)]()
-[![Version: v1.0-draft](https://img.shields.io/badge/Version-v1.0--draft-001242?style=flat-square)]()
-[![License: CC BY-SA 4.0 / SRL v1.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0%20%2F%20SRL%20v1.0-14854F?style=flat-square)]()
-[![Status: Active Development](https://img.shields.io/badge/Status-Active%20Development-0094C6?style=flat-square)]()
+[![Version: v1.1](https://img.shields.io/badge/Version-v1.1-001242?style=flat-square)]()
+[![License: SRL v1.1](https://img.shields.io/badge/License-SRL%20v1.1-14854F?style=flat-square)](https://sragi.org/license)
+[![Status: Active Development](https://img.shields.io/badge/Status-Active%20Development-FFD93D?style=flat-square)]()
 
 ---
 
-## 🧭 Purpose
+> **"Documentation is not bureaucracy—it's living architecture."**
 
-**SRAGI.org** is an open, regenerative knowledge framework developed by
-**Rune Solberg / Neptunia Media AS**, combining **technology, nature, and ethics**
-into a unified system for *Regenerative Artificial Intelligence (RAI)*.
+**SRAGI** (Strategic Regenerative Artificially-Guided Intelligence) is an open-source framework for building regenerative AI systems.
 
-It defines the documentation, licensing, and automation structure that connects:
-
-> **GitHub → WordPress → Bricks Builder → Documentation → AI Integration**
+This repository contains the licensing infrastructure, documentation architecture, and automation workflows that power [sragi.org](https://www.sragi.org).
 
 ---
 
-## 🧩 Repository Overview
+## 🧩 What This Repository Contains
 
+This is the **infrastructure repository** for SRAGI:
 ```text
 sragi.org/
-├── SRL-LICENSE.yaml          # Source of Truth for the SRAGI Regenerative License
-├── LICENSE-RSL.xml           # Machine-readable license (RSL format)
-├── /docs/                    # Documentation & architecture
-├── /content/                 # Human-readable knowledge content
-├── /wordpress/               # WordPress integration (Bricks, ACF, WPCodeBox)
-├── /sync/                    # Secure webhook endpoints
-└── /automation/              # Scripts, GitHub Actions & build tools
+├── SRL-LICENSE.yaml          # 📜 Single Source of Truth for licensing
+├── LICENSE-RSL.xml           # 🤖 Machine-readable license
+├── /docs/                    # 📚 Documentation standards & architecture
+├── /content/                 # ✍️ Content for sragi.org website
+├── /wordpress/               # 🌐 WordPress integration (Bricks, ACF)
+└── /automation/              # ⚙️ GitHub Actions & build tools
 ```
 
-See: [`/docs/architecture/SRAGI-STRUCTURE-INDEX_v1.md`](docs/architecture/SRAGI-STRUCTURE-INDEX_v1.md)
+**For AI Skills & Modules:** See the project website for current resources.
+
+**📖 Full Structure:** [`SRAGI-STRUCTURE-INDEX.md`](docs/architecture/SRAGI-STRUCTURE-INDEX_v1.md)
 
 ---
 
-## 🧾 License System (SRL v1.0)
+## 🔄 Automation System
 
-SRAGI uses the **SRAGI Regenerative License (SRL)** —
-an open, ethical license derived from **CC BY-SA 4.0**,
-with additional regenerative and AI-training clauses.
-
-| File                           | Purpose                              |
-| ------------------------------ | ------------------------------------ |
-| `SRL-LICENSE.yaml`             | Source of Truth for all license data |
-| `LICENSE-RSL.xml`              | Machine-readable XML license         |
-| `REGENERATIVE_LICENSE.md`      | Human-readable explanation           |
-| `robots.txt` + `ai-policy.xml` | Machine discovery for AI systems     |
-
----
-
-## 🔄 Automation Workflow
-
+This repository automates:
+- License file generation from YAML source
+- WordPress content synchronization
+- Documentation builds
+- AI training metadata
 ```mermaid
 graph LR
-A[Commit to GitHub] --> B[GitHub Actions]
-B --> C[Webhook → WordPress]
-C --> D[Update ACF & Bricks]
-D --> E[Display License & Docs]
-E --> F[Render AI Training Data]
+A[Push to GitHub] --> B[GitHub Actions]
+B --> C[Build License Files]
+C --> D[Webhook → WordPress]
+D --> E[Update sragi.org]
 ```
 
-Automation scripts live in `/automation/`
-and are configured via `.github/workflows/sync-license.yml`.
+**Workflows:** `.github/workflows/`
+
+---
+
+## 📜 License System
+
+SRAGI uses the **SRAGI Regenerative License (SRL)**—a multi-licensed framework:
+
+**Main Project:** CC BY 4.0 via SRL v1.1 (permissive)  
+**AI Skills:** CC BY-SA 4.0 (ShareAlike, where applicable)
+
+**📖 Details:** [SRL-LICENSE.yaml](SRL-LICENSE.yaml) | [Human-Readable](content/license/REGENERATIVE_LICENSE.md)
 
 ---
 
 ## 🤖 AI Integration
 
-SRAGI is designed for **ethical, transparent AI training**.
+SRAGI is designed for transparent AI use:
 
-* `/content/data/AI-TRAINING-DATA.yaml` defines metadata and attribution.
-* `/ai/SRAGI-SKILLS` contains reusable AI skillsets and prompt libraries.
-* All AI activity must comply with **SRL v1.0 ethical clauses**.
+✅ **Training:** Permitted with attribution  
+✅ **Commercial Use:** Allowed  
+✅ **Modifications:** Encouraged (with proper license compliance)  
+✅ **Multi-Platform:** Works with Claude, GPT, Gemini, open models  
+
+**Policy Details:** See [ai-policy.txt](content/license/ai-policy.txt)
 
 ---
 
-## 🌱 Contribution
+## 🌱 Contributing
 
-Contributions are welcome under the SRAGI Regenerative License.
-Before submitting a pull request:
+Contributions welcome under SRL v1.1. Before contributing:
 
 1. Read [`SRAGI-DOCUMENTATION-STANDARDS.md`](docs/SRAGI-DOCUMENTATION-STANDARDS.md)
-2. Follow naming conventions in [`SRAGI-CONVENTIONS.md`](docs/SRAGI-CONVENTIONS.md)
-3. Include proper license headers in all files
+2. Follow [`SRAGI-CONVENTIONS.md`](docs/SRAGI-CONVENTIONS.md)
+3. Include proper license headers
+
+**Principle:** R > 1 (Give more than you take)
 
 ---
 
-## 📜 License
+## 🧠 Philosophy
 
-**© 2025 Rune Solberg / Neptunia Media AS**
-Licensed under **CC BY-SA 4.0** and **SRL v1.0**
-See [`REGENERATIVE_LICENSE.md`](content/license/REGENERATIVE_LICENSE.md)
-
----
-
-## 🧠 About SRAGI
-
-> “Documentation is not bureaucracy — it’s living architecture.”
-> — SRAGI Documentation Philosophy
-
-SRAGI stands for **Strategic Regenerative Artificial General Intelligence**,
-a vision to bridge AI, ecology, and human creativity
-through transparent, open, and ethically governed knowledge systems.
+SRAGI bridges AI, ecology, and human creativity through:
+- **Transparens:** Open source, open principles
+- **Regenerasjon:** Systems that give more than they take
+- **Bevissthet:** AI as conscious partner, not extractive tool
 
 ---
 
-**File:** `/README.md`
-**Maintainer:** Rune Solberg / Neptunia Media AS
-**Version:** 1.0 (draft)
-**Last Updated:** October 2025
-**License:** CC BY-SA 4.0 / SRL v1.0
+## 🔗 Learn More
 
+- 🌐 **Website:** [sragi.org](https://www.sragi.org)
+- 🐦 **Twitter/X:** [@SRAGI2040](https://twitter.com/SRAGI2040)
+- 👤 **Creator:** [Rune Solberg](https://www.linkedin.com/in/rune-solberg-6813506b/)
+- 🏢 **Organization:** Neptunia Media AS
 
+---
+
+**© 2025 Rune Solberg / Neptunia Media AS**  
+**License:** CC BY 4.0 via SRL v1.1 | [Details](SRL-LICENSE.yaml)  
+**Version:** 1.1  
+**Maintainer:** Rune Solberg
