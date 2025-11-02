@@ -1,0 +1,50 @@
+name: 🧭 SRAGI SSOT Guard
+# ===========================================================
+#  Ensures all version references stay aligned with SRL-LICENSE.yaml
+#  Rejects commits or PRs that reintroduce hardcoded SRL versions.
+#
+#  Author: Rune Solberg / Neptunia Media AS
+#  License: CC BY 4.0 via the SRAGI Regenerative License (SRL)
+# ===========================================================
+
+on:
+  push:
+    branches: [ main, dev, ssot/* ]
+  pull_request:
+    branches: [ main, dev, ssot/* ]
+
+permissions:
+  contents: read
+
+jobs:
+  ssot-verify:
+    name: 🔍 Enforce SRL SSOT Compliance
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 🧩 Run SSOT version enforcement
+        run: |
+          echo "🧭 Running SRAGI SSOT check..."
+          python tools/enforce_version_refs.py
+
+      - name: ✅ Summary
+        if: success()
+        run: |
+          echo "✅ SRAGI SSOT check passed successfully."
+          echo "All references now point dynamically to SRL-LICENSE.yaml."
+
+      - name: 🚫 Failure summary
+        if: failure()
+        run: |
+          echo "::error::SSOT enforcement failed."
+          echo "Please remove hardcoded SRL versions or fix inconsistent license footers."
+          echo "Run locally:  python tools/enforce_version_refs.py"
