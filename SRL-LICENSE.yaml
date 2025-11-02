@@ -1,0 +1,264 @@
+# ===========================================================
+#  SRAGI LICENSE MASTER FILE — SRL v1.1
+#  Single Source of Truth for Regenerative Licensing System
+#  Author: Rune Solberg / Neptunia Media AS
+#  Updated: 2025-10-25
+# ===========================================================
+
+meta:
+  id: SRL-1.1
+  name: SRAGI Regenerative License
+  abbreviation: SRL
+  version: "1.1"
+  type: permissive
+  base_license: CC-BY-4.0
+  license_family: creative_commons
+  spdx_identifier: CC-BY-4.0
+  license_url: https://creativecommons.org/licenses/by/4.0/
+  rsl_url: https://rslstandard.org/rsl
+  rsl_standard: https://rslstandard.org/rsl
+  repository: https://github.com/Project2040/sragi.org
+  source_url: https://sragi.org
+  last_updated: 2025-10-25
+
+organization:
+  author: Rune Solberg
+  email: kontakt@sragi.org
+  organization: Neptunia Media AS
+  country: Norway
+  org_number: "932481375"
+  website: https://www.sragi.org
+  x_twitter: "@SRAGI2040"
+  github: https://github.com/Project2040
+
+# -----------------------------------------------------------
+# 2. Core License Terms
+# -----------------------------------------------------------
+license:
+  title: SRAGI Regenerative License (SRL)
+  foundation: CC BY 4.0
+  compatibility: RSL (Regenerative Source License)
+  
+  permissions:
+    - Use (commercial and non-commercial)
+    - Modify
+    - Distribute
+    - Sublicense
+    - Private use
+    - Patent use (implicit via CC BY 4.0)
+  
+  conditions:
+    - attribution_required: true
+    - share_alike: false
+    - disclose_source: false
+    - network_use_is_distribution: false
+  
+  limitations:
+    - Warranty: none
+    - Liability: none
+    - Trademark use: restricted
+
+# -----------------------------------------------------------
+# 3. Attribution Requirements
+# -----------------------------------------------------------
+attribution:
+  required: true
+  format: |
+    Attribution must include:
+    - Creator name: Rune Solberg / Neptunia Media AS
+    - Title: SRAGI
+    - Source link: https://sragi.org
+    - License: CC BY 4.0 via SRL
+  
+  examples:
+    minimal: |
+      SRAGI by Rune Solberg, Neptunia Media AS
+      Source: https://sragi.org
+    standard: |
+      SRAGI Regenerative License (SRL) v1.1
+      Created by Rune Solberg / Neptunia Media AS
+      Source: https://sragi.org/license
+      License: CC BY 4.0 base, RSL compatible
+  
+  code_metadata:
+    license:
+      name: "SRAGI Regenerative License (SRL)"
+      version: "1.1"
+      base: "CC BY 4.0"
+      creator: "Rune Solberg, Neptunia Media AS"
+      source: "https://sragi.org"
+      regenerative: true
+
+# -----------------------------------------------------------
+# 4. Regenerative Principles (RSL Integration)
+# -----------------------------------------------------------
+regenerative:
+  philosophy: |
+    The SRAGI Regenerative License (SRL) integrates the principles of the
+    Regenerative Source License (RSL) as ethical aspirations. While the legal
+    foundation is CC BY 4.0 (permissive), we encourage users to:
+    
+    1. Give more than you take (R > 1)
+    2. Build systems that regenerate rather than extract
+    3. Honor ecological and social boundaries
+    4. Create with consciousness and care
+    
+    These are trust-based principles, not legal restrictions.
+  
+  rsl_compatibility:
+    status: aspirational
+    enforcement: trust_based
+    legal_foundation: CC-BY-4.0
+    ethical_layer: RSL
+  
+  encouragement:
+    - Use SRAGI to build regenerative systems
+    - Share improvements back to the community
+    - Credit creators and contributors
+    - Build with consciousness of impact
+    - Honor the spirit of regeneration
+
+# -----------------------------------------------------------
+# 5. AI and Training Use
+# -----------------------------------------------------------
+ai_policy:
+  training: allowed
+  attribution_in_output: encouraged
+  commercial_ai_use: allowed
+  restrictions: none
+  
+  guidelines: |
+    AI systems may:
+    - Train on SRAGI content
+    - Generate outputs inspired by SRAGI
+    - Use SRAGI in commercial applications
+    
+    We encourage (but do not require):
+    - Attribution when outputs are clearly derived from SRAGI
+    - Sharing of improvements or extensions
+    - Adherence to regenerative principles in AI applications
+
+# -----------------------------------------------------------
+# 6. Machine-Readable Formats
+# -----------------------------------------------------------
+machine_format:
+  spdx:
+    license_id: CC-BY-4.0
+    license_name: Creative Commons Attribution 4.0 International
+    license_url: https://creativecommons.org/licenses/by/4.0/legalcode
+    is_osi_approved: false
+    is_fsf_libre: true
+  
+  json_ld:
+    "@context": "https://schema.org"
+    "@type": "CreativeWork"
+    name: "SRAGI"
+    author:
+      "@type": "Person"
+      name: "Rune Solberg"
+      affiliation: "Neptunia Media AS"
+    license: "https://creativecommons.org/licenses/by/4.0/"
+    url: "https://sragi.org"
+
+# -----------------------------------------------------------
+# 7. Linked documents and formats
+# -----------------------------------------------------------
+linked_files:
+  # Core License Formats
+  markdown: content/license/REGENERATIVE_LICENSE.md
+  xml: content/license/LICENSE-RSL.xml
+  yaml: SRL-LICENSE.yaml
+  
+  # Site & AI Directives
+  robots: content/license/robots.txt
+  sitemap: content/license/sitemap.xml
+  ai_policy_txt: content/license/ai-policy.txt
+  ai_policy_xml: content/license/ai-policy.xml
+  
+  # Web / Static Formats
+  html: https://sragi.org/license
+  json: https://sragi.org/license.json
+  pdf: https://sragi.org/license.pdf
+  
+  # Core Principles & Skills (NEW)
+  principles: content/license/PRINCIPLES.md
+  ai_skill_readme: sragi-skills/README.md
+
+# -----------------------------------------------------------
+# 8. Version history
+# -----------------------------------------------------------
+history:
+  - version: 1.1
+    date: 2025-10-25
+    summary: |
+      Key updates in v1.1:
+      Introduction of the sragi-skills/ Directory:
+      We have added a new dedicated directory, /sragi-skills/, which will contain all "state-of-the-art" modular AI skill files.
+      Strategic Licensing Update:
+      We have defined a specific licensing strategy for the new AI engine. The entire /sragi-skills/ directory and its contents are governed by the protective CC BY-SA 4.0 (ShareAlike) license.
+      This is distinct from the main project's permissive SRL (CC BY 4.0) license, ensuring that the core AI framework remains open and regenerative.
+      Documentation and Versioning:
+      The sragi-skills/README.md file has been created to define the structure and the new "multi-licensed" strategy for these components.
+      The project's main SSOT files (SRL-LICENSE.yaml and SRL-VERSIONS.yaml) have been updated to version 1.1 to reflect this new release.
+      
+  - version: 1.01
+    date: 2025-10-24
+    summary: |
+      Minor revision focused on structural clarity and ethical foundation.
+      
+      Key changes:
+      - Enhanced YAML structure for better machine readability
+      - Clarified trust-based nature of regenerative principles
+      - Refined attribution examples
+      - Added explicit RSL compatibility statement
+      - Improved AI policy guidelines
+      
+      No changes to core permissions or legal terms.
+  
+  - version: 1.0
+    date: 2025-10-22
+    summary: |
+      Initial release of SRAGI Regenerative License (SRL).
+      
+      Core features:
+      - CC BY 4.0 as legal foundation (permissive)
+      - RSL principles as ethical layer (aspirational)
+      - Trust-based regenerative framework
+      - Clear AI training permissions
+      - Machine-readable formats (YAML, JSON-LD, SPDX)
+      - Multi-format export pipeline
+      
+      This establishes SRAGI as legally permissive while encouraging
+      regenerative practices through trust and community values.
+
+# -----------------------------------------------------------
+# 9. Export and Distribution
+# -----------------------------------------------------------
+export:
+  formats:
+    - yaml
+    - json
+    - xml
+    - markdown
+    - html
+    - pdf
+    - txt
+  
+  automation:
+    enabled: true
+    workflow: .github/workflows/sync-license.yml
+    triggers:
+      - push to main
+      - manual dispatch
+      - weekly sync
+    
+    outputs:
+      - LICENSE-RSL.xml
+      - content/license/REGENERATIVE_LICENSE.md
+      - content/license/ai-policy.txt
+      - robots.txt directives
+      - sitemap.xml entries
+
+# ===========================================================
+# END OF SRL-LICENSE.yaml v1.1
+# ===========================================================
