@@ -3,6 +3,8 @@
 [![Version: v1.1](https://img.shields.io/badge/Version-v1.1-001242?style=flat-square)]()
 [![License: SRL v1.1](https://img.shields.io/badge/License-SRL%20v1.1-14854F?style=flat-square)](https://sragi.org/license)
 [![Status: Active Development](https://img.shields.io/badge/Status-Active%20Development-FFD93D?style=flat-square)]()
+![SSOT Status](https://github.com/Project2040/sragi.org/actions/workflows/ssot-guard.yml/badge.svg)
+
 
 ---
 
