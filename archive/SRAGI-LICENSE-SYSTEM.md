@@ -1,3 +1,5 @@
+# NOT IN USE! 💤💤💤
+
 # 🌍 SRAGI License System Overview
 
 **File:** `/docs/licensing/SRAGI-LICENSE-SYSTEM.md`
