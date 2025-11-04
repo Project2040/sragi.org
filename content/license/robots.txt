@@ -10,8 +10,7 @@ AI-Policy: https://sragi.org/ai-policy.xml
 Sitemap: https://sragi.org/sitemap.xml
 
 # Documentation
-Allow: /docs/
-Allow: /content/
+
 
 # Contact
 # kontakt@sragi.org
