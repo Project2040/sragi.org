@@ -36,26 +36,6 @@ They ensure:
 
 ---
 
-## 🧠 AI-Generated Images
-
-SRAGI uses AI-generated imagery as part of **regenerative documentation**.
-
-### Principles
-1. **Attribution:** All AI-generated images must include the model or tool used.  
-   Example:  
-Generated with GPT-5 Image Engine (OpenAI), prompt by Rune Solberg
-
-2. **Ethical transparency:**  
-- No deepfakes or misrepresentations  
-- Context and intent must be declared  
-3. **Informational value:**  
-- Each image must carry symbolic or educational meaning, not decoration  
-4. **Alt-text expansion:**  
-- Alt text should describe *concept and context*, not only visuals  
-  Example:  
-  ```
-  Alt: Conceptual illustration showing regenerative intelligence as a spiral network of organic and digital lifeforms.
-  ```
 
 ### Folder Example
 visuals/ai-renders/
