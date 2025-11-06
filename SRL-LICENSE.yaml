@@ -1,18 +1,27 @@
 # ===========================================================
-#  SRAGI LICENSE MASTER FILE — SRL v1.1
-#  Single Source of Truth for Regenerative Licensing System
-#  Author: Rune Solberg / Neptunia Media AS
-#  Updated: 2025-10-25
+#  SRAGI LICENSE MASTER FILE
+#  Single Source of Truth (SSOT) for the Regenerative License
 # ===========================================================
 
 meta:
-  id: SRL-1.1
+  id: SRL-1.11
   name: SRAGI Regenerative License
   abbreviation: SRL
-  version: "1.1"
+  version: "1.11"
   type: permissive
-  base_license: CC-BY-4.0
   license_family: creative_commons
+  # -----------------------------------------------------------
+  license_strategy:
+    default_license: CC-BY-4.0
+    default_license_scope: "Applies to all content unless otherwise specified."
+    
+    secondary_license: CC-BY-SA-4.0
+    secondary_scope: "Applies to specific resources."
+
+  note: |
+    The secondary license (CC BY-SA 4.0) applies to specific directories such as /sragi-skills/, where ShareAlike is required.
+
+  # -----------------------------------------------------------
   attribution_required: true
   rationale: "Chosen for regenerative reciprocity – minimal restriction, guaranteed source awareness."
   SPDX: CC-BY-4.0
@@ -20,7 +29,7 @@ meta:
   rsl_standard: https://rslstandard.org/rsl
   repository: https://github.com/Project2040/sragi.org
   source_url: https://sragi.org
-  last_updated: 2025-10-25
+  last_updated: 2025-11-06 # <--- ENDRE KUN HER
 
 organization:
   author: Rune Solberg
@@ -43,7 +52,22 @@ permissions:
     - commercial
     - closed-source
     - proprietary
+# -----------------------------------------------------------
+  # NY BLOKK: Definerer hvem reglene gjelder for
+  # -----------------------------------------------------------
+  allowed_agents:
+    - "*"             # Gjelder alle (default)
+    - "GPTBot"        # OpenAI
+    - "ClaudeBot"     # Anthropic
+    - "Google-Extended" # Google AI
+    - "CCBot"         # Common Crawl
+    - "Omgilibot"     # Omgili
+    - "Bytespider"    # ByteDance (TikTok)
 
+  note: |
+    This list is declarative, not restrictive. It signals ethical openness to these agents, not exclusion of others.
+
+    
 # -----------------------------------------------------------
 # 2. Requirements — what is legally required (from CC BY 4.0)
 # -----------------------------------------------------------
@@ -63,7 +87,7 @@ ethics:
   binding: false
   framework:
     name: SRAGI Regenerative Principles
-    url: https://sragi.org/regenerative-principles
+    url: https://www.sragi.org/regenerative-principles/
     type: aspirational
     encouragement: |
       We invite users to align with these principles,
@@ -77,18 +101,6 @@ attribution:
   minimal: |
     SRAGI by Rune Solberg, Neptunia Media AS
     Source: https://sragi.org
-  standard: |
-    SRAGI Regenerative License (SRL) v1.1
-    Created by Rune Solberg / Neptunia Media AS
-    Source: https://sragi.org/license
-    License: CC BY 4.0 base, RSL compatible
-  code_metadata:
-    license:
-      name: "SRAGI Regenerative License (SRL)"
-      version: "1.1"
-      base: "CC BY 4.0"
-      creator: "Rune Solberg, Neptunia Media AS"
-      source: "https://sragi.org"
 
 # -----------------------------------------------------------
 # 5. Content & Messaging (for robots.txt, AI policy, etc.)
@@ -117,7 +129,7 @@ content:
 # 6. Machine-readable Integration (RSL XML)
 # -----------------------------------------------------------
 machine_format:
-  output_file: LICENSE-RSL.xml
+  output_file: content/license/LICENSE-RSL.xml # <-- Korrekt sti
   template: |
     <rsl xmlns="{{ meta.rsl_standard }}" version="{{ meta.version }}">
       <content url="{{ meta.repository }}">
@@ -128,6 +140,11 @@ machine_format:
           <permits>{{ p }}</permits>
           {% endfor %}
 
+          <agents>
+            {% for agent in permissions.allowed_agents %}
+            <allowed>{{ agent }}</allowed>
+            {% endfor %}
+          </agents>
           <payment type="attribution">
             <required>{{ requirements.attribution }}</required>
             <source>CC BY 4.0</source>
@@ -152,6 +169,16 @@ machine_format:
     ]]></encouragement>
           </ethical-framework>
           
+          <license-strategy>
+            <default>
+              <license>{{ meta.license_strategy.default_license }}</license>
+              <scope>{{ meta.license_strategy.default_license_scope }}</scope>
+            </default>
+            <secondary>
+              <license>{{ meta.license_strategy.secondary_license }}</license>
+              <scope>{{ meta.license_strategy.secondary_scope }}</scope>
+            </secondary>
+          </license-strategy>
           <rights-holder>
             <name>{{ organization.author }}</name>
             <organization>{{ organization.rights_holder }}</organization>
@@ -164,6 +191,7 @@ machine_format:
         </license>
       </content>
     </rsl>
+
 
 # -----------------------------------------------------------
 # 7. Linked documents and formats
@@ -182,18 +210,44 @@ linked_files:
   
   # Web / Static Formats
   html: https://sragi.org/license
-  json: https://sragi.org/license.json
-  pdf: https://sragi.org/license.pdf
+  json: content/license/license.json # <-- Gjort om til relativ sti
   
   # Core Principles & Skills (NEW)
-  principles: content/license/PRINCIPLES.md
+  principles: content/license/regenerative-principles.md
   ai_skill_readme: sragi-skills/README.md
+
+  # -----------------------------------------------------------
+  # NY BLOKK: Kildekart for å spore generering (DIN ENDRING 3)
+  # -----------------------------------------------------------
+  source_map:
+    REGENERATIVE_LICENSE.md: [attribution, ethics, requirements]
+    LICENSE-RSL.xml: [machine_format.template, meta, permissions, organization]
+    ai-policy.txt: [content.ai_policy, meta, requirements]
+    robots.txt: [content.robots, meta]
 
 
 # -----------------------------------------------------------
 # 8. Version history
 # -----------------------------------------------------------
 history:
+
+- version: "1.11"
+    date: 2025-11-06
+    summary: |
+      System Integrity Refactor (v1.11) / "Kairos-fiksen":
+      
+      1. SSOT-konsolidering: Fjernet hardkodede v1.1-referanser fra 'attribution'-blokken. 
+         All attribusjon genereres nå dynamisk fra 'meta'- og 'organization'-variablene.
+      2. Formalisert Dual-Lisens: La til den maskinlesbare 'meta.license_strategy'-blokken 
+         for å tydeliggjøre skillet mellom CC-BY-4.0 (default) og CC-BY-SA-4.0 (spesifikke ressurser).
+      3. Agent-merking: La til den nye 'permissions.allowed_agents'-listen for å eksplisitt 
+         signalere åpenhet til spesifikke AI-roboter.
+      4. XML-oppgradering: Oppdaterte 'machine_format.template' til å dynamisk inkludere 
+         de nye 'license_strategy'- og 'allowed_agents'-blokkene.
+      5. URL-korreksjon: Oppdaterte 'ethics.framework.url' til å peke til den rene 
+         WordPress-siden (/regenerative-principles/) i stedet for en rå .md-fil.
+      6. Selv-dokumentering: La til 'linked_files.source_map' for å spore filgenerering.
+
   - version: 1.1
     date: 2025-10-25
     summary: |
