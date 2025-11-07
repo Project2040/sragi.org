@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRAGI Regenerative License (SRL) v1.12</title>
+    <meta name="description" content="Official license documentation for SRAGI.org - v1.12">
+    <style>
+        :root {
+            --color-bg: #F9FAFB;
+            --color-surface: #FFFFFF;
+            --color-text: #111827;
+            --color-muted: #6B7280;
+            --color-primary: #059669; /* Regenerative Green */
+            --color-border: #E5E7EB;
+            --font-sans: system-ui, -apple-system, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--color-text);
+            background: var(--color-bg);
+            margin: 0;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--color-surface);
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        h1, h2, h3 { color: var(--color-text); letter-spacing: -0.025em; }
+        h1 {
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--color-primary);
+        }
+        h2 { margin-top: 3rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        a { color: var(--color-primary); text-decoration: none; font-weight: 500; }
+        a:hover { text-decoration: underline; }
+        pre, code { font-family: var(--font-mono); background: var(--color-bg); border-radius: 6px; }
+        pre { padding: 1rem; overflow-x: auto; border: 1px solid var(--color-border); font-size: 0.875rem; }
+        code { padding: 0.2em 0.4em; font-size: 0.9em; }
+        blockquote {
+            border-left: 4px solid var(--color-primary);
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            font-style: italic;
+            color: #4B5563;
+            background: #F0FDF4; /* Light green tint */
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--color-border); }
+        th { background-color: var(--color-bg); font-weight: 600; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        ul.permissions-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem 1rem; }
+        .meta-header p { margin: 0.25rem 0; }
+        .badge {
+            display: inline-flex; align-items: center; padding: 0.25rem 0.75rem;
+            border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+            background: var(--color-primary); color: white;
+        }
+        .footer {
+            margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border);
+            font-size: 0.875rem; color: var(--color-muted); text-align: center;
+        }
+        .footer ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <header class="meta-header">
+            <h1>🌱 SRAGI Regenerative License (SRL)</h1>
+            <p><strong>Version:</strong> <span class="badge">v1.12</span></p>
+            <p><strong>Based on:</strong> CC-BY-4.0</p>
+            <p><strong>Strategy:</strong> Layered</p>
+            <p><em>(Layered: see also CC-BY-SA-4.0 for Applies to sragi-skills/ and AI-specific resources.)</em></p>
+            <p><strong>Last updated:</strong> 2025-11-07</p>
+            <p><strong>Framework:</strong> <a href="https://sragi.org/docs/licensing/SRAGI-LICENSE-SYSTEM.md">Read full documentation →</a></p>
+        </header>
+
+        <section id="permissions">
+            <h2>✅ Permissions</h2>
+            <ul class="permissions-list">
+                <li>all</li>
+                <li>train-ai</li>
+                <li>inference</li>
+                <li>derivative-works</li>
+                <li>commercial</li>
+                <li>closed-source</li>
+                <li>proprietary</li>
+                
+            </ul>
+
+            <h3>Permitted AI Agents</h3>
+            <blockquote>These declarations are ethically open invitations, not restrictive rules.</blockquote>
+            <ul class="permissions-list">
+                <li>*</li>
+                <li>GPTBot</li>
+                <li>ClaudeBot</li>
+                <li>Google-Extended</li>
+                <li>CCBot</li>
+                <li>Omgilibot</li>
+                <li>Bytespider</li>
+                
+            </ul>
+        </section>
+
+        <section id="requirements">
+            <h2>⚠️ Requirements</h2>
+            <table>
+                <thead>
+                    <tr><th>Requirement</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Attribution</strong></td><td>True</td></tr>
+                    <tr><td><strong>Share-alike</strong></td><td>False</td></tr>
+                    <tr><td><strong>Open Source</strong></td><td>False</td></tr>
+                    <tr><td><strong>Restrictions</strong></td><td>False</td></tr>
+                </tbody>
+            </table>
+            <blockquote>Attribution is mandated by CC BY 4.0, not by SRAGI.
+All other aspects are permissive and trust-based.</blockquote>
+        </section>
+
+        <section id="ethics">
+            <h2>🌿 Ethics</h2>
+            <blockquote>We invite users to align with these principles,<br>but we do not legally require it.<br>These represent culture, not control.<br></blockquote>
+            <ul>
+                <li><strong>Framework:</strong> <a href="https://www.sragi.org/regenerative-principles/">SRAGI Regenerative Principles</a></li>
+                <li><strong>Type:</strong> aspirational</li>
+                <li><strong>Binding:</strong> No (Aspirational)</li>
+            </ul>
+        </section>
+
+        <section id="attribution">
+            <h2>🧾 Attribution</h2>
+
+            <h3>Minimal</h3>
+            <pre>SRAGI by Rune Solberg, Neptunia Media AS
+Source: https://sragi.org
+</pre>
+
+            <h3>Standard</h3>
+            
+            <pre>SRAGI Regenerative License (SRL) v{{ meta.version }}
+Created by Rune Solberg / Neptunia Media AS
+Source: https://sragi.org/license
+License: CC BY 4.0 base, RSL compatible
+</pre>
+            
+
+            <h3>Code Metadata (JSON)</h3>
+            <pre>{
+  "license": {
+    "base": "CC BY 4.0",
+    "creator": "Rune Solberg, Neptunia Media AS",
+    "name": "SRAGI Regenerative License (SRL)",
+    "source": "https://sragi.org",
+    "version": "{{ meta.version }}"
+  }
+}</pre>
+        </section>
+
+        <section id="machine-summary">
+            <h2>🤖 Machine Summary</h2>
+            <table>
+                <thead>
+                    <tr><th>Directive</th><th>Value</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Robots Policy</strong></td><td>SRAGI.ORG — REGENERATIVE ACCESS DIRECTIVE</td></tr>
+                    <tr><td><strong>License XML</strong></td><td><a href="{{ meta.source_url }}/license-rsl.xml">LICENSE-RSL.xml</a></td></tr>
+                    <tr><td><strong>AI Policy</strong></td><td><a href="{{ meta.source_url }}/ai-policy.xml">ai-policy.txt</a></td></tr>
+                    <tr><td><strong>Sitemap</strong></td><td><a href="{{ meta.source_url }}/content/license/sitemap.xml">sitemap.xml</a></td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer class="footer">
+            <p><strong>© Rune Solberg / Neptunia Media AS — 2025-11-07</strong></p>
+            <ul>
+                <li>Org: 932481375</li>
+                <li>Loc: Leira, Norway</li>
+                <li><a href="mailto:kontakt@sragi.org">Contact</a></li>
+                <li><a href="https://sragi.org">Website</a></li>
+                <li><a href="https://sragi.org">Source</a></li>
+                <li><a href="https://github.com/Project2040/sragi.org">Repository</a></li>
+            </ul>
+        </footer>
+
+    </main>
+
+</body>
+</html>

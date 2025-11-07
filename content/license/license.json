@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "id": "SRL-1.12",
+    "version": "1.12",
+    "updated": "2025-11-07",
+    "strategy": {
+      "type": "layered",
+      "default_license": "CC-BY-4.0",
+      "default_license_scope": "Applies to all content unless otherwise specified.",
+      "secondary_license": "CC-BY-SA-4.0",
+      "secondary_scope": "Applies to sragi-skills/ and AI-specific resources.",
+      "note": "The secondary license (CC BY-SA 4.0) applies to specific directories such as\n/sragi-skills/, where ShareAlike is required.\n",
+      "framework_url": "https://sragi.org/docs/licensing/SRAGI-LICENSE-SYSTEM.md"
+    },
+    "source": "https://sragi.org"
+  },
+  "organization": {
+    "author": "Rune Solberg",
+    "rights_holder": "Neptunia Media AS",
+    "organization": "SRAGI.org",
+    "contact_email": "kontakt@sragi.org",
+    "website": "https://sragi.org",
+    "location": "Leira, Norway",
+    "org_number": "932481375"
+  },
+  "permissions": {
+    "usage": [
+      "all",
+      "train-ai",
+      "inference",
+      "derivative-works",
+      "commercial",
+      "closed-source",
+      "proprietary"
+    ],
+    "allowed_agents": [
+      "*",
+      "GPTBot",
+      "ClaudeBot",
+      "Google-Extended",
+      "CCBot",
+      "Omgilibot",
+      "Bytespider"
+    ],
+    "note": "This list is declarative, not restrictive. It signals ethical openness to\nthese agents, not exclusion of others.\n"
+  },
+  "requirements": {
+    "attribution": true,
+    "share-alike": false,
+    "open-source-required": false,
+    "additional-restrictions": false,
+    "note": "Attribution is mandated by CC BY 4.0, not by SRAGI.\nAll other aspects are permissive and trust-based.\n"
+  },
+  "ethics": {
+    "binding": false,
+    "framework": {
+      "name": "SRAGI Regenerative Principles",
+      "url": "https://www.sragi.org/regenerative-principles/",
+      "type": "aspirational",
+      "encouragement": "We invite users to align with these principles,\nbut we do not legally require it.\nThese represent culture, not control.\n"
+    }
+  },
+  "links": {
+    "markdown": "content/license/REGENERATIVE_LICENSE.md",
+    "xml": "content/license/LICENSE-RSL.xml",
+    "yaml": "SRL-LICENSE.yaml",
+    "robots": "content/license/robots.txt",
+    "sitemap": "content/license/sitemap.xml",
+    "ai_policy_txt": "content/license/ai-policy.txt",
+    "ai_policy_xml": "content/license/ai-policy.xml",
+    "html": "https://sragi.org/license",
+    "json": "content/license/license.json",
+    "principles": "content/license/regenerative-principles.md",
+    "ai_skill_readme": "sragi-skills/README.md"
+  }
+}
