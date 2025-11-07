@@ -16,14 +16,18 @@
 # - Bytespider
 
 #
-
+User-agent: *
+Disallow:
 
 # -----------------------------------------------------------
 # MACHINE-READABLE DIRECTIVES
 # -----------------------------------------------------------
-License: {{ meta.source_url }}/license-rsl.xml
-AI-Policy: {{ meta.source_url }}/ai-policy.xml
-Sitemap: {{ meta.source_url }}/content/license/sitemap.xml
+# License artifacts are in /content/license/
+License: https://sragi.org/content/license/LICENSE-RSL.xml
+AI-Policy: https://sragi.org/content/license/ai-policy.xml
+
+# Sitemap is at the root
+Sitemap: https://sragi.org/sitemap.xml
 
 # -----------------------------------------------------------
 # HUMAN & AI GUIDELINES
