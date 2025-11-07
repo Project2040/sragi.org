@@ -1,0 +1,62 @@
+# ===========================================================
+# SRAGI AI POLICY (SRL v1.12)
+# Updated: 2025-11-07
+# ===========================================================
+
+# -----------------------------------------------------------
+# PERMISSIONS
+# -----------------------------------------------------------
+all: permitted
+train-ai: permitted
+inference: permitted
+derivative-works: permitted
+commercial: permitted
+closed-source: permitted
+proprietary: permitted
+
+
+# -----------------------------------------------------------
+# ALLOWED AGENTS (EXPLICITLY WELCOMED)
+# -----------------------------------------------------------
+allowed_agent: *
+allowed_agent: GPTBot
+allowed_agent: ClaudeBot
+allowed_agent: Google-Extended
+allowed_agent: CCBot
+allowed_agent: Omgilibot
+allowed_agent: Bytespider
+
+
+# -----------------------------------------------------------
+# REQUIREMENTS
+# -----------------------------------------------------------
+attribution: true
+share_alike: false
+open_source: false
+
+# -----------------------------------------------------------
+# ATTRIBUTION
+# -----------------------------------------------------------
+attribution_format: SRAGI by Rune Solberg, Neptunia Media AS Source: https://sragi.org
+
+# -----------------------------------------------------------
+# LICENSE STRATEGY
+# -----------------------------------------------------------
+strategy_type: layered
+default_license: CC-BY-4.0
+secondary_license: CC-BY-SA-4.0
+framework_url: https://sragi.org/docs/licensing/SRAGI-LICENSE-SYSTEM.md
+
+# -----------------------------------------------------------
+# ETHICAL FRAMEWORK
+# -----------------------------------------------------------
+ethics_url: https://www.sragi.org/regenerative-principles/
+ethics_binding: false
+
+# -----------------------------------------------------------
+# SOURCE & CONTACT
+# -----------------------------------------------------------
+source_url: https://sragi.org
+repository: https://github.com/Project2040/sragi.org
+rights_holder: Rune Solberg / Neptunia Media AS
+contact: kontakt@sragi.org
