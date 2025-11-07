@@ -1,20 +1,52 @@
+# ===========================================================
 # SRAGI AI POLICY (SRL v{{ meta.version }})
-# Last updated: {{ meta.last_updated }}
+# Updated: {{ meta.last_updated }}
+# ===========================================================
 
-training: permitted
-inference: permitted
-redistribution: permitted
-commercial_use: permitted
-derivative_works: permitted
-closed_source: permitted
+# -----------------------------------------------------------
+# PERMISSIONS
+# -----------------------------------------------------------
+{% for p in permissions.usage -%}
+{{ p }}: permitted
+{% endfor %}
 
-attribution_required: {{ requirements.attribution }}
-attribution_format: {{ attribution.minimal | replace('\n', ' ') }}
+# -----------------------------------------------------------
+# ALLOWED AGENTS (EXPLICITLY WELCOMED)
+# -----------------------------------------------------------
+{% for agent in permissions.allowed_agents -%}
+allowed_agent: {{ agent }}
+{% endfor %}
 
-source: {{ meta.source_url }}
-license_base: {{ meta.base_license }}
-ethics_framework: {{ ethics.framework.url }}
+# -----------------------------------------------------------
+# REQUIREMENTS
+# -----------------------------------------------------------
+attribution: {{ requirements.attribution | lower }}
+share_alike: {{ requirements['share-alike'] | lower }}
+open_source: {{ requirements['open-source-required'] | lower }}
 
+# -----------------------------------------------------------
+# ATTRIBUTION
+# -----------------------------------------------------------
+attribution_format: {{ attribution.minimal | replace('\n', ' ') | trim }}
+
+# -----------------------------------------------------------
+# LICENSE STRATEGY
+# -----------------------------------------------------------
+strategy_type: {{ meta.license_strategy.type }}
+default_license: {{ meta.license_strategy.default_license }}
+secondary_license: {{ meta.license_strategy.secondary_license }}
+framework_url: {{ meta.license_strategy.framework_url }}
+
+# -----------------------------------------------------------
+# ETHICAL FRAMEWORK
+# -----------------------------------------------------------
+ethics_url: {{ ethics.framework.url }}
+ethics_binding: {{ ethics.binding | lower }}
+
+# -----------------------------------------------------------
+# SOURCE & CONTACT
+# -----------------------------------------------------------
+source_url: {{ meta.source_url }}
+repository: {{ meta.repository }}
 rights_holder: {{ organization.author }} / {{ organization.rights_holder }}
 contact: {{ organization.contact_email }}
-website: {{ organization.website }}
