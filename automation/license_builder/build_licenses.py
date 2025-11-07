@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ===========================================================
-#  SRAGI LICENSE BUILDER — v1.3 (Kairos Edition)
+#  SRAGI LICENSE BUILDER — v1.4 (Zombie-Fix Edition)
 #  © 2025 Rune Solberg / Neptunia Media AS
 #  Reads SRL-LICENSE.yaml and generates all license artifacts
 #  All files output to: content/license/
@@ -10,6 +10,7 @@ import os
 import sys
 import yaml
 import json
+import traceback
 from datetime import datetime, timezone
 from generate_files import *
 
@@ -53,8 +54,8 @@ def verify_output():
     expected_files = [
         "LICENSE-RSL.xml",
         "REGENERATIVE_LICENSE.md",
-        "index.html",         # Ny!
-        "license.json",       # Ny!
+        "index.html",
+        "license.json",
         "ai-policy.xml",
         "ai-policy.txt",
         "robots.txt",
@@ -64,6 +65,10 @@ def verify_output():
     missing = []
     for filename in expected_files:
         filepath = os.path.join(LICENSE_DIR, filename)
+        if filename in ["robots.txt", "sitemap.xml", "ai-policy.txt"]:
+             # Sjekk rot-filene der de faktisk ligger nå
+             filepath = os.path.join(BASE_DIR, filename)
+
         if not os.path.exists(filepath):
             missing.append(filename)
 
@@ -71,7 +76,7 @@ def verify_output():
         print(f"\n⚠️  WARNING: Missing files: {', '.join(missing)}\n")
         return False
 
-    print(f"\n✅ All {len(expected_files)} files verified in {os.path.relpath(LICENSE_DIR, BASE_DIR)}/\n")
+    print(f"\n✅ All {len(expected_files)} artifacts verified.\n")
     return True
 
 def main():
@@ -92,7 +97,8 @@ def main():
 
     # Use SSOT timestamp if available, otherwise fallback to now (Kairos principle)
     ssot_time = data.get("meta", {}).get("last_updated")
-    timestamp = ssot_time if ssot_time else datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    # SIKKERHETSFIKS: Tving til string umiddelbart
+    timestamp = str(ssot_time) if ssot_time else datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     results = {}
 
@@ -102,18 +108,18 @@ def main():
     try:
         results["LICENSE-RSL.xml"] = generate_rsl_xml(data)
         results["REGENERATIVE_LICENSE.md"] = generate_human_license(data)
-        results["index.html"] = generate_license_html(data)      # Ny!
-        results["license.json"] = generate_license_json(data)    # Ny!
+        results["index.html"] = generate_license_html(data)
+        results["license.json"] = generate_license_json(data)
         results["ai-policy.xml"] = generate_ai_policy_xml(data)
         results["ai-policy.txt"] = generate_ai_policy_txt(data)
         results["robots.txt"] = generate_robots(data)
         results["sitemap.xml"] = generate_sitemap(data)
 
-        # Log success
+        # Log success - SIKRET MOT DATO-FEIL
         log_event({
             "build_time": datetime.now(timezone.utc).isoformat(),
-            "ssot_version": data.get("meta", {}).get("version"),
-            "ssot_date": timestamp,
+            "ssot_version": str(data.get("meta", {}).get("version")),
+            "ssot_date": timestamp, # Nå garantert en string
             "status": "success",
             "results": results
         })
@@ -130,11 +136,9 @@ def main():
         print(f"❌ ERROR: {error_msg}")
         sys.exit(1)
 
-    except Exception as e:
-        error_msg = str(e)
-        # print(f"❌ ERROR during build: {error_msg}") # Debug only
-        import traceback
-        traceback.print_exc() # Better error reporting
+    except Exception:
+        # Full traceback for unexpected errors
+        traceback.print_exc()
         sys.exit(1)
 
 if __name__ == "__main__":
