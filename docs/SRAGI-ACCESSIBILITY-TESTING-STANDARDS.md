@@ -205,4 +205,5 @@ The **SRAGI Accessibility & Testing Standards** ensure that all products and doc
 ---
 
 **© 2025 Rune Solberg / Neptunia Media AS**
-Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL) v1.0
+Licensed under CC BY 4.0 via the SRAGI Regenerative License (SRL).
+See SRL-LICENSE.yaml for current version and details.
