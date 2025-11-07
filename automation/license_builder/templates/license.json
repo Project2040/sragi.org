@@ -1,22 +1,44 @@
-# 7. license.json
+# -----------------------------------------------------------
+# 7. license.json (API-ready, full SSOT reflection)
 # -----------------------------------------------------------
 def generate_license_json(data):
+    import json
     from datetime import datetime, timezone
+
     meta = data.get("meta", {})
-    linked = data.get("linked_files", {})
-    now = datetime.now(timezone.utc).isoformat()
+    org = data.get("organization", {})
+    perms = data.get("permissions", {})
+    reqs = data.get("requirements", {})
+    ethics = data.get("ethics", {})
+    linked = data.get("linked_files", {}).copy()
+
+    # Remove internal build keys from public JSON
+    linked.pop("source_map", None)
 
     json_data = {
-        "id": meta.get("id"),
-        "name": meta.get("name"),
-        "version": meta.get("version"),
-        "base_license": meta.get("base_license"),
-        "updated": now,
-        "author": data.get("organization", {}).get("author"),
-        "rights_holder": data.get("organization", {}).get("rights_holder"),
-        "linked_files": linked
+        "meta": {
+            "id": meta.get("id"),
+            "name": meta.get("name"),
+            "version": meta.get("version"),
+            "updated": meta.get("last_updated"),  # Kairos sync: use SSOT date
+            "spdx": meta.get("SPDX"),
+            "strategy": meta.get("license_strategy", {}),
+            "source": meta.get("source_url"),
+            "repository": meta.get("repository")
+        },
+        "organization": org,
+        "permissions": {
+            "usage": perms.get("usage", []),
+            "allowed_agents": perms.get("allowed_agents", [])
+        },
+        "requirements": reqs,
+        "ethics": {
+            "framework": ethics.get("framework", {}).get("name"),
+            "url": ethics.get("framework", {}).get("url"),
+            "binding": ethics.get("binding", False)
+        },
+        "links": linked
     }
 
-    import json
     json_str = json.dumps(json_data, indent=2, ensure_ascii=False)
-    return write_output(os.path.join(BASE_DIR, "content/license/license.json"), json_str)
+    return write_output(os.path.join(LICENSE_DIR, "license.json"), json_str)
