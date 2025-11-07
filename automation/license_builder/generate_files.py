@@ -85,11 +85,14 @@ def generate_license_json(data):
     linked = data.get("linked_files", {}).copy()
     linked.pop("source_map", None) # Remove internal build data
 
+    # SIKKERHETSFIKS: Tving 'last_updated' til string for å unngå JSON-krasj
+    updated_date = str(meta.get("last_updated", ""))
+
     json_data = {
         "meta": {
             "id": meta.get("id"),
             "version": meta.get("version"),
-            "updated": meta.get("last_updated"),
+            "updated": updated_date,  # <-- Nå trygg for JSON
             "strategy": meta.get("license_strategy", {}),
             "source": meta.get("source_url")
         },
