@@ -24,7 +24,7 @@ meta:
     note: |
       The secondary license (CC BY-SA 4.0) applies to specific directories such as
       /sragi-skills/, where ShareAlike is required.
-    framework_url: https://sragi.org/docs/licensing/SRAGI-LICENSE-SYSTEM.md
+    framework_url: https://sragi.org/content/license/REGENERATIVE_LICENSE.md
 
   # -----------------------------------------------------------
   attribution_required: true
