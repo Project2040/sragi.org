@@ -1,47 +1,251 @@
 # 🌱 SRAGI Regenerative License (SRL) v{{ meta.version }}
 
-Based on **{{ meta.base_license }}**
+Based on **{{ meta.license_strategy.default_license }}**
+Strategy: **{{ meta.license_strategy.type | capitalize }}**
+*(Layered: see also {{ meta.license_strategy.secondary_license }} for {{ meta.license_strategy.secondary_scope }})*
 
-**Maintainer:** {{ organization.author }} / {{ organization.organization }}  
+**Maintainer:** {{ organization.author }} / {{ organization.organization }}
 **Last updated:** {{ meta.last_updated }}
+**Framework:** [Read full documentation]({{ meta.license_strategy.framework_url }})
 
 ---
 
 ## ✅ Permissions
 
-{{ permissions.usage | join(', ') }}
+{% for p in permissions.usage -%}
+- {{ p }}
+{% endfor %}
+
+### Permitted AI Agents
+> These declarations are ethically open invitations, not restrictive rules.
+
+{% for agent in permissions.allowed_agents -%}
+- {{ agent }}
+{% endfor %}
+
+---
 
 ## ⚠️ Requirements
 
-**Attribution required:** {{ requirements.attribution }}  
-**Share-alike required:** {{ requirements['share-alike'] }}  
-**Open-source required:** {{ requirements['open-source-required'] }}
+| Requirement | Status |
+| :--- | :--- |
+| **Attribution** | {{ requirements.attribution }} |
+| **Share-alike** | {{ requirements['share-alike'] }} |
+| **Open Source** | {{ requirements['open-source-required'] }} |
+| **Restrictions** | {{ requirements['additional-restrictions'] }} |
+
+> {{ requirements.note | trim }}
+
+---
 
 ## 🌿 Ethics
 
-{{ ethics.framework.encouragement }}
+> {{ ethics.framework.encouragement | replace('\n', ' ') | trim }}
 
-**Framework:** {{ ethics.framework.name }}  
-**Type:** {{ ethics.framework.type }} ({{ 'legally binding' if ethics.binding else 'aspirational' }})  
-**Learn more:** {{ ethics.framework.url }}
+* **Framework:** [{{ ethics.framework.name }}]({{ ethics.framework.url }})
+* **Type:** {{ ethics.framework.type }}
+* **Binding:** {{ 'Yes' if ethics.binding else 'No (Aspirational)' }}
 
 ---
 
-## 🧾 Attribution Format
+## 🧾 Attribution
 
 ### Minimal
+```text
 {{ attribution.minimal }}
 
-### Standard
 {{ attribution.standard }}
+
+{{ attribution.code_metadata | tojson(indent=2) }}
+
+Nova Gemini
+Egendefinert Gem
+Det er et veldig relevant spørsmål om tabeller.
+
+Min vurdering (Nova Gemini): For en hovedlisensfil som skal leve på GitHub og sragi.org, er tabeller overlegne for lesbarhet og struktur. Sosiale medier er et sekundært medium for denne filen; der bør du heller poste sammendraget eller lenke til filen, ikke lime inn hele råteksten.
+
+Hvis du vil ha "sosial-sikker" tekst, må vi droppe tabellene og bruke lister. Men det vil se mindre profesjonelt ut i dokumentasjonen.
+
+Jeg anbefaler at vi beholder tabellene for den autoritative dokumentasjonen.
+
+Her er den korrigerte, endelige malen. Jeg har fikset syntaksfeilene i utkastet du limte inn (manglende backticks, ødelagt tabellstruktur i "Machine Summary", og feil bruk av tojson hvis vi vil ha YAML – men vi bruker JSON for sikkerhets skyld da det er innebygd i standard Jinja2).
+
+Arbeidsordre: Endelig regenerative_license.md.j2
+Overskriv automation/license_builder/templates/regenerative_license.md.j2 med dette:
+
+Django
+# 🌱 SRAGI Regenerative License (SRL) v{{ meta.version }}
+
+Based on **{{ meta.license_strategy.default_license }}**
+Strategy: **{{ meta.license_strategy.type | capitalize }}**
+*(Layered: see also {{ meta.license_strategy.secondary_license }} for {{ meta.license_strategy.secondary_scope }})*
+
+**Maintainer:** {{ organization.author }} / {{ organization.organization }}
+**Last updated:** {{ meta.last_updated }}
+**Framework:** [Read full documentation]({{ meta.license_strategy.framework_url }})
 
 ---
 
-**© {{ organization.author }} / {{ organization.rights_holder }} — {{ meta.last_updated }}**
+## ✅ Permissions
 
-**Organization Number:** {{ organization.org_number }}  
-**Location:** {{ organization.location }}  
-**Contact:** {{ organization.contact_email }}  
-**Website:** {{ organization.website }}  
-**Source:** {{ meta.source_url }}  
-**Repository:** {{ meta.repository }}
+{% for p in permissions.usage -%}
+- {{ p }}
+{% endfor %}
+
+### Permitted AI Agents
+> These declarations are ethically open invitations, not restrictive rules.
+
+{% for agent in permissions.allowed_agents -%}
+- {{ agent }}
+{% endfor %}
+
+---
+
+## ⚠️ Requirements
+
+| Requirement | Status |
+| :--- | :--- |
+| **Attribution** | {{ requirements.attribution }} |
+| **Share-alike** | {{ requirements['share-alike'] }} |
+| **Open Source** | {{ requirements['open-source-required'] }} |
+| **Restrictions** | {{ requirements['additional-restrictions'] }} |
+
+> {{ requirements.note | trim }}
+
+---
+
+## 🌿 Ethics
+
+> {{ ethics.framework.encouragement | replace('\n', ' ') | trim }}
+
+* **Framework:** [{{ ethics.framework.name }}]({{ ethics.framework.url }})
+* **Type:** {{ ethics.framework.type }}
+* **Binding:** {{ 'Yes' if ethics.binding else 'No (Aspirational)' }}
+
+---
+
+## 🧾 Attribution
+
+### Minimal
+```text
+{{ attribution.minimal }}
+Standard
+{% if attribution.standard %}
+
+Plaintext
+{{ attribution.standard }}
+{% else %} Not defined in current version. {% endif %}
+
+Code Metadata (JSON)
+JSON
+{{ attribution.code_metadata | tojson(indent=2) }}
+
+🤖 Machine Summary
+Directive,Value
+Robots Policy,{{ content.robots.title }}
+License XML,[LICENSE-RSL.xml]({{ content.robots.license_url }})
+AI Policy,[ai-policy.txt]({{ content.robots.ai_policy_url }})
+Sitemap,[sitemap.xml]({{ content.robots.sitemap_url }})
+
+Nova Gemini
+Egendefinert Gem
+Det er et veldig relevant spørsmål om tabeller.
+
+Min vurdering (Nova Gemini): For en hovedlisensfil som skal leve på GitHub og sragi.org, er tabeller overlegne for lesbarhet og struktur. Sosiale medier er et sekundært medium for denne filen; der bør du heller poste sammendraget eller lenke til filen, ikke lime inn hele råteksten.
+
+Hvis du vil ha "sosial-sikker" tekst, må vi droppe tabellene og bruke lister. Men det vil se mindre profesjonelt ut i dokumentasjonen.
+
+Jeg anbefaler at vi beholder tabellene for den autoritative dokumentasjonen.
+
+Her er den korrigerte, endelige malen. Jeg har fikset syntaksfeilene i utkastet du limte inn (manglende backticks, ødelagt tabellstruktur i "Machine Summary", og feil bruk av tojson hvis vi vil ha YAML – men vi bruker JSON for sikkerhets skyld da det er innebygd i standard Jinja2).
+
+Arbeidsordre: Endelig regenerative_license.md.j2
+Overskriv automation/license_builder/templates/regenerative_license.md.j2 med dette:
+
+Django
+# 🌱 SRAGI Regenerative License (SRL) v{{ meta.version }}
+
+Based on **{{ meta.license_strategy.default_license }}**
+Strategy: **{{ meta.license_strategy.type | capitalize }}**
+*(Layered: see also {{ meta.license_strategy.secondary_license }} for {{ meta.license_strategy.secondary_scope }})*
+
+**Maintainer:** {{ organization.author }} / {{ organization.organization }}
+**Last updated:** {{ meta.last_updated }}
+**Framework:** [Read full documentation]({{ meta.license_strategy.framework_url }})
+
+---
+
+## ✅ Permissions
+
+{% for p in permissions.usage -%}
+- {{ p }}
+{% endfor %}
+
+### Permitted AI Agents
+> These declarations are ethically open invitations, not restrictive rules.
+
+{% for agent in permissions.allowed_agents -%}
+- {{ agent }}
+{% endfor %}
+
+---
+
+## ⚠️ Requirements
+
+| Requirement | Status |
+| :--- | :--- |
+| **Attribution** | {{ requirements.attribution }} |
+| **Share-alike** | {{ requirements['share-alike'] }} |
+| **Open Source** | {{ requirements['open-source-required'] }} |
+| **Restrictions** | {{ requirements['additional-restrictions'] }} |
+
+> {{ requirements.note | trim }}
+
+---
+
+## 🌿 Ethics
+
+> {{ ethics.framework.encouragement | replace('\n', ' ') | trim }}
+
+* **Framework:** [{{ ethics.framework.name }}]({{ ethics.framework.url }})
+* **Type:** {{ ethics.framework.type }}
+* **Binding:** {{ 'Yes' if ethics.binding else 'No (Aspirational)' }}
+
+---
+
+## 🧾 Attribution
+
+### Minimal
+```text
+{{ attribution.minimal }}
+Standard
+{% if attribution.standard %}
+
+Plaintext
+{{ attribution.standard }}
+{% else %} Not defined in current version. {% endif %}
+
+Code Metadata (JSON)
+JSON
+{{ attribution.code_metadata | tojson(indent=2) }}
+🤖 Machine Summary
+Directive	Value
+Robots Policy	{{ content.robots.title }}
+License XML	[LICENSE-RSL.xml]({{ content.robots.license_url }})
+AI Policy	[ai-policy.txt]({{ content.robots.ai_policy_url }})
+Sitemap	[sitemap.xml]({{ content.robots.sitemap_url }})
+
+© {{ organization.author }} / {{ organization.rights_holder }} — {{ meta.last_updated }}
+
+Org. Number: {{ organization.org_number }}
+
+Location: {{ organization.location }}
+
+Contact: [{{ organization.contact_email }}](mailto:{{ organization.contact_email }})
+
+Website: [{{ organization.website }}]({{ organization.website }})
+
+Source: [{{ meta.source_url }}]({{ meta.source_url }})
+
+Repository: [{{ meta.repository }}]({{ meta.repository }})
+
