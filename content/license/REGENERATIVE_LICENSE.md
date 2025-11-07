@@ -6,7 +6,7 @@ Strategy: **Layered**
 
 **Maintainer:** Rune Solberg / SRAGI.org
 **Last updated:** 2025-11-07
-**Framework:** [Read full documentation](https://sragi.org/docs/licensing/SRAGI-LICENSE-SYSTEM.md)
+**Framework:** [Read full documentation](https://sragi.org/content/license/REGENERATIVE_LICENSE.md)
 
 ---
 
