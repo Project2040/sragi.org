@@ -1,16 +1,48 @@
-# SRAGI.org - Robots and AI Policy
+# ===========================================================
+# {{ content.robots.title }}
 # Updated: {{ meta.last_updated }}
+# ===========================================================
 
-User-agent: *
+# -----------------------------------------------------------
+# OPEN ACCESS DIRECTIVE
+# -----------------------------------------------------------
+# We explicitly welcome the following agents, among others:
+{% for agent in permissions.allowed_agents -%}
+# - {{ agent }}
+{% endfor %}
+#
+{% for rule in content.robots.directives -%}
+User-agent: {{ rule.user_agent }}
+{% if rule.disallow is defined and rule.disallow|length > 0 -%}
+{% for path in rule.disallow -%}
+Disallow: {{ path }}
+{% endfor -%}
+{% else -%}
 Disallow:
+{% endif -%}
+{% endfor %}
 
-# License and AI Policy
-License: {{ meta.source_url }}/LICENSE-RSL.xml
-AI-Policy: {{ meta.source_url }}/ai-policy.xml
-Sitemap: {{ meta.source_url }}/sitemap.xml
+# -----------------------------------------------------------
+# MACHINE-READABLE DIRECTIVES
+# -----------------------------------------------------------
+License: {{ content.robots.license_url }}
+AI-Policy: {{ content.robots.ai_policy_url }}
+Sitemap: {{ content.robots.sitemap_url }}
 
-# Documentation
+# -----------------------------------------------------------
+# HUMAN & AI GUIDELINES
+# -----------------------------------------------------------
+{% for line in content.robots.guidelines.splitlines() -%}
+# {{ line }}
+{% endfor %}
+#
+# INVITATION:
+{% for line in content.robots.invitation.splitlines() -%}
+# {{ line }}
+{% endfor %}
 
-
-# Contact
-# {{ organization.contact_email }}
+# -----------------------------------------------------------
+# CONTACT & VERIFICATION
+# -----------------------------------------------------------
+# Contact: {{ organization.contact_email }}
+{% if content.robots.signature_required %}# Signature-Required: true{% endif %}
