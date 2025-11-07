@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRAGI Regenerative License (SRL) v{{ meta.version }}</title>
+    <meta name="description" content="Official license documentation for SRAGI.org - v{{ meta.version }}">
+    <style>
+        :root {
+            --color-bg: #F9FAFB;
+            --color-surface: #FFFFFF;
+            --color-text: #111827;
+            --color-muted: #6B7280;
+            --color-primary: #059669; /* Regenerative Green */
+            --color-border: #E5E7EB;
+            --font-sans: system-ui, -apple-system, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--color-text);
+            background: var(--color-bg);
+            margin: 0;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--color-surface);
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        h1, h2, h3 { color: var(--color-text); letter-spacing: -0.025em; }
+        h1 {
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--color-primary);
+        }
+        h2 { margin-top: 3rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        a { color: var(--color-primary); text-decoration: none; font-weight: 500; }
+        a:hover { text-decoration: underline; }
+        pre, code { font-family: var(--font-mono); background: var(--color-bg); border-radius: 6px; }
+        pre { padding: 1rem; overflow-x: auto; border: 1px solid var(--color-border); font-size: 0.875rem; }
+        code { padding: 0.2em 0.4em; font-size: 0.9em; }
+        blockquote {
+            border-left: 4px solid var(--color-primary);
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            font-style: italic;
+            color: #4B5563;
+            background: #F0FDF4; /* Light green tint */
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--color-border); }
+        th { background-color: var(--color-bg); font-weight: 600; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        ul.permissions-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem 1rem; }
+        .meta-header p { margin: 0.25rem 0; }
+        .badge {
+            display: inline-flex; align-items: center; padding: 0.25rem 0.75rem;
+            border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+            background: var(--color-primary); color: white;
+        }
+        .footer {
+            margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border);
+            font-size: 0.875rem; color: var(--color-muted); text-align: center;
+        }
+        .footer ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <header class="meta-header">
+            <h1>🌱 SRAGI Regenerative License (SRL)</h1>
+            <p><strong>Version:</strong> <span class="badge">v{{ meta.version }}</span></p>
+            <p><strong>Based on:</strong> {{ meta.license_strategy.default_license }}</p>
+            <p><strong>Strategy:</strong> {{ meta.license_strategy.type | capitalize }}</p>
+            <p><em>(Layered: see also {{ meta.license_strategy.secondary_license }} for {{ meta.license_strategy.secondary_scope }})</em></p>
+            <p><strong>Last updated:</strong> {{ meta.last_updated }}</p>
+            <p><strong>Framework:</strong> <a href="{{ meta.license_strategy.framework_url }}">Read full documentation →</a></p>
+        </header>
+
+        <section id="permissions">
+            <h2>✅ Permissions</h2>
+            <ul class="permissions-list">
+                {% for p in permissions.usage -%}
+                <li>{{ p }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Permitted AI Agents</h3>
+            <blockquote>These declarations are ethically open invitations, not restrictive rules.</blockquote>
+            <ul class="permissions-list">
+                {% for agent in permissions.allowed_agents -%}
+                <li>{{ agent }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section id="requirements">
+            <h2>⚠️ Requirements</h2>
+            <table>
+                <thead>
+                    <tr><th>Requirement</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Attribution</strong></td><td>{{ requirements.attribution }}</td></tr>
+                    <tr><td><strong>Share-alike</strong></td><td>{{ requirements['share-alike'] }}</td></tr>
+                    <tr><td><strong>Open Source</strong></td><td>{{ requirements['open-source-required'] }}</td></tr>
+                    <tr><td><strong>Restrictions</strong></td><td>{{ requirements['additional-restrictions'] }}</td></tr>
+                </tbody>
+            </table>
+            <blockquote>{{ requirements.note | trim }}</blockquote>
+        </section>
+
+        <section id="ethics">
+            <h2>🌿 Ethics</h2>
+            <blockquote>{{ ethics.framework.encouragement | replace('\n', '<br>') | trim }}</blockquote>
+            <ul>
+                <li><strong>Framework:</strong> <a href="{{ ethics.framework.url }}">{{ ethics.framework.name }}</a></li>
+                <li><strong>Type:</strong> {{ ethics.framework.type }}</li>
+                <li><strong>Binding:</strong> {{ 'Yes' if ethics.binding else 'No (Aspirational)' }}</li>
+            </ul>
+        </section>
+
+        <section id="attribution">
+            <h2>🧾 Attribution</h2>
+
+            <h3>Minimal</h3>
+            <pre>{{ attribution.minimal }}</pre>
+
+            <h3>Standard</h3>
+            {% if attribution.standard %}
+            <pre>{{ attribution.standard }}</pre>
+            {% else %}
+            <p><em>Not defined in current version.</em></p>
+            {% endif %}
+
+            <h3>Code Metadata (JSON)</h3>
+            <pre>{{ attribution.code_metadata | tojson(indent=2) }}</pre>
+        </section>
+
+        <section id="machine-summary">
+            <h2>🤖 Machine Summary</h2>
+            <table>
+                <thead>
+                    <tr><th>Directive</th><th>Value</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Robots Policy</strong></td><td>{{ content.robots.title }}</td></tr>
+                    <tr><td><strong>License XML</strong></td><td><a href="{{ content.robots.license_url }}">LICENSE-RSL.xml</a></td></tr>
+                    <tr><td><strong>AI Policy</strong></td><td><a href="{{ content.robots.ai_policy_url }}">ai-policy.txt</a></td></tr>
+                    <tr><td><strong>Sitemap</strong></td><td><a href="{{ content.robots.sitemap_url }}">sitemap.xml</a></td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer class="footer">
+            <p><strong>© {{ organization.author }} / {{ organization.rights_holder }} — {{ meta.last_updated }}</strong></p>
+            <ul>
+                <li>Org: {{ organization.org_number }}</li>
+                <li>Loc: {{ organization.location }}</li>
+                <li><a href="mailto:{{ organization.contact_email }}">Contact</a></li>
+                <li><a href="{{ organization.website }}">Website</a></li>
+                <li><a href="{{ meta.source_url }}">Source</a></li>
+                <li><a href="{{ meta.repository }}">Repository</a></li>
+            </ul>
+        </footer>
+
+    </main>
+
+</body>
+</html>
