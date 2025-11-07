@@ -87,7 +87,7 @@ License: CC BY 4.0 base, RSL compatible
     "creator": "Rune Solberg, Neptunia Media AS",
     "name": "SRAGI Regenerative License (SRL)",
     "source": "https://sragi.org",
-    "version": "{{ meta.version }}"
+    "version": "1.12"
   }
 }
 ```
