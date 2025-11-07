@@ -99,9 +99,9 @@ License: CC BY 4.0 base, RSL compatible
 | Directive | Value |
 | :--- | :--- |
 | Robots Policy | `SRAGI.ORG — REGENERATIVE ACCESS DIRECTIVE` |
-| License XML | [`LICENSE-RSL.xml`]({{ meta.source_url }}/license-rsl.xml) |
-| AI Policy | [`ai-policy.txt`]({{ meta.source_url }}/ai-policy.xml) |
-| Sitemap | [`sitemap.xml`]({{ meta.source_url }}/content/license/sitemap.xml) |
+| License XML | [`LICENSE-RSL.xml`]() |
+| AI Policy | [`ai-policy.txt`]() |
+| Sitemap | [`sitemap.xml`]() |
 
 ---
 
