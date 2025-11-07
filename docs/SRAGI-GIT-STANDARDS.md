@@ -166,13 +166,20 @@ chore(docs): update typo in readme [skip ci]
 
 ## 📦 Repository Structure for Git Configs
 
-.github/ ├── workflows/ │ ├── build-license.yml # Core SSOT generator │ ├── ssot-guard.yml # Version enforcement │ └── ... ├── ISSUE_TEMPLATE.md ├── PULL_REQUEST_TEMPLATE.md └── CODEOWNERS
+.github/
+├── workflows/
+│   ├── build-license.yml    # Core SSOT generator
+│   ├── ssot-guard.yml       # Version enforcement
+│   └── ...
+├── ISSUE_TEMPLATE.md
+├── PULL_REQUEST_TEMPLATE.md
+└── CODEOWNERS
 
+CODEOWNERS Example:
 
-**CODEOWNERS Example:**
-
-/docs/ @runesolberg /wordpress/ @runesolberg /automation/ @runesolberg
-
+/docs/           @runesolberg
+/wordpress/      @runesolberg
+/automation/     @runesolberg
 
 ---
 
