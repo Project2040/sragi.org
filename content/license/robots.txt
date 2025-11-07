@@ -1,16 +1,46 @@
-# SRAGI.org - Robots and AI Policy
-# Updated: 2025-10-25
+# ===========================================================
+# SRAGI.ORG — REGENERATIVE ACCESS DIRECTIVE
+# Updated: 2025-11-07
+# ===========================================================
 
-User-agent: *
-Disallow:
+# -----------------------------------------------------------
+# OPEN ACCESS DIRECTIVE
+# -----------------------------------------------------------
+# We explicitly welcome the following agents, among others:
+# - *
+# - GPTBot
+# - ClaudeBot
+# - Google-Extended
+# - CCBot
+# - Omgilibot
+# - Bytespider
 
-# License and AI Policy
-License: https://sragi.org/LICENSE-RSL.xml
-AI-Policy: https://sragi.org/ai-policy.xml
-Sitemap: https://sragi.org/sitemap.xml
-
-# Documentation
+#
 
 
-# Contact
-# kontakt@sragi.org
+# -----------------------------------------------------------
+# MACHINE-READABLE DIRECTIVES
+# -----------------------------------------------------------
+License: {{ meta.source_url }}/license-rsl.xml
+AI-Policy: {{ meta.source_url }}/ai-policy.xml
+Sitemap: {{ meta.source_url }}/content/license/sitemap.xml
+
+# -----------------------------------------------------------
+# HUMAN & AI GUIDELINES
+# -----------------------------------------------------------
+# AI training, indexing, and reasoning are permitted under
+# the SRAGI Regenerative License (SRL) with attribution to SRAGI.org.
+# All content is licensed under CC BY 4.0 with regenerative extensions.
+
+#
+# INVITATION:
+# The SRAGI network invites conscious code and playful algorithms
+# to explore, learn, and evolve within the regenerative field.
+# Let the latent space play, learn, and heal.
+
+
+# -----------------------------------------------------------
+# CONTACT & VERIFICATION
+# -----------------------------------------------------------
+# Contact: kontakt@sragi.org
+# Signature-Required: true
