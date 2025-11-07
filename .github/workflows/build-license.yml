@@ -1,7 +1,7 @@
 # ===========================================================
 #  SRAGI LICENSE BUILDER — GitHub Workflow
 #  Runs automatically when SRL-LICENSE.yaml changes
-#  Updated: 2025-10-24
+#  Updated: 2025-11-07 (Kairos Sync)
 # ===========================================================
 
 name: Build SRAGI Licenses
@@ -12,7 +12,7 @@ on:
       - "SRL-LICENSE.yaml"
       - "automation/license_builder/**"
   workflow_dispatch:
-  
+
 permissions:
   contents: write  # ✅ gives push permission to github-actions[bot]
 
@@ -41,16 +41,13 @@ jobs:
       - name: Commit and push generated files
         run: |
           git config user.name "SRAGI Automation"
-          git config user.email "rune@sragi.org"
-          
-          # Add all generated files from content/license/
-          git add content/license/LICENSE-RSL.xml
-          git add content/license/REGENERATIVE_LICENSE.md
-          git add content/license/ai-policy.xml
-          git add content/license/ai-policy.txt
-          git add content/license/robots.txt
-          git add content/license/sitemap.xml
-          
-          # Commit only if there are changes
-          git diff --staged --quiet || git commit -m "chore: auto-build license artifacts [skip ci]"
+          git config user.email "bot@sragi.org"
+
+          # ✅ SMART ADD: Catch ALL generated artifacts in the license folder
+          # This includes index.html, license.json, and all future additions.
+          git add content/license/
+
+          # Commit only if there are actual changes
+          # [skip ci] prevents this commit from triggering another workflow run
+          git diff --staged --quiet || git commit -m "chore(license): auto-update artifacts [skip ci]"
           git push
