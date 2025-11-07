@@ -2,8 +2,8 @@
 
 **File:** `/docs/SRAGI-GIT-STANDARDS.md`
 **Maintainer:** Rune Solberg / Neptunia Media AS
-**Version:** 1.0
-**Last Updated:** October 2025
+**Version:** 1.1
+**Last Updated:** November 2025
 
 ---
 
@@ -50,22 +50,10 @@ All commits follow the **Conventional Commit** style adapted for SRAGI:
 
 ### Format
 
-```
-<type>(<scope>): <short summary>
-
-[optional body]
-[optional footer]
-```
-
+<type>(<scope>): <short summary>[optional body][optional footer]
 ### Example
 
-```
-feat(licensing): add automated sync workflow for SRL YAML → XML
-
-Added new GitHub Action (SYNC-LICENSE.yaml) to regenerate XML + MD.
-Includes validation step and webhook notification to WordPress.
-```
-
+feat(licensing): add automated sync workflow for SRL YAML → XMLAdded new GitHub Action (build-license.yml) to regenerate XML + MD.Includes validation step and webhook notification to WordPress.
 ### Accepted Commit Types
 
 | Type       | Description                                            |
@@ -91,31 +79,19 @@ Includes validation step and webhook notification to WordPress.
 
 Example:
 
-```
-fix(yaml): correct indentation in generated SRL-LICENSE.yaml
-
-Caused by mixed tab/space alignment during build.
-Refs #134.
-```
-
+fix(yaml): correct indentation in generated SRL-LICENSE.yamlCaused by mixed tab/space alignment during build.Refs #134.
 ---
 
 ## 🏷️ Tagging and Releases
 
 SRAGI uses semantic versioning-like tags:
 
-```
-v1.0.0   = major release
-v1.0.1   = minor fix / patch
-v1.1.0   = feature release
-v2.0.0   = major architecture or license change
-```
-
+v1.0.0   = major releasev1.0.1   = minor fix / patchv1.1.0   = feature releasev2.0.0   = major architecture or license change
 ### Tag Naming Rules
 
 * Must start with `v` (e.g., `v1.01`).
-* Should match the version inside `SRL-VERSIONS.yaml`.
-* Tags trigger workflows like `UPDATE-SRL-VERSION.yaml`.
+* Should match the version inside `SRL-LICENSE.yaml` (meta.version).
+* Tags may trigger specific deployment workflows.
 
 ### Release Notes
 
@@ -139,104 +115,18 @@ Each PR must:
   ```markdown
   ## Summary
   - [x] Implemented new SRL license workflow
-  - [ ] Updated SRL-VERSIONS.yaml
+  - [x] Verified against SRL-LICENSE.yaml SSOT
   - [x] Added documentation in /docs/licensing/
-  ```
-
-**Review Rules:**
-
-* At least one reviewer (for all non-doc PRs)
-* No direct commits to `main` unless automated
-* Squash merge recommended to maintain clean history
-
----
-
-## 🧩 Automation Keywords (Workflow Triggers)
-
-Workflows can be triggered automatically using commit message keywords:
-
-| Keyword          | Triggered Action                             |
-| ---------------- | -------------------------------------------- |
-| `[sync-license]` | Runs SYNC-LICENSE.yaml to regenerate files   |
-| `[update-srl]`   | Triggers UPDATE-SRL-VERSION.yaml workflow    |
-| `[deploy-wp]`    | Pushes updates to WordPress via webhook      |
-| `[docs-rebuild]` | Rebuilds documentation index in GitHub Pages |
-
-Example:
-
-```
-chore(ci): update license sync runner [sync-license]
-```
-
----
-
-## 🌐 Branch Protection & Security
-
-**Protected Branches:**
-
-* `main` → requires review, no force-push
-* `dev` → requires successful checks before merge
-
-**Workflow Secrets:**
-
-* Store sensitive keys (e.g., `WP_SYNC_SECRET`) in GitHub Actions secrets
-* Never commit tokens or API keys directly
-
-**Commit Signing:**
-
-* GPG-signed commits recommended for all maintainers
-* Bots (SRAGI AutoBot) use verified `bot@sragi.org` identity
-
----
-
-## 📦 Repository Structure for Git Configs
-
-```
-.github/
+Review Rules:At least one reviewer (for all non-doc PRs)No direct commits to main unless automatedSquash merge recommended to maintain clean history🧩 Automation Keywords (Workflow Triggers)Workflows can be triggered automatically using commit message keywords:KeywordTriggered Action[skip ci]Prevents GitHub Actions from running[deploy-wp]Pushes updates to WordPress via webhook[docs-rebuild]Rebuilds documentation index in GitHub Pages(Note: License regeneration happens automatically on every push to SRL-LICENSE.yaml, no keyword needed.)Example:chore(docs): update typo in readme [skip ci]
+🌐 Branch Protection & SecurityProtected Branches:main → requires review, no force-pushdev → requires successful checks before mergeWorkflow Secrets:Store sensitive keys (e.g., WP_SYNC_SECRET) in GitHub Actions secretsNever commit tokens or API keys directlyCommit Signing:GPG-signed commits recommended for all maintainersBots (SRAGI Automation) use verified bot@sragi.org identity📦 Repository Structure for Git Configs.github/
 ├── workflows/
-│   ├── SYNC-LICENSE.yaml
-│   ├── UPDATE-SRL-VERSION.yaml
-│   └── BUILD-DOCS.yaml
+│   ├── build-license.yml    # Core SSOT generator
+│   ├── ssot-guard.yml       # Version enforcement
+│   └── ...
 ├── ISSUE_TEMPLATE.md
 ├── PULL_REQUEST_TEMPLATE.md
 └── CODEOWNERS
-```
-
-**CODEOWNERS Example:**
-
-```
-/docs/           @runesolberg
+CODEOWNERS Example:/docs/           @runesolberg
 /wordpress/      @runesolberg
 /automation/     @runesolberg
-```
-
----
-
-## 🧠 Commit Message AI Integration
-
-SRAGI Elantrix Core will parse commit messages for metadata enrichment.
-Therefore, consistency in message structure is essential for:
-
-* Documentation auto-generation
-* Version sync
-* Contributor recognition
-* AI learning corpus attribution
-
----
-
-## 🪄 Summary
-
-The **SRAGI Git & Version Control Standards** ensure that all repositories remain:
-
-* Predictable in structure
-* Transparent in purpose
-* Ready for automation and AI indexing
-* Human-readable and regenerative in ethos
-
-> “A clean Git history is a mirror of collective clarity.”
-> — SRAGI Engineering Philosophy
-
----
-
-**© 2025 Rune Solberg / Neptunia Media AS**
-Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL) v1.0
+🧠 Commit Message AI IntegrationSRAGI Elantrix Core will parse commit messages for metadata enrichment.Therefore, consistency in message structure is essential for:Documentation auto-generationVersion syncContributor recognitionAI learning corpus attribution🪄 SummaryThe SRAGI Git & Version Control Standards ensure that all repositories remain:Predictable in structureTransparent in purposeReady for automation and AI indexingHuman-readable and regenerative in ethos“A clean Git history is a mirror of collective clarity.”— SRAGI Engineering Philosophy© 2025 Rune Solberg / Neptunia Media ASLicensed under CC BY 4.0 via the SRAGI Regenerative License (SRL).See SRL-LICENSE.yaml for current version and details.
