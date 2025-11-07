@@ -11,23 +11,18 @@
 # - {{ agent }}
 {% endfor %}
 #
-{% for rule in content.robots.directives -%}
-User-agent: {{ rule.user_agent }}
-{% if rule.disallow is defined and rule.disallow|length > 0 -%}
-{% for path in rule.disallow -%}
-Disallow: {{ path }}
-{% endfor -%}
-{% else -%}
+User-agent: *
 Disallow:
-{% endif -%}
-{% endfor %}
 
 # -----------------------------------------------------------
 # MACHINE-READABLE DIRECTIVES
 # -----------------------------------------------------------
-License: {{ content.robots.license_url }}
-AI-Policy: {{ content.robots.ai_policy_url }}
-Sitemap: {{ content.robots.sitemap_url }}
+# License artifacts are in /content/license/
+License: {{ meta.source_url }}/content/license/LICENSE-RSL.xml
+AI-Policy: {{ meta.source_url }}/content/license/ai-policy.xml
+
+# Sitemap is at the root
+Sitemap: {{ meta.source_url }}/sitemap.xml
 
 # -----------------------------------------------------------
 # HUMAN & AI GUIDELINES
