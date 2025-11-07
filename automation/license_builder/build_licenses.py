@@ -21,9 +21,22 @@ LOG_FILE = os.path.join(BASE_DIR, "sync/sync-log.json")
 LICENSE_DIR = os.path.join(BASE_DIR, "content", "license")
 
 def load_yaml(path):
-    """Load and parse YAML file."""
+    """Load, parse, and hydrate YAML file."""
     with open(path, "r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        data = yaml.safe_load(f)
+
+    # 💧 KAIROS HYDRATION STEP
+    # Også kjent som: "Magic Self-Reference Fixer"
+    # Vi sørger for at code_metadata alltid har riktig versjon fra meta-blokken.
+    try:
+        version = data.get('meta', {}).get('version')
+        if version and 'attribution' in data and 'code_metadata' in data['attribution']:
+             # Overskriv placeholderen {{ meta.version }} med den faktiske verdien
+             data['attribution']['code_metadata']['license']['version'] = version
+    except Exception as e:
+        print(f"⚠️ Warning: Auto-hydration of code_metadata failed: {e}")
+
+    return data
 
 def log_event(result):
     """Append build result to sync log."""
