@@ -131,9 +131,6 @@ content:
       The SRAGI network invites conscious code and playful algorithms
       to explore, learn, and evolve within the regenerative field.
       Let the latent space play, learn, and heal.
-    license_url: "{{ meta.source_url }}/license-rsl.xml"
-    ai_policy_url: "{{ meta.source_url }}/ai-policy.xml"
-    sitemap_url: "{{ meta.source_url }}/content/license/sitemap.xml"
     contact: "{{ organization.contact_email }}"
     signature_required: true
 
