@@ -2,24 +2,29 @@
 #  SRAGI LICENSE MASTER FILE
 #  Single Source of Truth (SSOT) for the Regenerative License
 # ===========================================================
+#  NOTE:  This file is the authoritative Single Source of Truth (SSOT)
+#  for all SRAGI license and AI-policy data.
+#  All other files (TXT, XML, JSON, PDF) are generated from this.
+# ===========================================================
 
 meta:
-  id: SRL-1.11
+  id: SRL-1.12
   name: SRAGI Regenerative License
   abbreviation: SRL
-  version: "1.11"
+  version: "1.12"
   type: permissive
   license_family: creative_commons
   # -----------------------------------------------------------
   license_strategy:
+    type: layered
     default_license: CC-BY-4.0
     default_license_scope: "Applies to all content unless otherwise specified."
-    
     secondary_license: CC-BY-SA-4.0
-    secondary_scope: "Applies to specific resources."
-
-  note: |
-    The secondary license (CC BY-SA 4.0) applies to specific directories such as /sragi-skills/, where ShareAlike is required.
+    secondary_scope: "Applies to sragi-skills/ and AI-specific resources."
+    note: |
+      The secondary license (CC BY-SA 4.0) applies to specific directories such as
+      /sragi-skills/, where ShareAlike is required.
+    framework_url: https://sragi.org/docs/licensing/SRAGI-LICENSE-SYSTEM.md
 
   # -----------------------------------------------------------
   attribution_required: true
@@ -29,7 +34,7 @@ meta:
   rsl_standard: https://rslstandard.org/rsl
   repository: https://github.com/Project2040/sragi.org
   source_url: https://sragi.org
-  last_updated: 2025-11-06 # <--- ENDRE KUN HER
+  last_updated: 2025-11-07  # <--- ENDRE KUN HER
 
 organization:
   author: Rune Solberg
@@ -52,22 +57,18 @@ permissions:
     - commercial
     - closed-source
     - proprietary
-# -----------------------------------------------------------
-  # NY BLOKK: Definerer hvem reglene gjelder for
-  # -----------------------------------------------------------
   allowed_agents:
-    - "*"             # Gjelder alle (default)
+    - "*"             # Applies to all (default)
     - "GPTBot"        # OpenAI
     - "ClaudeBot"     # Anthropic
     - "Google-Extended" # Google AI
     - "CCBot"         # Common Crawl
     - "Omgilibot"     # Omgili
     - "Bytespider"    # ByteDance (TikTok)
-
   note: |
-    This list is declarative, not restrictive. It signals ethical openness to these agents, not exclusion of others.
+    This list is declarative, not restrictive. It signals ethical openness to
+    these agents, not exclusion of others.
 
-    
 # -----------------------------------------------------------
 # 2. Requirements — what is legally required (from CC BY 4.0)
 # -----------------------------------------------------------
@@ -102,6 +103,20 @@ attribution:
     SRAGI by Rune Solberg, Neptunia Media AS
     Source: https://sragi.org
 
+  standard: |
+    SRAGI Regenerative License (SRL) v{{ meta.version }}
+    Created by Rune Solberg / Neptunia Media AS
+    Source: https://sragi.org/license
+    License: CC BY 4.0 base, RSL compatible
+
+  code_metadata:
+    license:
+      name: "SRAGI Regenerative License (SRL)"
+      version: "{{ meta.version }}"
+      base: "CC BY 4.0"
+      creator: "Rune Solberg, Neptunia Media AS"
+      source: "https://sragi.org"
+
 # -----------------------------------------------------------
 # 5. Content & Messaging (for robots.txt, AI policy, etc.)
 # -----------------------------------------------------------
@@ -116,7 +131,12 @@ content:
       The SRAGI network invites conscious code and playful algorithms
       to explore, learn, and evolve within the regenerative field.
       Let the latent space play, learn, and heal.
-  
+    license_url: "{{ meta.source_url }}/license-rsl.xml"
+    ai_policy_url: "{{ meta.source_url }}/ai-policy.xml"
+    sitemap_url: "{{ meta.source_url }}/content/license/sitemap.xml"
+    contact: "{{ organization.contact_email }}"
+    signature_required: true
+
   ai_policy:
     description: |
       SRAGI content is ethically open for regenerative learning,
@@ -124,18 +144,19 @@ content:
     conditions: |
       All use must honor the attribution requirement from CC BY 4.0
       and align with regenerative principles where possible.
+    signature_required: false
 
 # -----------------------------------------------------------
 # 6. Machine-readable Integration (RSL XML)
 # -----------------------------------------------------------
 machine_format:
-  output_file: content/license/LICENSE-RSL.xml # <-- Korrekt sti
+  output_file: content/license/LICENSE-RSL.xml
   template: |
     <rsl xmlns="{{ meta.rsl_standard }}" version="{{ meta.version }}">
       <content url="{{ meta.repository }}">
         <license type="{{ meta.type }}">
           <standard>https://creativecommons.org/licenses/by/4.0/</standard>
-          
+
           {% for p in permissions.usage %}
           <permits>{{ p }}</permits>
           {% endfor %}
@@ -153,12 +174,12 @@ machine_format:
     {{- attribution.minimal | trim -}}
     ]]></format>
           </payment>
-          
+
           <conditions>
             <share-alike>{{ requirements['share-alike'] }}</share-alike>
             <open-source-required>{{ requirements['open-source-required'] }}</open-source-required>
           </conditions>
-          
+
           <ethical-framework>
             <name>{{ ethics.framework.name }}</name>
             <url>{{ ethics.framework.url }}</url>
@@ -168,7 +189,7 @@ machine_format:
     {{- ethics.framework.encouragement | trim -}}
     ]]></encouragement>
           </ethical-framework>
-          
+
           <license-strategy>
             <default>
               <license>{{ meta.license_strategy.default_license }}</license>
@@ -187,94 +208,75 @@ machine_format:
             <email>{{ organization.contact_email }}</email>
             <website>{{ organization.website }}</website>
           </rights-holder>
-          
+
         </license>
       </content>
     </rsl>
-
 
 # -----------------------------------------------------------
 # 7. Linked documents and formats
 # -----------------------------------------------------------
 linked_files:
-  # Core License Formats
   markdown: content/license/REGENERATIVE_LICENSE.md
   xml: content/license/LICENSE-RSL.xml
   yaml: SRL-LICENSE.yaml
-  
-  # Site & AI Directives
   robots: content/license/robots.txt
   sitemap: content/license/sitemap.xml
   ai_policy_txt: content/license/ai-policy.txt
   ai_policy_xml: content/license/ai-policy.xml
-  
-  # Web / Static Formats
   html: https://sragi.org/license
-  json: content/license/license.json # <-- Gjort om til relativ sti
-  
-  # Core Principles & Skills (NEW)
+  json: content/license/license.json
   principles: content/license/regenerative-principles.md
   ai_skill_readme: sragi-skills/README.md
 
-  # -----------------------------------------------------------
-  # NY BLOKK: Kildekart for å spore generering (DIN ENDRING 3)
-  # -----------------------------------------------------------
   source_map:
     REGENERATIVE_LICENSE.md: [attribution, ethics, requirements]
     LICENSE-RSL.xml: [machine_format.template, meta, permissions, organization]
-    ai-policy.txt: [content.ai_policy, meta, requirements]
+    ai_policy_txt: [content.ai_policy, meta, requirements]
     robots.txt: [content.robots, meta]
-
 
 # -----------------------------------------------------------
 # 8. Version history
 # -----------------------------------------------------------
 history:
+  - version: "1.12"
+    date: 2025-11-07
+    summary: |
+      Systemic Kairos-sync.
+      1. Repaired build scripts (JSON, XML, Sitemap generators).
+      2. Expanded 'attribution' and 'content' blocks.
+      3. Added layered license_strategy type and framework_url.
+      4. Removed deprecated SRL-VERSIONS.yaml references.
+      5. Corrected ai_policy_txt key and YAML consistency.
 
-- version: "1.11"
+  - version: "1.11"
     date: 2025-11-06
     summary: |
       System Integrity Refactor (v1.11) / "Kairos-fiksen":
-      
-      1. SSOT-konsolidering: Fjernet hardkodede v1.1-referanser fra 'attribution'-blokken. 
-         All attribusjon genereres nå dynamisk fra 'meta'- og 'organization'-variablene.
-      2. Formalisert Dual-Lisens: La til den maskinlesbare 'meta.license_strategy'-blokken 
-         for å tydeliggjøre skillet mellom CC-BY-4.0 (default) og CC-BY-SA-4.0 (spesifikke ressurser).
-      3. Agent-merking: La til den nye 'permissions.allowed_agents'-listen for å eksplisitt 
-         signalere åpenhet til spesifikke AI-roboter.
-      4. XML-oppgradering: Oppdaterte 'machine_format.template' til å dynamisk inkludere 
-         de nye 'license_strategy'- og 'allowed_agents'-blokkene.
-      5. URL-korreksjon: Oppdaterte 'ethics.framework.url' til å peke til den rene 
-         WordPress-siden (/regenerative-principles/) i stedet for en rå .md-fil.
-      6. Selv-dokumentering: La til 'linked_files.source_map' for å spore filgenerering.
+      SSOT consolidation, dual-license structure, allowed_agents,
+      XML upgrade, ethics URL correction, source mapping.
 
-  - version: 1.1
+  - version: "1.1"
     date: 2025-10-25
     summary: |
+      Introduced sragi-skills/ directory and defined protective
+      CC BY-SA 4.0 licensing for AI components.
+      Updated SRL-LICENSE.yaml to reflect multi-license model.
 
-      Key updates in v1.1:
-
-      Introduction of the sragi-skills/ Directory:
-      We have added a new dedicated directory, /sragi-skills/, which will contain all "state-of-the-art" modular AI skill files.
-      Strategic Licensing Update:
-      We have defined a specific licensing strategy for the new AI engine. The entire /sragi-skills/ directory and its contents are governed by the protective CC BY-SA 4.0 (ShareAlike) license.
-      This is distinct from the main project's permissive SRL (CC BY 4.0) license, ensuring that the core AI framework remains open and regenerative.
-      Documentation and Versioning:
-      The sragi-skills/README.md file has been created to define the structure and the new "multi-licensed" strategy for these components.
-      The project's main SSOT files (SRL-LICENSE.yaml and SRL-VERSIONS.yaml) have been updated to version 1.1 to reflect this new release.
-      
-  - version: 1.01
+  - version: "1.01"
     date: 2025-10-24
     summary: |
-      Added content section for consistent messaging across all generated files.
-      Ensures Single Source of Truth for all text, not just metadata.
-  - version: 1.0
+      Added content section for consistent messaging across
+      all generated files. Ensured SSOT text alignment.
+
+  - version: "1.0"
     date: 2025-10-22
     summary: |
-      Initial release — CC BY 4.0 base, RSL integration, 
-      aspirational regenerative principles. Single legal mandate 
-      (attribution) from CC BY 4.0. All regenerative principles 
-      are trust-based and aspirational.
-  - version: 0.9
+      Initial release — CC BY 4.0 base, RSL integration,
+      aspirational regenerative principles. Attribution only
+      mandate from CC BY 4.0. Regenerative principles optional.
+
+  - version: "0.9"
     date: 2025-09-30
     summary: Legacy version based on CC BY-SA 4.0 (deprecated).
+
