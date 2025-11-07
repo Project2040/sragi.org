@@ -1,8 +1,7 @@
 # ===========================================================
-#  SRAGI LICENSE GENERATORS — v3.0 (Kairos Edition)
+#  SRAGI LICENSE GENERATORS — v3.1 (Hybrid-Kairos Edition)
 #  © 2025 Rune Solberg / Neptunia Media AS
 #  Generates all SRAGI license artifacts from SRL-LICENSE.yaml
-#  All files go to: content/license/
 # ===========================================================
 
 import os
@@ -33,66 +32,58 @@ def render_template(filename, data):
         return tpl.render(**data)
 
 # -----------------------------------------------------------
-# 1. LICENSE-RSL.xml (using inline template from YAML SSOT)
+# 1. LICENSE-RSL.xml
 # -----------------------------------------------------------
 def generate_rsl_xml(data):
     template_str = data.get("machine_format", {}).get("template", "")
     if not template_str:
         raise ValueError("SSOT Error: No machine_format.template found in YAML!")
-
     template = Template(template_str)
-    content = template.render(**data)
-    return write_output(os.path.join(LICENSE_DIR, "LICENSE-RSL.xml"), content)
+    return write_output(os.path.join(LICENSE_DIR, "LICENSE-RSL.xml"), template.render(**data))
 
 # -----------------------------------------------------------
-# 2. REGENERATIVE_LICENSE.md (Human-readable)
+# 2. REGENERATIVE_LICENSE.md
 # -----------------------------------------------------------
 def generate_human_license(data):
-    content = render_template("regenerative_license.md.j2", data)
-    return write_output(os.path.join(LICENSE_DIR, "REGENERATIVE_LICENSE.md"), content)
+    return write_output(os.path.join(LICENSE_DIR, "REGENERATIVE_LICENSE.md"), render_template("regenerative_license.md.j2", data))
 
 # -----------------------------------------------------------
-# 3. license.html (Web-ready version) -- NEW!
+# 3. license.html
 # -----------------------------------------------------------
 def generate_license_html(data):
-    content = render_template("license.html.j2", data)
-    # Saves as index.html in a subfolder for clean URL /content/license/
-    return write_output(os.path.join(LICENSE_DIR, "index.html"), content)
+    return write_output(os.path.join(LICENSE_DIR, "index.html"), render_template("license.html.j2", data))
 
 # -----------------------------------------------------------
-# 4. AI Policy Files (TXT & XML)
+# 4. AI Policy Files (TXT in ROOT, XML in folder)
 # -----------------------------------------------------------
 def generate_ai_policy_xml(data):
-    content = render_template("ai_policy.xml.j2", data)
-    return write_output(os.path.join(LICENSE_DIR, "ai-policy.xml"), content)
+    return write_output(os.path.join(LICENSE_DIR, "ai-policy.xml"), render_template("ai_policy.xml.j2", data))
 
 def generate_ai_policy_txt(data):
-    content = render_template("ai_policy.txt.j2", data)
-    return write_output(os.path.join(LICENSE_DIR, "ai-policy.txt"), content)
+    # ✅ ENDRING: Lagres nå i roten (BASE_DIR)
+    return write_output(os.path.join(BASE_DIR, "ai-policy.txt"), render_template("ai_policy.txt.j2", data))
 
 # -----------------------------------------------------------
-# 5. robots.txt
+# 5. robots.txt (in ROOT)
 # -----------------------------------------------------------
 def generate_robots(data):
-    content = render_template("robots.txt.j2", data)
-    return write_output(os.path.join(LICENSE_DIR, "robots.txt"), content)
+    # ✅ ENDRING: Lagres nå i roten (BASE_DIR)
+    return write_output(os.path.join(BASE_DIR, "robots.txt"), render_template("robots.txt.j2", data))
 
 # -----------------------------------------------------------
-# 6. license.json (Full API Response)
+# 6. license.json
 # -----------------------------------------------------------
 def generate_license_json(data):
     meta = data.get("meta", {})
     linked = data.get("linked_files", {}).copy()
-    linked.pop("source_map", None) # Remove internal build data
-
-    # SIKKERHETSFIKS: Tving 'last_updated' til string for å unngå JSON-krasj
+    linked.pop("source_map", None)
     updated_date = str(meta.get("last_updated", ""))
 
     json_data = {
         "meta": {
             "id": meta.get("id"),
             "version": meta.get("version"),
-            "updated": updated_date,  # <-- Nå trygg for JSON
+            "updated": updated_date,
             "strategy": meta.get("license_strategy", {}),
             "source": meta.get("source_url")
         },
@@ -102,14 +93,11 @@ def generate_license_json(data):
         "ethics": data.get("ethics", {}),
         "links": linked
     }
-
-    return write_output(os.path.join(LICENSE_DIR, "license.json"),
-                       json.dumps(json_data, indent=2, ensure_ascii=False))
+    return write_output(os.path.join(LICENSE_DIR, "license.json"), json.dumps(json_data, indent=2, ensure_ascii=False))
 
 # -----------------------------------------------------------
-# 7. sitemap.xml
+# 7. sitemap.xml (in ROOT)
 # -----------------------------------------------------------
 def generate_sitemap(data):
-    # Uses the specialized Jinja2 template for full control
-    content = render_template("sitemap.xml.j2", data)
-    return write_output(os.path.join(LICENSE_DIR, "sitemap.xml"), content)
+    # ✅ ENDRING: Lagres nå i roten (BASE_DIR)
+    return write_output(os.path.join(BASE_DIR, "sitemap.xml"), render_template("sitemap.xml.j2", data))
