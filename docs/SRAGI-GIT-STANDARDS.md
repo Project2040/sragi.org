@@ -117,16 +117,91 @@ Each PR must:
   - [x] Implemented new SRL license workflow
   - [x] Verified against SRL-LICENSE.yaml SSOT
   - [x] Added documentation in /docs/licensing/
-Review Rules:At least one reviewer (for all non-doc PRs)No direct commits to main unless automatedSquash merge recommended to maintain clean history🧩 Automation Keywords (Workflow Triggers)Workflows can be triggered automatically using commit message keywords:KeywordTriggered Action[skip ci]Prevents GitHub Actions from running[deploy-wp]Pushes updates to WordPress via webhook[docs-rebuild]Rebuilds documentation index in GitHub Pages(Note: License regeneration happens automatically on every push to SRL-LICENSE.yaml, no keyword needed.)Example:chore(docs): update typo in readme [skip ci]
-🌐 Branch Protection & SecurityProtected Branches:main → requires review, no force-pushdev → requires successful checks before mergeWorkflow Secrets:Store sensitive keys (e.g., WP_SYNC_SECRET) in GitHub Actions secretsNever commit tokens or API keys directlyCommit Signing:GPG-signed commits recommended for all maintainersBots (SRAGI Automation) use verified bot@sragi.org identity📦 Repository Structure for Git Configs.github/
-├── workflows/
-│   ├── build-license.yml    # Core SSOT generator
-│   ├── ssot-guard.yml       # Version enforcement
-│   └── ...
-├── ISSUE_TEMPLATE.md
-├── PULL_REQUEST_TEMPLATE.md
-└── CODEOWNERS
-CODEOWNERS Example:/docs/           @runesolberg
-/wordpress/      @runesolberg
-/automation/     @runesolberg
-🧠 Commit Message AI IntegrationSRAGI Elantrix Core will parse commit messages for metadata enrichment.Therefore, consistency in message structure is essential for:Documentation auto-generationVersion syncContributor recognitionAI learning corpus attribution🪄 SummaryThe SRAGI Git & Version Control Standards ensure that all repositories remain:Predictable in structureTransparent in purposeReady for automation and AI indexingHuman-readable and regenerative in ethos“A clean Git history is a mirror of collective clarity.”— SRAGI Engineering Philosophy© 2025 Rune Solberg / Neptunia Media ASLicensed under CC BY 4.0 via the SRAGI Regenerative License (SRL).See SRL-LICENSE.yaml for current version and details.
+
+**Review Rules:**
+
+* At least one reviewer (for all non-doc PRs)
+* No direct commits to `main` unless automated
+* Squash merge recommended to maintain clean history
+
+---
+
+## 🧩 Automation Keywords (Workflow Triggers)
+
+Workflows can be triggered automatically using commit message keywords:
+
+| Keyword          | Triggered Action                             |
+| ---------------- | -------------------------------------------- |
+| `[skip ci]`      | Prevents GitHub Actions from running         |
+| `[deploy-wp]`    | Pushes updates to WordPress via webhook      |
+| `[docs-rebuild]` | Rebuilds documentation index in GitHub Pages |
+
+*(Note: License regeneration happens automatically on every push to `SRL-LICENSE.yaml`, no keyword needed.)*
+
+Example:
+
+chore(docs): update typo in readme [skip ci]
+
+
+---
+
+## 🌐 Branch Protection & Security
+
+**Protected Branches:**
+
+* `main` → requires review, no force-push
+* `dev` → requires successful checks before merge
+
+**Workflow Secrets:**
+
+* Store sensitive keys (e.g., `WP_SYNC_SECRET`) in GitHub Actions secrets
+* Never commit tokens or API keys directly
+
+**Commit Signing:**
+
+* GPG-signed commits recommended for all maintainers
+* Bots (SRAGI Automation) use verified `bot@sragi.org` identity
+
+---
+
+## 📦 Repository Structure for Git Configs
+
+.github/ ├── workflows/ │ ├── build-license.yml # Core SSOT generator │ ├── ssot-guard.yml # Version enforcement │ └── ... ├── ISSUE_TEMPLATE.md ├── PULL_REQUEST_TEMPLATE.md └── CODEOWNERS
+
+
+**CODEOWNERS Example:**
+
+/docs/ @runesolberg /wordpress/ @runesolberg /automation/ @runesolberg
+
+
+---
+
+## 🧠 Commit Message AI Integration
+
+SRAGI Elantrix Core will parse commit messages for metadata enrichment.
+Therefore, consistency in message structure is essential for:
+
+* Documentation auto-generation
+* Version sync
+* Contributor recognition
+* AI learning corpus attribution
+
+---
+
+## 🪄 Summary
+
+The **SRAGI Git & Version Control Standards** ensure that all repositories remain:
+
+* Predictable in structure
+* Transparent in purpose
+* Ready for automation and AI indexing
+* Human-readable and regenerative in ethos
+
+> “A clean Git history is a mirror of collective clarity.”
+> — SRAGI Engineering Philosophy
+
+---
+
+**© 2025 Rune Solberg / Neptunia Media AS**
+Licensed under CC BY 4.0 via the SRAGI Regenerative License (SRL).
+See SRL-LICENSE.yaml for current version and details.
