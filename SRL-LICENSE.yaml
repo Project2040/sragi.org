@@ -149,6 +149,7 @@ content:
 machine_format:
   output_file: content/license/LICENSE-RSL.xml
   template: |
+    <?xml version="1.0" encoding="UTF-8"?>
     <rsl xmlns="{{ meta.rsl_standard }}" version="{{ meta.version }}">
       <content url="{{ meta.repository }}">
         <license type="{{ meta.type }}">
