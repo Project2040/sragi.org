@@ -218,9 +218,9 @@ linked_files:
   markdown: content/license/REGENERATIVE_LICENSE.md
   xml: content/license/LICENSE-RSL.xml
   yaml: SRL-LICENSE.yaml
-  robots: content/license/robots.txt
-  sitemap: content/license/sitemap.xml
-  ai_policy_txt: content/license/ai-policy.txt
+  robots: robots.txt
+  sitemap: sitemap.xml
+  ai_policy_txt: ai-policy.txt
   ai_policy_xml: content/license/ai-policy.xml
   html: https://sragi.org/license
   json: content/license/license.json
