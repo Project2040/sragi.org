@@ -75,10 +75,10 @@ Strategy: **{{ meta.license_strategy.type | capitalize }}**
 
 | Directive | Value |
 | :--- | :--- |
-| Robots Policy | `{{ content.robots.title }}` |
-| License XML | [`LICENSE-RSL.xml`]({{ content.robots.license_url }}) |
-| AI Policy | [`ai-policy.txt`]({{ content.robots.ai_policy_url }}) |
-| Sitemap | [`sitemap.xml`]({{ content.robots.sitemap_url }}) |
+| **Robots Policy** | `{{ content.robots.title }}` |
+| **License XML** | [`LICENSE-RSL.xml`]({{ meta.source_url }}/content/license/LICENSE-RSL.xml) |
+| **AI Policy** | [`ai-policy.txt`]({{ meta.source_url }}/ai-policy.txt) |
+| **Sitemap** | [`sitemap.xml`]({{ meta.source_url }}/sitemap.xml) |
 
 ---
 
