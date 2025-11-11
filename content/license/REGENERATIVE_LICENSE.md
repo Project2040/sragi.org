@@ -28,6 +28,11 @@ Strategy: **Layered**
 - GPTBot
 - ClaudeBot
 - Google-Extended
+- PerplexityBot
+- Googlebot
+- Bingbot
+- Applebot
+- facebookexternalhit
 - CCBot
 - Omgilibot
 - Bytespider

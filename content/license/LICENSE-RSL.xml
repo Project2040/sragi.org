@@ -30,6 +30,16 @@
         
         <allowed>Google-Extended</allowed>
         
+        <allowed>PerplexityBot</allowed>
+        
+        <allowed>Googlebot</allowed>
+        
+        <allowed>Bingbot</allowed>
+        
+        <allowed>Applebot</allowed>
+        
+        <allowed>facebookexternalhit</allowed>
+        
         <allowed>CCBot</allowed>
         
         <allowed>Omgilibot</allowed>

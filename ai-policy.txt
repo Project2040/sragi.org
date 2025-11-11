@@ -22,6 +22,11 @@ allowed_agent: *
 allowed_agent: GPTBot
 allowed_agent: ClaudeBot
 allowed_agent: Google-Extended
+allowed_agent: PerplexityBot
+allowed_agent: Googlebot
+allowed_agent: Bingbot
+allowed_agent: Applebot
+allowed_agent: facebookexternalhit
 allowed_agent: CCBot
 allowed_agent: Omgilibot
 allowed_agent: Bytespider
