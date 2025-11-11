@@ -59,12 +59,25 @@ permissions:
     - proprietary
   allowed_agents:
     - "*"             # Applies to all (default)
-    - "GPTBot"        # OpenAI
-    - "ClaudeBot"     # Anthropic
+    # === AI Models ===
+    - "GPTBot"          # OpenAI
+    - "ClaudeBot"       # Anthropic
     - "Google-Extended" # Google AI
-    - "CCBot"         # Common Crawl
-    - "Omgilibot"     # Omgili
-    - "Bytespider"    # ByteDance (TikTok)
+    - "PerplexityBot"   # Perplexity AI
+    
+    # === Core Search Engines (Kritisk for synlighet) ===
+    - "Googlebot"       # Google Search
+    - "Bingbot"         # Bing Search (og ChatGPT live search)
+    - "Applebot"        # Apple Search (Siri/Spotlight)
+
+    # === Social Media Link Preview (Kritisk for deling) ===
+    - "facebookexternalhit" # Facebook/Instagram/WhatsApp
+    
+    # === Other Crawlers ===
+    - "CCBot"           # Common Crawl
+    - "Omgilibot"       # Omgili
+    - "Bytespider"      # ByteDance (TikTok)
+    
   note: |
     This list is declarative, not restrictive. It signals ethical openness to
     these agents, not exclusion of others.
