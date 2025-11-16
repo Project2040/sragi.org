@@ -1,0 +1,209 @@
+# ===========================================================
+#  SRAGI WEB BIOS v2.1 — CLEAN SRAGI ARCHITECTURE (SSOT)
+#  © 2025 Rune Solberg / Neptunia Media AS
+#  Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL) v1.1
+#  
+#  Purpose: The absolute Single Source of Truth for SRAGI.org.
+#  Philosophy: "Clean SRAGI" — Native WP structures driven by Git SSOT.
+#              No CPTs. No ACF reliance. Full Frontmatter control.
+# ===========================================================
+
+meta:
+  id: SRAGI-WEB-BIOS
+  version: "2.1.0"
+  type: system-architecture
+  description: |
+    Complete 7-layer architecture for SRAGI.org.
+    Defines the transition to Native WP, Frontmatter-driven WPML, 
+    and strict SSOT governance.
+  maintainer: Rune Solberg
+  organization: Neptunia Media AS
+  contact: kontakt@sragi.org
+  updated: 2025-11-16
+  philosophy: "Helhet → Struktur → Detaljer (Triadic wholeness)"
+
+# ===========================================================
+# LAG 1: ONTOLOGI — HVA ER TING?
+# ===========================================================
+
+layer_1_ontology:
+  description: |
+    Definisjon av innholdstyper mapet til Native WordPress.
+  
+  content_types:
+    
+    documentation:
+      id: documentation
+      wp_type: page
+      nature: static
+      lifecycle: permanent
+      source_format: markdown
+      purpose: "Evergreen knowledge (Principles, BIOS, Guides)"
+    
+    reflection:
+      id: reflection
+      wp_type: post
+      nature: dynamic
+      lifecycle: temporal
+      source_format: markdown
+      purpose: "Time-stamped insights and explorations"
+    
+    structure:
+      id: structure
+      wp_type: page
+      nature: organizational
+      lifecycle: permanent
+      source_format: yaml
+      purpose: "Navigation nodes defined in IA (e.g. Pillars/Clusters)"
+    
+    media:
+      id: media
+      wp_type: attachment
+      nature: binary
+      lifecycle: permanent
+      source_format: various (avif, webp, svg, png)
+      purpose: "Visual tokens and assets (Git-synced)"
+
+# ===========================================================
+# LAG 2: RELASJONER — HVORDAN HENGER TING SAMMEN?
+# ===========================================================
+
+layer_2_relations:
+  description: "Struktur styrt av BIOS og Frontmatter metadata."
+  
+  structural_relations:
+    hierarchy:
+      type: nested
+      structure: "Pillar (Parent Page) → Cluster (Child Page) → Leaf (Grandchild)"
+      enforcement: "Sync Engine maps Frontmatter parent to wp_post_parent"
+      
+    metadata_keys:
+      description: "Keys required to enforce relations in DB"
+      keys:
+        - _sragi_parent_id
+        - _sragi_pillar
+        - _sragi_cluster
+
+# ===========================================================
+# LAG 3: GOVERNANCE (SSOT) — HVEM STYRER HVA?
+# ===========================================================
+
+layer_3_governance:
+  description: "Pekere til Sannheten. Ingen data lever kun i DB."
+  
+  ssot_files:
+    
+    ia_structure:
+      file: /content/system/SRAGI-WEB-BIOS-v2.1.yaml
+      controls: [information-architecture, system-definition, content-types]
+      format: yaml
+      update_frequency: on-structural-change
+      
+    visual_system:
+      file: /content/system/visual-assets.yaml
+      controls: [color-palette, design-tokens, logo-definitions]
+      format: yaml
+      
+    environment:
+      file: /content/system/ENVIRONMENT-CONFIG.yaml
+      controls: [staging, live, cdn, cache]
+      format: yaml
+
+    api_spec:
+      file: /content/system/SRAGI-WEB-API-v1.1.yaml
+      controls: [rest-api-definition, endpoint-contracts]
+      format: yaml
+      
+    license:
+      file: /SRL-LICENSE.yaml
+      controls: [license-metadata, permissions]
+      format: yaml
+
+  legacy:
+    superseded_files:
+      - /content/system/README-HYBRID-SSOT-v1.0.0.md
+      - /content/system/DELIVERY-CHECKLIST-v1.0.0.md
+      - /content/system/IA.yaml (Old v1 version)
+    note: >
+      These documents are archived. SRAGI WEB BIOS v2.1 is the 
+      single governing architecture. CPT-based logic is deprecated.
+
+# ===========================================================
+# LAG 4: DATA-FLOWS — "GIT SYNC IS KING"
+# ===========================================================
+
+layer_4_data_flows:
+  primary_flows:
+    
+    github_to_wordpress:
+      id: github-wp-sync
+      source: GitHub (Git repository)
+      target: WordPress (Native DB tables)
+      trigger: Git push to main
+      
+      frontmatter_parsing:
+        description: "Critical: Determines WPML & Hierarchy without ACF"
+        required_fields:
+          - type        # documentation | reflection | structure
+          - title_en
+          - slug_en
+        optional_fields:
+          - title_nb
+          - slug_nb
+          - parent      # logical path: documentation/sragi-bios
+          - ia_pillar
+          - ia_cluster
+          
+      multilingual_strategy:
+        principle: "wpml_from_ssot: true"
+        logic: "Sync Engine reads *_en and *_nb fields from Frontmatter and updates WPML tables/meta directly."
+
+# ===========================================================
+# LAG 6: METADATA — SYSTEMETS HUKOMMELSE
+# ===========================================================
+
+layer_6_metadata:
+  core_metadata:
+    fields:
+      - field: _sragi_source_file
+        purpose: "Path in GitHub repo"
+      - field: _sragi_content_hash
+        purpose: "Change detection"
+      - field: _sragi_synced_at
+        purpose: "Sync timestamp"
+      - field: _sragi_sync_status
+        purpose: "Current state"
+      - field: _sragi_ia_context
+        purpose: "Pillar/Cluster context"
+
+  wpml_metadata:
+    description: "Driving multilingual support from Git"
+    fields:
+      - field: _sragi_slug_en
+      - field: _sragi_slug_nb
+      - field: _sragi_title_en
+      - field: _sragi_title_nb
+
+# ===========================================================
+# LAG 7: API OPERATIONS
+# ===========================================================
+
+layer_7_api:
+  description: "REST Endpoints aligned with OpenAPI v1.1"
+  base: /wp-json/sragi/v1
+  endpoints:
+    - path: /ssot
+      method: GET
+      logic: "Serve parsed BIOS v2.1 YAML"
+      
+    - path: /ssot/validate
+      method: POST
+      logic: "Validate SSOT integrity vs Schema"
+      
+    - path: /sync/webhook
+      method: POST
+      logic: "Trigger Sync Engine for changed files (HMAC verified)"
+      
+    - path: /sync/pages
+      method: POST
+      logic: "Force sync of specific pages/structures"
