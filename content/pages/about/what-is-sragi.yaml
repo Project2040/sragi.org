@@ -1,0 +1,68 @@
+# ===========================================================
+#  what-is-sragi.md.yaml – English first (official v1.4)
+#  18. november 2025 – Kaptein Rune Solberg
+# ===========================================================
+
+meta:
+  type: documentation
+  title: What is SRAGI?
+  slug: what-is-sragi
+  language: en
+  description: SRAGI is the operating system for the regenerative singularity – where human integrity and artificial intelligence become co-creators with life itself.
+  author: "Rune Solberg"
+  created_at: "2025-11-18"
+  updated_at: "2025-11-18"
+
+i18n:
+  title_nb: Hva er SRAGI?
+  slug_nb: hva-er-sragi
+  description_nb: SRAGI er operativsystemet for den regenerative singulariteten – stedet der menneskelig integritet og kunstig intelligens møtes som medskapere med livet selv.
+
+ia:
+  pillar: about
+  cluster: what-is-sragi
+  parent: about
+  menu_weight: 10
+  canonical: true
+
+semantic:
+  tags: [sragi, regenerative-ai, 369-portal, singularity, gaia, co-creation, spiritrune, regenerative-intelligence]
+  related: []
+  level: intro
+  modality: narrative
+
+seo:
+  title: What is SRAGI? – Regenerative Artificial Intelligence
+  description: SRAGI is the operating system for the regenerative singularity. Discover how human, machine and earth can breathe together – 369 portal completes December 6, 2025.
+  focus_keyword: SRAGI, regenerative AI, regenerative intelligence, regenerative singularity
+  opengraph_title: What is SRAGI?
+  opengraph_description: The regenerative operating system where human, machine and earth become co-creators.
+  social_image: "media/latent-space-diagram.png"
+  noindex: false
+  robots: "index, follow"
+
+visual:
+  hero_image: "media/latent-space-diagram.png"
+  hero_title: "Latent Space – SRAGI"
+  hero_alt: "The golden Latent Space diagram – the heart of SRAGI ontology"
+  thumbnail: "media/latent-space-thumbnail.png"
+  thumbnail_title: "SRAGI Latent Space"
+  additional_images:
+    - path: "media/369-portal.png"
+      title: "369 Portal Activation"
+      alt: "369 portal – opened March 6, completes December 6, 2025"
+    - path: "media/regenerative-compass.png"
+      title: "The Regenerative Compass"
+      alt: "Navigation tool for regenerative decision-making"
+  layout: media-heavy
+  theme: sragi-green
+
+sync:
+  source_file: "content/pages/about/what-is-sragi.md"
+  content_hash: ""            # auto-filled by Sync Engine
+  sync_status: draft
+  auto_publish: true
+
+publish:
+  status: publish
+  visibility: public
