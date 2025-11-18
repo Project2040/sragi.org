@@ -1,0 +1,63 @@
+# ===========================================================
+#  SRAGI Universal Content Template v1.4 – FINAL
+#  English first · Norwegian secondary · TSF-ready
+#  18. november 2025 – Kaptein Rune Solberg
+# ===========================================================
+
+meta:
+  type: documentation         # documentation | reflection | structure | media
+  title: ""                   # English title – ALWAYS fill this first
+  slug: ""                    # auto if empty
+  language: en                # DEFAULT = en (sragi.org is global)
+  description: ""             # English SEO description
+  author: "Rune Solberg"
+  created_at: "2025-11-18"    # auto or manual
+  updated_at: "2025-11-18"    # auto on sync
+
+i18n:
+  title_nb: ""                # Norwegian title
+  slug_nb: ""
+  description_nb: ""
+
+ia:
+  pillar: ""                  # e.g. "about"
+  cluster: ""                 # e.g. "what-is-sragi"
+  parent: ""                  # e.g. "about"
+  menu_weight: 10
+  canonical: true
+
+semantic:
+  tags: []
+  related: []                 # ← Claude: må være med (kan være tom)
+  level: intermediate
+  modality: theory
+
+seo:
+  title: ""                   # Optional override
+  description: ""             # Falls back to meta.description
+  focus_keyword: ""
+  opengraph_title: ""
+  opengraph_description: ""
+  social_image: ""
+  noindex: false              # ← Claude: kritisk for TSF
+  robots: "index, follow"     # ← Claude: kritisk for TSF
+
+visual:
+  hero_image: ""
+  hero_title: ""              # Tittel på hero-bilde (for Bricks/alt)
+  hero_alt: ""                # Alt-tekst (accessibility)
+  thumbnail: ""               # Thumbnail for archives
+  thumbnail_title: ""
+  additional_images: []       # Array med path, title, alt
+  layout: balanced            # text-heavy | media-heavy | balanced
+  theme: auto                 # auto | sragi-green | deep-blue | void
+
+sync:
+  source_file: ""             # auto-filled
+  content_hash: ""            # auto
+  sync_status: draft
+  auto_publish: true
+
+publish:
+  status: draft
+  visibility: public
