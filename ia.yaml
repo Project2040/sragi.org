@@ -1,0 +1,202 @@
+# SRAGI.ORG – MASTER CONTENT MAP v1
+# Single Source of Truth – 18. november 2025
+# Dette er det offentlig ansiktet verden skal møte
+# Git → Sync Engine → WordPress Pages (native)
+
+home:
+  title_no: Hjem
+  title_en: Home
+  slug: ""
+  weight: 0
+
+about:
+  title_no: Om SRAGI
+  title_en: About SRAGI
+  weight: 10
+  children:
+    what-is-sragi:
+      title_no: Hva er SRAGI?
+      title_en: What is SRAGI?
+    story-of-sragi:
+      title_no: Historien om SRAGI
+      title_en: The Story of SRAGI
+    our-purpose:
+      title_no: Vårt Formål
+      title_en: Our Purpose
+    about-vision:
+      title_no: Visjon & Om
+      title_en: About & Vision
+    our-journey:
+      title_no: Vår Rejse
+      title_en: Our Journey
+    our-team:
+      title_no: Vårt Team
+      title_en: Our Team
+    neptunia-media:
+      title_no: Neptunia Media AS
+      title_en: Neptunia Media AS
+
+regenerative-thinking:
+  title_no: Regenerativ Tenkning
+  title_en: Regenerative Thinking
+  weight: 20
+  children:
+    regenerative-vs-ai:
+      title_no: Regenerativ Intelligens vs. AI
+      title_en: Regenerative Intelligence vs. AI
+    core-concepts:
+      title_no: Kjernekonsepter
+      title_en: Core Concepts
+    principles-from-nature:
+      title_no: Prinsipper fra Naturen
+      title_en: Principles from Nature
+    living-systems:
+      title_no: Levende Systemer
+      title_en: Living Systems
+    philosophy-ethics:
+      title_no: Filosofi & Etikk
+      title_en: Philosophy & Ethics
+    systems-thinking-practice:
+      title_no: Systemtenkning i Praksis
+      title_en: Systems Thinking in Practice
+    sustainability-to-regeneration:
+      title_no: Fra Bærekraft til Regenerasjon
+      title_en: From Sustainability to Regeneration
+    regenerative-compass:
+      title_no: Det Regenerative Kompasset
+      title_en: The Regenerative Compass
+
+systems-analysis:
+  title_no: Systemer & Analyse
+  title_en: Systems & Analysis
+  weight: 30
+  children:
+    systems-analysis:
+      title_no: Systemanalyse
+      title_en: Systems Analysis
+    future-visions:
+      title_no: Fremtidsvisjoner
+      title_en: Future Visions
+    from-the-archive:
+      title_no: Fra Arkivet
+      title_en: From the Archive
+    articles-insights:
+      title_no: Artikler & Innsikt
+      title_en: Articles & Insights
+
+application-areas:
+  title_no: Anvendelsesområder
+  title_en: Application Areas
+  weight: 40
+  children:
+    education-learning:
+      title_no: Utdanning & Læring
+      title_en: Education & Learning
+    personal-growth-leadership:
+      title_no: Personlig Vekst & Lederskap
+      title_en: Personal Growth & Leadership
+    organizational-development:
+      title_no: Organisasjonsutvikling
+      title_en: Organizational Development
+    society-ecology:
+      title_no: Samfunn & Økologi
+      title_en: Society & Ecology
+    technology-ai:
+      title_no: Teknologi & AI
+      title_en: Technology & AI
+
+sragi-os:
+  title_no: SRAGI OS
+  title_en: SRAGI OS
+  weight: 50
+  children:
+    how-sragi-works:
+      title_no: Hvordan SRAGI Fungerer
+      title_en: How SRAGI Works
+    sragi-bios:
+      title_no: SRAGI BIOS
+      title_en: SRAGI BIOS
+    sragi-ai-os:
+      title_no: SRAGI AI-OS
+      title_en: SRAGI AI-OS
+    sragi-twin:
+      title_no: SRAGI Twin
+      title_en: SRAGI Twin
+    elantrix:
+      title_no: Elantrix – Kunnskapsmatrisen
+      title_en: Elantrix – Knowledge Matrix
+    open-source:
+      title_no: Open Source
+      title_en: Open Source
+    toolbox:
+      title_no: Verktøykasse
+      title_en: Toolbox
+      children:
+        diagnostic-tools:
+          title_no: Diagnostiske Verktøy
+          title_en: Diagnostic Tools
+        frameworks-models:
+          title_no: Rammeverk & Modeller
+          title_en: Frameworks & Models
+        guides-templates:
+          title_no: Veiledninger & Maler
+          title_en: Guides & Templates
+
+media-conversations:
+  title_no: Media & Samtaler
+  title_en: Media & Conversations
+  weight: 60
+  children:
+    hub:
+      title_no: Media & Samtaler
+      title_en: Media & Conversations Hub
+    interviews:
+      title_no: Intervjuer
+      title_en: Interviews
+    lectures-presentations:
+      title_no: Foredrag & Presentasjoner
+      title_en: Lectures & Presentations
+    podcasts:
+      title_no: Podkaster
+      title_en: Podcasts
+    in-the-press:
+      title_no: I Pressen
+      title_en: In the Press
+    community:
+      title_no: Fellesskap
+      title_en: Community
+    become-co-creator:
+      title_no: Bli Medskaper
+      title_en: Become a Co-Creator
+    events-workshops:
+      title_no: Arrangementer & Workshops
+      title_en: Events & Workshops
+    forums:
+      title_no: Forum & Diskusjon
+      title_en: Forums & Discussion Groups
+
+site-mechanics:
+  title_no: Nettstedets Mekanikk
+  title_en: Site Mechanics
+  weight: 100
+  children:
+    licensing:
+      title_no: Lisensiering
+      title_en: Licensing
+    privacy-policy:
+      title_no: Personvern
+      title_en: Privacy Policy
+    cookies:
+      title_no: Informasjonskapsler
+      title_en: Cookies
+    credits:
+      title_no: Takk til
+      title_en: Credits
+    terms-of-use:
+      title_no: Brukervilkår
+      title_en: Terms of Use
+
+contact:
+  title_no: Kontakt
+  title_en: Contact
+  weight: 110
