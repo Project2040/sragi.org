@@ -1,0 +1,80 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.0 (SSOT)
+#  File: [filnavn-uten-extension].yaml
+#  Status: Linked to Master Asset
+# ===========================================================
+
+meta:
+  id: ""                      # Filnavn uten extension (f.eks. gemini-nebula-2025)
+  version: 1.0
+  created_at: "YYYY-MM-DD"
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+# Må matche output fra SRAGI-IMAGE-PIPELINE-v2.1.bat
+variants:
+  master:   ""      # Master PNG (GitHub/Arkiv)
+  hero:     ""      # 1920px AVIF (HappyFiles: /visuals/hero/)
+  content:  ""      # 1200px AVIF (HappyFiles: /visuals/content/)
+  token:    ""      # 600px AVIF  (HappyFiles: /visuals/tokens/)
+  social:   ""      # 1080px JPG  (HappyFiles: /visuals/social/)
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Multilingual)
+# -----------------------------------------------------------
+display:
+  title_en: ""
+  title_no: ""
+  caption_en: ""
+  caption_no: ""
+  description_en: ""
+  description_no: ""
+
+# -----------------------------------------------------------
+# 3. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: ""               # Base filnavn
+  resolution: ""              # Master resolution (f.eks. 3000x2000)
+  aspect_ratio: ""            # 3:2, 16:9, 1:1, 4:5, 9:16, 4:3, 4:1, 20:1, 1:4, 1:20
+  design_ratio: ""            # Primary, Widescreen, Token, Social, Story, Classic, Strip...
+  style:
+    mood: ""                  # f.eks. "Regenerative, Dark, Glowing"
+    palette: []               # f.eks. ["#004433", "#FFD700"]
+    influences: []            # f.eks. "Solarpunk, Fractal Geometry"
+
+# -----------------------------------------------------------
+# 4. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: ""
+  no: ""
+
+semantics:
+  concepts: []                # f.eks. ["Singularity", "Growth", "Network"]
+  tags: []                    # f.eks. ["sragi-os", "ai-art"]
+
+# -----------------------------------------------------------
+# 5. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: []                 # f.eks. ["SRAGI OS"]
+  domains: []                 # f.eks. ["Technology", "Consciousness"]
+  contexts: []                # f.eks. ["Web Header"]
+  relations: []               # f.eks. ["Elantrix"]
+  actor_types: []             # f.eks. ["AI Agent"]
+
+# -----------------------------------------------------------
+# 6. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: ""                    # f.eks. "Midjourney v6 / Canva"
+  source_prompt: ""           # Original prompt for gjenskaping
+  design_intent: ""           # Hva var målet med bildet?
+  model: ""                   # AI-modell brukt
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2025 Rune Solberg / Neptunia Media AS
