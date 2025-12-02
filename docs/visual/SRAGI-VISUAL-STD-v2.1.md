@@ -1,9 +1,13 @@
 # 🌀 SRAGI Visual Protocol v1.0 (SSOT)
 
 **Status:** SSOT (Single Source of Truth)
+
 **Fil:** `/docs/visuals/visual-protocol.md`
+
 **Vedlikeholder:** Rune Solberg / Neptunia Media AS
+
 **Sist oppdatert:** Desember 2025
+
 **Lisens:** CC BY-SA 4.0 via SRL v1.12
 
 ---
