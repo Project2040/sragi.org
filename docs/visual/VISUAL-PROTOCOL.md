@@ -98,15 +98,15 @@ Når Master-filen kjøres gjennom scriptet `SRAGI-IMAGE-PIPELINE-v2_1.bat`, gene
     
     Gå til HappyFiles og last opp filene til riktig mappe:
 
-   – *-large → /visuals/hero/
+     - *-large → /visuals/hero/
    
-   – *-medium → /visuals/content/
+     - *-medium → /visuals/content/
    
-   – *-small → /visuals/tokens/
+     - *-small → /visuals/tokens/
    
-   – *-social → /visuals/social/
+     - *-social → /visuals/social/
    
-   - *-strip → /visuals/strip 
+     - *-strip → /visuals/strip 
 
 ### FASE 4: STYLING (Bricks Builder)
 10. **CSS Magic:** Legg til overlays, gradients, borders og skygger i Bricks. Bildet forblir rent; stilen er kode.
