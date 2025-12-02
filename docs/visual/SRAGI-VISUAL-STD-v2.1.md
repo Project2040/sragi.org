@@ -1,4 +1,4 @@
-# 🌀 SRAGI Visual Protocol v2.0 (SSOT)
+# 🌀 SRAGI Visual Protocol v1.0 (SSOT)
 
 **Status:** SSOT (Single Source of Truth)
 **Fil:** `/docs/visuals/visual-protocol.md`
@@ -16,7 +16,7 @@ Målet er en **regenerativ visuell flyt**: Bevaring av originalkvalitet (Master)
 
 ---
 
-## 📐 Del 1: De 10 Hellige Ratioer (Master Input)
+## 📐 Del 1: De 6 Hellige Ratioer (Master Input)
 
 Dette er de **eneste** formatene vi bruker. Tabellen viser nøyaktig hva du skal taste inn som **Custom Size** i Canva for å skape Master-filen.
 
@@ -28,6 +28,13 @@ Dette er de **eneste** formatene vi bruker. Tabellen viser nøyaktig hva du skal
 | **Social** | 4:5 | **2400 x 3000** | Instagram/LinkedIn feed (maksimal flate). |
 | **Story** | 9:16 | **1440 x 2560** | Mobil-først (Stories, Reels, TikTok). |
 | **Classic** | 4:3 | **2400 x 1800** | Diagrammer og teknisk dokumentasjon. |
+
+## 🎨 Decorative Strips (Optional)
+
+Disse formatene er kun for dekorasjonselementer – seksjons delere, border, ,mønster, marger. Brukes med fornuft.
+
+| Navn | Ratio | **Canva Design Size (px)** | Bruksområde |
+| :--- | :--- | :--- | :--- |
 | **H-Strip** | 4:1 | **4000 x 1000** | Liggende bannere, seksjons-skillere (Wide). |
 | **H-Thin** | 20:1 | **4000 x 200** | Tynne skillelinjer, mønster-striper. |
 | **V-Strip** | 1:4 | **1000 x 4000** | Stående søyler, sidebjelker (Tall). |
@@ -73,9 +80,10 @@ Dette er den slaviske prosessen fra idé til publisering.
     * Last opp **Master PNG** + **YAML** til `assets/originals/`.
 10. **WordPress (Scenen):**
     * Gå til HappyFiles.
-    * Last opp `*-large` ➔ mappen **Hero**.
-    * Last opp `*-medium` ➔ mappen **Content**.
-    * Last opp `*-small` ➔ mappen **Tokens**.
+    * Last opp `*-large` (AVIF + WEBP) ➔ mappen **Hero**.
+    * Last opp `*-medium` (AVIF + WEBP) ➔ mappen **Content**.
+    * Last opp `*-small` (AVIF + WEBP) ➔ mappen **Tokens**.
+    * Last opp `*-jpg` ➔ mappen **Social**.
     * (Aldri last opp Master PNG til WordPress).
 
 ### FASE 4: STYLING (Bricks Builder)
@@ -87,81 +95,5 @@ Dette er den slaviske prosessen fra idé til publisering.
 
 Mal for `[filnavn].yaml`. Lagres sammen med Master i GitHub og lokalt.
 
-```yaml
-# ===========================================================
-#  SRAGI VISUAL TOKEN IDENTITY CARD v3.2 (SSOT)
-#  File: [filnavn-uten-extension].yaml
-# ===========================================================
-
-meta:
-  id: "gemini-visual-singularity-2025"
-  version: 3.2
-  created_at: "2025-12-02"
-  author: "Rune Solberg"
-  organization: "Neptunia Media AS"
-
-# -----------------------------------------------------------
-# 1. PHYSICAL ASSETS (Hardcoded Map)
-# -----------------------------------------------------------
-variants:
-  master:   "gemini-visual-singularity-2025-16x9.png"            # Arkiv
-  hero:     "gemini-visual-singularity-2025-16x9-large.avif"     # WP: /visuals/hero/
-  content:  "gemini-visual-singularity-2025-16x9-medium.avif"    # WP: /visuals/content/
-  token:    "gemini-visual-singularity-2025-16x9-small.avif"     # WP: /visuals/tokens/
-  social:   "gemini-visual-singularity-2025-16x9-social.jpg"     # WP: /visuals/social/
-
-# -----------------------------------------------------------
-# 2. WORDPRESS DISPLAY (Flerspråklig Innhold)
-# -----------------------------------------------------------
-display:
-  title_en: "The SRAGI Visual Singularity"
-  title_no: "SRAGI Visuell Singularitet"
-
-  caption_en: "Visualization of the regenerative visual workflow."
-  caption_no: "Visualisering av den regenerative visuelle arbeidsflyten."
-
-  description_en: |
-    Epic conceptual visualization of the "Visual Singularity": A luminous,
-    golden pipeline merging into a crystal prism, refracting into the
-    six sacred ratios.
-  description_no: |
-    Episk konseptuell visualisering av "Visuell Singularitet": En lysende,
-    gyllen rørledning som smelter sammen i et krystallprisme og brytes opp
-    i de seks hellige ratioene.
-
-semantics:
-  alt_text_en: |
-    Epic: A glowing, cyber-organic pipeline merging into a prism that refracts
-    into six geometric shapes, symbolizing the SRAGI Visual Protocol and the
-    six sacred ratios against a deep latent space background.
-  alt_text_no: |
-    Episk: En glødende, kyber-organisk rørledning som smelter sammen i et
-    prisme og brytes opp i seks geometriske former, som symboliserer SRAGI
-    Visual Protocol og de seks hellige ratioene.
-
-# -----------------------------------------------------------
-# 3. KNOWLEDGE GRAPH (ACF / Taxonomies)
-# -----------------------------------------------------------
-knowledge_graph:
-  pillars:
-    - "SRAGI OS"
-  domains:
-    - "Visuals"
-    - "Workflow"
-  contexts:
-    - "System Architecture"
-  relations:
-    - "Latent Space"
-  actor_types:
-    - "AI Agent"
-
-# -----------------------------------------------------------
-# 4. ORIGIN & LICENSE (Provenance)
-# -----------------------------------------------------------
-origin:
-  tool: "Midjourney / DALL-E 3"
-  source_prompt: |
-    Epic conceptual visualization of the "Visual Singularity"... [--ar 16:9]
-  license: "CC BY-SA 4.0 via SRAGI Regenerative License (SRL)"
 
 © 2025 Rune Solberg / Neptunia Media AS Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL).
