@@ -53,17 +53,19 @@ Dette er den slaviske prosessen fra idé til publisering.
 ### FASE 1: SKAPELSE & MASTER (Atelieret)
 
 1.  **Idé & Prompt:** Generer bildet (AI/Foto).
-   For å treffe ratioen perfekt ved AI generering kan du bruke disse "kodene", mer med eksempel for 3:2:
+  
+      Tips: For å treffe ratioen perfekt ved AI-generering, bruk disse parameterne:
 
-   - Midjourney: `--ar 3:2`
-   - DALL-E/Gemini: "Aspect ratio 3:2"
+         - Midjourney: --ar 3:2 (bytt ut med ønsket ratio).
 
-2.  **Metadata (Start):** Opprett `.yaml`-filen lokalt. Se egen mal: TEMPLATE_VISUAL_TOKEN_v1.0.yaml
+         - DALL-E/Gemini: "Aspect ratio 3:2". (bytt ut med ønsket ratio).
+
+3.  **Metadata (Start):** Opprett `.yaml`-filen lokalt. Se egen mal: TEMPLATE_VISUAL_TOKEN_v1.0.yaml
 
    
-3.  **Prosessering (Affinity/Canva):**
+4.  **Prosessering (Affinity/Canva):**
     * *Affinity:* For avansert redigering/utklipp.
-    * *Canva:* Opprett design med **Canva Design Size** (se tabell). Plasser bildet.
+    * *Canva:* Opprett design med **Canva Design Size** (se tabell over). Plasser bildet.
 
 5.  **Eksport:** Last ned fra Canva som **PNG** (Maks kvalitet).
    
@@ -86,18 +88,19 @@ Når Master-filen kjøres gjennom scriptet `SRAGI-IMAGE-PIPELINE-v2_1.bat`, gene
 
 ### FASE 3: DISTRIBUSJON (Logistikken)
 
-8.  **Samling:** Flytt *hele familien* (Master + Web-filer + YAML) til din lokale mappe: `E:\1-Neptunia-Media-Visuals\Visual-content-ready\[Filnavn-Mappe]\`.
+8.  **Samling:** Flytt *hele familien* (Master + Web-filer + YAML) til din lokale mappe:
+   -* `E:\1-Neptunia-Media-Visuals\Visual-content-ready\[Filnavn-Mappe]\`.
    
 9.  **GitHub (Hvelvet):**
-    * Last opp **Master PNG** + **YAML** til `assets/originals/`.
+    -* Last opp **Master PNG** + **YAML** til `assets/originals/`.
   
 10.  **WordPress (Scenen)**
-    
-– *-large → HappyFiles: /visuals/hero/
-– *-medium → /visuals/content/
-– *-small → /visuals/tokens/
-– *-social → /visuals/social/
-
+    Gå til HappyFiles og last opp filene til riktig mappe:
+   – *-large → /visuals/hero/
+   – *-medium → /visuals/content/
+   – *-small → /visuals/tokens/
+   – *-social → /visuals/social/
+   - *-strip → /visuals/strip 
 
 ### FASE 4: STYLING (Bricks Builder)
 11. **CSS Magic:** Legg til overlays, gradients, borders og skygger i Bricks. Bildet forblir rent; stilen er kode.
