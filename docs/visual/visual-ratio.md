@@ -5,11 +5,13 @@
 **Version:** 1.0  
 **Last Updated:** December 2025
 
-#✅ 1. SRAGI-standard: 6 bildeforhold (aspect ratios)
+---
+
+##✅ 1. SRAGI-standard: 6 bildeforhold (aspect ratios)
 
 Her er de vi trenger – og ingen flere:
 
-##**A) 3:2**
+### **A) 3:2** 
 
 **Typisk: 2400x1600, 3000x2000, 3600x2400**
 
@@ -24,6 +26,8 @@ Her er de vi trenger – og ingen flere:
 ###Større illustrasjoner
 
 **Dette er nå SRAGIs primærformat (beste balansen).**
+
+---
 
 ##**B) 16:9**
 
