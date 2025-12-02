@@ -26,6 +26,7 @@ This document defines the **standard image aspect ratios** for all SRAGI visual 
 ### **E) 9:16 (Vertical Video / Stories)** ( 1080 x 1920 )
 
 ### **F) 4:3 (Classic)** ( 1600 x 1200 )
+
 ---
 
 ## **✅ 1\. SRAGI Standard: 6 Image Ratios**
