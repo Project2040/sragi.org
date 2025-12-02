@@ -121,5 +121,41 @@ We use **six aspect ratios** – no more, no less – to maintain visual coheren
 
 **Note:** This is optional but useful for certain document formats.
 
-🔥 2\. When to Use Each Format (SRAGI Rules)
+## **Platform Guide**
+✅ **sragi.org**
+ → Primary: 3:2 (default for hero images)
+ → Alternative: 16:9 (widescreen sections)
+✅ **YouTube**
+ → Primary: 16:9 (standard video format)
+✅ **Instagram Feed**
+ → Primary: 4:5 (best reach, 25-35% better than 1:1)
+ → Alternative: 1:1 (tokens, symmetric content)
+✅ **Instagram Stories**
+ → Primary: 9:16 (full-screen vertical only)
+✅ **Facebook**
+ → Primary: 4:5 (same as Instagram)
+ → Alternative: 1:1 (square posts)
+✅ **LinkedIn**
+ → Primary: 4:5 (mobile-optimized)
+ → Alternative: 1:1 (profile, company updates)
+✅ **TikTok**
+ → Primary: 9:16 (vertical only)
+✅ **X/Twitter**
+ → Primary: 16:9 (widescreen preferred)
+ → Alternative: 3:2 (article shares)
+✅ **Tokens/Symbols**
+ → Primary: 1:1 (always square for consistency)
+
+## **File Naming**
+Format: [creator/model]-[picture-name]-[year]-[primary use case][ratio]-[size].ext
+Examples:
+chatgpt-sragi-2025-feature-fallback-3x2-3000x2000.jpg
+chatgpt-sragi-2025-token-1x1-2048x2048.png
+
+
+© 2025 Rune Solberg / Neptunia Media AS
+Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL) v1.12
+
+
+
 
