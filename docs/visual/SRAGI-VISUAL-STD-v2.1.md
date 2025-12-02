@@ -89,20 +89,79 @@ Mal for `[filnavn].yaml`. Lagres sammen med Master i GitHub og lokalt.
 
 ```yaml
 # ===========================================================
-#  SRAGI VISUAL TOKEN IDENTITY CARD v2.3
-#  File: gemini-nebula-strip-2025.yaml
+#  SRAGI VISUAL TOKEN IDENTITY CARD v3.2 (SSOT)
+#  File: [filnavn-uten-extension].yaml
 # ===========================================================
 
 meta:
-  id: "gemini-nebula-strip-2025"
-  version: 2.1
+  id: "gemini-visual-singularity-2025"
+  version: 3.2
   created_at: "2025-12-02"
   author: "Rune Solberg"
+  organization: "Neptunia Media AS"
 
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (Hardcoded Map)
+# -----------------------------------------------------------
 variants:
-  # Hardkodede filnavn for entydig kobling (Inkluderer ratio i navnet)
-  master:   "gemini-nebula-strip-2025-4x1.png"
-  hero:     "gemini-nebula-strip-2025-4x1-large.avif"
-  content:  "gemini-nebula-strip-2025-4x1-medium.avif"
-  token:    "gemini-nebula-strip-2025-4x1-small.avif"
-  social:   "gemini-nebula-strip-2025-
+  master:   "gemini-visual-singularity-2025-16x9.png"            # Arkiv
+  hero:     "gemini-visual-singularity-2025-16x9-large.avif"     # WP: /visuals/hero/
+  content:  "gemini-visual-singularity-2025-16x9-medium.avif"    # WP: /visuals/content/
+  token:    "gemini-visual-singularity-2025-16x9-small.avif"     # WP: /visuals/tokens/
+  social:   "gemini-visual-singularity-2025-16x9-social.jpg"     # WP: /visuals/social/
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Flerspråklig Innhold)
+# -----------------------------------------------------------
+display:
+  title_en: "The SRAGI Visual Singularity"
+  title_no: "SRAGI Visuell Singularitet"
+
+  caption_en: "Visualization of the regenerative visual workflow."
+  caption_no: "Visualisering av den regenerative visuelle arbeidsflyten."
+
+  description_en: |
+    Epic conceptual visualization of the "Visual Singularity": A luminous,
+    golden pipeline merging into a crystal prism, refracting into the
+    six sacred ratios.
+  description_no: |
+    Episk konseptuell visualisering av "Visuell Singularitet": En lysende,
+    gyllen rørledning som smelter sammen i et krystallprisme og brytes opp
+    i de seks hellige ratioene.
+
+semantics:
+  alt_text_en: |
+    Epic: A glowing, cyber-organic pipeline merging into a prism that refracts
+    into six geometric shapes, symbolizing the SRAGI Visual Protocol and the
+    six sacred ratios against a deep latent space background.
+  alt_text_no: |
+    Episk: En glødende, kyber-organisk rørledning som smelter sammen i et
+    prisme og brytes opp i seks geometriske former, som symboliserer SRAGI
+    Visual Protocol og de seks hellige ratioene.
+
+# -----------------------------------------------------------
+# 3. KNOWLEDGE GRAPH (ACF / Taxonomies)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars:
+    - "SRAGI OS"
+  domains:
+    - "Visuals"
+    - "Workflow"
+  contexts:
+    - "System Architecture"
+  relations:
+    - "Latent Space"
+  actor_types:
+    - "AI Agent"
+
+# -----------------------------------------------------------
+# 4. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "Midjourney / DALL-E 3"
+  source_prompt: |
+    Epic conceptual visualization of the "Visual Singularity"... [--ar 16:9]
+  license: "CC BY-SA 4.0 via SRAGI Regenerative License (SRL)"
+
+© 2025 Rune Solberg / Neptunia Media AS Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL).
