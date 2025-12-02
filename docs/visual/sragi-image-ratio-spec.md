@@ -13,6 +13,20 @@
 This document defines the **standard image aspect ratios** for all SRAGI visual content, ensuring consistency across web, social media, video, and print formats.
 
 ---
+## **Summary**
+
+### **A) 3:2 (Primary Standard)** ( 2400×1600 )
+
+### **B) 16:9 (Widescreen)** ( 1920x1080 )
+
+### **C) 1:1 (Square)** ( 2400 x 2400 )
+
+### **D) 4:5 (Vertical Social)** ( 1600 x 2000 )
+
+### **E) 9:16 (Vertical Video / Stories)** ( 1080 x 1920 )
+
+### **F) 4:3 (Classic)** ( 1600 x 1200 )
+---
 
 ## **✅ 1\. SRAGI Standard: 6 Image Ratios**
 
