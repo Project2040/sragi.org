@@ -15,15 +15,14 @@ meta:
 # 1. PHYSICAL ASSETS (File Map)
 # -----------------------------------------------------------
 variants:
-  # --- FOR BILDER (Standard) ---
-  master:   "gemini-regenerativt-bygg-samfunn-2040-2025-1x1.png"          # Master PNG (GitHub/Arkiv)
+  master:   "gemini-regenerativt-bygg-samfunn-2040-2025-1x1.png"          # Master PNG
   hero:     "gemini-regenerativt-bygg-samfunn-2040-2025-1x1-large.avif"   # 1920px AVIF
   content:  "gemini-regenerativt-bygg-samfunn-2040-2025-1x1-medium.avif"  # 1200px AVIF
   token:    "gemini-regenerativt-bygg-samfunn-2040-2025-1x1-small.avif"   # 600px AVIF
   social:   "gemini-regenerativt-bygg-samfunn-2040-2025-1x1-social.jpg"   # 1080px JPG
 
 # -----------------------------------------------------------
-# 2. WORDPRESS DISPLAY (Multilingual)
+# 2. WORDPRESS DISPLAY (Human Readable - Long)
 # -----------------------------------------------------------
 display:
   title_en: "Regenerative Building Society 2040"
@@ -44,20 +43,29 @@ display:
     teknologi som harmonerer med naturen, med utsikt over et fjordlandskap.
 
 # -----------------------------------------------------------
-# 3. IMAGE TECH SPEC (The Physics)
+# 3. SEO METADATA (Machine Readable - Max 160 chars)
+# -----------------------------------------------------------
+seo:
+  title_en: "Regenerative Community Hub 2040 - SRAGI Vision"
+  title_no: "Regenerativt Samfunnshus 2040 - SRAGI Visjon"
+  description_en: "Visionary concept art of a Norwegian regenerative community hub in 2040 featuring sustainable timber architecture and biophilic design."
+  description_no: "Visjonær konseptkunst av et norsk regenerativt samfunnshus i 2040, med bærekraftig trearkitektur og biofilisk design i harmoni med naturen."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
 # -----------------------------------------------------------
 image:
   file_name: "gemini-regenerativt-bygg-samfunn-2040-2025"
-  resolution: "2048x2048"     # (Antatt ut fra 1x1 og standard generering)
+  resolution: "2048x2048"
   aspect_ratio: "1:1"
   design_ratio: "Token"
   style:
     mood: "Bright, Optimistic, Solarpunk"
-    palette: ["#8B5A2B", "#4CAF50", "#E0F7FA"] # Treverk, Grønt, Lys blå
+    palette: ["#8B5A2B", "#4CAF50", "#E0F7FA"]
     influences: ["Biophilic Design", "Nordic Architecture", "Futurism"]
 
 # -----------------------------------------------------------
-# 4. SEMANTICS (Accessibility & SEO)
+# 5. SEMANTICS (Accessibility & SEO)
 # -----------------------------------------------------------
 alt_text:
   en: "Futuristic wooden community center interior with vertical gardens and holographic displays overlooking a Norwegian fjord."
@@ -68,7 +76,7 @@ semantics:
   tags: ["project2040", "sragi", "solarpunk", "architecture"]
 
 # -----------------------------------------------------------
-# 5. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
 # -----------------------------------------------------------
 knowledge_graph:
   pillars: ["Society & Ecology"]
@@ -78,7 +86,7 @@ knowledge_graph:
   actor_types: ["Human", "Community"]
 
 # -----------------------------------------------------------
-# 6. ORIGIN & LICENSE (Provenance)
+# 7. ORIGIN & LICENSE (Provenance)
 # -----------------------------------------------------------
 origin:
   tool: "Gemini / DALL-E 3"
