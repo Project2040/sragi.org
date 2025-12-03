@@ -23,42 +23,52 @@ variants:
   social:   ""      # 1080px JPG  (HappyFiles: /visuals/social/)
 
 # -----------------------------------------------------------
-# 2. WORDPRESS DISPLAY (Multilingual)
+# 2. WORDPRESS DISPLAY (Multilingual - Human)
 # -----------------------------------------------------------
 display:
   title_en: ""
   title_no: ""
   caption_en: ""
   caption_no: ""
-  description_en: ""
-  description_no: ""
+  description_en: |
+    
+  description_no: |
+    
 
 # -----------------------------------------------------------
-# 3. IMAGE TECH SPEC (The Physics)
+# 3. SEO METADATA (The SEO Framework - Machine)
+# -----------------------------------------------------------
+# Kritisk for Sync Engine v2.2. Maks 160 tegn.
+seo:
+  title_en: ""        # Google Title (hvis ulik display title)
+  description_en: ""  # Meta Description (kort oppsummering)
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
 # -----------------------------------------------------------
 image:
   file_name: ""               # Base filnavn
   resolution: ""              # Master resolution (f.eks. 3000x2000)
   aspect_ratio: ""            # 3:2, 16:9, 1:1, 4:5, 9:16, 4:3, 4:1, 20:1, 1:4, 1:20
-  design_ratio: ""            # Primary, Widescreen, Token, Social, Story, Classic, Strip...
+  design_ratio: ""            # Primary, Widescreen, Token, Social, Story, Classic...
   style:
     mood: ""                  # f.eks. "Regenerative, Dark, Glowing"
     palette: []               # f.eks. ["#004433", "#FFD700"]
     influences: []            # f.eks. "Solarpunk, Fractal Geometry"
 
 # -----------------------------------------------------------
-# 4. SEMANTICS (Accessibility & SEO)
+# 5. SEMANTICS (Accessibility & SEO)
 # -----------------------------------------------------------
 alt_text:
   en: ""
   no: ""
 
 semantics:
-  concepts: []                # f.eks. ["Singularity", "Growth", "Network"]
+  concepts: []                # f.eks. ["Singularity", "Growth"]
   tags: []                    # f.eks. ["sragi-os", "ai-art"]
 
 # -----------------------------------------------------------
-# 5. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
 # -----------------------------------------------------------
 knowledge_graph:
   pillars: []                 # f.eks. ["SRAGI OS"]
@@ -68,13 +78,13 @@ knowledge_graph:
   actor_types: []             # f.eks. ["AI Agent"]
 
 # -----------------------------------------------------------
-# 6. ORIGIN & LICENSE (Provenance)
+# 7. ORIGIN & LICENSE (Provenance)
 # -----------------------------------------------------------
 origin:
   tool: ""                    # f.eks. "Midjourney v6 / Canva"
-  source_prompt: ""           # Original prompt for gjenskaping
-  design_intent: ""           # Hva var målet med bildet?
-  model: ""                   # AI-modell brukt
+  source_prompt: ""           # Original prompt
+  design_intent: ""           # Intensjon
+  model: ""                   # AI-modell
   license: "CC BY-SA 4.0 + SRAGI RSL"
 
 # © 2025 Rune Solberg / Neptunia Media AS
