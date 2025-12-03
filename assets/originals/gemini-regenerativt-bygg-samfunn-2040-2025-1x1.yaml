@@ -1,0 +1,90 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.1 (SSOT)
+#  File: gemini-regenerativt-bygg-samfunn-2040-2025.yaml
+#  Status: Linked to Master Asset
+# ===========================================================
+
+meta:
+  id: "gemini-regenerativt-bygg-samfunn-2040-2025"
+  version: 1.1
+  created_at: "2025-12-03"
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+variants:
+  # --- FOR BILDER (Standard) ---
+  master:   "gemini-regenerativt-bygg-samfunn-2040-2025-1x1.png"          # Master PNG (GitHub/Arkiv)
+  hero:     "gemini-regenerativt-bygg-samfunn-2040-2025-1x1-large.avif"   # 1920px AVIF
+  content:  "gemini-regenerativt-bygg-samfunn-2040-2025-1x1-medium.avif"  # 1200px AVIF
+  token:    "gemini-regenerativt-bygg-samfunn-2040-2025-1x1-small.avif"   # 600px AVIF
+  social:   "gemini-regenerativt-bygg-samfunn-2040-2025-1x1-social.jpg"   # 1080px JPG
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Multilingual)
+# -----------------------------------------------------------
+display:
+  title_en: "Regenerative Building Society 2040"
+  title_no: "Regenerativt Byggsamfunn 2040"
+  
+  caption_en: "Interior view of a regenerative community hub in 2040."
+  caption_no: "Interiørvisning av et regenerativt samfunnshus i 2040."
+  
+  description_en: |
+    A visionary illustration depicting a regenerative community hub in Norway, 2040.
+    The architecture features sustainable timber structures, abundant indoor greenery,
+    and integrated augmented reality displays showing ecological data. Children and
+    adults interact with technology that harmonizes with nature, overlooking a fjord landscape.
+  description_no: |
+    En visjonær illustrasjon som skildrer et regenerativt samfunnshus i Norge, 2040.
+    Arkitekturen preges av bærekraftige trekonstruksjoner, rikelig med innendørs grøntarealer,
+    og integrerte AR-skjermer som viser økologiske data. Barn og voksne samhandler med
+    teknologi som harmonerer med naturen, med utsikt over et fjordlandskap.
+
+# -----------------------------------------------------------
+# 3. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: "gemini-regenerativt-bygg-samfunn-2040-2025"
+  resolution: "2048x2048"     # (Antatt ut fra 1x1 og standard generering)
+  aspect_ratio: "1:1"
+  design_ratio: "Token"
+  style:
+    mood: "Bright, Optimistic, Solarpunk"
+    palette: ["#8B5A2B", "#4CAF50", "#E0F7FA"] # Treverk, Grønt, Lys blå
+    influences: ["Biophilic Design", "Nordic Architecture", "Futurism"]
+
+# -----------------------------------------------------------
+# 4. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: "Futuristic wooden community center interior with vertical gardens and holographic displays overlooking a Norwegian fjord."
+  no: "Futuristisk interiør i et samfunnshus av tre med vertikale hager og holografiske skjermer med utsikt over en norsk fjord."
+
+semantics:
+  concepts: ["Regeneration", "Community", "Future Living", "Biophilia"]
+  tags: ["project2040", "sragi", "solarpunk", "architecture"]
+
+# -----------------------------------------------------------
+# 5. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["Society & Ecology"]
+  domains: ["Architecture", "Community Development"]
+  contexts: ["Vision 2040"]
+  relations: ["Living Systems", "Smart Technology"]
+  actor_types: ["Human", "Community"]
+
+# -----------------------------------------------------------
+# 6. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "Gemini / DALL-E 3"
+  source_prompt: "Interior of a regenerative community hub in Norway 2040, wooden architecture, vertical farming, holographic displays, fjord view, bright natural light."
+  design_intent: "Visualize the harmony between technology, nature, and community in the SRAGI 2040 vision."
+  model: "DALL-E 3"
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2025 Rune Solberg / Neptunia Media AS
