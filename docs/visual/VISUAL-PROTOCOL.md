@@ -20,7 +20,7 @@ Målet er en **regenerativ visuell flyt**: Bevaring av originalkvalitet (Master)
 
 ---
 
-## 📐 Del 1: De 6 Hellige Ratioer (Master Input)
+## 📐 Del 1: De 6 Hellige Ratioer (Master Input) + Sosiale media OpenGraph
 
 Dette er de **eneste** formatene vi bruker. Tabellen viser nøyaktig hva du skal taste inn som **Custom Size** i Canva for å skape Master-filen.
 
@@ -32,6 +32,12 @@ Dette er de **eneste** formatene vi bruker. Tabellen viser nøyaktig hva du skal
 | **Social** | 4:5 | **2400 x 3000** | Instagram/LinkedIn feed (maksimal flate). |
 | **Story** | 9:16 | **1440 x 2560** | Mobil-først (Stories, Reels, TikTok). |
 | **Classic** | 4:3 | **2400 x 1800** | Diagrammer og teknisk dokumentasjon. |
+
+## 🖥️ Social Media OpenGraph
+
+| Navn | Ratio | **Canva Design Size (px)** | Bruksområde |
+| :--- | :--- | :--- | :--- |
+| **Social-OG** | 120:63 | **1200 x 630** | Sosiale media OpenGraph. Kun .jpg |
 
 ## 🎨 Decorative Strips (Optional)
 
@@ -72,6 +78,14 @@ Dette er den slaviske prosessen fra idé til publisering.
 5.  **Navngivning:** Gi Master-filen navn etter standarden:
     * `[tool]-[navn]-[år]-[ratio].png`
     * *Eks:* `gemini-nebula-strip-2025-4x1.png`
+
+6.  **Navngivning:** Gi Master-filen navn etter standarden:
+
+7.  **Social Media OpenGraph versjon:** 
+     * *Canva:* Opprett design med **Canva Design Size** SocialmediaOG-1200x630.
+     * Plasser bildet.
+     * Gi filen navn etter standarden
+     * Last ned .jpg
 
 ### FASE 2: FABRIKKEN (Automatisering)
 
