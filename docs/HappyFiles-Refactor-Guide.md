@@ -40,3 +40,41 @@ This MUST match the **SRAGI Visual Protocol** output targets:
 ├── diagrams/       (For SVG system diagrams)
 ├── icons/          (For SVG UI icons/logos)
 └── video/          (For MP4 background loops)
+## ⚙️ Refactor Steps (Kairos Order)
+
+### 1. Create the New Structure
+1. Open **HappyFiles → Folders → Add New**.
+2. Create the root folder **`content`**.
+3. Inside it, create subfolders: `visuals`, `docs`, `license`, `media`.
+4. Inside `visuals`, create the subfolders listed above (`hero`, `content`, `tokens`, etc.).
+5. Add one temporary folder: **`_to-sort`** (buffer).
+
+### 2. Move Files Safely
+1. **Identify:** Use the filename suffix to guide you.
+   - Has `-hero`? 👉 Move to `/visuals/hero/`
+   - Has `-token`? 👉 Move to `/visuals/tokens/`
+   - Is it a Logo? 👉 Move to `/visuals/icons/`
+2. **Uncertain?** 👉 Move to `_to-sort`.
+3. **Verify:** Check frontend to ensure images still load correctly.
+
+### 3. Cleanup Old Structure
+After verifying functionality:
+1. Delete obsolete folders (e.g., `Bilder SRAGI`, `Branding`, `Photos`).
+2. Empty `_to-sort` gradually as you identify proper homes for the files.
+
+---
+
+## 🧩 Verification Checklist
+
+| Step | Status |
+| :--- | :--- |
+| Root folder `content/` exists | ☐ |
+| Visual sub-folders match Protocol v1.1 | ☐ |
+| Old folders deleted | ☐ |
+| All images verified on frontend | ☐ |
+
+---
+
+**Maintained by:** Neptunia Media AS / SRAGI Core  
+**License:** CC BY 4.0 via SRL
+
