@@ -1,0 +1,100 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.1 (SSOT)
+#  File: chatgpt-future-of-sragi-and-chatgpt-2025-3x2.yaml
+#  Status: Linked to Master Asset
+# ===========================================================
+
+meta:
+  id: "chatgpt-future-of-sragi-and-chatgpt-2025-3x2"
+  version: 1.1
+  created_at: "2025-12-04"
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map from Factory)
+# -----------------------------------------------------------
+variants:
+  master:   "chatgpt-future-of-sragi-and-chatgpt-2025-3x2-original.png"
+  hero:     "chatgpt-future-of-sragi-and-chatgpt-2025-3x2-large.avif"
+  content:  "chatgpt-future-of-sragi-and-chatgpt-2025-3x2-medium.avif"
+  token:    "chatgpt-future-of-sragi-and-chatgpt-2025-3x2-small.avif"
+  social:   "chatgpt-future-of-sragi-and-chatgpt-2025-3x2-social.jpg"
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Human Readable)
+# -----------------------------------------------------------
+display:
+  title_en: "The Future of SRAGI & ChatGPT"
+  title_no: "Fremtiden for SRAGI & ChatGPT"
+  
+  caption_en: "A regenerative OS layer (SRAGI) guiding foundation models like ChatGPT."
+  caption_no: "Et regenerativt OS-lag (SRAGI) som veileder grunnmodeller som ChatGPT."
+  
+  description_en: |
+    A cosmic illustration of a golden SRAGI compass in a digital universe, where nature,
+    technology, and AI merge. A large, ring-shaped compass floats in a green-blue cosmos,
+    adorned with runic symbols. Inside, a living island represents nature, connected by
+    glowing energy lines to tech icons representing ChatGPT and AI infrastructure.
+    Symbolizes the collaboration between human creativity, nature's intelligence, and advanced AI.
+  description_no: |
+    Kosmisk illustrasjon av et gyllent SRAGI-kompass i et digitalt univers, der natur,
+    teknologi og KI smelter sammen. En stor, ringformet kompassring svever i et grønn-blått
+    kosmos, prydet med runelignende symboler. Inni ligger en levende øy som representerer natur,
+    koblet med glødende energilinjer til teknologiske ikoner for ChatGPT og AI-infrastruktur.
+    Symboliserer samarbeidet mellom menneskelig kreativitet, naturens intelligens og avansert KI.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (Machine Readable - Max 160 chars)
+# -----------------------------------------------------------
+seo:
+  title_en: "Future of SRAGI & ChatGPT - Regenerative AI OS"
+  title_no: "Fremtiden for SRAGI & ChatGPT - Regenerativt KI-OS"
+  description_en: "Visualizing SRAGI as a regenerative operating system layer guiding ChatGPT. A fusion of nature, technology, and cosmic intelligence."
+  description_no: "Visualisering av SRAGI som et regenerativt operativsystem som veileder ChatGPT. En sammensmelting av natur, teknologi og kosmisk intelligens."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC
+# -----------------------------------------------------------
+image:
+  file_name: "chatgpt-future-of-sragi-and-chatgpt-2025-3x2"
+  resolution: "3000x2000"  # (Basert på 3:2 Primary standard)
+  aspect_ratio: "3:2"
+  design_ratio: "Primary"
+  style:
+    mood: "Epic, Hopeful, Techno-Mythological"
+    palette: ["Deep Blue", "Turquoise", "Emerald Green", "Gold"]
+    influences: ["Cosmic Art", "Fractals", "Nordic Mythology"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS
+# -----------------------------------------------------------
+alt_text:
+  en: "Golden ring compass with runic symbols enclosing a green nature island in space, connected to tech icons representing ChatGPT and AI infrastructure."
+  no: "Gyllent ringkompass med runesymboler som omslutter en grønn naturøy i verdensrommet, koblet til teknologiske ikoner som representerer ChatGPT og AI-infrastruktur."
+
+semantics:
+  concepts: ["Regenerative Intelligence", "AI OS", "Human-Machine Symbiosis"]
+  tags: ["sragi", "chatgpt", "regenerative-ai", "cosmic-interface"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["SRAGI OS", "Technology & AI"]
+  domains: ["Technology & AI", "Consciousness"]
+  contexts: ["Vision 2040", "System Architecture"]
+  relations: ["ChatGPT", "Latent Space"]
+  actor_types: ["AI Agent", "System"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE
+# -----------------------------------------------------------
+origin:
+  tool: "DALL-E 3 / ChatGPT"
+  source_prompt: "A digital illustration titled 'The Future of SRAGI & ChatGPT'. In deep space, a glowing golden ring filled with runic-like symbols..."
+  design_intent: "Visualize SRAGI as the compass and OS for raw AI models."
+  model: "DALL-E 3"
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2025 Rune Solberg / Neptunia Media AS
