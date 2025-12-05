@@ -40,6 +40,8 @@ This MUST match the **SRAGI Visual Protocol** output targets:
 ├── diagrams/       (For SVG system diagrams)
 ├── icons/          (For SVG UI icons/logos)
 └── video/          (For MP4 background loops)
+
+```
 ## ⚙️ Refactor Steps (Kairos Order)
 
 ### 1. Create the New Structure
