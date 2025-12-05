@@ -1,63 +1,78 @@
 # ===========================================================
-#  SRAGI Universal Content Template v1.4 – FINAL
-#  English first · Norwegian secondary · TSF-ready
-#  18. november 2025 – Kaptein Rune Solberg
+#  SRAGI Universal Content Template v1.5 – KG Edition
+#  SSOT for Text Content (Page/Post)
+#  Updated: 05. desember 2025
 # ===========================================================
 
 meta:
   type: documentation         # documentation | reflection | structure | media
-  title: ""                   # English title – ALWAYS fill this first
+  title: ""                   # English title (Master)
   slug: ""                    # auto if empty
-  language: en                # DEFAULT = en (sragi.org is global)
-  description: ""             # English SEO description
-  author: "Rune Solberg"
-  created_at: "2025-11-18"    # auto or manual
-  updated_at: "2025-11-18"    # auto on sync
+  language: en
+  description: ""             # English SEO description (max 160 chars)
+  author: "Rune Solberg"      # Kobling til Profile
+  created_at: "2025-12-05"
+  updated_at: "2025-12-05"
 
 i18n:
   title_nb: ""                # Norwegian title
   slug_nb: ""
-  description_nb: ""
+  description_nb: ""          # Norwegian SEO description
 
+# -----------------------------------------------------------
+# IA & NAVIGATION (Hvor bor den?)
+# -----------------------------------------------------------
 ia:
-  pillar: ""                  # e.g. "about"
+  pillar: ""                  # e.g. "about" (ref: ia.yaml)
   cluster: ""                 # e.g. "what-is-sragi"
   parent: ""                  # e.g. "about"
   menu_weight: 10
   canonical: true
 
-semantic:
-  tags: []
-  related: []                 # ← Claude: må være med (kan være tom)
-  level: intermediate
-  modality: theory
+# -----------------------------------------------------------
+# KNOWLEDGE GRAPH (Hva ER den?) - NY!
+# -----------------------------------------------------------
+# Kobler innholdet til den 6-dimensjonale ontologien
+knowledge_graph:
+  pillars: []                 # ["Regenerasjon", "System"]
+  domains: []                 # ["Technology & AI", "Consciousness"]
+  contexts: []                # ["Philosophical", "Practical"]
+  phases: []                  # ["Emergence", "Growth"]
+  scales: []                  # ["Individual", "Planetary"]
+  modes: []                   # ["Matrix", "Patrix", "Elantrix"]
+  
+  # Relasjoner til andre noder
+  relations: []               # ["ChatGPT", "Living Systems"]
+  actor_types: []             # ["System", "Human"]
 
+# -----------------------------------------------------------
+# SEO & DISCOVERY (The SEO Framework)
+# -----------------------------------------------------------
 seo:
-  title: ""                   # Optional override
-  description: ""             # Falls back to meta.description
+  title: ""                   # Override default title
   focus_keyword: ""
-  opengraph_title: ""
-  opengraph_description: ""
-  social_image: ""
-  noindex: false              # ← Claude: kritisk for TSF
-  robots: "index, follow"     # ← Claude: kritisk for TSF
+  noindex: false
+  robots: "index, follow"
 
+# -----------------------------------------------------------
+# VISUALS (Ref: Visual Protocol v1.1)
+# -----------------------------------------------------------
 visual:
-  hero_image: ""
-  hero_title: ""              # Tittel på hero-bilde (for Bricks/alt)
-  hero_alt: ""                # Alt-tekst (accessibility)
-  thumbnail: ""               # Thumbnail for archives
-  thumbnail_title: ""
-  additional_images: []       # Array med path, title, alt
+  hero_image: ""              # Filename: "gemini-nebula-2025-16x9-large.avif"
+  hero_alt: ""                # Episk alt-tekst
+  thumbnail: ""               # Filename: "gemini-nebula-2025-1x1-small.avif"
   layout: balanced            # text-heavy | media-heavy | balanced
   theme: auto                 # auto | sragi-green | deep-blue | void
 
+# -----------------------------------------------------------
+# SYNC STATUS (Automatisert)
+# -----------------------------------------------------------
 sync:
-  source_file: ""             # auto-filled
-  content_hash: ""            # auto
+  source_file: ""
+  content_hash: ""
   sync_status: draft
   auto_publish: true
 
 publish:
-  status: draft
+  status: draft               # draft | publish | private
   visibility: public
