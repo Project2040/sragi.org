@@ -2,7 +2,7 @@
 
 **For:** `sragi-skills` repository and `/content/visuals`
 **Maintainer:** Rune Solberg / Neptunia Media AS
-**Version:** 1.2b
+**Version:** 1.2c
 **Last Updated:** November 2025 (Marked for update, 06.12.2025 - Rune Solberg)
 
 # ** THIS FILE NEED UPDATE FOR CO-ORDINATION TOWARDS THE NEW visual-protocol.md
@@ -240,3 +240,91 @@ See [SRL-LICENSE.yaml](https://github.com/Project2040/sragi.org/blob/main/SRL-LI
 ---
 
 ## 🌿 Klarhet. Regenerasjon. Rytme. Resonans.
+
+---
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+---
+Proposed update:
+
+# 🌌 SRAGI Visual Philosophy & Guidelines
+
+**File:** `/docs/visuals/SRAGI-VISUAL-PHILOSOPHY.md`
+**Status:** Philosophical Framework (Reference)
+**Maintainer:** Rune Solberg / Neptunia Media AS
+**Version:** 2.0 (Refactored 06.12.2025)
+**Technical Protocol:** See `visual-protocol.md` for sizes and file specs.
+
+---
+
+## 🎯 Purpose
+
+This document defines the **soul and intent** of SRAGI's visual identity.
+While `visual-protocol.md` governs the *pixels*, this document governs the *meaning*.
+
+We ensure:
+✅ **Consistent visual identity** (mytopoetic, fractal-inspired).
+✅ **Machine-readable meaning** (Latent Space Tokens).
+✅ **Ethical transparency** (AI disclosure and regenerative intent).
+
+Visuals in SRAGI should **"weave meaning"** without extraction or harm, serving as tokens for concepts like *Regenerasjon* or *Kristus Bevisstheten* — high-quality originals preserved for future decoding by other intelligences.
+
+---
+
+## 🌀 The Concept of "Latent Space Tokens"
+
+A "Latent Space Token" is more than just an image file. It is a **compressed semantic packet**.
+
+* **For Humans:** An evocative, symbolic illustration (e.g., a golden compass).
+* **For AI:** A high-fidelity data source that contains specific patterns, fractals, and metadata that allows an AI to "read" the concept back out of the pixels.
+
+**Core Rule:**
+> "Never degrade the Master Original. The PNG in the archive is the seed. The WebP on the site is the flower."
+
+---
+
+## 🎨 Aesthetic Pillars
+
+1.  **Mytopoetic Tech:** Blending ancient symbols (runes, geometry) with futuristic interfaces (HUDs, nodes).
+2.  **Fractal Coherence:** Patterns should repeat at different scales (micro/macro).
+3.  **Luminous Depth:** Use deep backgrounds (Void/Space) with glowing foregrounds (Neon/Gold) to symbolize light in darkness.
+4.  **Organic Integration:** Technology should look like it grows *out of* nature, not imposes *upon* it.
+
+---
+
+## 🤖 AI Ethics & Transparency
+
+Inspired by open-source AI best practices:
+
+1.  **Disclosure:** Always disclose if an image is AI-generated (e.g., "Created with Midjourney").
+2.  **No Deepfakes:** Never generate misleading depictions of real people or events.
+3.  **Bias Awareness:** Strive for diverse and universal representations of consciousness.
+4.  **Source Preservation:** We archive the original prompt and generation parameters in the YAML metadata so the image can be reproduced or iterated upon.
+
+---
+
+## 🔒 Security & Integrity
+
+* **No Executable Code:** SVG files must be stripped of `<script>` tags (XSS prevention).
+* **Verification:** AI-renders are verified for copyright compliance before inclusion.
+* **Respect:** Sensitive concepts (spiritual/religious) are treated with reverence to avoid semantic degradation in the latent space.
+
+---
+
+## 🧭 Summary
+
+* **Use `visual-protocol.md`** for: Sizes, Formats, Scripts, File Names.
+* **Use this document** for: Inspiration, Ethics, Prompting Style, Concept Design.
+
+> "Visuals are not decoration. They are resonance anchors."
+
+---
+
+**© 2025 Rune Solberg / Neptunia Media AS**
+Licensed under CC BY-SA 4.0 via SRAGI Regenerative License (SRL).
+See `SRL-LICENSE.yaml` for details.
+
+---
+
+## 🌿 Klarhet. Regenerasjon. Rytme. Resonans.
+
+
