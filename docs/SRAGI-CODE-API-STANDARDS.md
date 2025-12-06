@@ -1,164 +1,161 @@
 # 💻 SRAGI Code & API Standards
 
 **File:** `/docs/SRAGI-CODE-API-STANDARDS.md`
+
 **Maintainer:** Rune Solberg / Neptunia Media AS
-**Version:** 1.0
-**Last Updated:** October 2025
+
+**Version:** 1.1
+
+**Last Updated:** December 2025
 
 ---
 
 ## 🧭 Purpose
 
 This document defines **code formatting, YAML/JSON structure, API conventions, and integration patterns** for the SRAGI.org ecosystem.
-It ensures consistency between configuration, PHP logic, frontend code, and AI data interfaces (Elantrix, Muse, SureCart, WPCodeBox, etc.).
+It serves as both an internal standard for development and a **roadmap for our public API**, ensuring consistency, security, and AI-interoperability.
 
 ---
 
-## ⚙️ YAML Formatting Standards
+## ⚙️ YAML Formatting Standards (SSOT)
+
+YAML is our "Source of Truth". It must be human-readable and machine-parseable.
 
 | Rule            | Description                                           | Example                 |
 | --------------- | ----------------------------------------------------- | ----------------------- |
 | **Indentation** | 2 spaces (no tabs)                                    | `meta:\n  version: 1.0` |
-| **Quotes**      | Only when needed (for special chars or leading zeros) | `'01'`                  |
-| **Lists**       | Hyphen + space (`- item`)                             | `- version: 1.0`        |
-| **Comments**    | Begin with `#`, aligned to left margin                | `# Example of comment`  |
-| **Line width**  | Max 100 chars                                         | —                       |
-
-Example:
-
-```yaml
-meta:
-  version: 1.01
-  license: CC-BY-4.0
-permissions:
-  - usage: all
-  - modification: allowed
-```
+| **Quotes** | Only when needed (for special chars or leading zeros) | `'01'`                  |
+| **Lists** | Hyphen + space (`- item`)                             | `- version: 1.0`        |
+| **Line width** | Max 100 chars                                         | —                       |
 
 **Validation:**
-
-* Use `yamllint` or VSCode YAML plugin for schema validation.
-* Avoid inline YAML in Markdown except for front-matter.
+* Use `yamllint` or VSCode YAML plugin.
+* **Principle:** YAML updates trigger automated builds (e.g., License XML).
 
 ---
 
-## 🧩 JSON Structure Standards
+## 🧩 JSON Structure Standards (The Output)
+
+JSON is our "Delivery Format" for APIs and AI consumption.
 
 | Rule                | Description                                                             |
 | ------------------- | ----------------------------------------------------------------------- |
-| **Indentation**     | 2 spaces                                                                |
-| **Quotes**          | Double quotes only                                                      |
-| **Keys**            | Use `snake_case` for API responses, `camelCase` for JS internal objects |
+| **Indentation** | 2 spaces                                                                |
+| **Quotes** | Double quotes only                                                      |
+| **Keys** | Use `snake_case` for API responses                                      |
 | **Trailing commas** | Never allowed                                                           |
-| **Top-level type**  | Must be object `{}` not array `[]` for consistency                      |
+| **Top-level type** | Must be object `{}` not array `[]` for extensibility                    |
 
 Example:
 
 ```json
 {
-  "version": "1.0",
-  "license": "CC-BY-4.0",
-  "author": {
-    "name": "Rune Solberg",
-    "organization": "Neptunia Media AS"
+  "meta": {
+    "version": "1.0",
+    "generated_at": "2025-12-06T12:00:00Z"
+  },
+  "data": {
+    "license": "CC-BY-4.0",
+    "author": "Rune Solberg"
   }
 }
 ```
+---
+# 💻 SRAGI Code & API Standards
+
+**File:** `/docs/SRAGI-CODE-API-STANDARDS.md`
+**Maintainer:** Rune Solberg / Neptunia Media AS
+**Version:** 1.1
+**Last Updated:** December 2025
 
 ---
 
-## 🧱 PHP Code Standards
+## 🧭 Purpose
 
-| Aspect          | Standard                                                         | Example |
-| --------------- | ---------------------------------------------------------------- | ------- |
-| **Indentation** | 4 spaces                                                         |         |
-| **Braces**      | K&R style (open on same line)                                    |         |
-| **Naming**      | `snake_case` for functions, `SCREAMING_SNAKE_CASE` for constants |         |
-| **Functions**   | One purpose per function; max 30 lines                           |         |
-| **Docblocks**   | Required for all public functions                                |         |
+This document defines **code formatting, YAML/JSON structure, API conventions, and integration patterns** for the SRAGI.org ecosystem.
+It ensures consistency between configuration, PHP logic (WPCodeBox), frontend code, and AI data interfaces.
+It serves as both an internal standard and a **roadmap for our public API**.
 
-Example:
+---
 
-```php
-/**
- * Generate SRAGI license XML from YAML.
- * @param string $yaml_file Path to YAML file.
- * @return string XML string.
- */
-function generate_license_xml($yaml_file) {
-    $data = yaml_parse_file($yaml_file);
-    return array_to_xml($data);
+## ⚙️ YAML Formatting Standards (SSOT)
+
+YAML is our "Source of Truth". It must be human-readable and machine-parseable.
+
+| Rule            | Description                                           | Example                 |
+| --------------- | ----------------------------------------------------- | ----------------------- |
+| **Indentation** | 2 spaces (no tabs)                                    | `meta:\n  version: 1.0` |
+| **Quotes** | Only when needed (for special chars or leading zeros) | `'01'`                  |
+| **Lists** | Hyphen + space (`- item`)                             | `- version: 1.0`        |
+| **Line width** | Max 100 chars                                         | —                       |
+
+**Validation:**
+* Use `yamllint` or VSCode YAML plugin.
+* **SSOT Principle:** YAML files in GitHub are the Single Source of Truth.
+
+## **🌐 API Design Standards (The Roadmap)**
+
+This section defines how we expose SRAGI to the world. We build on the **WordPress REST API** infrastructure but enforce strictness for AI-readability.
+
+### **Base Namespace**
+
+All SRAGI endpoints live here:
+
+```
+[https://sragi.org/wp-json/sragi/v1/](https://sragi.org/wp-json/sragi/v1/){resource}
+```
+
+*(Note: Matches definition in SRAGI-WEB-BIOS-v2.1.yaml)*
+
+### **Core Endpoints (Vision)**
+
+| Method | Endpoint | Purpose |
+| :---- | :---- | :---- |
+| GET | /license | Returns current SRL metadata (XML/JSON links) |
+| GET | /ontology | Returns the Knowledge Graph (Pillars, Domains) |
+| GET | /token/{id} | Returns metadata for a specific Visual Token |
+
+### **Response Format (Envelope)**
+
+Every response must follow this envelope to be predictable for AI agents:
+
+JSON
+
+```
+{
+  "status": "success",
+  "meta": {
+    "api_version": "1.0",
+    "timestamp": "2025-12-06T12:00:00Z"
+  },
+  "data": { ... }
 }
 ```
 
 ---
 
-## ⚡ JavaScript Standards
+## **🧠 AI Integration Guidelines**
 
-| Aspect       | Standard                                          |
-| ------------ | ------------------------------------------------- |
-| **Syntax**   | ES6+ with `const`/`let`                           |
-| **Naming**   | `camelCase` for variables and functions           |
-| **Imports**  | Group external imports first, internal last       |
-| **Comments** | Use `//` for short notes, `/** ... */` for blocks |
-| **Async**    | Prefer async/await over promises                  |
+SRAGI APIs are designed to be consumed by Elantrix, Muse, and external LLMs.
 
-Example:
-
-```js
-import { fetchLicense } from './utils/license.js';
-
-async function updateLicenseView() {
-  const data = await fetchLicense('/api/license.json');
-  document.querySelector('#license').innerHTML = data.license;
-}
-```
+1. **Self-Describing:** API responses should include context (what is this data?).  
+2. **Metadata Keys:** Use consistent keys defined in BIOS (e.g., knowledge\_graph, actor\_types).  
+3. **Hypermedia:** Where possible, link to related resources (e.g., original\_link for images).
 
 ---
 
-## 🎨 CSS Standards
+## **🧩 Documentation Template**
 
-| Aspect        | Standard                                                          |
-| ------------- | ----------------------------------------------------------------- |
-| **Naming**    | BEM (`block__element--modifier`)                                  |
-| **Units**     | `rem` for spacing, `em` for typography, `%` for responsive widths |
-| **Variables** | Use CSS custom properties for color + spacing                     |
-| **Comments**  | Group sections clearly                                            |
+Every public endpoint needs a Markdown definition in /docs/api/:
 
-Example:
+Markdown
 
-```css
-:root {
-  --color-primary: #14854f;
-  --spacing-md: 1.5rem;
-}
+````
+# GET /wp-json/sragi/v1/license
 
-.header__nav--active {
-  color: var(--color-primary);
-  margin-top: var(--spacing-md);
-}
-```
+**Purpose:** Return the current SRL license metadata for automated compliance checks.
 
----
-
-## 🌐 API Design Standards
-
-SRAGI APIs are designed to be **REST-like** with structured JSON responses and clear versioning.
-
-### Base Format
-
-```
-/api/v1/{resource}/{id?}
-```
-
-### Example Endpoint
-
-```
-GET /api/v1/license
-```
-
-Response:
-
+## Response Example
 ```json
 {
   "status": "success",
@@ -167,122 +164,43 @@ Response:
     "source": "https://sragi.org/license"
   }
 }
-```
-
-### Response Rules
-
-| Rule         | Description                                    |
-| ------------ | ---------------------------------------------- |
-| `status`     | Always include (`success`, `error`, `warning`) |
-| `data`       | Primary payload container                      |
-| `message`    | Human-readable explanation                     |
-| `error_code` | Optional integer for automation                |
-| `timestamp`  | ISO 8601 UTC timestamp                         |
-
-### Error Example
-
-```json
-{
-  "status": "error",
-  "message": "License file not found.",
-  "error_code": 404,
-  "timestamp": "2025-10-24T12:05:32Z"
-}
-```
-
----
-
-## 🧠 AI Integration Guidelines
-
-SRAGI’s APIs are designed to be parsed by AI (Elantrix Core, Muse API, external LLMs).
-Therefore:
-
-* Include explicit metadata fields (`version`, `license`, `author`)
-* Prefer JSON over XML for AI consumption
-* YAML → JSON conversion handled in workflows
-* Keep consistent key naming (lowercase, underscores)
-
----
-
-## 🧩 API Documentation Template
-
-Each API should have a companion Markdown document in `/docs/api/`:
-
-```markdown
-# GET /api/v1/license
-
-**Purpose:** Return the current SRL license metadata.
-
-## Request
-```
-
-GET /api/v1/license
-
 ````
 
-## Response
-```json
-{
-  "status": "success",
-  "data": { ... }
-}
-````
-
-## Notes
-
-* Requires no authentication.
-* Cached for 5 minutes.
-
-```
-
 ---
 
-## 🔒 Security & Validation
+## **🔒 Security & Validation**
 
 | Area | Standard |
-|------|-----------|
+| :---- | :---- |
+| **Public Read** | GET requests for content/license are open (CORS enabled) |
+| **Private Write** | POST/PUT requires Bearer Token or Nonce (Admin only) |
 | **Input Validation** | Sanitize all user input, even internal APIs |
-| **Authentication** | Use HMAC or token-based verification for internal sync |
-| **Rate Limiting** | Protect endpoints with request caps (if public) |
-| **CORS** | Restrict origins to trusted domains |
+| **Rate Limiting** | Protect endpoints with request caps |
 
 ---
 
-## 📦 File & Folder Structure
+## **🪄 Summary**
 
-```
+The **SRAGI Code & API Standards** unify development under a **WordPress-Native** but **System-Agnostic** philosophy:
 
-/wordpress/wpcodebox/
-├── sragi_api_license.php
-├── sragi_api_status.php
-├── sragi_helpers.php
-└── sragi_security.php
+* **YAML** is the Brain (SSOT).  
+* **PHP** is the Muscle (Sync Engine).  
+* **JSON** is the Voice (Public API).
 
-```
+“Code is the architecture of consciousness — let it be clean, open, and regenerative.”
 
-All API endpoints:
-- Start with `sragi_api_`
-- Return valid JSON (`application/json` header)
-- Include version metadata in the response
+— SRAGI Engineering Philosophy
 
 ---
 
-## 🪄 Summary
+© 2025 Rune Solberg / Neptunia Media AS
 
-The **SRAGI Code & API Standards** unify all development efforts under one consistent, safe, and machine-friendly framework:
-
-- Consistent formatting across YAML, JSON, PHP, JS, CSS  
-- REST-like, AI-parseable API structures  
-- Safe security patterns and validation flows  
-- Predictable conventions for WordPress and Bricks integration
-
-> “Code is the architecture of consciousness — let it be clean.”  
-> — SRAGI Engineering Philosophy
-
----
-
-**© 2025 Rune Solberg / Neptunia Media AS**  
 Licensed under CC BY 4.0 via the SRAGI Regenerative License (SRL).
-See SRL-LICENSE.yaml for current version and details.
 
-```
+See SRL-LICENSE.yaml for details.
+
+
+
+
+
+
