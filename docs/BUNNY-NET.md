@@ -2,11 +2,12 @@
 
 **File:** `/roadmap/BUNNY-NET.md`  
 **Maintainer:** Rune Solberg / Neptunia Media AS  
-**Version:** 1.0  
+**Version:** 1.0c  
 **Status:** 🟡 Planning → Implementation  
 **Target Completion:** Q1 2026  
-**Last Updated:** October 29, 2025
+**Last Updated:** October 29, 2025 (Marked for change, Rune Solberg, 06.12.2025)
 
+# This file need a major update as this is now implemented!! (Rune Solberg, 06.12.2025)
 ---
 
 ## 🎯 Purpose
