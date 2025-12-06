@@ -2,8 +2,8 @@
 
 **File:** `/docs/SRAGI-ACCESSIBILITY-TESTING-STANDARDS.md`
 **Maintainer:** Rune Solberg / Neptunia Media AS
-**Version:** 1.0
-**Last Updated:** October 2025
+**Version:** 1.1
+**Last Updated:** December 2025
 
 ---
 
@@ -109,7 +109,7 @@ SRAGI maintains a **test-first philosophy** — validation and linting are part 
 
 ---
 
-## 🧪 Automated Testing Workflow
+## 🧪 Planned Feature: Automated Testing Workflow
 
 GitHub Actions run tests automatically on push and pull requests:
 
@@ -172,7 +172,7 @@ jobs:
 ## 🌐 Internationalization & RTL Support
 
 * Language codes must be included in `<html lang="en">` or `<html lang="no">`.
-* Translation files stored as `/lang/{code}.json` (e.g., `lang/no.json`, `lang/en.json`).
+* Translation strategy follows the SRAGI Content Sync Protocol. Language variants are stored as suffix-files (e.g., page-nb.md) or within SSOT YAML nodes (title_no), synchronized to WordPress via WPML.
 * Ensure UI mirrors correctly in RTL (if implemented).
 * Use ISO 639-1 codes only.
 
