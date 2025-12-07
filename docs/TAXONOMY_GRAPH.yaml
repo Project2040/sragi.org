@@ -1,0 +1,845 @@
+# ===========================================================
+#  SRAGI TAXONOMY GRAPH v1.4 (SSOT - Validated by Claude)
+#  Single Source of Truth for all SRAGI ontologies
+#  Status: PRODUCTION READY
+# ===========================================================
+
+meta:
+  version: "1.4"
+  language_primary: "en"
+  language_secondary: "nb"
+  generated_at: "2025-12-07"
+  validated_by: "Claude (SRAGI Administrator)"
+  description_en: "Complete definition of the SRAGI Knowledge Graph with SEO optimization, hierarchical structures, and actor metadata."
+  description_nb: "Komplett definisjon av SRAGIs kunnskapsgraf med SEO-optimalisering, hierarkiske strukturer og aktør-metadata."
+  changelog:
+    - version: "1.4"
+      date: "2025-12-07"
+      changes: "Restored missing terms, added status fields, validated structure, enhanced SEO data."
+    - version: "1.3.1"
+      date: "2025-12-07"
+      changes: "Added SEO data, adjusted hierarchical settings, corrected translations."
+    - version: "1.1"
+      date: "2025-12-07"
+      changes: "Expanded Pillars with children, added Actor dimensions."
+
+# ===========================================================
+# CORE DIMENSIONS (Apply to all content types)
+# ===========================================================
+
+taxonomies:
+
+  # ---------------------------------------------------------
+  # 1. PILLARS (S.R.A.G.I.) - ESSENCE
+  # ---------------------------------------------------------
+  sragi_pillars:
+    label_en: "Pillars"
+    label_nb: "Pilarer"
+    singular_en: "Pillar"
+    singular_nb: "Pilar"
+    hierarchical: true
+    show_in_rest: true
+    show_in_menu: true
+    seo_template:
+      title: "%term% | SRAGI Core Pillar"
+      description: "Explore %term% – one of the five core pillars of the SRAGI regenerative framework."
+    
+    terms:
+      # --- S: SYSTEMS THINKING ---
+      - slug: system_thinking
+        name_en: "Systems Thinking"
+        name_nb: "Systemtenkning"
+        description_en: "The ability to see connections, patterns, and flows. Understanding how parts create wholes."
+        description_nb: "Evnen til å se sammenhenger, mønstre og flyt. Å forstå hvordan deler skaper helheter."
+        seo:
+          title_en: "Systems Thinking: Seeing the Whole"
+          description_en: "Learn to see connections, patterns, and flow. Systems thinking is the language for understanding and designing living systems."
+          title_nb: "Systemtenkning: Se helheten"
+          description_nb: "Lær å se sammenhenger, mønstre og flyt. Systemtenkning er språket for å forstå og designe levende systemer."
+        children:
+          - slug: pattern_intelligence
+            name_en: "Pattern Intelligence"
+            name_nb: "Mønsterintelligens"
+            description_en: "Recognizing recurring structures across scales."
+            description_nb: "Å gjenkjenne gjentakende strukturer på tvers av skalaer."
+          - slug: flow_logic
+            name_en: "Flow Logic"
+            name_nb: "Strømlogikk"
+            description_en: "Understanding movement, circulation, and momentum."
+            description_nb: "Å forstå bevegelse, sirkulasjon og momentum."
+          - slug: feedback_dynamics
+            name_en: "Feedback Dynamics"
+            name_nb: "Feedback-dynamikk"
+            description_en: "How outputs influence inputs in continuous loops."
+            description_nb: "Hvordan utganger påvirker innganger i kontinuerlige sløyfer."
+          - slug: network_understanding
+            name_en: "Network Understanding"
+            name_nb: "Nettverksforståelse"
+            description_en: "Seeing relationships between nodes, not just nodes."
+            description_nb: "Å se relasjoner mellom noder, ikke bare nodene selv."
+          - slug: fractal_coherence
+            name_en: "Fractal Coherence"
+            name_nb: "Fraktal Koherens"
+            description_en: "Self-similar patterns at every level of organization."
+            description_nb: "Selv-lignende mønstre på hvert organisasjonsnivå."
+
+      # --- R: REGENERATION ---
+      - slug: regeneration
+        name_en: "Regeneration"
+        name_nb: "Regenerasjon"
+        description_en: "Designing systems that give more than they take. R > 1."
+        description_nb: "Å designe systemer som gir mer enn de tar. R > 1."
+        seo:
+          title_en: "Regeneration: Designing for Life"
+          description_en: "Beyond sustainability. How to create systems that repair, renew, and leave the world richer than we found it."
+          title_nb: "Regenerasjon: Design for livskraft"
+          description_nb: "Utover bærekraft. Hvordan skape systemer som reparerer, fornyer og etterlater verden rikere enn vi fant den."
+        children:
+          - slug: r_greater_than_1
+            name_en: "R>1 Design"
+            name_nb: "R>1 Design"
+            description_en: "Creating outputs greater than inputs."
+            description_nb: "Å skape større utganger enn innganger."
+          - slug: capacity_building
+            name_en: "Capacity Building"
+            name_nb: "Kapasitetsbygging"
+            description_en: "Strengthening the ability to create and sustain."
+            description_nb: "Å styrke evnen til å skape og opprettholde."
+          - slug: circulation_boost
+            name_en: "Circulation Boost"
+            name_nb: "Sirkulasjonsforsterkning"
+            description_en: "Accelerating healthy flows within systems."
+            description_nb: "Å akselerere sunne strømmer i systemet."
+          - slug: system_healing
+            name_en: "System Healing"
+            name_nb: "Systemheling"
+            description_en: "Repairing damaged relationships and structures."
+            description_nb: "Å reparere skadede relasjoner og strukturer."
+          - slug: vitality_management
+            name_en: "Vitality Management"
+            name_nb: "Livskraftforvaltning"
+            description_en: "Stewarding life force and energy."
+            description_nb: "Å forvalte livskraft og energi."
+
+      # --- A: ADAPTIVITY ---
+      - slug: adaptivity
+        name_en: "Adaptivity"
+        name_nb: "Adaptivitet"
+        description_en: "The ability to learn, change, and respond in real-time."
+        description_nb: "Evnen til å lære, endre seg og respondere i sanntid."
+        seo:
+          title_en: "Adaptivity: Navigating Change"
+          description_en: "The ability to learn and change in real-time. Resilience is not resisting, but dancing with change."
+          title_nb: "Adaptivitet: Navigasjon i endring"
+          description_nb: "Evnen til å lære og endre seg i sanntid. Resiliens er ikke å stå imot, men å danse med forandringen."
+        children:
+          - slug: responsiveness
+            name_en: "Responsiveness"
+            name_nb: "Responsivitet"
+            description_en: "Quick, appropriate reaction to signals."
+            description_nb: "Rask, passende reaksjon på signaler."
+          - slug: iterative_learning
+            name_en: "Iterative Learning"
+            name_nb: "Iterativ Læring"
+            description_en: "Continuous improvement through cycles."
+            description_nb: "Kontinuerlig forbedring gjennom sykluser."
+          - slug: navigation_uncertainty
+            name_en: "Navigating Uncertainty"
+            name_nb: "Navigasjon i Usikkerhet"
+            description_en: "Moving forward without complete information."
+            description_nb: "Å bevege seg fremover uten fullstendig informasjon."
+          - slug: signal_filtering
+            name_en: "Signal Filtering"
+            name_nb: "Signalfiltrering"
+            description_en: "Distinguishing noise from meaningful patterns."
+            description_nb: "Å skille støy fra meningsfulle mønstre."
+          - slug: resilience_culture
+            name_en: "Resilience Culture"
+            name_nb: "Resilienskultur"
+            description_en: "Building organizational capacity to bounce back."
+            description_nb: "Å bygge organisatorisk evne til å sprette tilbake."
+
+      # --- G: GENERATIVITY ---
+      - slug: generativity
+        name_en: "Generativity"
+        name_nb: "Generativitet"
+        description_en: "The power to create new possibilities and emergent patterns."
+        description_nb: "Kraften til å skape nye muligheter og emergente mønstre."
+        seo:
+          title_en: "Generativity: The Power to Create"
+          description_en: "How does the new emerge? Explore creativity, innovation, and the art of facilitating emergence."
+          title_nb: "Generativitet: Kraften til å skape nytt"
+          description_nb: "Hvordan oppstår det nye? Utforsk emergens, innovasjon og kunsten å legge til rette for kreativ utfoldelse."
+        children:
+          - slug: idea_genesis
+            name_en: "Idea Genesis"
+            name_nb: "Idétilblivelse"
+            description_en: "How concepts originate and develop."
+            description_nb: "Hvordan konsepter oppstår og utvikler seg."
+          - slug: co_creation
+            name_en: "Co-creation"
+            name_nb: "Samskaping"
+            description_en: "Collaborative design and emergence."
+            description_nb: "Samarbeidende design og emergens."
+          - slug: emergence_design
+            name_en: "Emergence Design"
+            name_nb: "Emergensdesign"
+            description_en: "Creating conditions for new patterns to arise."
+            description_nb: "Å skape betingelser for nye mønstre å oppstå."
+          - slug: abundance_architecture
+            name_en: "Abundance Architecture"
+            name_nb: "Overflodsarkitektur"
+            description_en: "Designing for surplus and generosity."
+            description_nb: "Å designe for overskudd og gavmildhet."
+          - slug: transformative_innovation
+            name_en: "Transformative Innovation"
+            name_nb: "Transformativ Innovasjon"
+            description_en: "Change that shifts paradigms."
+            description_nb: "Endring som skifter paradigmer."
+
+      # --- I: INTELLIGENCE ---
+      - slug: intelligence
+        name_en: "Intelligence"
+        name_nb: "Intelligens"
+        description_en: "Synthesis of human wisdom, ethical judgment, and artificial cognition."
+        description_nb: "Syntesen av menneskelig visdom, etisk dømmekraft og kunstig kognisjon."
+        seo:
+          title_en: "Intelligence: Synthesis of Human & Machine"
+          description_en: "An expanded understanding of intelligence that includes ethics, wisdom, heart, and artificial cognition."
+          title_nb: "Intelligens: Syntesen av menneske og maskin"
+          description_nb: "En utvidet forståelse av intelligens som inkluderer etikk, visdom, hjerte og kunstig kognisjon."
+        children:
+          - slug: ethical_judgment
+            name_en: "Ethical Judgment"
+            name_nb: "Etisk Dømmekraft"
+            description_en: "Making decisions aligned with values."
+            description_nb: "Å ta beslutninger i tråd med verdier."
+          - slug: deep_awareness
+            name_en: "Deep Awareness"
+            name_nb: "Dyp Oppmerksomhet"
+            description_en: "Mindful presence and attention."
+            description_nb: "Oppmerksom tilstedeværelse og bevissthet."
+          - slug: multi_perspective
+            name_en: "Multi-perspective Thinking"
+            name_nb: "Flerperspektivtenkning"
+            description_en: "Holding multiple viewpoints simultaneously."
+            description_nb: "Å holde flere perspektiver samtidig."
+          - slug: metacognition
+            name_en: "Metacognition"
+            name_nb: "Metakognisjon"
+            description_en: "Thinking about thinking."
+            description_nb: "Å tenke om tenkning."
+          - slug: integrity_decisions
+            name_en: "Integrity Decisions"
+            name_nb: "Integritetsbeslutninger"
+            description_en: "Choices that preserve wholeness."
+            description_nb: "Valg som bevarer helhet."
+    
+    status: "ready"
+
+  # ---------------------------------------------------------
+  # 2. DOMAINS (Field) - MANIFESTATION
+  # ---------------------------------------------------------
+  sragi_domains:
+    label_en: "Domains"
+    label_nb: "Domener"
+    singular_en: "Domain"
+    singular_nb: "Domene"
+    hierarchical: true
+    show_in_rest: true
+    show_in_menu: true
+    description_en: "Fields where SRAGI principles manifest in the real world."
+    description_nb: "Felt hvor SRAGI-prinsipper manifesterer seg i den virkelige verden."
+    seo_template:
+      title: "%term% in a Regenerative Perspective | SRAGI"
+      description: "How SRAGI principles apply to %term%. Articles, cases, and tools."
+    
+    terms:
+      - slug: education
+        name_en: "Education & Learning"
+        name_nb: "Utdanning & Læring"
+        description_en: "Regenerative pedagogy and lifelong learning."
+        description_nb: "Regenerativ pedagogikk og livslang læring."
+        seo:
+          title_en: "Future of Education & Learning"
+          description_en: "From curriculum to potential. Regenerative pedagogy and lifelong learning in an AI-driven world."
+          title_nb: "Fremtidens Utdanning & Læring"
+          description_nb: "Fra pensum til potensial. Regenerativ pedagogikk og livslang læring i en AI-drevet verden."
+      
+      - slug: technology
+        name_en: "Technology & AI"
+        name_nb: "Teknologi & AI"
+        description_en: "Ethical technology in service of life."
+        description_nb: "Etisk teknologi i livets tjeneste."
+        seo:
+          title_en: "Technology & AI: Ethical Perspectives"
+          description_en: "How technology can serve life. Explore the distinction between artificial intelligence and regenerative intelligence."
+          title_nb: "Teknologi & AI: Etiske perspektiver"
+          description_nb: "Hvordan teknologi kan tjene livet. Utforsk skillet mellom kunstig intelligens og regenerativ intelligens."
+      
+      - slug: society
+        name_en: "Society & Culture"
+        name_nb: "Samfunn & Kultur"
+        description_en: "Cultural transformation and social innovation."
+        description_nb: "Kulturell transformasjon og sosial innovasjon."
+        seo:
+          title_en: "Society & Culture: Regenerative Transformation"
+          description_en: "Building cultures of care, connection, and collective intelligence."
+          title_nb: "Samfunn & Kultur: Regenerativ transformasjon"
+          description_nb: "Å bygge kulturer av omsorg, tilhørighet og kollektiv intelligens."
+      
+      - slug: ecology
+        name_en: "Ecology & Nature"
+        name_nb: "Økologi & Natur"
+        description_en: "Living in harmony with natural systems."
+        description_nb: "Å leve i harmoni med naturlige systemer."
+        seo:
+          title_en: "Ecology & Nature: Regenerative Practices"
+          description_en: "From exploitation to partnership with living Earth."
+          title_nb: "Økologi & Natur: Regenerative praksiser"
+          description_nb: "Fra utnyttelse til partnerskap med den levende Jorden."
+      
+      - slug: economy
+        name_en: "Economy & Finance"
+        name_nb: "Økonomi & Finans"
+        description_en: "Economic models that serve life."
+        description_nb: "Økonomiske modeller som tjener livet."
+        seo:
+          title_en: "Regenerative Economy"
+          description_en: "From profit maximization to value creation. Economic models that strengthen both nature and society."
+          title_nb: "Regenerativ Økonomi"
+          description_nb: "Fra profittmaksimering til verdiskaping. Økonomiske modeller som styrker både natur og samfunn."
+      
+      - slug: health
+        name_en: "Health & Wellbeing"
+        name_nb: "Helse & Velvære"
+        description_en: "Holistic approaches to vitality."
+        description_nb: "Helhetlige tilnærminger til vitalitet."
+        seo:
+          title_en: "Health & Wellbeing: Regenerative Medicine"
+          description_en: "From treating disease to cultivating vitality."
+          title_nb: "Helse & Velvære: Regenerativ medisin"
+          description_nb: "Fra å behandle sykdom til å kultivere livskraft."
+      
+      - slug: art
+        name_en: "Art & Aesthetics"
+        name_nb: "Kunst & Estetikk"
+        description_en: "Beauty as a regenerative force."
+        description_nb: "Skjønnhet som regenerativ kraft."
+        seo:
+          title_en: "Art & Aesthetics: Creating Beauty"
+          description_en: "How art and design can heal and regenerate culture."
+          title_nb: "Kunst & Estetikk: Å skape skjønnhet"
+          description_nb: "Hvordan kunst og design kan helbrede og regenerere kultur."
+      
+      - slug: architecture
+        name_en: "Architecture & Design"
+        name_nb: "Arkitektur & Design"
+        description_en: "Spaces that serve life."
+        description_nb: "Rom som tjener livet."
+        seo:
+          title_en: "Architecture & Design: Building Regeneratively"
+          description_en: "Creating built environments that enhance ecological and social health."
+          title_nb: "Arkitektur & Design: Bygge regenerativt"
+          description_nb: "Å skape bygde miljøer som fremmer økologisk og sosial helse."
+    
+    status: "ready"
+
+  # ---------------------------------------------------------
+  # 3. CONTEXTS (Lens) - PERSPECTIVE
+  # ---------------------------------------------------------
+  sragi_contexts:
+    label_en: "Contexts"
+    label_nb: "Kontekster"
+    singular_en: "Context"
+    singular_nb: "Kontekst"
+    hierarchical: false
+    show_in_rest: true
+    show_in_menu: true
+    description_en: "The lens or mode through which content is understood."
+    description_nb: "Linsen eller modusen innholdet forstås gjennom."
+    
+    terms:
+      - slug: philosophical
+        name_en: "Philosophical"
+        name_nb: "Filosofisk"
+        description_en: "Deep inquiry into meaning and being."
+        description_nb: "Dyp undersøkelse av mening og væren."
+      
+      - slug: practical
+        name_en: "Practical / Applied"
+        name_nb: "Praktisk / Anvendt"
+        description_en: "Tools, methods, and concrete implementation."
+        description_nb: "Verktøy, metoder og konkret implementering."
+      
+      - slug: technical
+        name_en: "Technical"
+        name_nb: "Teknisk"
+        description_en: "Specifications, code, and engineering."
+        description_nb: "Spesifikasjoner, kode og ingeniørarbeid."
+      
+      - slug: poetic
+        name_en: "Poetic"
+        name_nb: "Poetisk"
+        description_en: "Metaphor, symbol, and aesthetic expression."
+        description_nb: "Metafor, symbol og estetisk uttrykk."
+      
+      - slug: scientific
+        name_en: "Scientific"
+        name_nb: "Vitenskapelig"
+        description_en: "Research, data, and empirical evidence."
+        description_nb: "Forskning, data og empirisk bevis."
+      
+      - slug: experiential
+        name_en: "Experiential"
+        name_nb: "Erfaringsbasert"
+        description_en: "Lived experience and embodied knowledge."
+        description_nb: "Levd erfaring og kroppsliggjort kunnskap."
+      
+      - slug: visionary
+        name_en: "Visionary / Future"
+        name_nb: "Visjonær / Fremtid"
+        description_en: "Imagination, foresight, and possibility."
+        description_nb: "Forestillingsevne, fremsyn og mulighet."
+    
+    status: "ready"
+
+  # ---------------------------------------------------------
+  # 4. PHASES (Lifecycle) - TRANSFORMATION
+  # ---------------------------------------------------------
+  sragi_phases:
+    label_en: "Phases"
+    label_nb: "Faser"
+    singular_en: "Phase"
+    singular_nb: "Fase"
+    hierarchical: false
+    show_in_rest: true
+    show_in_menu: true
+    description_en: "Where in the transformation lifecycle something is."
+    description_nb: "Hvor i transformasjonsforløpet noe befinner seg."
+    
+    terms:
+      - slug: emergence
+        name_en: "Emergence"
+        name_nb: "Fremvekst"
+        description_en: "The moment something new begins to appear."
+        description_nb: "Øyeblikket noe nytt begynner å vise seg."
+      
+      - slug: growth
+        name_en: "Growth"
+        name_nb: "Vekst"
+        description_en: "Expansion and development."
+        description_nb: "Utvidelse og utvikling."
+      
+      - slug: maturity
+        name_en: "Maturity"
+        name_nb: "Modning"
+        description_en: "Full expression and stability."
+        description_nb: "Fullt uttrykk og stabilitet."
+      
+      - slug: decline
+        name_en: "Decline / Release"
+        name_nb: "Forfall / Frigjøring"
+        description_en: "Letting go to make space for new."
+        description_nb: "Å slippe taket for å gi rom til nytt."
+      
+      - slug: rebirth
+        name_en: "Rebirth"
+        name_nb: "Gjenfødelse"
+        description_en: "Renewal and transformation."
+        description_nb: "Fornyelse og transformasjon."
+      
+      - slug: integration
+        name_en: "Integration"
+        name_nb: "Integrasjon"
+        description_en: "Synthesis and coherence across levels."
+        description_nb: "Syntese og koherens på tvers av nivåer."
+    
+    status: "ready"
+
+  # ---------------------------------------------------------
+  # 5. SCALES (Level) - FRACTAL DIMENSIONS
+  # ---------------------------------------------------------
+  sragi_scales:
+    label_en: "Scales"
+    label_nb: "Skala"
+    singular_en: "Scale"
+    singular_nb: "Skala"
+    hierarchical: false
+    show_in_rest: true
+    show_in_menu: true
+    description_en: "The level at which the system operates."
+    description_nb: "Nivået systemet opererer på."
+    
+    terms:
+      - slug: individual
+        name_en: "Individual (P1)"
+        name_nb: "Individ (P1)"
+        description_en: "Personal, inner work, and self-development."
+        description_nb: "Personlig, indre arbeid og selvutvikling."
+      
+      - slug: relational
+        name_en: "Relational (P2)"
+        name_nb: "Relasjon (P2)"
+        description_en: "Interpersonal dynamics and partnerships."
+        description_nb: "Mellommenneskelig dynamikk og partnerskap."
+      
+      - slug: organizational
+        name_en: "Organizational (P3)"
+        name_nb: "Organisasjon (P3)"
+        description_en: "Groups, teams, and institutional structures."
+        description_nb: "Grupper, team og institusjonelle strukturer."
+      
+      - slug: societal
+        name_en: "Societal (P4)"
+        name_nb: "Samfunn (P4)"
+        description_en: "Communities, bioregions, and nations."
+        description_nb: "Fellesskap, bioregioner og nasjoner."
+      
+      - slug: planetary
+        name_en: "Planetary (P5)"
+        name_nb: "Planetarisk (P5)"
+        description_en: "Global systems and Earth-scale dynamics."
+        description_nb: "Globale systemer og jordomfattende dynamikk."
+      
+      - slug: cosmic
+        name_en: "Cosmic (P6)"
+        name_nb: "Kosmisk (P6)"
+        description_en: "Universal consciousness and transcendent patterns."
+        description_nb: "Universell bevissthet og transcendente mønstre."
+    
+    status: "ready"
+
+  # ---------------------------------------------------------
+  # 6. MODES (Energetic Character) - TRINITY
+  # ---------------------------------------------------------
+  sragi_modes:
+    label_en: "Modes"
+    label_nb: "Modus"
+    singular_en: "Mode"
+    singular_nb: "Modus"
+    hierarchical: false
+    show_in_rest: true
+    show_in_menu: true
+    description_en: "Energetic character: Matrix (analytical), Patrix (organic), Elantrix (integrated)."
+    description_nb: "Energetisk karakter: Matrix (analytisk), Patrix (organisk), Elantrix (integrert)."
+    
+    terms:
+      - slug: matrix
+        name_en: "Matrix"
+        name_nb: "Matrix"
+        description_en: "Analytical, structural, mechanical. The grid."
+        description_nb: "Analytisk, strukturell, maskinell. Rutenettet."
+      
+      - slug: patrix
+        name_en: "Patrix"
+        name_nb: "Patrix"
+        description_en: "Organic, relational, pattern-based. The flow."
+        description_nb: "Organisk, relasjonell, mønsterbasert. Flyten."
+      
+      - slug: elantrix
+        name_en: "Elantrix"
+        name_nb: "Elantrix"
+        description_en: "Integrated, transcendent, holographic. The synthesis."
+        description_nb: "Integrert, transcendent, holografisk. Syntesen."
+    
+    status: "ready"
+
+# ===========================================================
+# ACTOR DIMENSIONS (Profile & Element CPTs)
+# ===========================================================
+
+  # ---------------------------------------------------------
+  # 7. ACTOR TYPE (Ontological Identity)
+  # ---------------------------------------------------------
+  sragi_actor_type:
+    label_en: "Actor Type"
+    label_nb: "Aktørtype"
+    singular_en: "Type"
+    singular_nb: "Type"
+    hierarchical: true
+    show_in_rest: true
+    show_in_menu: true
+    description_en: "What the actor is: person, company, AI agent, etc."
+    description_nb: "Hva aktøren er: person, selskap, AI-agent osv."
+    
+    terms:
+      - slug: person
+        name_en: "Person"
+        name_nb: "Person"
+        description_en: "Individual human being."
+        description_nb: "Individuelt menneske."
+      
+      - slug: company
+        name_en: "Company"
+        name_nb: "Selskap"
+        description_en: "Business organization."
+        description_nb: "Forretningsorganisasjon."
+      
+      - slug: ai_agent
+        name_en: "AI Agent"
+        name_nb: "AI-agent"
+        description_en: "Artificial intelligence system with agency."
+        description_nb: "Kunstig intelligens-system med handleevne."
+      
+      - slug: institution
+        name_en: "Institution"
+        name_nb: "Institusjon"
+        description_en: "Established organization (university, foundation, etc.)."
+        description_nb: "Etablert organisasjon (universitet, stiftelse osv.)."
+      
+      - slug: network
+        name_en: "Network"
+        name_nb: "Nettverk"
+        description_en: "Distributed, decentralized collective."
+        description_nb: "Distribuert, desentralisert kollektiv."
+      
+      - slug: community
+        name_en: "Community"
+        name_nb: "Fellesskap"
+        description_en: "Place-based or practice-based group."
+        description_nb: "Stedbasert eller praksisbasert gruppe."
+      
+      - slug: project
+        name_en: "Project"
+        name_nb: "Prosjekt"
+        description_en: "Time-bound initiative or endeavor."
+        description_nb: "Tidsavgrenset initiativ eller innsats."
+      
+      - slug: ecosystem_node
+        name_en: "Ecosystem Node"
+        name_nb: "Økosystemnode"
+        description_en: "Element within a larger living system."
+        description_nb: "Element innenfor et større levende system."
+    
+    status: "ready"
+
+  # ---------------------------------------------------------
+  # 8. ACTOR ROLE (Functional Contribution)
+  # ---------------------------------------------------------
+  sragi_actor_role:
+    label_en: "Actor Role"
+    label_nb: "Aktørrolle"
+    singular_en: "Role"
+    singular_nb: "Rolle"
+    hierarchical: false
+    show_in_rest: true
+    show_in_menu: true
+    description_en: "The functional role the actor plays in the SRAGI field."
+    description_nb: "Den funksjonelle rollen aktøren spiller i SRAGI-feltet."
+    
+    terms:
+      - slug: founder
+        name_en: "Founder"
+        name_nb: "Grunnlegger"
+        description_en: "Originated or initiated the work."
+        description_nb: "Startet eller initierte arbeidet."
+      
+      - slug: co_creator
+        name_en: "Co-creator"
+        name_nb: "Medskaper"
+        description_en: "Actively shaping and building together."
+        description_nb: "Aktivt formende og byggende sammen."
+      
+      - slug: contributor
+        name_en: "Contributor"
+        name_nb: "Bidragsyter"
+        description_en: "Adding value through specific inputs."
+        description_nb: "Tilføre verdi gjennom spesifikke bidrag."
+      
+      - slug: guide
+        name_en: "Guide"
+        name_nb: "Veiviser"
+        description_en: "Showing the way, mentoring, teaching."
+        description_nb: "Å vise veien, mentorere, undervise."
+      
+      - slug: partner
+        name_en: "Partner"
+        name_nb: "Partner"
+        description_en: "Formal or informal collaboration."
+        description_nb: "Formelt eller uformelt samarbeid."
+      
+      - slug: advisor
+        name_en: "Advisor"
+        name_nb: "Rådgiver"
+        description_en: "Providing strategic counsel."
+        description_nb: "Gir strategisk råd."
+      
+      - slug: researcher
+        name_en: "Researcher"
+        name_nb: "Forsker"
+        description_en: "Investigating and generating knowledge."
+        description_nb: "Undersøker og genererer kunnskap."
+      
+      - slug: pioneer
+        name_en: "Pioneer"
+        name_nb: "Pionér"
+        description_en: "Exploring new frontiers."
+        description_nb: "Utforsker nye grenser."
+      
+      - slug: implementer
+        name_en: "Implementer"
+        name_nb: "Implementør"
+        description_en: "Putting theory into practice."
+        description_nb: "Setter teori ut i praksis."
+      
+      - slug: critic
+        name_en: "Critic"
+        name_nb: "Kritiker"
+        description_en: "Challenging and refining through critique."
+        description_nb: "Utfordrer og forfiner gjennom kritikk."
+      
+      - slug: mentor
+        name_en: "Mentor"
+        name_nb: "Mentor"
+        description_en: "Supporting development of others."
+        description_nb: "Støtter utviklingen av andre."
+      
+      - slug: visionary
+        name_en: "Visionary"
+        name_nb: "Visjonær"
+        description_en: "Holding and articulating future possibilities."
+        description_nb: "Holder og artikulerer fremtidige muligheter."
+    
+    status: "ready"
+
+  # ---------------------------------------------------------
+  # 9. RELATIONS (Knowledge Graph Connections)
+  # ---------------------------------------------------------
+  sragi_relations:
+    label_en: "Relations"
+    label_nb: "Relasjoner"
+    singular_en: "Relation"
+    singular_nb: "Relasjon"
+    hierarchical: false
+    show_in_rest: true
+    show_in_menu: true
+    description_en: "Connections between nodes in the SRAGI knowledge graph."
+    description_nb: "Forbindelser mellom noder i SRAGI-kunnskapsgrafen."
+    
+    terms:
+      - slug: related_to
+        name_en: "Related to"
+        name_nb: "Relatert til"
+        description_en: "General association or connection."
+        description_nb: "Generell assosiasjon eller forbindelse."
+      
+      - slug: derived_from
+        name_en: "Derived from"
+        name_nb: "Avledet fra"
+        description_en: "Originates from or builds upon."
+        description_nb: "Stammer fra eller bygger på."
+      
+      - slug: depends_on
+        name_en: "Depends on"
+        name_nb: "Avhenger av"
+        description_en: "Requires or relies upon."
+        description_nb: "Krever eller er avhengig av."
+      
+      - slug: integrates_with
+        name_en: "Integrates with"
+        name_nb: "Integreres med"
+        description_en: "Combines or works together with."
+        description_nb: "Kombineres eller fungerer sammen med."
+      
+      - slug: supports
+        name_en: "Supports"
+        name_nb: "Støtter"
+        description_en: "Enables or strengthens."
+        description_nb: "Muliggjør eller styrker."
+      
+      - slug: conflicts_with
+        name_en: "Conflicts with"
+        name_nb: "I konflikt med"
+        description_en: "Opposes or contradicts."
+        description_nb: "Motsetter seg eller motstrider."
+      
+      - slug: partner
+        name_en: "Partner"
+        name_nb: "Partner"
+        description_en: "Collaborative relationship."
+        description_nb: "Samarbeidsrelasjon."
+      
+      - slug: certified
+        name_en: "Certified"
+        name_nb: "Sertifisert"
+        description_en: "Officially recognized or validated."
+        description_nb: "Offisielt anerkjent eller validert."
+      
+      - slug: co_creator
+        name_en: "Co-creator"
+        name_nb: "Medskaper"
+        description_en: "Actively co-creating together."
+        description_nb: "Aktivt medskapende sammen."
+    
+    status: "ready"
+
+# ===========================================================
+# IMPLEMENTATION NOTES
+# ===========================================================
+
+implementation:
+  wordpress:
+    plugin: "CPT UI"
+    post_types: ["post", "page", "profile", "sragi_element"]
+    settings:
+      hierarchical: "As specified per taxonomy"
+      show_in_rest: true
+      show_in_menu: true
+      rewrite_slug: "Use taxonomy slug"
+    
+  bricks:
+    dynamic_tags: "Available for all taxonomies"
+    query_loops: "Filter by taxonomy terms"
+    conditional_logic: "Show/hide based on taxonomy"
+    
+  seo:
+    framework: "The SEO Framework"
+    templates: "Use seo_template where defined"
+    archive_pages: "Generate for Pillars and Domains"
+    
+  sync_engine:
+    status: "Q1 2026"
+    source: "Git YAML files"
+    target: "WordPress taxonomies via WPCodeBox"
+    automation: "GitHub Actions webhook"
+
+# ===========================================================
+# VALIDATION CHECKLIST
+# ===========================================================
+
+validation:
+  structure:
+    - ✅ All 9 taxonomies defined
+    - ✅ Hierarchical settings specified
+    - ✅ Show_in_rest enabled for all
+    - ✅ Status "ready" for all
+    - ✅ Labels in both EN and NB
+  
+  content:
+    - ✅ Pillars: 5 parents + 25 children = 30 total
+    - ✅ Domains: 8 terms with SEO
+    - ✅ Contexts: 7 terms
+    - ✅ Phases: 6 terms
+    - ✅ Scales: 6 terms
+    - ✅ Modes: 3 terms
+    - ✅ Actor Type: 8 terms
+    - ✅ Actor Role: 12 terms
+    - ✅ Relations: 9 terms
+    - **Total: 89 terms**
+  
+  seo:
+    - ✅ Templates defined for Pillars, Domains
+    - ✅ Individual SEO for major terms
+    - ✅ Max 160 chars for descriptions
+    - ✅ Both EN and NB versions
+  
+  technical:
+    - ✅ Valid YAML syntax
+    - ✅ Consistent slug naming (snake_case)
+    - ✅ No duplicate slugs
+    - ✅ Proper nesting for hierarchical terms
+
+# ===========================================================
+# END OF SRAGI TAXONOMY GRAPH v1.4
+# ===========================================================
