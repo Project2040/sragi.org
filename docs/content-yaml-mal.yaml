@@ -1,0 +1,156 @@
+# ===========================================================
+# SRAGI CONTENT SPEC (GENERIC TEMPLATE v1.0)
+# Operationalized for Neptunia Mission Control v5.x
+# ===========================================================
+
+id: "{{SLUG}}"
+uuid: "{{UUID}}"
+type: "article"
+status: "ready_for_loom"
+version: "1.0.0"
+created_at: "{{DATE}}"
+
+# -----------------------------------------------------------
+# 1. TITLES (Multilingual)
+# -----------------------------------------------------------
+title:
+  en: "{{TITLE_EN}}"
+  nb: "{{TITLE_NB}}"
+
+subtitle:
+  en: "" # Fylles ut manuelt senere
+  nb: ""
+
+language_primary: "en"
+translations:
+  available: ["en", "nb"]
+  slugs: 
+    en: "{{SLUG}}"
+    nb: "{{SLUG}}"
+
+# -----------------------------------------------------------
+# 2. SEO METADATA
+# -----------------------------------------------------------
+seo:
+  title:
+    en: "{{SEO_TITLE_EN}}"
+    nb: "{{SEO_TITLE_NB}}"
+  description:
+    en: "{{META_DESC}}"
+    nb: "{{META_DESC}}"
+  canonical: "https://www.sragi.org/{{SLUG}}"
+  keywords:
+    en: [] # Loom kan fylle disse senere
+    nb: []
+  og_image: "{{SLUG}}-social.jpg"
+  twitter_card: "summary_large_image"
+
+# -----------------------------------------------------------
+# 3. INFORMATION ARCHITECTURE (IA)
+# -----------------------------------------------------------
+ia:
+  category: "blog" # Standard, kan endres
+  parent_page: ""
+  weight: 0
+
+# -----------------------------------------------------------
+# 4. TAXONOMY ATTACHMENTS (Dynamic)
+# -----------------------------------------------------------
+taxonomy:
+  pillar: ["{{PILLAR}}"]
+  domain: ["{{DOMAIN}}"]
+  context: ["{{CONTEXT}}"]
+  phase: ["{{PHASE}}"]
+  scale: ["{{SCALE}}"]
+  mode: ["{{MODE}}"]
+  actor_type: []
+  actor_role: []
+  relations: []
+
+# -----------------------------------------------------------
+# 5. MEDIA DEFINITIONS
+# -----------------------------------------------------------
+media:
+  hero:
+    file: "{{SLUG}}-hero.jpg"
+    ratio: "16:9"
+    role: "hero"
+    alt:
+      en: "Hero image for {{TITLE_EN}}"
+      nb: "Hovedbilde for {{TITLE_NB}}"
+
+  card:
+    file: "{{SLUG}}-card.jpg"
+    ratio: "4:3"
+    role: "card"
+    alt:
+      en: "Card image for {{TITLE_EN}}"
+      nb: "Kortbilde for {{TITLE_NB}}"
+
+  social:
+    file: "{{SLUG}}-social.jpg"
+    ratio: "1.91:1"
+    role: "social"
+    alt:
+      en: "Social share image"
+      nb: "Delingsbilde"
+
+  gallery: []
+
+# -----------------------------------------------------------
+# 6. ASSOCIATED CONTENT FILES
+# -----------------------------------------------------------
+content:
+  en: "{{SLUG}}.en.md"
+  nb: "{{SLUG}}.nb.md"
+  summary:
+    en: "{{META_DESC}}"
+    nb: "{{META_DESC}}"
+
+# -----------------------------------------------------------
+# 7. KNOWLEDGE GRAPH LINKS
+# -----------------------------------------------------------
+graph:
+  related: []
+  child_of: []
+  part_of: ["sragi-os"]
+  inspired_by: []
+  supports: []
+
+# -----------------------------------------------------------
+# 8. AUTHORS & CONTRIBUTORS
+# -----------------------------------------------------------
+authors:
+  primary: "rune-solberg"
+  contributors: ["neptunia-mission-control"]
+
+reviewed_by: []
+
+# -----------------------------------------------------------
+# 9. PUBLICATION METADATA
+# -----------------------------------------------------------
+publication:
+  created_at: "{{DATE}}"
+  updated_at: "{{DATE}}"
+  published_at: ""
+  revision_history: 
+    - version: "1.0.0"
+      date: "{{DATE}}"
+      action: "Initial generation via Mission Control"
+
+# -----------------------------------------------------------
+# 10. LOOM VALIDATION STATUS
+# -----------------------------------------------------------
+loom:
+  validated: false
+  errors: []
+  warnings: []
+  strict_mode: true
+
+# -----------------------------------------------------------
+# 11. LICENSE
+# -----------------------------------------------------------
+license:
+  type: "CC BY-SA 4.0"
+  via: "SRAGI Regenerative Source License (SRL)"
+  attribution: "© Rune Solberg / Neptunia Media AS"
