@@ -5,7 +5,7 @@
 # 
 # Purpose: The absolute Single Source of Truth for SRAGI.org system definition.
 # Philosophy: "Clean SRAGI" — Native WP structures driven by Git SSOT.
-#             No CPTs. No ACF reliance. Full Frontmatter control.
+#             No ACF reliance. Full Frontmatter control.
 # ===========================================================
 
 meta:
