@@ -2,9 +2,10 @@
 
 **File:** `/docs/SRAGI-ACCESSIBILITY-TESTING-STANDARDS.md`
 **Maintainer:** Rune Solberg / Neptunia Media AS
-**Version:** 1.1
+**Version:** 1.1c
 **Last Updated:** December 2025
 
+**This standard need a quality evaluation to make it coherent in the SRAGI doc ecosystem
 ---
 
 ## 🧭 Purpose
