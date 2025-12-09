@@ -1,25 +1,21 @@
 # ===========================================================
-#  SRAGI WEB BIOS v2.1 — CLEAN SRAGI ARCHITECTURE (SSOT)
-#  © 2025 Rune Solberg / Neptunia Media AS
-#  Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL) v1.1
-#  
-#  Purpose: The absolute Single Source of Truth for SRAGI.org.
-#  Philosophy: "Clean SRAGI" — Native WP structures driven by Git SSOT.
-#              No CPTs. No ACF reliance. Full Frontmatter control.
+# SRAGI WEB BIOS v2.2.0r — CLEAN SRAGI ARCHITECTURE (SSOT)
+# © 2025 Rune Solberg / Neptunia Media AS
+# Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL) v1.1
+# 
+# Purpose: The absolute Single Source of Truth for SRAGI.org system definition.
+# Philosophy: "Clean SRAGI" — Native WP structures driven by Git SSOT.
+#             No CPTs. No ACF reliance. Full Frontmatter control.
 # ===========================================================
 
 meta:
   id: SRAGI-WEB-BIOS
-  version: "2.1.0"
+  version: "2.2.0r" # r = Revision needed (Alignment with _CONFIG structure)
   type: system-architecture
-  description: |
-    Complete 7-layer architecture for SRAGI.org.
-    Defines the transition to Native WP, Frontmatter-driven WPML, 
-    and strict SSOT governance.
+  revision_note: "Adjusted paths to match docs/ structure and Frontmatter nesting."
   maintainer: Rune Solberg
   organization: Neptunia Media AS
-  contact: kontakt@sragi.org
-  updated: 2025-11-16
+  updated: 2025-12-09
   philosophy: "Helhet → Struktur → Detaljer (Triadic wholeness)"
 
 # ===========================================================
@@ -27,41 +23,31 @@ meta:
 # ===========================================================
 
 layer_1_ontology:
-  description: |
-    Definisjon av innholdstyper mapet til Native WordPress.
+  description: "Definisjon av innholdstyper mapet til Native WordPress."
   
   content_types:
-    
     documentation:
       id: documentation
       wp_type: page
       nature: static
-      lifecycle: permanent
-      source_format: markdown
       purpose: "Evergreen knowledge (Principles, BIOS, Guides)"
     
     reflection:
       id: reflection
       wp_type: post
       nature: dynamic
-      lifecycle: temporal
-      source_format: markdown
       purpose: "Time-stamped insights and explorations"
     
     structure:
       id: structure
       wp_type: page
       nature: organizational
-      lifecycle: permanent
-      source_format: yaml
       purpose: "Navigation nodes defined in IA (e.g. Pillars/Clusters)"
     
     media:
       id: media
       wp_type: attachment
       nature: binary
-      lifecycle: permanent
-      source_format: various (avif, webp, svg, png)
       purpose: "Visual tokens and assets (Git-synced)"
 
 # ===========================================================
@@ -94,39 +80,34 @@ layer_3_governance:
   ssot_files:
     
     ia_structure:
-      file: /content/system/SRAGI-WEB-BIOS-v2.1.yaml
-      controls: [information-architecture, system-definition, content-types]
-      format: yaml
-      update_frequency: on-structural-change
-      
-    visual_system:
-      file: /content/system/visual-assets.yaml
-      controls: [color-palette, design-tokens, logo-definitions]
+      file: /docs/architecture/WEB-BIOS.yaml
+      controls: [system-definition, content-types]
       format: yaml
       
-    environment:
-      file: /content/system/ENVIRONMENT-CONFIG.yaml
-      controls: [staging, live, cdn, cache]
+    ontology_data:
+      file: /docs/_CONFIG/TAXONOMY_GRAPH.yaml
+      controls: [pillars, domains, valid-terms]
       format: yaml
 
-    api_spec:
-      file: /content/system/SRAGI-WEB-API-v1.1.yaml
-      controls: [rest-api-definition, endpoint-contracts]
+    validation_logic:
+      file: /docs/_CONFIG/VALIDATION_RULES.yaml
+      controls: [seo-limits, markdown-structure, media-specs]
       format: yaml
+
+    content_schema:
+      file: /docs/_CONFIG/CONTENT-TEMPLATE.yaml
+      controls: [frontmatter-structure, required-fields]
+      format: yaml
+      
+    visual_system:
+      file: /docs/standards/VISUAL-PROTOCOL.md
+      controls: [ratios, formats, naming]
+      format: markdown
       
     license:
       file: /SRL-LICENSE.yaml
       controls: [license-metadata, permissions]
       format: yaml
-
-  legacy:
-    superseded_files:
-      - /content/system/README-HYBRID-SSOT-v1.0.0.md
-      - /content/system/DELIVERY-CHECKLIST-v1.0.0.md
-      - /content/system/IA.yaml (Old v1 version)
-    note: >
-      These documents are archived. SRAGI WEB BIOS v2.1 is the 
-      single governing architecture. CPT-based logic is deprecated.
 
 # ===========================================================
 # LAG 4: DATA-FLOWS — "GIT SYNC IS KING"
@@ -142,21 +123,33 @@ layer_4_data_flows:
       trigger: Git push to main
       
       frontmatter_parsing:
-        description: "Critical: Determines WPML & Hierarchy without ACF"
-        required_fields:
-          - type        # documentation | reflection | structure
-          - title_en
-          - slug_en
-        optional_fields:
-          - title_nb
-          - slug_nb
-          - parent      # logical path: documentation/sragi-bios
-          - ia_pillar
-          - ia_cluster
+        description: "Sync Engine reads fields based on CONTENT-TEMPLATE.yaml schema."
+        schema_source: /docs/_CONFIG/CONTENT-TEMPLATE.yaml
+        critical_mapping:
+          - meta.type      -> post_type / category
+          - meta.title_en  -> post_title (if lang=en)
+          - meta.slug      -> post_name
+          - ia.pillar      -> taxonomy_term
+          - ia.parent      -> post_parent logic
           
       multilingual_strategy:
         principle: "wpml_from_ssot: true"
-        logic: "Sync Engine reads *_en and *_nb fields from Frontmatter and updates WPML tables/meta directly."
+        logic: "Engine reads language fields from YAML/MD and updates WPML tables directly."
+
+# ===========================================================
+# LAG 5: PRESENTASJON — HVORDAN SER DET UT?
+# ===========================================================
+
+layer_5_presentation:
+  description: "Frontend delivery via Bricks Builder & Headless APIs."
+  
+  engine:
+    core: WordPress + Bricks Builder
+    styling: CSS Variables synced from /docs/standards/SRAGI-CSS.md
+  
+  assets:
+    delivery: Bunny.net CDN (Edge)
+    source: /content/visuals/ (Git) -> Optimized AVIF/WebP
 
 # ===========================================================
 # LAG 6: METADATA — SYSTEMETS HUKOMMELSE
@@ -171,18 +164,8 @@ layer_6_metadata:
         purpose: "Change detection"
       - field: _sragi_synced_at
         purpose: "Sync timestamp"
-      - field: _sragi_sync_status
-        purpose: "Current state"
-      - field: _sragi_ia_context
-        purpose: "Pillar/Cluster context"
-
-  wpml_metadata:
-    description: "Driving multilingual support from Git"
-    fields:
-      - field: _sragi_slug_en
-      - field: _sragi_slug_nb
-      - field: _sragi_title_en
-      - field: _sragi_title_nb
+      - field: _sragi_version
+        purpose: "Content version tracking"
 
 # ===========================================================
 # LAG 7: API OPERATIONS
@@ -194,11 +177,15 @@ layer_7_api:
   endpoints:
     - path: /ssot
       method: GET
-      logic: "Serve parsed BIOS v2.1 YAML"
+      logic: "Serve parsed BIOS YAML"
       
     - path: /ssot/validate
       method: POST
-      logic: "Validate SSOT integrity vs Schema"
+      logic: "Validate content integrity vs Validation Rules"
+      
+    - path: /sync/webhook
+      method: POST
+      logic: "Trigger Sync Engine for changed files"
       
     - path: /sync/webhook
       method: POST
