@@ -1,78 +1,85 @@
 # 🧭 SRAGI SSOT Policy
 
-**File:** `/docs/SSOT-POLICY.md`
+**File:** `/docs/core/SSOT-POLICY.md`
+
+**Status:** CORE DOCTRINE
+
 **Maintainer:** Rune Solberg / Neptunia Media AS
-**Version:** 1.1
-**Last Updated:** November 2025
+
+**Version:** 2.0 (System-Wide Expansion)
+
+**Last Updated:** 2025-12-09
 
 ---
 
 ## 🌱 Purpose
 
-This document defines how version control and licensing are handled inside the SRAGI repositories.
-All versioned and licensed materials must point to a **single source of truth (SSOT)** — the canonical YAML file that defines the SRL system.
+This document defines the **Single Source of Truth (SSOT)** architecture for the SRAGI ecosystem.
+It establishes the absolute rule that **data defines the system**, not code.
+
+**Core Principle:** Every piece of logic has ONE canonical source. Everything else references or generates from it.
 
 ---
 
-## 🧩 SSOT Hierarchy
+## 🧩 The SSOT Hierarchy
 
-| Layer | File | Description |
-|-------|------|--------------|
-| **Primary Source (SSOT)** | `SRL-LICENSE.yaml` | Defines active version, metadata, license text, and full changelog history. |
-| **Generated Artifacts** | `LICENSE-RSL.xml`, `license.json`, `index.html`, etc. | Built automatically from the SSOT file by CI/CD pipelines. |
-| **Human Docs** | `README.md`, `/docs/*.md` | Must never contain hard-coded version numbers — only point back to the SSOT. |
+The system is controlled by four specific files in `_CONFIG/` and root. All documentation (`standards/`), code (`backend/`), and validation logic must derive from these.
+
+| Domain | File Location (The Truth) | Enforced By |
+| :--- | :--- | :--- |
+| **Ontology** | `/_CONFIG/TAXONOMY_GRAPH.yaml` | `config_bridge.py` |
+| **Quality** | `/_CONFIG/VALIDATION_RULES.yaml` | `validate.php`, `qa_engine.py` |
+| **Structure**| `/_CONFIG/CONTENT-TEMPLATE.yaml` | `process.php` |
+| **Legal** | `/SRL-LICENSE.yaml` | `license_builder.py` |
+
+> **Rule:** If documentation in `/docs/standards/` contradicts a file in `/_CONFIG/`, the documentation is wrong. The Config is the Law.
+
+---
+
+## 🔒 The 5 Immutable Rules
+
+### 1. Never Hardcode Rules
+* ❌ **Bad:** Writing `if (strlen($title) > 60)` inside PHP.
+* ✅ **Good:** Writing `if (strlen($title) > $config['seo']['max_title'])`.
+
+### 2. No Duplicate Truths
+Do not define "SEO Title Length" in both `seo.md` and `validate.php`. Define it in `VALIDATION_RULES.yaml`, and let both the doc and the code reference that.
+
+### 3. Generate, Don't Duplicate
+We do not manually copy taxonomy terms into WordPress. The Sync Engine reads `TAXONOMY_GRAPH.yaml` and creates them.
+
+### 4. Version in Metadata
+Do not put version numbers in filenames (e.g., `BIOS-v2.1.yaml`). Put them inside the file content (`version: 2.1`). This keeps Git history clean (Kairos).
+
+### 5. Reference Dynamically
+Never write "Licensed under SRL v1.12" in a footer. Write "See SRL-LICENSE.yaml". This ensures old files remain valid when the license evolves.
 
 ---
 
 ## ⚙️ Enforcement
 
-The following tools ensure permanent alignment:
+This policy is not just a wish; it is enforced by code.
 
-| Tool | Path | Function |
-|------|------|-----------|
-| `tools/enforce_version_refs.py` | Repository root | Scans and auto-fixes any outdated SRL references. |
-| `.github/workflows/ssot-guard.yml` | GitHub Actions | CI guard that blocks commits or PRs with hard-coded versions. |
-
-All repositories under the SRAGI ecosystem **must include both**.
-
----
-
-## 🔒 Rules
-
-1. **Never** write `SRL v1.0`, `v1.1`, etc. directly in documentation headers or footers.
-2. Always use the timeless reference:
-   > Licensed under CC BY 4.0 via the SRAGI Regenerative License (SRL).
-   > See SRL-LICENSE.yaml for current version and details.
-3. Files under `/content/visuals/` or `sragi-skills/` fall under the **Secondary Scope** and may use **CC BY-SA 4.0**.
-4. Any script introducing version text must read it dynamically from `SRL-LICENSE.yaml`.
-5. Merging to `main` requires the **SSOT Guard** workflow to pass.
+1.  **License Integrity:** `tools/enforce_version_refs.py` scans for hardcoded versions.
+2.  **Content Validation:** `modules/qa_engine.py` reads `VALIDATION_RULES.yaml` to reject non-compliant content.
+3.  **Interface Sync:** `modules/config_bridge.py` generates menus in Mission Control directly from `TAXONOMY_GRAPH.yaml`.
 
 ---
 
 ## 🕰 Kairos vs Chronos
 
-| Chronos | Kairos |
-|----------|--------|
-| Manual versioning | Living license reference |
-| Fragmented updates | Centralized truth |
-| Reactive maintenance | Regenerative evolution |
+| Chronos (Old Way) | Kairos (SRAGI Way) |
+| :--- | :--- |
+| Hardcoded rules scattered in code | Centralized YAML rules |
+| Manual updates across 10 files | Update 1 file, regen everything |
+| "Documentation rot" | Documentation as Code |
 
-SRAGI maintains **Kairos versioning** — a living, self-healing documentation structure that evolves in sync with its license source.
-
----
-
-## 📘 Compliance Status
-
-| Area | Required | Enforced by |
-|------|-----------|-------------|
-| License references | ✅ | `enforce_version_refs.py` |
-| Version history | ✅ | `SRL-LICENSE.yaml` (history block) |
-| CI validation | ✅ | `.github/workflows/ssot-guard.yml` |
-| Local pre-commit | Optional | Manual `python tools/enforce_version_refs.py` |
+SRAGI maintains **Kairos Architecture** — a living, breathing system where the map *is* the territory.
 
 ---
 
-**Maintained by:** Neptunia Media AS / SRAGI Core
+**© 2025 Rune Solberg / Neptunia Media AS**
 Licensed under CC BY 4.0 via the SRAGI Regenerative License (SRL).
 See SRL-LICENSE.yaml for current version and details.
-**“One source for all time — Kairos over Chronos.”**
+
+**“One source for all time.”**
