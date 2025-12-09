@@ -1,0 +1,228 @@
+meta:
+  id: validation_rules
+  version: "1.1.1"
+  description: "Global validation rules for SRAGI.org content, SEO, media and accessibility."
+  updated: "2025-12-09"
+  owners:
+    - "Rune Solberg"
+  notes:
+    - "This file is the SSOT for validation logic. No hard-coded limits in PHP/Python."
+    - "Editors read docs/standards/*.md, machines read this file."
+    - "Changes here propagate automatically to Mission Control, Loom, and validators."
+
+# ===========================================================
+# FRONTMATTER VALIDATION
+# ===========================================================
+frontmatter:
+  required_fields:
+    - "meta.type"
+    - "meta.slug"
+    - "meta.status"
+    - "ia.pillar"
+  required_for_publish:
+    - "meta.title_nb"
+    - "meta.title_en"
+    - "seo.title"
+    - "seo.description"
+  optional_fields:
+    - "seo.canonical_url"
+    - "seo.noindex"
+    - "visual.og_image"
+    - "sync.auto_publish"
+    - "sync.wp_id"
+  type:
+    allowed: ["documentation","reflection","system_doc","profile"]
+    default: "documentation"
+  status:
+    allowed: ["draft","review","published"]
+    default: "draft"
+
+# ===========================================================
+# LANGUAGES & MULTILINGUAL
+# ===========================================================
+languages:
+  supported: ["nb", "en"]
+  default: "en"
+  required_for_publish:
+    - "meta.title_nb"
+    - "meta.title_en"
+    - "seo.title"
+  optional:
+    - "seo.title_nb"
+    - "content.summary_nb"
+    - "content.summary_en"
+
+# ===========================================================
+# TAXONOMIES
+# ===========================================================
+taxonomies:
+  pillar:    { required: true,  source: "_CONFIG/TAXONOMY_GRAPH.yaml" }
+  domain:    { required: false, source: "_CONFIG/TAXONOMY_GRAPH.yaml" }
+  phase:     { required: false, source: "_CONFIG/TAXONOMY_GRAPH.yaml" }
+  mode:      { required: false, source: "_CONFIG/TAXONOMY_GRAPH.yaml" }
+  actor_role:{ required: false, source: "_CONFIG/TAXONOMY_GRAPH.yaml" }
+
+# ===========================================================
+# SLUG VALIDATION
+# ===========================================================
+slug:
+  pattern: "^[a-z0-9\\-]+$"
+  max_length: 60
+  min_length: 3
+  must_match_filename: true
+  disallow: ["test", "tmp", "draft"]
+
+# ===========================================================
+# SEO VALIDATION
+# ===========================================================
+seo:
+  title:       { required: true,  min_length: 45, max_length: 60, optimal_range: [50, 55] }
+  description: { required: true,  min_length: 140, max_length: 170, optimal_range: [150, 160] }
+  canonical_url:
+    required: false
+    must_be_https: true
+  noindex:
+    type: "boolean"
+    wp_meta_mapping: "_genesis_noindex"
+
+# ===========================================================
+# MARKDOWN STRUCTURE
+# ===========================================================
+markdown:
+  h1: { required: true, max_count: 1 }
+  headings:
+    no_level_skip: true
+    max_depth: 4
+  links:
+    require_descriptive_text: true
+    disallow_raw_urls: true
+  lists:
+    max_nesting_depth: 3
+  code_blocks:
+    require_language_hint: true
+    allowed_languages:
+      - yaml
+      - json
+      - python
+      - php
+      - bash
+      - javascript
+      - html
+      - css
+      - sql
+      - markdown
+      - text
+    disallowed_language_tags: ["code", "plaintext"]
+
+# ===========================================================
+# MEDIA & VISUAL VALIDATION
+# ===========================================================
+media:
+  ratios:
+    allowed:
+      - { name: "Primary",    ratio: "3:2",    canva_size: [3000,2000],  use_case: "Standard articles, cards, presentations" }
+      - { name: "Widescreen", ratio: "16:9",   canva_size: [3840,2160],  use_case: "Hero sections, YouTube, cinematic" }
+      - { name: "Token",      ratio: "1:1",    canva_size: [3000,3000],  use_case: "Latent space tokens, symbols" }
+      - { name: "Social",     ratio: "4:5",    canva_size: [2400,3000],  use_case: "Instagram/LinkedIn feed" }
+      - { name: "Story",      ratio: "9:16",   canva_size: [1440,2560],  use_case: "Stories/Reels" }
+      - { name: "Classic",    ratio: "4:3",    canva_size: [2400,1800],  use_case: "Diagrams" }
+      - { name: "Social-OG",  ratio: "1200:630", canva_size: [1200,630], formats: ["jpg"], use_case: "Open Graph" }
+
+  pipeline_outputs:
+    hero:    { suffix: "-large",  max_width: 1920, formats: ["avif","webp"], happyfiles_folder: "/visuals/hero/" }
+    content: { suffix: "-medium", max_width: 1200, formats: ["avif","webp"], happyfiles_folder: "/visuals/content/"}
+    token:   { suffix: "-small",  max_width: 600,  formats: ["avif","webp"], happyfiles_folder: "/visuals/tokens/" }
+    social:  { suffix: "-social", max_width: 1080, formats: ["jpg"],         happyfiles_folder: "/visuals/social/" }
+
+  hero_image:
+    required_for_publish: false
+    allowed_formats: ["avif","webp","jpg","png"]
+    recommended_formats: ["avif","webp"]
+    min_width: 1200
+    max_width: 1920
+
+  content_images:
+    allowed_formats: ["avif","webp","jpg","png"]
+    max_width: 1200
+
+  og_image:
+    width: 1200
+    height: 630
+    max_size_kb: 300
+    allowed_formats: ["jpg","png"]
+
+  file_size: { max_mb: 5 }
+  paths: { must_be_relative: true }
+
+# ===========================================================
+# ACCESSIBILITY (WCAG 2.2 AA)
+# ===========================================================
+accessibility:
+  alt_text:
+    required: true
+    min_length: 5
+    max_length: 125
+    disallow_placeholders:
+      - "image"
+      - "bilde"
+      - "photo"
+      - "placeholder"
+  contrast:
+    min_ratio: 4.5
+  headings:
+    require_logical_order: true
+  links:
+    avoid_link_text:
+      - "klikk her"
+      - "les mer"
+      - "trykk her"
+      - "click here"
+      - "read more"
+
+# ===========================================================
+# FILE NAMING
+# ===========================================================
+files:
+  naming:
+    pattern: "^[a-z0-9\\-]+\\.(md|yaml)$"
+    case: "lowercase"
+    separator: "-"
+  multilingual_strategy:
+    applies_to: "content_pages"
+    type: "suffix"
+    english: "[slug].md"
+    norwegian: "[slug]-nb.md"
+    yaml_controller: "[slug].yaml"
+
+# ===========================================================
+# WORDPRESS & TSF INTEGRATION
+# ===========================================================
+wordpress:
+  tsf_meta_mappings:
+    "seo.title": "_genesis_title"
+    "seo.description": "_genesis_description"
+    "seo.canonical_url": "_genesis_canonical_uri"
+    "seo.noindex": "_genesis_noindex"
+    "visual.og_image": "_social_image_url"
+  noindex_conversion:
+    true: "1"
+    false: ""
+
+# ===========================================================
+# VALIDATION BEHAVIOR
+# ===========================================================
+validation:
+  max_attempts: 3
+  move_to_quarantine_after_fail: true
+  quarantine_dir: "_QUARANTINE"
+  behaviours:
+    on_missing_required_field: "block"
+    on_invalid_taxonomy: "block"
+    on_weak_seo: "warn"
+    on_missing_hero_image: "warn"
+    on_invalid_language_code: "block"
+    on_mismatched_slug_filename: "block"
+  logging:
+    enabled: true
+    file: "_LOGS/validation.log"
+    level: "info"
