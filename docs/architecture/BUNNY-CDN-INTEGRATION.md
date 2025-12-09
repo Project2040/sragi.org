@@ -1,6 +1,6 @@
 # 🐇 SRAGI Bunny.net CDN Integration
 
-**File:** `/roadmap/BUNNY-NET.md`  
+**File:** `/docs/architecture/BUNNY-CDN-INTEGRATION.md`  
 **Maintainer:** Rune Solberg / Neptunia Media AS  
 **Version:** 1.0c  
 **Status:** 🟡 Planning → Implementation  
