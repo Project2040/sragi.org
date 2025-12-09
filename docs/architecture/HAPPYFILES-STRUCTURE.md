@@ -1,10 +1,16 @@
-# 🌿 SRAGI HappyFiles Refactor Guide (v2.0)
-**File:** `/docs/HappyFiles-Refactor-Guide.md`  
-**Maintainer:** Rune Solberg / Neptunia Media AS  
-**Version:** 2.0 (Synced with Visual Protocol v1.1)  
-**Last Updated:** December 2025  
-**License:** CC BY 4.0 via SRL  
+# 🌿 SRAGI HappyFiles Guide
 
+**File:** `/docs/architecture/HAPPYFILES-STRUCTURE.md`
+
+**Status:** PRODUCTION STANDARD
+
+**Maintainer:** Rune Solberg / Neptunia Media AS
+
+**Version:** 2.1r (SSOT-Aligned)
+
+**Last Updated:** December 2025
+
+## r - Revision needed: This guide needs update when HappyFiles Pro 1.9 is released to harness the power of the upgrade
 ---
 
 ## 🧭 Purpose
