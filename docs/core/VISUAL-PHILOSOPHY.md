@@ -2,18 +2,10 @@
 
 **For:** `sragi-skills` repository and `/content/visuals`
 **Maintainer:** Rune Solberg / Neptunia Media AS
-**Version:** 1.2c
-**Last Updated:** November 2025 (Marked for update, 06.12.2025 - Rune Solberg)
+**Version:** 1.3c
+**Last Updated:** December 2025 (Marked for update, 06.12.2025 - Rune Solberg)
 
 # ** THIS FILE NEED UPDATE FOR CO-ORDINATION TOWARDS THE NEW visual-protocol.md
-
-
-# 🌌 SRAGI Image Guidelines
-
-**For:** sragi-skills repository and /content/visuals  
-**Maintainer:** Rune Solberg / Neptunia Media AS  
-**Version:** 1.6 (Extended Sizes Edition)  
-**Last Updated:** November 2025
 
 ---
 
