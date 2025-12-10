@@ -1,0 +1,18 @@
+# ===========================================================
+# 🚨 SSOT SOFT REDIRECT (TEMPORARY)
+# Single Source of Truth for SRL License Content
+# Hensikt: Sikre arkitektonisk samsvar for PHP/Loom.
+# Peiling: Innholdet ligger midlertidig i roten for GitHub Actions.
+# ===========================================================
+
+meta:
+  status: redirect
+  updated: "2025-12-10"
+  notes: "Denne filen er en peker til master-lisensfilen som ligger i roten for å unngå brudd på GitHub Actions-triggeren. SKAL FJERNES i Fase 3."
+
+# -----------------------------------------------------------
+# SSOT KILDE
+# -----------------------------------------------------------
+source:
+  type: git_root_legacy
+  path: "/SRL-LICENSE.yaml" # Den fullstendige lisensfilen ligger her
