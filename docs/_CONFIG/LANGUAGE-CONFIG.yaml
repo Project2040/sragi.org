@@ -1,0 +1,263 @@
+# ===========================================================
+# 🌍 SRAGI LANGUAGE CONFIGURATION v1.0 (SSOT)
+# Single Source of Truth for Multilingual Architecture
+# Replaces: WPML dependency
+# Read by: Loom Engine, WordPress Bridge, Validators
+# ===========================================================
+
+meta:
+  id: language_config
+  version: "1.0"
+  description: "Language settings and translation strategy for SRAGI.org"
+  updated: "2025-12-10"
+  owner: "Rune Solberg"
+  status: "production"
+
+# ===========================================================
+# 1. SUPPORTED LANGUAGES
+# ===========================================================
+languages:
+  primary: en                                   # Master language (all content exists here)
+  secondary:                                    # Supported translations
+    - nb                                        # Norwegian Bokmål
+  
+  definitions:
+    en:
+      name: "English"
+      native_name: "English"
+      locale: "en_US"
+      direction: ltr                            # ltr | rtl
+      enabled: true
+      fallback: null                            # No fallback (master)
+      
+    nb:
+      name: "Norwegian"
+      native_name: "Norsk"
+      locale: "nb_NO"
+      direction: ltr
+      enabled: true
+      fallback: en                              # If translation missing → show English
+
+# ===========================================================
+# 2. URL STRATEGY
+# ===========================================================
+# How URLs are structured for different languages
+url_strategy:
+  type: path_prefix                             # path_prefix | subdomain | query_param | none
+  
+  # Path prefix strategy: /en/about vs /nb/om
+  path_prefix:
+    enabled: true
+    hide_primary: true                          # /about (not /en/about) for English
+    hide_secondary: false                       # /nb/om (explicit prefix for Norwegian)
+    separator: "/"
+    
+  # Example URLs:
+  # English:   https://sragi.org/about          (no prefix)
+  # Norwegian: https://sragi.org/nb/om          (with prefix)
+  
+  # Subdomain strategy (alternative, not used):
+  # English:   https://sragi.org/about
+  # Norwegian: https://nb.sragi.org/om
+
+# ===========================================================
+# 3. CONTENT TRANSLATION STRATEGY
+# ===========================================================
+# How content files are organized (Twin-File Strategy)
+translation:
+  strategy: twin_file                           # twin_file | single_file_yaml | database
+  
+  # Twin-File: Separate .md files per language
+  twin_file:
+    enabled: true
+    naming_pattern: "{slug}{lang_suffix}.md"
+    suffixes:
+      en: ""                                    # what-is-sragi.md
+      nb: "-nb"                                 # what-is-sragi-nb.md
+    
+    yaml_controller: "{slug}.yaml"              # what-is-sragi.yaml (contains both)
+    
+  # Required fields for translation
+  required_for_publish:
+    all_languages:
+      - "meta.title"                            # Both title and title_nb required
+      - "seo.description"
+    per_language:
+      en:
+        - "content.en"                          # English .md file must exist
+      nb:
+        - "i18n.title_nb"                       # Norwegian title required
+        - "content.nb"                          # Norwegian .md file must exist
+
+# ===========================================================
+# 4. FALLBACK BEHAVIOR
+# ===========================================================
+# What happens when translation is missing
+fallback:
+  enabled: true
+  
+  # If Norwegian page doesn't exist
+  missing_translation:
+    action: show_primary                        # show_primary | show_404 | redirect_to_primary
+    show_notice: true                           # Show "This page is not available in Norwegian"
+    notice_text:
+      nb: "Denne siden er kun tilgjengelig på engelsk."
+      en: "This page is only available in English."
+  
+  # If specific field is missing (e.g., seo.description_nb)
+  missing_field:
+    action: use_primary                         # use_primary | leave_empty | auto_translate
+    log_warning: true
+
+# ===========================================================
+# 5. WORDPRESS INTEGRATION (POST-WPML)
+# ===========================================================
+# How WordPress should handle languages WITHOUT WPML
+wordpress:
+  plugin: none                                  # none | polylang | custom
+  
+  # Custom REST API language handling
+  rest_api:
+    enabled: true
+    lang_parameter: "lang"                      # /wp-json/wp/v2/posts?lang=nb
+    
+  # URL Rewriting (handled by PHP snippet)
+  url_rewrite:
+    enabled: true
+    implementation: wpcodebox                   # wpcodebox | .htaccess | nginx
+    snippet_name: "SRAGI Language Router"
+    
+  # Taxonomy translation handling
+  taxonomies:
+    strategy: shared                            # shared | duplicated | linked
+    # shared: Same taxonomy terms for all languages (pillar "system_thinking" is universal)
+    # duplicated: Separate terms per language (system_thinking_en, system_thinking_nb)
+    
+  # Menu translation
+  menus:
+    strategy: separate                          # separate | shared | dynamic
+    naming_pattern: "{menu_name}_{lang}"        # primary-menu_en, primary-menu_nb
+
+# ===========================================================
+# 6. LOOM ENGINE BEHAVIOR
+# ===========================================================
+# How Loom processes multilingual content
+loom:
+  validation:
+    # Check both language files exist
+    require_twin_files: true
+    
+    # Validate cross-language consistency
+    check_consistency:
+      enabled: true
+      fields:
+        - "meta.slug"                           # Slug must match (or follow slug_nb rule)
+        - "knowledge_graph.pillars"             # Taxonomies must be identical
+        - "visual.hero_image"                   # Images are shared
+  
+  sync:
+    # How to sync to WordPress
+    strategy: create_variants                   # create_variants | single_post_meta | polylang_api
+    
+    # Create variants: Create 2 separate WP posts (linked by meta)
+    create_variants:
+      enabled: true
+      link_field: "_sragi_translation_group"    # Custom meta field linking translations
+      
+    # Update behavior
+    update_both: true                           # If English updates, check if Norwegian needs update flag
+
+# ===========================================================
+# 7. SEO & HREFLANG
+# ===========================================================
+# Multilingual SEO configuration
+seo:
+  hreflang:
+    enabled: true
+    tags:
+      en: "en"
+      nb: "nb-NO"
+    
+    # Automatically generate hreflang tags
+    auto_generate: true
+    
+    # Example output:
+    # <link rel="alternate" hreflang="en" href="https://sragi.org/about" />
+    # <link rel="alternate" hreflang="nb-NO" href="https://sragi.org/nb/om" />
+    # <link rel="alternate" hreflang="x-default" href="https://sragi.org/about" />
+  
+  sitemap:
+    strategy: combined                          # combined | separate | none
+    # combined: Single sitemap with both languages
+    # separate: sitemap-en.xml, sitemap-nb.xml
+
+# ===========================================================
+# 8. USER INTERFACE
+# ===========================================================
+# Language switcher and user preferences
+ui:
+  language_switcher:
+    enabled: true
+    location: header                            # header | footer | both | none
+    display_format: flag_text                   # flag_text | flag_only | text_only | dropdown
+    
+  browser_detection:
+    enabled: true
+    respect_user_choice: true                   # Remember user's language choice (cookie)
+    cookie_name: "sragi_lang"
+    cookie_duration: 365                        # days
+
+# ===========================================================
+# 9. VALIDATION RULES (Integration)
+# ===========================================================
+# How this integrates with VALIDATION_RULES.yaml
+validation_integration:
+  extends: "_CONFIG/VALIDATION_RULES.yaml"
+  
+  # Override language-specific rules
+  overrides:
+    frontmatter:
+      required_fields:
+        - "meta.title"                          # English title (always)
+        - "i18n.title_nb"                       # Norwegian title (for publish)
+    
+    seo:
+      title:
+        min_length: 45
+        max_length: 60
+        # Same rules apply to both title and title_nb
+      
+    markdown:
+      # Both .md and -nb.md files must follow same rules
+
+# ===========================================================
+# 10. MIGRATION NOTES
+# ===========================================================
+migration:
+  from: WPML
+  status: in_progress
+  
+  steps:
+    - id: 1
+      action: "Export WPML translations to YAML"
+      status: planned
+      
+    - id: 2
+      action: "Create Twin-File structure for existing content"
+      status: planned
+      
+    - id: 3
+      action: "Update Loom Engine to read LANGUAGE.yaml"
+      status: planned
+      
+    - id: 4
+      action: "Deactivate WPML plugin"
+      status: planned
+      
+    - id: 5
+      action: "Verify URL redirects work"
+      status: planned
+
+# ===========================================================
+# END OF LANGUAGE.yaml v1.0
+# ===========================================================
