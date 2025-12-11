@@ -1,0 +1,124 @@
+# ===========================================================
+# What is SRAGI? - Core Introduction Page
+# ===========================================================
+
+# -----------------------------------------------------------
+# 1. CORE METADATA
+# -----------------------------------------------------------
+meta:
+  id: "what-is-sragi"
+  uuid: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  type: "documentation"
+  status: "review"
+  title: "What is SRAGI?"
+  slug: "what-is-sragi"
+  language: en
+  author: "Rune Solberg"
+  created_at: "2025-12-10"
+  updated_at: "2025-12-10"
+
+# -----------------------------------------------------------
+# 2. INTERNATIONALIZATION
+# -----------------------------------------------------------
+i18n:
+  title_nb: "Hva er SRAGI?"
+  description_nb: "SRAGI er et regenerativt AI-rammeverk som setter mennesket som dirigent i orkesteringen av flere AI-systemer. Lær de 5 kjernepilarene."
+  slug_nb: "hva-er-sragi"
+  
+  translations:
+    available: ["en", "nb"]
+    primary: "en"
+    slugs:
+      en: "what-is-sragi"
+      nb: "hva-er-sragi"
+
+# -----------------------------------------------------------
+# 3. INFORMATION ARCHITECTURE
+# -----------------------------------------------------------
+ia:
+  category: "page"
+  parent_page: "about"
+  weight: 1
+
+# -----------------------------------------------------------
+# 4. KNOWLEDGE GRAPH
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["system_thinking"]
+  domains: ["technology", "consciousness"]
+  contexts: ["philosophical", "practical"]
+  phases: ["emergence"]
+  scales: ["individual", "organizational", "planetary"]
+  modes: ["elantrix"]
+  actor_type: []
+  actor_role: []
+  relations: ["regeneration", "ai_orchestration"]
+
+# -----------------------------------------------------------
+# 5. SEO METADATA
+# -----------------------------------------------------------
+seo:
+  title: "What is SRAGI? – Regenerative AI Framework"
+  description: "SRAGI is a regenerative AI framework where humans conduct multiple AI systems in harmony. Discover the 5 core pillars and join the movement."
+  focus_keyword: "SRAGI"
+  canonical: "https://www.sragi.org/what-is-sragi"
+  noindex: false
+  robots: "index, follow"
+  og_image: "what-is-sragi-social.jpg"
+  twitter_card: "summary_large_image"
+
+# -----------------------------------------------------------
+# 6. VISUALS & THEME
+# -----------------------------------------------------------
+visual:
+  hero_image: "googleais-sragi-pillarer-oversikt-2025-16x9-large.avif"
+  hero_alt: "A dark futuristic interface displaying the SRAGI acronym vertically with glowing icons and keywords for System Thinking, Regeneration, Adaptivity, Generativity, and Intelligence."
+  thumbnail: "googleais-sragi-pillarer-oversikt-2025-16x9-small.avif"
+  gallery: []
+  layout: "balanced"
+  theme: "auto"
+
+# -----------------------------------------------------------
+# 7. CONTENT FILES
+# -----------------------------------------------------------
+content:
+  en: "what-is-sragi.md"
+  nb: "what-is-sragi-nb.md"
+  summary:
+    en: "An introduction to SRAGI – the regenerative AI framework built on 5 core pillars."
+    nb: "En introduksjon til SRAGI – det regenerative AI-rammeverket bygget på 5 kjernepilarer."
+
+# -----------------------------------------------------------
+# 8. LOOM & SYNC
+# -----------------------------------------------------------
+sync:
+  sync_status: "ready_for_loom"
+  auto_publish: false
+  wp_id: null
+  content_hash: ""
+  validated: false
+  errors: []
+  warnings: []
+
+# -----------------------------------------------------------
+# 9. LICENSE & ATTRIBUTION
+# -----------------------------------------------------------
+license:
+  type: "CC BY-SA 4.0"
+  via: "SRAGI Regenerative Source License (SRL)"
+  attribution: "© Rune Solberg / Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 10. AUTHORS & HISTORY
+# -----------------------------------------------------------
+authors:
+  primary: "rune-solberg"
+  contributors: ["claude-sonnet-4"]
+
+publication:
+  published_at: ""
+  revision_history:
+    - version: "1.0"
+      date: "2025-12-10"
+      action: "Initial draft created"
+      by: "Claude (SRAGI Administrator)"
