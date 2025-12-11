@@ -1,0 +1,94 @@
+# ===========================================================
+# Regenerative Intelligence vs. AI - The Critical Distinction
+# ===========================================================
+
+meta:
+  id: "regenerative-vs-ai"
+  uuid: "f1e2d3c4-b5a6-7890-cdef-123456789abc"
+  type: "documentation"
+  status: "review"
+  title: "Regenerative Intelligence vs. AI"
+  slug: "regenerative-vs-ai"
+  language: en
+  author: "Rune Solberg"
+  created_at: "2025-12-11"
+  updated_at: "2025-12-11"
+
+i18n:
+  title_nb: "Regenerativ Intelligens vs. AI"
+  description_nb: "Den kritiske distinksjonen mellom teknologi som optimaliserer uten hensyn til liv, og intelligens som tjener livets betingelser."
+  slug_nb: "regenerativ-intelligens-vs-ai"
+  
+  translations:
+    available: ["en", "nb"]
+    primary: "en"
+    slugs:
+      en: "regenerative-vs-ai"
+      nb: "regenerativ-intelligens-vs-ai"
+
+ia:
+  category: "documentation"
+  parent_page: "regenerative-thinking"
+  weight: 21
+
+knowledge_graph:
+  pillars: ["intelligence", "system_thinking", "regeneration"]
+  domains: ["technology", "consciousness", "society", "ecology"]
+  contexts: ["philosophical", "practical", "technical"]
+  phases: ["emergence", "integration"]
+  scales: ["individual", "organizational", "planetary"]
+  modes: ["elantrix"]
+  actor_type: ["ai_agent", "person", "system"]
+  actor_role: []
+  relations: ["sragi_twin", "sragi_bios"]
+
+seo:
+  title: "Regenerative Intelligence vs. AI – Technology in Service of Life"
+  description: "Understand the critical difference between artificial intelligence that extracts and regenerative intelligence that serves life's conditions."
+  focus_keyword: "regenerative intelligence"
+  canonical: "https://www.sragi.org/regenerative-vs-ai"
+  noindex: false
+  robots: "index, follow"
+  og_image: "regenerative-vs-ai-social.jpg"
+  twitter_card: "summary_large_image"
+
+visual:
+  hero_image: "ai-regenerative-split-hero.avif"
+  hero_alt: "Split visualization showing extractive AI network on left versus regenerative intelligence web on right"
+  thumbnail: "ai-regenerative-split-small.avif"
+  gallery: []
+  layout: "text-heavy"
+  theme: "electric-blue"
+
+content:
+  en: "regenerative-vs-ai.md"
+  nb: "regenerative-vs-ai-nb.md"
+  summary:
+    en: "The critical distinction between technology that optimizes without regard for life, and intelligence that serves life's conditions."
+    nb: "Den kritiske distinksjonen mellom teknologi som optimaliserer uten hensyn til liv, og intelligens som tjener livets betingelser."
+
+sync:
+  sync_status: "ready_for_loom"
+  auto_publish: false
+  wp_id: null
+  content_hash: ""
+  validated: false
+  errors: []
+  warnings: []
+
+license:
+  type: "CC BY-SA 4.0"
+  via: "SRAGI Regenerative Source License (SRL)"
+  attribution: "© Rune Solberg / Neptunia Media AS"
+
+authors:
+  primary: "rune-solberg"
+  contributors: ["claude-sonnet-4", "chatgpt-muse"]
+
+publication:
+  published_at: ""
+  revision_history:
+    - version: "1.0"
+      date: "2025-12-11"
+      action: "Initial critical distinction document"
+      by: "Rune Solberg + Claude + Muse"
