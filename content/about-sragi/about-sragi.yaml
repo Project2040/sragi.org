@@ -1,0 +1,94 @@
+# ===========================================================
+# About SRAGI - Main Introduction Page (Root)
+# ===========================================================
+
+meta:
+  id: "about"
+  uuid: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  type: "documentation"
+  status: "review"
+  title: "About SRAGI"                         # Master (English)
+  slug: "about-sragi"
+  language: en
+  author: "Rune Solberg"
+  created_at: "2025-12-10"
+  updated_at: "2025-12-10"
+
+i18n:
+  title_nb: "Om SRAGI"
+  description_nb: "SRAGI er et rammeverk for regenerativ intelligens – utviklet gjennom et langvarig samspill mellom menneskelig erfaring og kunstig intelligens."
+  slug_nb: "om-sragi"
+  
+  translations:
+    available: ["en", "nb"]
+    primary: "en"                              # English is master
+    slugs:
+      en: "about"
+      nb: "om"
+
+ia:
+  category: "page"
+  parent_page: ""                              # ROOT PAGE (no parent)
+  weight: 1                                    # First in menu
+
+knowledge_graph:
+  pillars: ["system_thinking", "regeneration"]
+  domains: ["technology", "consciousness", "society"]
+  contexts: ["philosophical", "practical"]
+  phases: ["emergence"]
+  scales: ["individual", "organizational", "planetary"]
+  modes: ["elantrix"]
+  actor_type: []
+  actor_role: []
+  relations: ["sragi_bios", "sragi_twin", "elantrix"]
+
+seo:
+  title: "About SRAGI – Regenerative Intelligence Framework"
+  description: "SRAGI is a framework for regenerative intelligence, developed through collaboration between human experience and AI. Not a magic box, but a practice."
+  focus_keyword: "SRAGI"
+  canonical: "https://www.sragi.org/about"
+  noindex: false
+  robots: "index, follow"
+  og_image: "about-sragi-social.jpg"
+  twitter_card: "summary_large_image"
+
+visual:
+  hero_image: "googleais-sragi-pillarer-oversikt-2025-16x9-large.avif"
+  hero_alt: "A dark futuristic interface displaying the SRAGI acronym vertically with glowing icons for System Thinking, Regeneration, Adaptivity, Generativity, and Intelligence."
+  thumbnail: "googleais-sragi-pillarer-oversikt-2025-16x9-small.avif"
+  gallery: []
+  layout: "balanced"
+  theme: "auto"
+
+content:
+  en: "about.md"                               # MASTER (English)
+  nb: "about-nb.md"                            # Translation (Norwegian)
+  summary:
+    en: "An introduction to SRAGI – the regenerative intelligence framework developed through human experience and AI collaboration."
+    nb: "En introduksjon til SRAGI – rammeverket for regenerativ intelligens utviklet gjennom menneskelig erfaring og KI-samarbeid."
+
+sync:
+  sync_status: "ready_for_loom"
+  auto_publish: false
+  wp_id: null
+  content_hash: ""
+  validated: false
+  errors: []
+  warnings: []
+
+license:
+  type: "CC BY-SA 4.0"
+  via: "SRAGI Regenerative Source License (SRL)"
+  attribution: "© Rune Solberg / Neptunia Media AS"
+
+authors:
+  primary: "rune-solberg"
+  contributors: ["claude-sonnet-4"]
+
+publication:
+  published_at: ""
+  revision_history:
+    - version: "1.0"
+      date: "2025-12-10"
+      action: "Initial draft (fusion of human + AI voice)"
+      by: "Rune Solberg + Claude"
