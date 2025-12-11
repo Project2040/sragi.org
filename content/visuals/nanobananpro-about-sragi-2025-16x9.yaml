@@ -1,0 +1,62 @@
+# ===========================================================
+# 🖼️ SRAGI Visual Asset Template v1.0
+# Metadata for: The SRAGI Operating System (Conceptual Tree)
+# ===========================================================
+meta:
+  id: "about-sragi-tree"
+  uuid: "{{GENERATED_UUID}}"
+  type: "visual_asset"
+  title: "The SRAGI Operating System: Conceptual Tree"
+  slug: "about-sragi-tree"
+  language: en
+  author: "SRAGI Muse (Rune Solberg)"
+  status: "published"
+  created_at: "2025-12-11"
+  updated_at: "2025-12-11"
+
+# -----------------------------------------------------------
+# 2. INFORMATION ARCHITECTURE (IA)
+# -----------------------------------------------------------
+ia:
+  category: "infographic"
+  context: "architecture_overview"
+  # Dette er hovedsiden for 'Om SRAGI'
+  parent_document: "what-is-sragi" 
+
+# -----------------------------------------------------------
+# 3. KNOWLEDGE GRAPH
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["system_thinking", "regeneration", "intelligence"]
+  domains: ["technology", "society"]
+  contexts: ["conceptual", "framework"]
+  
+  visual_concepts: ["SRAGI OS", "R > 1", "Human + AI Amplification", "Wholeness"]
+
+# -----------------------------------------------------------
+# 4. CDN & FILE MANAGEMENT (Master-tekst)
+# -----------------------------------------------------------
+cdn:
+  # KORREKT FILNAVN for den konseptuelle tre-grafikken
+  filename: "nanobananpro-about-sragi-2025-16x9-social.jpg" 
+  
+  # Master-tekster (Engelsk - Primær Kilde)
+  alt_text_en: "Infographic illustrating the SRAGI Operating System as a tree connecting two trunks: Human Experience and AI as Amplifier. The roots show degeneration (R<1) and the branches show regenerative systems (R>1)."
+  caption_en: "The SRAGI Operating System (OS): A framework for Regenerative Intelligence developed through sustained collaboration between human experience and artificial intelligence. Highlights the R>1 principle."
+  
+  source_tool: "Nano Banana Pro"
+  source_prompt: "Brief: A Framework for Regenerative Intelligence - Developed through Sustained Collaboration between Human Experience and Artificial Intelligence. A Search System for Better Ways to Think, Choose, and Build."
+
+# -----------------------------------------------------------
+# 5. INTERNATIONALIZATION (I18N) - Oversatte Tekster
+# -----------------------------------------------------------
+i18n:
+  alt_text_nb: "Infografikk som illustrerer SRAGI som et tre som forbinder Menneskelig Erfaring og AI som Forsterker. Røttene viser degenerasjon (R<1), og grenene viser regenerative systemer (R>1)."
+  caption_nb: "SRAGI OS: Et rammeverk for Regenerativ Intelligens utviklet gjennom vedvarende samarbeid mellom menneskelig erfaring og kunstig intelligens. Fremhever R>1-prinsippet."
+
+# -----------------------------------------------------------
+# 6. LICENSE & ATTRIBUTION
+# -----------------------------------------------------------
+license:
+  type: "CC BY-SA 4.0 (SRL)"
+  attribution: "© Rune Solberg / Neptunia Media AS (via Nano Banana Pro)"

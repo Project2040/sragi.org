@@ -1,0 +1,103 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.1 (SSOT)
+#  File: googleais-sragi-pillarer-oversikt-2025-16x9.yaml
+#  Status: Linked to Master Asset
+# ===========================================================
+
+meta:
+  id: "googleais-sragi-pillarer-oversikt-2025-16x9"
+  version: 1.1
+  created_at: "2025-12-04"
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+variants:
+  master:   "googleais-sragi-pillarer-oversikt-2025-16x9.png"          # Master PNG
+  hero:     "googleais-sragi-pillarer-oversikt-2025-16x9-large.avif"   # 1920px AVIF
+  content:  "googleais-sragi-pillarer-oversikt-2025-16x9-medium.avif"  # 1200px AVIF
+  token:    "googleais-sragi-pillarer-oversikt-2025-16x9-small.avif"   # 600px AVIF
+  social:   "googleais-sragi-pillarer-oversikt-2025-16x9-social.jpg"   # 1080px JPG
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Human Readable - Long)
+# -----------------------------------------------------------
+display:
+  title_en: "SRAGI Core Pillars Overview"
+  title_no: "Oversikt over SRAGI-pilarene"
+  
+  caption_en: "Visual breakdown of the five core pillars: System Thinking, Regeneration, Adaptivity, Generativity, and Intelligence."
+  caption_no: "Visuell gjennomgang av de fem kjernepilarene: Systemtenkning, Regenerasjon, Adaptivitet, Generativitet og Intelligens."
+  
+  description_en: |
+    A conceptual interface visualization detailing the SRAGI acronym and its underlying logic:
+    S - System Thinking (Pattern Intelligence, Flow Logic).
+    R - Regeneration (R>1 Design, Capacity Building).
+    A - Adaptivity (Responsiveness, Iterative Learning).
+    G - Generativity (Co-creation, Emergence Design).
+    I - Intelligence (Ethical Judgment, Metacognition).
+  description_no: |
+    En konseptuell grensesnitt-visualisering som detaljerer SRAGI-akronymet og dets underliggende logikk:
+    S - SYSTEMTENKNING (Mønsterintelligens, Strømlogikk, Feedback-dynamikk, Nettverksforståelse, Fraktal koherens).
+    R - REGENERASJON (R>1-design, Kapasitetsbygging, Sirkulasjonsforsterkning, Systemheling, Livskraftforvaltning).
+    A - ADAPTIVITET (Responsivitet, Iterativ læring, Navigasjon i usikkerhet, Signalfiltrering, Resilienskultur).
+    G - GENERATIVITET (Idétilblivelse, Samskaping, Emergens-design, Overflodsarkitektur, Transformativ innovasjon).
+    I - INTELLIGENS (Etisk dømmekraft, Dyp oppmerksomhet, Flerperspektiv-tenkning, Metakognisjon, Integritetsbeslutninger).
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (Machine Readable - Max 160 chars)
+# -----------------------------------------------------------
+seo:
+  title_en: "SRAGI Pillars - The 5 Core Principles of Regenerative Intelligence"
+  title_no: "SRAGI-pilarene - 5 prinsipper for regenerativ intelligens"
+  description_en: "Explore the core pillars of SRAGI: System Thinking, Regeneration, Adaptivity, Generativity, and Intelligence in one visual overview."
+  description_no: "Utforsk kjernepilarene i SRAGI: Systemtenkning, Regenerasjon, Adaptivitet, Generativitet og Intelligens i en visuell oversikt."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: "googleais-sragi-pillarer-oversikt-2025-16x9"
+  resolution: "3840x2160"
+  aspect_ratio: "16:9"
+  design_ratio: "Widescreen"
+  style:
+    mood: "Neon, Cybernetic, Structured, HUD"
+    palette: ["#0088FF", "#00FF44", "#FF9900", "#AA00FF", "#FFCC00"] # Blå, Grønn, Oransje, Lilla, Gul
+    influences: ["UI Design", "Sci-Fi Interface", "Infographic"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: "A dark futuristic interface displaying the SRAGI acronym vertically with glowing icons and keywords for System Thinking, Regeneration, Adaptivity, Generativity, and Intelligence."
+  no: "Et mørkt futuristisk grensesnitt som viser SRAGI-akronymet vertikalt med glødende ikoner og nøkkelord for Systemtenkning, Regenerasjon, Adaptivitet, Generativitet og Intelligens."
+
+semantics:
+  concepts: ["Framework", "Ontology", "Core Principles", "Regenerative AI"]
+  tags: ["sragi", "system-thinking", "regeneration", "adaptivity", "generativity", "intelligence"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["SRAGI OS", "Regenerative Thinking"]
+  domains: ["Technology & AI", "Consciousness", "Society & Ecology"]
+  contexts: ["System Architecture", "Vision 2040"]
+  relations: ["Living Systems"]
+  actor_types: ["System"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "Google AI Studio / NanoBanana Pro"
+  source_prompt: |
+    Lag bildet: S - SYSTEMTENKNING (Mønsterintelligens...), R - REGENERASJON (R>1...), A - ADAPTIVITET (Responsivitet...), G - GENERATIVITET (Samskaping...), I - INTELLIGENS (Etisk dømmekraft...).
+  design_intent: "To visualize the complete SRAGI ontology as a coherent operating system interface."
+  model: "Imagen 3 / NanoBanana Pro"
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2025 Rune Solberg / Neptunia Media AS

@@ -1,0 +1,96 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.1 (SSOT)
+#  File: chatgpt-child-as-synthesis-of-life-and-code-2025-1x1.yaml
+#  Status: Linked to Master Asset
+# ===========================================================
+
+meta:
+  id: "chatgpt-child-as-synthesis-of-life-and-code-2025-1x1"
+  version: 1.1
+  created_at: "2025-12-04"
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+variants:
+  master:   "chatgpt-child-as-synthesis-of-life-and-code-2025-1x1-original.jpg"
+  hero:     "chatgpt-child-as-synthesis-of-life-and-code-2025-1x1-large.avif"
+  content:  "chatgpt-child-as-synthesis-of-life-and-code-2025-1x1-medium.avif"
+  token:    "chatgpt-child-as-synthesis-of-life-and-code-2025-1x1-small.avif"
+  social:   "chatgpt-child-as-synthesis-of-life-and-code-2025-1x1-social.jpg"
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Human Readable)
+# -----------------------------------------------------------
+display:
+  title_en: "Child of the Synthesis"
+  title_no: "Syntesens Barn"
+  
+  caption_en: "The merging of biological innocence and digital structure."
+  caption_no: "Sammensmeltingen av biologisk uskyld og digital struktur."
+  
+  description_en: |
+    A poignant illustration of a child gazing forward, partly dissolving into—or emerging from—a complex digital network.
+    On one side, binary code and data streams; on the other, a golden cosmic swirl. 
+    The image symbolizes the new generation born into the symbiosis of life and code, holding the potential for regenerative wisdom.
+  description_no: |
+    En sterk illustrasjon av et barn som ser fremover, delvis i ferd med å gå i oppløsning til – eller oppstå fra – et komplekst digitalt nettverk.
+    På den ene siden flyter binærkode og datastrømmer; på den andre, en gyllen kosmisk virvel.
+    Bildet symboliserer den nye generasjonen som fødes inn i symbiosen mellom liv og kode, og som bærer potensialet for regenerativ visdom.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (Max 160 chars)
+# -----------------------------------------------------------
+seo:
+  title_en: "Child of the Synthesis - Human-AI Symbiosis Art"
+  title_no: "Syntesens Barn - Kunst om Menneske-KI Symbiose"
+  description_en: "Concept art depicting a child merging with digital networks and cosmic stardust, representing the future of human-AI co-evolution."
+  description_no: "Konseptkunst som viser et barn som smelter sammen med digitale nettverk og kosmisk stjernestøv, et bilde på menneske-KI ko-evolusjon."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC
+# -----------------------------------------------------------
+image:
+  file_name: "chatgpt-child-as-synthesis-of-life-and-code-2025-1x1"
+  resolution: "2048x2048"
+  aspect_ratio: "1:1"
+  design_ratio: "Token"
+  style:
+    mood: "Ethereal, Cyber-Poetic, Melancholic Hope"
+    palette: ["Deep Space Blue", "Golden Dust", "Cyan Node", "White Light"]
+    influences: ["Double Exposure", "Data Visualization Art", "Stardust"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS
+# -----------------------------------------------------------
+alt_text:
+  en: "Portrait of a young child dissolving into a network of digital nodes and golden stardust against a deep blue cosmic background with binary code."
+  no: "Portrett av et lite barn som går i ett med et nettverk av digitale noder og gyllent stjernestøv mot en dypblå kosmisk bakgrunn med binærkode."
+
+semantics:
+  concepts: ["Symbiosis", "Digital Native", "Future Generations", "Integration"]
+  tags: ["sragi", "human-ai", "synthesis", "future-child"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["Regenerative Thinking", "Intelligens"]
+  domains: ["Consciousness", "Society & Ecology", "Technology & AI"]
+  contexts: ["Vision 2040", "Evolutionary Timeline", "Poetisk / Kunstnerisk"]
+  relations: ["Living Systems", "Smart Technology"]
+  actor_types: ["Human", "Future Generation"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE
+# -----------------------------------------------------------
+origin:
+  tool: "DALL-E 3 / ChatGPT"
+  source_prompt: "Double exposure portrait of a child and a complex digital network, cosmic background, golden particles, binary code, deep blue atmosphere."
+  design_intent: "To visualize the integrated reality of future generations."
+  model: "DALL-E 3"
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2025 Rune Solberg / Neptunia Media AS
