@@ -1,0 +1,94 @@
+# ===========================================================
+# About & Vision - Who We Are and Where We're Going
+# ===========================================================
+
+meta:
+  id: "about-vision"
+  uuid: "d4e5f6a7-b8c9-0123-def0-456789012345"
+  type: "documentation"
+  status: "review"
+  title: "About & Vision"
+  slug: "about-vision"
+  language: en
+  author: "Rune Solberg"
+  created_at: "2025-12-10"
+  updated_at: "2025-12-10"
+
+i18n:
+  title_nb: "Visjon & Om"
+  description_nb: "Hvem vi er og hvor vi skal: Fra Neptunia Media til Project 2040."
+  slug_nb: "visjon-og-om"
+  
+  translations:
+    available: ["en", "nb"]
+    primary: "en"
+    slugs:
+      en: "about-vision"
+      nb: "visjon-og-om"
+
+ia:
+  category: "page"
+  parent_page: "about"
+  weight: 4
+
+knowledge_graph:
+  pillars: ["system_thinking", "generativity", "intelligence"]
+  domains: ["technology", "consciousness", "society", "ecology"]
+  contexts: ["visionary", "practical"]
+  phases: ["growth", "maturity"]
+  scales: ["individual", "organizational", "planetary"]
+  modes: ["elantrix"]
+  actor_type: ["company", "person", "network"]
+  actor_role: ["founder", "visionary", "co_creator"]
+  relations: ["neptunia_media", "project_2040", "rune_solberg"]
+
+seo:
+  title: "About & Vision – Who We Are and Project 2040"
+  description: "Meet the team behind SRAGI and discover Project 2040 – our vision for planetary regeneration through conscious technology by 2040."
+  focus_keyword: "Project 2040"
+  canonical: "https://www.sragi.org/about-vision"
+  noindex: false
+  robots: "index, follow"
+  og_image: "about-vision-social.jpg"
+  twitter_card: "summary_large_image"
+
+visual:
+  hero_image: "project-2040-vision-hero.avif"
+  hero_alt: "A network of interconnected systems evolving toward regenerative coherence, visualizing Project 2040"
+  thumbnail: "project-2040-vision-small.avif"
+  gallery: []
+  layout: "balanced"
+  theme: "deep-blue"
+
+content:
+  en: "about-vision.md"
+  nb: "about-vision-nb.md"
+  summary:
+    en: "Who we are and where we're going – from Neptunia Media to Project 2040."
+    nb: "Hvem vi er og hvor vi skal – fra Neptunia Media til Prosjekt 2040."
+
+sync:
+  sync_status: "ready_for_loom"
+  auto_publish: false
+  wp_id: null
+  content_hash: ""
+  validated: false
+  errors: []
+  warnings: []
+
+license:
+  type: "CC BY-SA 4.0"
+  via: "SRAGI Regenerative Source License (SRL)"
+  attribution: "© Rune Solberg / Neptunia Media AS"
+
+authors:
+  primary: "rune-solberg"
+  contributors: ["claude-sonnet-4"]
+
+publication:
+  published_at: ""
+  revision_history:
+    - version: "1.0"
+      date: "2025-12-10"
+      action: "Initial draft"
+      by: "Rune Solberg + Claude"
