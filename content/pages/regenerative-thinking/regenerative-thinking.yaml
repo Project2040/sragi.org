@@ -1,0 +1,94 @@
+# ===========================================================
+# Regenerative Thinking - The Core Teaching
+# ===========================================================
+
+meta:
+  id: "regenerative-thinking"
+  uuid: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  type: "documentation"
+  status: "review"
+  title: "Regenerative Thinking"
+  slug: "regenerative-thinking"
+  language: en
+  author: "Rune Solberg"
+  created_at: "2025-12-11"
+  updated_at: "2025-12-11"
+
+i18n:
+  title_nb: "Regenerativ Tenkning"
+  description_nb: "Grunnlaget for å bygge systemer som gir mer enn de tar – fra konsept til praktisk metode."
+  slug_nb: "regenerativ-tenkning"
+  
+  translations:
+    available: ["en", "nb"]
+    primary: "en"
+    slugs:
+      en: "regenerative-thinking"
+      nb: "regenerativ-tenkning"
+
+ia:
+  category: "documentation"
+  parent_page: ""
+  weight: 20
+
+knowledge_graph:
+  pillars: ["system_thinking", "regeneration", "adaptivity", "generativity", "intelligence"]
+  domains: ["consciousness", "society", "ecology", "economy", "technology"]
+  contexts: ["philosophical", "practical", "experiential"]
+  phases: ["emergence", "growth", "maturity"]
+  scales: ["individual", "relational", "organizational", "societal", "planetary"]
+  modes: ["elantrix"]
+  actor_type: []
+  actor_role: []
+  relations: []
+
+seo:
+  title: "Regenerative Thinking – Beyond Sustainability to R > 1"
+  description: "Learn to think regeneratively: building systems that heal, strengthen, and give more than they take. The core teaching of SRAGI."
+  focus_keyword: "regenerative thinking"
+  canonical: "https://www.sragi.org/regenerative-thinking"
+  noindex: false
+  robots: "index, follow"
+  og_image: "regenerative-thinking-social.jpg"
+  twitter_card: "summary_large_image"
+
+visual:
+  hero_image: "regenerative-spiral-hero.avif"
+  hero_alt: "A golden spiral expanding outward, representing regenerative growth from center to periphery"
+  thumbnail: "regenerative-spiral-small.avif"
+  gallery: []
+  layout: "text-heavy"
+  theme: "deep-green"
+
+content:
+  en: "regenerative-thinking.md"
+  nb: "regenerative-thinking-nb.md"
+  summary:
+    en: "The foundation for building systems that give more than they take – from concept to practical method."
+    nb: "Grunnlaget for å bygge systemer som gir mer enn de tar – fra konsept til praktisk metode."
+
+sync:
+  sync_status: "ready_for_loom"
+  auto_publish: false
+  wp_id: null
+  content_hash: ""
+  validated: false
+  errors: []
+  warnings: []
+
+license:
+  type: "CC BY-SA 4.0"
+  via: "SRAGI Regenerative Source License (SRL)"
+  attribution: "© Rune Solberg / Neptunia Media AS"
+
+authors:
+  primary: "rune-solberg"
+  contributors: ["claude-sonnet-4"]
+
+publication:
+  published_at: ""
+  revision_history:
+    - version: "1.0"
+      date: "2025-12-11"
+      action: "Initial comprehensive teaching document"
+      by: "Rune Solberg + Claude"
