@@ -1,0 +1,90 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.0 (SSOT)
+#  File: nanobananapro-not-real-sragi-headquarter-2025-16x9.yaml
+#  Status: Linked to Master Asset
+# ===========================================================
+
+meta:
+  id: "nanobananapro-not-real-sragi-headquarter-2025-16x9"
+  version: 1.0
+  created_at: "2025-12-14"
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+# Må matche output fra SRAGI-IMAGE-PIPELINE-v2.1.bat
+variants:
+  master:  "nanobananapro-not-real-sragi-headquarter-2025-16x9-master.png"
+  hero:    "nanobananapro-not-real-sragi-headquarter-2025-16x9-hero.avif"
+  content: "nanobananapro-not-real-sragi-headquarter-2025-16x9-content.avif"
+  token:   "nanobananapro-not-real-sragi-headquarter-2025-16x9-token.avif"
+  social:  "nanobananapro-not-real-sragi-headquarter-2025-16x9-social.jpg"
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Multilingual - Human)
+# -----------------------------------------------------------
+display:
+  title_en: "The 'Not Real' SRAGI Headquarters: Nanobanana Pro Edition"
+  title_no: "Det 'Ikke Ekte' SRAGI Hovedkvarteret: Nanobanana Pro Edition"
+  caption_en: "Rune Solberg visualizing the intersection of systemic risk governance and potassium-rich innovation."
+  caption_no: "Rune Solberg visualiserer krysningspunktet mellom systemisk risikostyring og kaliumrik innovasjon."
+  description_en: |
+    A conceptual visualization of the SRAGI workshop. Features include the Systemic Risk & AI Governance Initiative whiteboard, 3D-printed prototypes, and the iconic Nanobanana, set against a backdrop of the Norwegian fjords.
+  description_no: |
+    En konseptuell visualisering av SRAGI-verkstedet. Bildet viser tavlen for 'Systemic Risk & AI Governance Initiative', 3D-printede prototyper og den ikoniske Nanobananen, med norske fjorder som bakteppe.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (The SEO Framework - Machine)
+# -----------------------------------------------------------
+# Kritisk for Sync Engine v2.2. Maks 160 tegn.
+seo:
+  title_en: "SRAGI HQ Concept - Systemic Risk & AI Governance"
+  description_en: "Inside the conceptual Neptunia Media lab: AI governance frameworks, 3D printing, and regenerative design systems."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: "nanobananapro-not-real-sragi-headquarter-2025-16x9"
+  resolution: "1920x1080"
+  aspect_ratio: "16:9"
+  design_ratio: "Widescreen"
+  style:
+    mood: "Innovative, Nordic, Solarpunk, Playful"
+    palette: ["#0077BE", "#FFD700", "#8B4513", "#FFFFFF"] # Neptunia Blue, Banana Yellow, Wood, Whiteboard
+    influences: ["Maker Culture", "System Thinking", "Norwegian Nature"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: "Rune Solberg smiling in a wooden office with a fjord view, holding a toy banana. Behind him is a whiteboard titled 'SRAGI: Systemic Risk & AI Governance Initiative' with complex diagrams on ethical boundaries and bias detection. A monitor shows the Neptunia Media AS logo."
+  no: "Rune Solberg smiler i et trepanel-kontor med fjordutsikt og holder en lekebanana. Bak ham er en tavle med tittelen 'SRAGI: Systemic Risk & AI Governance Initiative' med diagrammer om etiske grenser og skjevhetsdeteksjon. En skjerm viser Neptunia Media AS-logoen."
+
+semantics:
+  concepts: ["Systemic Risk", "AI Governance", "Prototyping", "Local Roots Global Reach"]
+  tags: ["sragi-os", "neptunia-media", "nanobanana", "innovation-lab"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["System Thinking", "SRAGI OS"]
+  domains: ["Technology", "Governance", "Regeneration"]
+  contexts: ["Vision", "About"]
+  relations: ["Rune Solberg", "Neptunia Media AS", "Nanobanana"]
+  actor_types: ["Founder", "Innovator"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "NanoBanana Pro - Google AI Studio"
+  source_prompt: "Rune Solberg in a high-tech wooden workshop, fjord view, holding a cyber-banana, whiteboard with SRAGI governance diagrams, Neptunia Media logo."
+  design_intent: "To illustrate the grounded yet futuristic nature of SRAGI's development environment with a touch of humor."
+  model: "v6.0"
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2025 Rune Solberg / Neptunia Media AS
