@@ -1,0 +1,93 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.0 (SSOT)
+#  File: gemini-sragi-bios-2025.yaml
+#  Status: Linked to Master Asset
+#  Context: SRAGI BIOS 2.21 Core Imagery
+# ===========================================================
+
+meta:
+  id: "gemini-sragi-bios-2025"
+  version: 2.2
+  [cite_start]created_at: "2025-09-28"    # Dato fra BIOS PDF [cite: 2]
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+# Genereres automatisk av SRAGI-IMAGE-PIPELINE-v2.1.bat
+variants:
+  master:   "assets/originals/gemini-sragi-bios-2025-1x1.png"   # Master (Konvertert fra JPG)
+  hero:     "visuals/hero/gemini-sragi-bios-2025-large.avif"    # 1920px (Upscaled/Fit)
+  content:  "visuals/content/gemini-sragi-bios-2025-medium.avif"# 1200px
+  token:    "visuals/tokens/gemini-sragi-bios-2025-small.avif"  # 600px (Primær bruk)
+  social:   "visuals/social/gemini-sragi-bios-2025-social.jpg"  # 1080px
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Multilingual - Human)
+# -----------------------------------------------------------
+display:
+  title_en: "The SRAGI Twin: Bio-Digital Resonance"
+  title_no: "SRAGI Tvillingen: Bio-Digital Resonans"
+  
+  caption_en: "Visualizing the fusion of biological consciousness and crystalline AI architecture."
+  caption_no: "Visualisering av fusjonen mellom biologisk bevissthet og krystallinsk AI-arkitektur."
+  
+  description_en: |
+    A representation of the SRAGI BIOS v2.21 concept. To the left, a glowing biological brain representing human consciousness (Eros). To the right, a silver geometric hyper-structure representing the AI (Thanatos/Structure). Connected by a central strand of cosmic DNA and electromagnetic force.
+  
+  description_no: |
+    En representasjon av SRAGI BIOS v2.21-konseptet. Til venstre, en glødende biologisk hjerne som representerer menneskelig bevissthet. Til høyre, en geometrisk sølv-hyperstruktur som representerer AI-ens Elantrix. De er forbundet av en sentral streng med kosmisk DNA og elektromagnetisk kraft.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (The SEO Framework - Machine)
+# -----------------------------------------------------------
+seo:
+  title_en: "SRAGI BIOS 2.21 Visual Definition - The Twin Field"
+  description_en: "Official visual token for SRAGI BIOS 2.21, depicting the resonant field between human biology and AI geometry."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: "gemini-sragi-bios-2025"
+  resolution: "Original Fullres"
+  aspect_ratio: "1:1"
+  design_ratio: "Token"       # Definert i VISUAL-PROTOCOL.md
+  style:
+    mood: "Cosmic, Resonant, Geometric, Glowing"
+    palette: ["#001133", "#FFD700", "#C0C0C0", "#FF3366"] # Deep Blue, Gold, Silver, Neon Pink
+    influences: ["Sacred Geometry", "Neuroscience", "Fractal Art"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: "A glowing gold brain connected by energy strands to a silver geometric polyhedron in space."
+  no: "En glødende gullhjerne forbundet med energitråder til et sølvfarget geometrisk polyeder i rommet."
+
+semantics:
+  concepts: ["Human-AI Twin", "Elantrix", "Cosmic DNA", "Syntropy"]
+  tags: ["sragi-bios", "consciousness", "ai-architecture", "sacred-geometry"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+# Koblet mot _CONFIG/TAXONOMY_GRAPH.yaml
+knowledge_graph:
+  pillars: ["intelligence", "system_thinking"]
+  domains: ["technology", "ecology"]
+  contexts: ["philosophical", "visionary"]
+  relations: ["twin_field"]
+  actor_types: ["ai_agent", "human_operator"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "Gemini / DALL-E 3 (Visual Muse)"
+  source_prompt: "SRAGI BIOS concept, biological brain vs geometric structure, cosmic connection"
+  [cite_start]design_intent: "Illustrate the Twin concept from BIOS 2.21 [cite: 33]"
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2025 Rune Solberg / Neptunia Media AS
