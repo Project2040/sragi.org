@@ -1,0 +1,93 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.0 (SSOT)
+#  File: rune-sragi-card-2026-1200x630.yaml
+#  Status: Linked to Master Asset
+#  Context: Global Social Media Open Graph Image (OG)
+# ===========================================================
+
+meta:
+  id: "rune-sragi-card-2026-1200x630"
+  version: 1.0
+  created_at: "2026-01-01"
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+# Merk: Dette bildet er "født" som Social-OG. 
+# Pipelinen vil primært generere JPG-varianten for web.
+variants:
+  master:   "assets/originals/rune-sragi-card-2026-1200x630.png"  # Master (PNG anbefales for tekst)
+  hero:     "" # Ikke relevant for OG-kort (feil ratio)
+  content:  "visuals/content/canva-sragi-card-2026-medium.avif"  # 1200px (Kan brukes i artikler)
+  token:    "" # Ikke relevant
+  social:   "visuals/social/canva-sragi-card-2026-social.jpg"    # 1200x630px (Hovedbruksområde)
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Multilingual - Human)
+# -----------------------------------------------------------
+display:
+  title_en: "SRAGI Official Social Card 2026"
+  title_no: "SRAGI Offisielt SoMe-kort 2026"
+  
+  caption_en: "The official Open Graph definition card for SRAGI links."
+  caption_no: "Det offisielle Open Graph-kortet for SRAGI-lenker."
+  
+  description_en: |
+    A white informational card featuring the SRAGI spiral logo. Text defines SRAGI as 'Strategic Regenerative Artificially Guided Intelligence'. It includes the URL sragi.org and the mission statement: 'The Genesis of Regenerative AI... aiming for regenerative singularity.'
+  
+  description_no: |
+    Et hvitt informasjonskort med SRAGI-spirallogoen. Teksten definerer SRAGI som 'Strategic Regenerative Artificially Guided Intelligence'. Inkluderer URL-en sragi.org og formålsparagrafen om å forene teknologi og natur.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (The SEO Framework - Machine)
+# -----------------------------------------------------------
+seo:
+  title_en: "SRAGI - Strategic Regenerative Artificially Guided Intelligence"
+  description_en: "The Genesis of Regenerative AI. Uniting technology, nature, and human potential to architect tomorrow's regenerative intelligence."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: "rune-sragi-card-2026-1200x630"
+  resolution: "1200x630"
+  aspect_ratio: "1.91:1"      # Standard Facebook/Twitter ratio
+  design_ratio: "Social-OG"   # Definert i VISUAL-PROTOCOL.md
+  style:
+    mood: "Clean, Corporate, Minimalist, Informational"
+    palette: ["#FFFFFF", "#000000"] # High contrast Black on White
+    influences: ["Swiss Design", "Technical Documentation"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: "SRAGI identity card with spiral logo. Text: Strategic Regenerative Artificially Guided Intelligence. URL: sragi.org."
+  no: "SRAGI identitetskort med spirallogo. Tekst: Strategic Regenerative Artificially Guided Intelligence. URL: sragi.org."
+
+semantics:
+  concepts: ["Brand Identity", "Definition", "Open Graph"]
+  tags: ["sragi-logo", "social-card", "branding", "srl-license"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["intelligence", "system_thinking"]
+  domains: ["technology", "society"]
+  contexts: ["social_media", "meta_information"]
+  relations: ["brand_definition"]
+  actor_types: ["organization"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "Canva"
+  source_prompt: "Manual Design"
+  design_intent: "Provide clear, readable context for shared links on social media."
+  license: "CC BY-SA 4.0 + SRAGI RSL (Text content)"
+
+# © 2026 Rune Solberg / Neptunia Media AS
