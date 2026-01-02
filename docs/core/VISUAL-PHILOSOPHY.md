@@ -1,3 +1,216 @@
+# **🌌 SRAGI Image Guidelines (UPDATED)**
+
+**For:** `sragi-skills` repository and `/content/visuals`  
+ **Maintainer:** Rune Solberg / Neptunia Media AS  
+ **Version:** 1.4 (AVIF-first)  
+ **Last Updated:** 01.01.2026  
+ **Coordination:** Technical specs are governed by `visual-protocol.md` (SSOT)
+
+**Note:** This document governs *meaning, ethics, and handling*.  
+ **`visual-protocol.md` governs pixels, sizes, and export rules.**
+
+---
+
+## **🎯 Purpose**
+
+These guidelines define how SRAGI handles images and visual assets across repositories and sragi.org.
+
+They ensure:
+
+✅ Consistent visual identity (mytopoetic, fractal-inspired)  
+ ✅ Machine- and human-readable imagery (alt text \+ metadata)  
+ ✅ Fast web performance (AVIF-first)  
+ ✅ Ethical transparency for AI-generated works (disclose origins, avoid misrepresentation)
+
+---
+
+## **📁 Directory Structure**
+
+`📂 visuals/`  
+`├── logos/          → SRAGI + Neptunia branding (vectors)`  
+`├── diagrams/       → Systems, flows, architectures`  
+`├── illustrations/  → Conceptual, symbolic art`  
+`├── ai-renders/     → AI-generated symbolic/documentary visuals (with disclosure)`  
+`└── icons/          → Small UI/interface symbols`
+
+### **Folder Example with Previews**
+
+`visuals/ai-renders/`  
+`├── regenerative-spiral-network.avif`  
+`├── regenerative-spiral-network.jpg`  
+`├── phoenix-evolution-2025.avif`  
+`├── phoenix-evolution-2025.jpg`  
+`└── gemini-generated-image-szqr3zqr3szqr3zqr.png   (MASTER / ORIGINAL)`
+
+---
+
+## **🎨 Format Policy (AVIF-first)**
+
+| Format | Use Case | Notes | Best Practice |
+| ----- | ----- | ----- | ----- |
+| **SVG** | Diagrams, logos, icons | Optimize \+ strip scripts | Best for UI \+ structure; scalable and small |
+| **PNG** | Master/originals, transparency, “token seeds” | Lossless | Keep as archival source of truth |
+| **AVIF** | Website media (primary) | Best compression/quality | Default for web delivery |
+| **JPG** | Website fallback \+ photos \+ social/OG | Max compatibility | Always paired with AVIF as fallback |
+
+**Rule:**
+
+For every published raster image: **AVIF is primary** and **JPG is fallback**.  
+ Masters (when needed) stay **PNG**.
+
+---
+
+## **🖼️ Size & Resolution Guidelines (format updated)**
+
+(Resolutions can live in `visual-protocol.md`; this table is the intent-level view.)
+
+| Variant | Use Case | Recommended Output |
+| ----- | ----- | ----- |
+| **Hero** | Frontpage/landing/roadmaps | `*-large.avif` \+ `*-large.jpg` |
+| **Content** | Articles/blog | `*-medium.avif` \+ `*-medium.jpg` |
+| **Thumbnail** | Gallery/cards | `*-small.avif` \+ `*-small.jpg` |
+| **Social/OG** | Sharing (X/LinkedIn/OG) | `*-social.jpg` (standard) |
+| **Diagram** | Architecture/flows | `.svg` (preferred), else PNG master \+ AVIF/JPG outputs |
+| **Master** | Archive / latent-token seed | `*-master.png` (no degradation) |
+
+---
+
+## **🧩 Naming Convention**
+
+Use **kebab-case-lowercase**.
+
+**Raster variants:**  
+ `[tool-optional]-[description]-[year-optional]-[size].[ext]`
+
+**Examples:**
+
+* `sragi-logo.svg`
+
+* `gemini-regenerativ-spiral-2025-large.avif`
+
+* `gemini-regenerativ-spiral-2025-large.jpg`
+
+* `sora-phoenix-evolution-medium.avif`
+
+* `sora-phoenix-evolution-medium.jpg`
+
+* `gemini-kristus-token-master.png`
+
+* `sragi-core-social.jpg`
+
+**Length rule:** keep under \~50 chars if possible.
+
+---
+
+## **🧭 Markdown & Web Referencing (AVIF \+ JPG fallback)**
+
+**In documentation (simple):**
+
+`![Regenerative spiral network](../content/visuals/ai-renders/regenerative-spiral-network.avif)`
+
+**On sragi.org (correct fallback):**
+
+`<picture>`  
+  `<source srcset="/content/visuals/ai-renders/regenerative-spiral-network.avif" type="image/avif">`  
+  `<img src="/content/visuals/ai-renders/regenerative-spiral-network.jpg"`  
+       `alt="A fractal spiral representing regenerative networks..."`  
+       `loading="lazy" decoding="async" width="1200" height="800">`  
+`</picture>`
+
+**Alt text rule:** descriptive \+ meaningful.  
+ For special “token” images: allow richer description, but keep it readable.
+
+---
+
+## **⚙️ Optimization Tools**
+
+### **SVG**
+
+`svgo input.svg -o output.svg`
+
+### **AVIF \+ JPG (CLI-friendly)**
+
+**AVIF (example with libavif):**
+
+`avifenc --min 20 --max 35 --speed 6 input.png output.avif`
+
+**JPG fallback (ImageMagick):**
+
+`magick input.png -quality 82 output.jpg`
+
+(Use Squoosh if you want a GUI workflow.)
+
+---
+
+## **🪞 Metadata & Attribution (YAML adjacent)**
+
+`tool: gemini`  
+`creator: Rune Solberg`  
+`license: CC BY-SA 4.0 via SRL`  
+`type: latent-space-token`  
+`source_prompt: "Generate a cosmic figure with energy wings..."`  
+`master: gemini-kristus-token-master.png`  
+`outputs:`  
+  `- gemini-kristus-token-large.avif`  
+  `- gemini-kristus-token-large.jpg`  
+  `- gemini-kristus-token-social.jpg`  
+`ethics:`  
+  `disclosure: true`  
+  `likeness: none`  
+  `copyrighted_material: verified`
+
+---
+
+## **🔒 Security Notes**
+
+* ❌ No embedded JavaScript in SVG (XSS prevention)
+
+* ✅ Images are static assets only (never executed)
+
+* ✅ Avoid sensitive data in visuals
+
+* ✅ AI renders: disclose tool \+ prompt; avoid deceptive depictions
+
+---
+
+## **📋 Pre-Commit Checklist**
+
+* Correct format policy (AVIF \+ JPG fallback, PNG master where needed)?
+
+* Correct naming (kebab-case, size suffix)?
+
+* Optimized outputs generated?
+
+* Alt text present and meaningful?
+
+* YAML metadata included (AI disclosure, prompt, license, master link)?
+
+* Stored in correct folder?
+
+* Social/OG uses JPG?
+
+---
+
+## **🌐 Integration Strategy**
+
+| Layer | Source | Purpose |
+| ----- | ----- | ----- |
+| **GitHub** | `sragi-skills/visuals` | Version control \+ provenance |
+| **Web** | `/content/visuals/` | Fast delivery (AVIF \+ JPG fallback) |
+| **Archive** | `*-master.png` | Token seeds, reproducibility |
+
+---
+
+## **📜 License**
+
+All images distributed under **CC BY-SA 4.0** via **SRAGI Regenerative License (SRL)**.  
+ **© 2025–2026 Rune Solberg / Neptunia Media AS**
+
+
+
+
+History:
+
 # 🌌 SRAGI Image Guidelines
 
 **For:** `sragi-skills` repository and `/content/visuals`
