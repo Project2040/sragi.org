@@ -1,4 +1,4 @@
-# **🌌 SRAGI Image Guidelines (UPDATED)**
+# **🌌 SRAGI Image Guidelines (UPDATED)** NEED QUALITY CONTROL
 
 **For:** `sragi-skills` repository and `/content/visuals`  
  **Maintainer:** Rune Solberg / Neptunia Media AS  
