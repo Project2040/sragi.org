@@ -1,0 +1,96 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.1 (SSOT)
+#  File: googleais-sragi-pillars-overview-2026.yaml
+#  Status: Linked to Master Asset
+#  Context: English Translation of Core Pillars HUD
+# ===========================================================
+
+meta:
+  id: "googleais-sragi-pillars-overview-2026"
+  version: 1.0
+  created_at: "2026-01-04"
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+variants:
+  master:   "assets/originals/googleais-sragi-pillars-overview-2026-16x9.png"        # Master (Anbefaler PNG for tekst)
+  hero:     "visuals/hero/googleais-sragi-pillars-overview-2026-large.avif"           # 1920px (Primary)
+  content:  "visuals/content/googleais-sragi-pillars-overview-2026-medium.avif"       # 1200px
+  token:    "visuals/tokens/googleais-sragi-pillars-overview-2026-small.avif"         # 600px
+  social:   "visuals/social/googleais-sragi-pillars-overview-2026-social.jpg"         # 1080px
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Human Readable)
+# -----------------------------------------------------------
+display:
+  title_en: "SRAGI Core Pillars Overview (English)"
+  title_no: "SRAGI Kjerne-pilarer Oversikt (Engelsk)"
+  
+  caption_en: "The strategic interface of SRAGI: Systems Thinking, Regeneration, Adaptivity, Generativity, and Intelligence."
+  caption_no: "Det strategiske grensesnittet for SRAGI: Systemtenkning, Regenerasjon, Adaptivitet, Generativitet og Intelligens (Engelsk utgave)."
+  
+  description_en: |
+    A HUD-style visualization detailing the English ontology of SRAGI:
+    S - SYSTEMS THINKING (Pattern Intelligence, Flow Logic, Feedback Dynamics, Network Understanding, Fractal Coherence).
+    R - REGENERATION (R>1 Design, Capacity Building, Circulation Enhancement, System Healing, Life Force Stewardship).
+    A - ADAPTIVITY (Responsiveness, Iterative Learning, Navigating Uncertainty, Signal Filtering, Resilience Culture).
+    G - GENERATIVITET (Idea Generation, Co-creation, Emergence Design, Abundance Architecture, Transformative Innovation).
+    I - INTELLIGENS (Ethical Judgment, Deep Attention, Multi-perspective Thinking, Metacognition, Integrity Decisions).
+  
+  description_no: |
+    Engelsk versjon av SRAGI-oversikten. En HUD-visualisering som viser de fem pilarene med tilhørende nøkkelord og ikoner i neon-stil.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (Machine Readable)
+# -----------------------------------------------------------
+seo:
+  title_en: "SRAGI 5 Pillars Infographic - English Terminology"
+  description_en: "Official English visualization of the SRAGI framework: Systems Thinking, Regeneration, Adaptivity, Generativity, and Intelligence explained."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: "googleais-sragi-pillars-overview-2026"
+  resolution: "Original Fullres" # Anbefalt å beholde høyest mulig oppløsning fra AI Studio
+  aspect_ratio: "16:9"
+  design_ratio: "Widescreen"
+  style:
+    mood: "Neon, Cybernetic, Structured, HUD, Dark Mode"
+    palette: ["#0088FF", "#00FF44", "#FF9900", "#AA00FF", "#FFCC00"] # SRAGI Core Colors
+    influences: ["Sci-Fi UI", "Data Visualization", "Nano Banana Pro Style"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: "Futuristic HUD interface listing the 5 SRAGI pillars in English: Systems Thinking, Regeneration, Adaptivity, Generativity, Intelligence, with neon icons."
+  no: "Futuristisk HUD-grensesnitt som viser de 5 SRAGI-pilarene på engelsk med neon-ikoner og underkategorier."
+
+semantics:
+  concepts: ["Ontology", "English Terminology", "Framework Overview"]
+  tags: ["sragi-pillars", "infographic", "systems-thinking", "english-version"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["system_thinking", "regeneration", "adaptivity", "generativity", "intelligence"]
+  domains: ["education", "technology"]
+  contexts: ["global_onboarding", "documentation"]
+  relations: ["translation", "core_framework"]
+  actor_types: ["system_architecture"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "Google AI Studio / Nano Banana Pro"
+  source_prompt: "Translation of SRAGI pillars visual to English: Systems Thinking, Regeneration, Adaptivity, Generativity, Intelligence."
+  design_intent: "Internationalize the core SRAGI ontology visualization."
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2026 Rune Solberg / Neptunia Media AS
