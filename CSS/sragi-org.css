@@ -153,17 +153,6 @@
     --easing:     cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  /* Dark Mode */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg:         var(--clr-soft-black);
-      --surface:    var(--clr-gray-dark);
-      --text:       var(--clr-white);
-      --text-muted: var(--clr-gray-light);
-      --border:     var(--clr-gray-medium);
-      --link:       var(--clr-accent);
-    }
-  }
 }
 
 /* ================ TYPOGRAPHY ================ */
@@ -711,20 +700,6 @@ a:hover {
   }
 }
 
-/* ================ DARK MODE REFINEMENTS ================ */
-@media (prefers-color-scheme: dark) {
-  code {
-    background: var(--clr-gray-dark);
-    border-color: var(--clr-gray-medium);
-    color: var(--clr-gray-pale);
-  }
-  
-  .card,
-  .abstract {
-    background: var(--clr-gray-dark);
-    border-color: var(--clr-gray-medium);
-  }
-}
 
 /* ===========================================================
    END OF SRAGI ULTIMATE CSS v2.0
