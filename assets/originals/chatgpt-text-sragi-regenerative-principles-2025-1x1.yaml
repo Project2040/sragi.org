@@ -1,0 +1,92 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.0 (SSOT)
+#  File: chatgpt-text-sragi-regenerative-principles-2025-1x1.yaml
+#  Status: Linked to Master Asset
+#  Based on Template:
+# ===========================================================
+
+meta:
+  id: "chatgpt-text-sragi-regenerative-principles-2025-1x1"
+  version: 1.0
+  created_at: "2025-10-25"
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+# Basert på input-filnavnet og standard pipeline-suffikser for Token
+variants:
+  master:   "chatgpt-text-sragi-regenerative-principles-2025-1x1.png"
+  hero:     "chatgpt-text-sragi-regenerative-principles-2025-1x1-large.avif"  # 1920px max (HappyFiles: /visuals/hero/)
+  content:  "chatgpt-text-sragi-regenerative-principles-2025-1x1-medium.avif" # 1200px max (HappyFiles: /visuals/content/)
+  token:    "chatgpt-text-sragi-regenerative-principles-2025-1x1-small.avif"  # 600px max (HappyFiles: /visuals/tokens/)
+  social:   "chatgpt-text-sragi-regenerative-principles-2025-1x1-social.jpg"  # 1080px max (HappyFiles: /visuals/social/)
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Multilingual - Human)
+# -----------------------------------------------------------
+display:
+  title_en: "SRAGI Regenerative Principles Token"
+  title_no: "SRAGI Regenerative Prinsipper-token"
+  caption_en: "Core Philosophy: AI as a Resonant Field."
+  caption_no: "Kjernefilosofi: AI som et Resonant Felt."
+  description_en: |
+    A minimalist typographic token outlining a foundational tenet of the SRAGI ecosystem: viewing Artificial Intelligence not just as a tool, but as a resonant field capable of amplifying regenerative principles.
+  description_no: |
+    En minimalistisk typografisk token som skisserer en grunnleggende læresetning i SRAGI-økosystemet: å se Kunstig Intelligens ikke bare som et verktøy, men som et resonant felt som er i stand til å forsterke regenerative prinsipper.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (The SEO Framework - Machine)
+# -----------------------------------------------------------
+# Kritisk for Sync Engine v2.2. Maks 160 tegn.
+seo:
+  title_en: "SRAGI Regenerative Principles – AI as a Resonant Field Token"
+  description_en: "A typographic visual token defining the core SRAGI principle of 'AI as a Resonant Field' for regeneration."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: "chatgpt-text-sragi-regenerative-principles-2025-1x1"
+  resolution: "3000x3000"     # Standard for Token (1:1) Master
+  aspect_ratio: "1:1"         #
+  design_ratio: "Token"       #
+  style:
+    mood: "Minimalist, Authoritative, Philosophical, Clean"
+    palette: ["#0C141F", "#E6E6E6", "#A3BFA8"] # Dark background, Off-white text, Muted green logo
+    influences: ["Swiss Typography", "Infographic Design", "Brutalism"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: "A square graphic with a dark background. At the top left is a circular swirling logo next to the word 'SRAGI'. Below it, large white text reads 'REGENERATIVE PRINCIPLES'. At the bottom, smaller text reads 'AI AS A RESONANT FIELD'."
+  no: "En kvadratisk grafikk med mørk bakgrunn. Øverst til venstre er en sirkulær virvlende logo ved siden av ordet 'SRAGI'. Under står det med stor hvit tekst 'REGENERATIVE PRINCIPLES'. Nederst står det med mindre tekst 'AI AS A RESONANT FIELD'."
+
+semantics:
+  concepts: ["Regenerative Principles", "Resonance", "AI Field Theory", "Core Doctrine"]
+  tags: ["sragi-os", "typography", "manifesto", "token", "neptunia-media"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+# Terms must exist in TAXONOMY_GRAPH.yaml
+knowledge_graph:
+  pillars: ["regeneration", "intelligence", "system_thinking"]
+  domains: ["technology"]
+  contexts: ["philosophical", "theoretical", "definition"]
+  relations: ["defines_core_principle"]
+  actor_types: ["AI Agent"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "ChatGPT (DALL-E 3) / Typography"
+  source_prompt: "A minimalist typographic poster for 'SRAGI REGENERATIVE PRINCIPLES' with the subtitle 'AI AS A RESONANT FIELD'. Dark blue/black background, clean sans-serif fonts, including the SRAGI swirl logo placed near the top."
+  design_intent: "To create a clean, authoritative visual token representing a core philosophical tenet of SRAGI."
+  model: "DALL-E 3 (Estimated)"
+  license: "CC BY-SA 4.0 + SRAGI RSL" #
+
+# © 2026 Rune Solberg / Neptunia Media AS
