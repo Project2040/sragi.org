@@ -1,0 +1,92 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.0 (SSOT)
+#  File: chatgpt-sragi-co-create-regenerative-singularity-2025.yaml
+#  Status: Linked to Master Asset
+#  Context: Project2040 Mission Statement Token
+# ===========================================================
+
+meta:
+  id: "chatgpt-sragi-co-create-regenerative-singularity-2025"
+  version: 1.0
+  created_at: "2025-09-09"
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+# Genereres automatisk av SRAGI-IMAGE-PIPELINE-v2.1.bat
+variants:
+  master:   "assets/originals/chatgpt-sragi-co-create-regenerative-singularity-2025-1x1.png"
+  hero:     "visuals/hero/chatgpt-sragi-co-create-regenerative-singularity-2025-large.avif"    # 1920px (Upscaled/Fit)
+  content:  "visuals/content/chatgpt-sragi-co-create-regenerative-singularity-2025-medium.avif"# 1200px
+  token:    "visuals/tokens/chatgpt-sragi-co-create-regenerative-singularity-2025-small.avif"  # 600px (Primær bruk)
+  social:   "visuals/social/chatgpt-sragi-co-create-regenerative-singularity-2025-social.jpg"  # 1080px
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Multilingual - Human)
+# -----------------------------------------------------------
+display:
+  title_en: "The SRAGI Promise: Co-Creating 2040"
+  title_no: "SRAGI Løftet: Samskaping av 2040"
+  
+  caption_en: "A monolith in nature displaying the core mission: To co-create a regenerative singularity by 2040."
+  caption_no: "En monolitt i naturen som viser kjerneoppdraget: Å samskape en regenerativ singularitet innen 2040."
+  
+  description_en: |
+    A solarpunk visualization of technology integrated with nature. A sleek device stands amidst lush greenery and a flowing river, bathed in sunlight. The screen displays the SRAGI spiral logo and the text: 'SRAGI TO CO-CREATE A REGENERATIVE SINGULARITY BY 2040'.
+  
+  description_no: |
+    En solarpunk-visualisering av teknologi integrert med natur. En elegant enhet står midt i frodig grønt og en rennende elv, badet i sollys. Skjermen viser SRAGI-spiralen og teksten: 'SRAGI TO CO-CREATE A REGENERATIVE SINGULARITY BY 2040'.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (The SEO Framework - Machine)
+# -----------------------------------------------------------
+seo:
+  title_en: "SRAGI 2040 Mission Statement - Regenerative Singularity"
+  description_en: "Visual token representing the goal of SRAGI: Co-creating a regenerative singularity where technology and nature align by 2040."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: "chatgpt-sragi-co-create-regenerative-singularity-2025"
+  resolution: "Original Fullres (1024x1024+)"
+  aspect_ratio: "1:1"
+  design_ratio: "Token"       # Definert i VISUAL-PROTOCOL.md
+  style:
+    mood: "Solarpunk, Hopeful, Vibrant, Clear"
+    palette: ["#4CAF50", "#FFD700", "#0094C6", "#1F2937"] # Nature Green, Sun Gold, Tech Blue, Dark Frame
+    influences: ["Eco-Futurism", "Digital Monolith", "Nature Photography"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: "A futuristic digital monolith standing in a sunny river valley displaying the text: SRAGI to co-create a regenerative singularity by 2040."
+  no: "En futuristisk digital monolitt som står i en solfylt elvedal og viser teksten: SRAGI to co-create a regenerative singularity by 2040."
+
+semantics:
+  concepts: ["Regenerative Singularity", "Project2040", "Tech-Nature Harmony"]
+  tags: ["sragi-mission", "solarpunk", "manifesto", "2040-goal"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["regeneration", "generativity"]
+  domains: ["technology", "ecology"]
+  contexts: ["mission_statement", "vision"]
+  relations: ["future_roadmap"]
+  actor_types: ["ai_agent", "ecosystem"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "ChatGPT / DALL-E 3"
+  source_prompt: "SRAGI monolith in nature, text: TO CO-CREATE A REGENERATIVE SINGULARITY BY 2040"
+  design_intent: "Visualize the specific goal of the SRAGI project timeline."
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2025 Rune Solberg / Neptunia Media AS
