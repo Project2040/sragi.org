@@ -153,8 +153,6 @@
     --easing:     cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-}
-
 /* ================ TYPOGRAPHY ================ */
 @layer typography {
   .text-abstract {
@@ -585,19 +583,29 @@
     padding-block: var(--space-lg) !important;
   }
   
+}
+
   /* ===== STICKY HEADER FIXES ===== */
   
 /* ===== BODY OFFSET FOR STICKY HEADER ===== */
 
+/* === BODY OFFSET FOR STICKY HEADER === */
 #brx-content {
-  padding-top: 10rem !important;
+  padding-top: 10rem !important;  /* Desktop: full header */
 }
 
-@media (max-width: 48rem) {
+@media (max-width: 1024px) {
   #brx-content {
-    padding-top: 5rem !important; /* mulighet for å endre */
-   }
-} 
+    padding-top: 12rem !important;  /* Tablet: uten tagline */
+  }
+}
+
+@media (max-width: 768px) {
+  #brx-content {
+    padding-top: 18rem !important;  /* Mobil: full header */
+  }
+}
+
  /* ===== HOVER BEHAVIOR - LINKS ONLY ===== */
 
 /* Explicitly disable hover effects on non-link elements */
@@ -699,6 +707,7 @@ a:hover {
     font-size: var(--fs-base);
   }
 }
+
 
 
 /* ===========================================================
