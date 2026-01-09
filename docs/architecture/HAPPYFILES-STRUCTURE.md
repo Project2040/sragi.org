@@ -6,11 +6,11 @@
 
 **Maintainer:** Rune Solberg / Neptunia Media AS
 
-**Version:** 2.1r (SSOT-Aligned)
+**Version:** 2.2 (Dual-Core Aligned)
 
-**Last Updated:** December 2025
+**Last Updated:** January 2026
 
-## r - Revision needed: This guide needs update when HappyFiles Pro 1.9 is released to harness the power of the upgrade
+## ⚠️ Note: This guide is synchronized with SRAGI Visual Factory v5.5
 ---
 
 ## 🧭 Purpose
@@ -35,54 +35,15 @@ Within that root, create these top-level folders:
 | `media/` | Audio/video clips (MP4, MP3) |
 
 ### 🎨 The Visuals Sub-structure (Crucial!)
-This MUST match the **SRAGI Visual Protocol** output targets:
+This MUST match the **SRAGI Visual Factory** output targets:
 
 ```text
 /content/visuals/
-├── hero/           (For *-large.avif files)
-├── content/        (For *-medium.avif files)
-├── tokens/         (For *-small.avif and *-tiny.avif files)
-├── social/         (For *-social.jpg and *-og.jpg files)
+├── hero/           (For *-hero.avif files)
+├── content/        (For *-content.avif and *-content.jpg files)
+├── tokens/         (For *-token.avif and *-tiny.avif files)
+├── social/         (For *-og.jpg files)
 ├── diagrams/       (For SVG system diagrams)
 ├── icons/          (For SVG UI icons/logos)
 └── video/          (For MP4 background loops)
-
-```
-## ⚙️ Refactor Steps (Kairos Order)
-
-### 1. Create the New Structure
-1. Open **HappyFiles → Folders → Add New**.
-2. Create the root folder **`content`**.
-3. Inside it, create subfolders: `visuals`, `docs`, `license`, `media`.
-4. Inside `visuals`, create the subfolders listed above (`hero`, `content`, `tokens`, etc.).
-5. Add one temporary folder: **`_to-sort`** (buffer).
-
-### 2. Move Files Safely
-1. **Identify:** Use the filename suffix to guide you.
-   - Has `-hero`? 👉 Move to `/visuals/hero/`
-   - Has `-token`? 👉 Move to `/visuals/tokens/`
-   - Is it a Logo? 👉 Move to `/visuals/icons/`
-2. **Uncertain?** 👉 Move to `_to-sort`.
-3. **Verify:** Check frontend to ensure images still load correctly.
-
-### 3. Cleanup Old Structure
-After verifying functionality:
-1. Delete obsolete folders (e.g., `Bilder SRAGI`, `Branding`, `Photos`).
-2. Empty `_to-sort` gradually as you identify proper homes for the files.
-
----
-
-## 🧩 Verification Checklist
-
-| Step | Status |
-| :--- | :--- |
-| Root folder `content/` exists | ☐ |
-| Visual sub-folders match Protocol v1.1 | ☐ |
-| Old folders deleted | ☐ |
-| All images verified on frontend | ☐ |
-
----
-
-**Maintained by:** Neptunia Media AS / SRAGI Core  
-**License:** CC BY 4.0 via SRL
 
