@@ -1,12 +1,19 @@
 # ===========================================================
-#  SRAGI VISUAL TOKEN IDENTITY CARD v1.0 (SSOT)
-#  File: [filnavn-uten-extension].yaml
-#  Status: Linked to Master Asset
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.2 (SSOT)
+#  File: [id].yaml
+#  Status: TEMPLATE
+# ===========================================================
+#
+#  NAMING CONVENTION (Filnavn & ID):
+#  [project]-[description-slug]-[year]-[ratio]
+#  Eks: nanobanana-architect-2026-16x9
+#  Eks: sragi-os-interface-v2-2026-1x1
+#
 # ===========================================================
 
 meta:
-  id: ""                      # Filnavn uten extension (f.eks. gemini-nebula-2025)
-  version: 1.0
+  id: ""                      # Må matche filnavn uten extension
+  version: 1.2
   created_at: "YYYY-MM-DD"
   author: "Rune Solberg"
   organization: "Neptunia Media AS"
@@ -14,34 +21,42 @@ meta:
 # -----------------------------------------------------------
 # 1. PHYSICAL ASSETS (File Map)
 # -----------------------------------------------------------
-# Må matche output fra SRAGI-IMAGE-PIPELINE-v2.1.bat
+# Output fra SRAGI-STD-FACTORY.bat
 variants:
-  master:   ""      # Master PNG (GitHub/Arkiv)
-  hero:     ""      # 1920px AVIF (HappyFiles: /visuals/hero/)
-  content:  ""      # 1200px AVIF (HappyFiles: /visuals/content/)
-  token:    ""      # 600px AVIF  (HappyFiles: /visuals/tokens/)
-  social:   ""      # 1080px JPG  (HappyFiles: /visuals/social/)
+  master:   ""      # GitHub (PNG)
+  hero:     ""      # /visuals/hero/    (-hero.avif)
+  content:  ""      # /visuals/content/ (-content.avif)
+  fallback: ""      # /visuals/content/ (-content.jpg)
+  token:    ""      # /visuals/tokens/  (-token.avif)
+  tiny:     ""      # /visuals/tokens/  (-tiny.avif)
+  og:       ""      # /visuals/social/  (-og.jpg)
 
 # -----------------------------------------------------------
-# 2. WORDPRESS DISPLAY (Multilingual - Human)
+# 2. WORDPRESS DISPLAY (Dual Core - Human Readable)
 # -----------------------------------------------------------
 display:
-  title_en: ""
-  title_no: ""
-  caption_en: ""
+  title_en: ""      # Synlig tittel på nettsiden (EN)
+  title_no: ""      # Synlig tittel på nettsiden (NO)
+  
+  caption_en: ""    # Bildetekst under bildet (kort)
   caption_no: ""
+  
   description_en: |
-    
+    # Lengre beskrivelse/kontekst. Kan gå over flere linjer.
   description_no: |
     
 
 # -----------------------------------------------------------
-# 3. SEO METADATA (The SEO Framework - Machine)
+# 3. SEO METADATA (Machine Readable)
 # -----------------------------------------------------------
-# Kritisk for Sync Engine v2.2. Maks 160 tegn.
 seo:
-  title_en: ""        # Google Title (hvis ulik display title)
-  description_en: ""  # Meta Description (kort oppsummering)
+  # Tittel: Optimalt 50-60 tegn. Min 30, Maks 60.
+  title_en: ""
+  title_no: ""
+  
+  # Beskrivelse: Optimalt 130-155 tegn. Min 70, Maks 160.
+  description_en: ""
+  description_no: ""
 
 # -----------------------------------------------------------
 # 4. IMAGE TECH SPEC (The Physics)
@@ -49,18 +64,18 @@ seo:
 image:
   file_name: ""               # Base filnavn
   resolution: ""              # Master resolution (f.eks. 3000x2000)
-  aspect_ratio: ""            # 3:2, 16:9, 1:1, 4:5, 9:16, 4:3, 4:1, 20:1, 1:4, 1:20
-  design_ratio: ""            # Primary, Widescreen, Token, Social, Story, Classic...
+  aspect_ratio: "16:9"        # 16:9, 1:1, 4:5, 9:16...
+  design_ratio: "Widescreen"  # Primary, Widescreen, Token, Social...
   style:
     mood: ""                  # f.eks. "Regenerative, Dark, Glowing"
     palette: []               # f.eks. ["#004433", "#FFD700"]
     influences: []            # f.eks. "Solarpunk, Fractal Geometry"
 
 # -----------------------------------------------------------
-# 5. SEMANTICS (Accessibility & SEO)
+# 5. SEMANTICS (Accessibility & Alt Text)
 # -----------------------------------------------------------
 alt_text:
-  en: ""
+  en: "" # Beskriv bildet for blinde. Ikke start med "Bilde av..."
   no: ""
 
 semantics:
@@ -81,10 +96,10 @@ knowledge_graph:
 # 7. ORIGIN & LICENSE (Provenance)
 # -----------------------------------------------------------
 origin:
-  tool: ""                    # f.eks. "Midjourney v6 / Canva"
-  source_prompt: ""           # Original prompt
-  design_intent: ""           # Intensjon
-  model: ""                   # AI-modell
+  tool: "DALL-E 3 / Midjourney"
+  source_prompt: ""           # Lim inn original prompt her
+  design_intent: ""           # Hva ville du oppnå?
+  model: ""                   # f.eks. "v6.0 Alpha"
   license: "CC BY-SA 4.0 + SRAGI RSL"
 
-# © 2025 Rune Solberg / Neptunia Media AS
+# © 2026 Rune Solberg / Neptunia Media AS
