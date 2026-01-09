@@ -1,4 +1,4 @@
-# 🌀 SRAGI Visual Protocol v1.0 (SSOT)
+# 🌀 SRAGI Visual Protocol v1.1 (SSOT)
 
 **Status:** SSOT (Single Source of Truth)
 
