@@ -1,0 +1,90 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.1 (SSOT)
+#  File: nanobanana-nano-banana-architect-2026-16x9.yaml
+#  Status: PRODUCTION TEST
+# ===========================================================
+
+meta:
+  id: "nanobanana-nano-banana-architect-2026-16x9"
+  version: 1.1
+  created_at: "2026-01-09"
+  author: "Nano Banana (via Rune Solberg)"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+variants:
+  master:   "" # GitHub Only
+  hero:     "" # /visuals/hero/
+  content:  "" # /visuals/content/
+  fallback: "" # /visuals/content/ (JPG)
+  token:    "" # /visuals/tokens/
+  tiny:     "" # /visuals/tokens/
+  og:       "" # /visuals/social/
+
+# -----------------------------------------------------------
+# 1b. DEPLOYMENT STRATEGY
+# -----------------------------------------------------------
+deployment:
+  mode: "standard"          # Standard LEAN mode
+  upload_master: false      # Ingen PNG til WordPress
+  skip_og: false            # Systemet ser etter -og.jpg (enten fra BAT eller manuell)
+  og_manual: true           # True, siden du laget den i Canva!
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY
+# -----------------------------------------------------------
+display:
+  title_en: "Nano Banana: The System Architect"
+  title_no: "Nano Banana: Systemarkitekten"
+  
+  caption_en: "Nano Banana inspecting the new SRAGI visual infrastructure. 100% Performance."
+  caption_no: "Nano Banana inspiserer den nye SRAGI-infrastrukturen. 100% Ytelse."
+  
+  description_en: |
+    A visualization of the SRAGI 'Clean Architecture'. Nano Banana stands at the intersection of nature and code, representing our regenerative digital philosophy.
+  description_no: |
+    En visualisering av SRAGIs 'Clean Architecture'. Nano Banana står i krysningen mellom natur og kode, og representerer vår regenerative digitale filosofi.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA
+# -----------------------------------------------------------
+seo:
+  title_en: "Nano Banana System Architect - SRAGI Visuals"
+  title_no: "Nano Banana Systemarkitekt - SRAGI Visuals"
+  description_en: "Test asset for the SRAGI Visual Factory v5.3 pipeline."
+  description_no: "Test-ressurs for SRAGI Visual Factory v5.3 pipeline."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC
+# -----------------------------------------------------------
+image:
+  file_name: "nanobanana-nano-banana-architect-2026-16x9"
+  aspect_ratio: "16:9"
+  design_ratio: "Widescreen"
+  style:
+    mood: "Regenerative, High-Tech, Crisp"
+    palette: ["#0094C6", "#0A0F12", "#40E0C0"] 
+    influences: ["Solarpunk", "Cyberpunk", "Data Visualization"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS
+# -----------------------------------------------------------
+alt_text:
+  en: "Nano Banana character standing in a futuristic server room holding a holographic performance cube."
+  no: "Nano Banana-karakteren står i et futuristisk serverrom og holder en holografisk ytelses-kube."
+
+semantics:
+  concepts: ["Architecture", "Performance", "Regeneration"]
+  tags: ["nano-banana", "test", "factory-v5", "sragi-os"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN
+# -----------------------------------------------------------
+origin:
+  tool: "Nano Banana Pro Google AI Studio"
+  model: "v3"
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2026 Rune Solberg / Neptunia Media AS
