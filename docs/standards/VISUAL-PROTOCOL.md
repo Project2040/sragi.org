@@ -87,49 +87,42 @@ Dette er den slaviske prosessen fra idé til publisering.
      * Gi filen navn etter standarden
      * Last ned .jpg
 
-### FASE 2: FABRIKKEN (Automatisering)
+### **FASE 2: FABRIKKEN (Automatisering)**
 
-6.  **Input:** Dra Master-filen over `SRAGI-IMAGE-PIPELINE-v2_1.bat`.
+5. **Input: Dra Master-filen over SRAGI-STD-FACTORY.bat.**
 
-Når Master-filen kjøres gjennom scriptet `SRAGI-IMAGE-PIPELINE-v2_1.bat`, genereres følgende sett automatisk. Scriptet skalerer kun ned hvis bildet er større enn målet (`>`), så Striper og Thin-formater forblir skarpe.
+**Scriptet genererer automatisk hele familien (LEAN Protocol):**
 
-| Suffiks | Maks Bredde | Formater | HappyFiles Mappe | Bruk |
-| :--- | :--- | :--- | :--- | :--- |
-| **`-large`** | 1920 px | AVIF + WEBP | `/visuals/hero/` | Bakgrunner, Hero. |
-| **`-medium`** | 1200 px | AVIF + WEBP | `/visuals/content/` | **Featured Image**, innhold. |
-| **`-small`** | 600 px | AVIF + WEBP | `/visuals/tokens/` | Grid, ikoner, kort. |
-| **`-social`** | 1080 px | JPG | `/visuals/social/` | SoMe-deling. |
+| Suffiks | Maks Bredde | Formater | Mappe (WordPress) | Bruk |
+| :---- | :---- | :---- | :---- | :---- |
+| **\-hero** | **1920 px** | **AVIF** | **/visuals/hero/** | **Bakgrunner, Hero.** |
+| **\-content** | **1200 px** | **AVIF** | **/visuals/content/** | **Featured Image, innhold.** |
+| **\-content** | **1200 px** | **JPG** | **/visuals/content/** | **Universal Fallback (Img src).** |
+| **\-token** | **600 px** | **AVIF** | **/visuals/tokens/** | **Grid, ikoner, kort.** |
+| **\-tiny** | **300 px** | **AVIF** | **/visuals/tokens/** | **Thumbnails/LCP.** |
+| **\-og** | **1200 px** | **JPG** | **/visuals/social/** | **Open Graph (SoMe).** |
 
-### FASE 3: DISTRIBUSJON (Logistikken)
+### **FASE 3: DISTRIBUSJON (Logistikken)**
 
-7.  **Samling:** Flytt *hele familien* (Master + Web-filer + YAML) til din lokale mappe:
-   -* `E:\1-Neptunia-Media-Visuals\Visual-content-ready\[Filnavn-Mappe]\`.
-   
-8.  **GitHub (Hvelvet):**
-    -* Last opp **Master PNG** + **YAML** til `assets/originals/`.
-  
-9.  **WordPress (Scenen)**
-    
-    Gå til HappyFiles og last opp filene til riktig mappe:
+6. **GitHub (Hvelvet):**  
+   * **Last opp .yaml filen til /content/visuals/.**  
+   * **Last opp Master PNG til /assets/originals/ (valgfritt/arkiv).**  
+7. **WordPress (Scenen):**  
+   * **Last opp de 6 genererte filene (AVIF/JPG) via FTP til /wp-content/uploads/visuals/inbox/.**  
+   * **Gå til WP Admin \> Media \> 🏭 Visual Factory.**  
+   * **Klikk "Kjør Dual-Core Import".**  
+8. ***Systemet flytter filene automatisk til riktig HappyFiles-mappe og synkroniserer metadata (Norsk \+ Engelsk).***
 
-     - *-large → /visuals/hero/
-   
-     - *-medium → /visuals/content/
-   
-     - *-small → /visuals/tokens/
-   
-     - *-social → /visuals/social/
-   
-     - *-strip → /visuals/strip 
+### **FASE 4: STYLING (Bricks Builder)**
 
-### FASE 4: STYLING (Bricks Builder)
-10. **CSS Magic:** Legg til overlays, gradients, borders og skygger i Bricks. Bildet forblir rent; stilen er kode.
+8. **Bruk: Sett inn shortcoden:**  
+   **\[sragi\_picture name="filnavn-uten-suffix" size="content"\]**
 
 ---
 
-## 💾 Del 3: Metadata (YAML SSOT)
+## **💾 Del 3: Metadata (YAML SSOT)**
 
-Se over .yaml fila for å sjekke at alt stemmer.
+**Sjekk alltid .yaml\-filen mot TEMPLATE-VISUAL-v1.2.yaml for å sikre at SEO og Alt-tekster er korrekt utfylt for både Norsk og Engelsk.**
 
+**© 2026 Rune Solberg / Neptunia Media AS Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL).**
 
-© 2025 Rune Solberg / Neptunia Media AS Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL).
