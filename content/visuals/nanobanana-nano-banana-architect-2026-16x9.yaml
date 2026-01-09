@@ -53,8 +53,8 @@ display:
 seo:
   title_en: "Nano Banana System Architect - SRAGI Visuals"
   title_no: "Nano Banana Systemarkitekt - SRAGI Visuals"
-  description_en: "Test asset for the SRAGI Visual Factory v5.3 pipeline."
-  description_no: "Test-ressurs for SRAGI Visual Factory v5.3 pipeline."
+  description_en: "Meet Nano Banana, the System Architect visualizing the SRAGI 2026 infrastructure. A symbol of our regenerative, lean, and high-performance digital philosophy."
+  description_no: "Møt Nano Banana, systemarkitekten som visualiserer SRAGIs infrastruktur for 2026. Et symbol på vår regenerative, slanke og høyytelses digitale filosofi."
 
 # -----------------------------------------------------------
 # 4. IMAGE TECH SPEC
@@ -86,5 +86,6 @@ origin:
   tool: "Nano Banana Pro Google AI Studio"
   model: "v3"
   license: "CC BY-SA 4.0 + SRAGI RSL"
+
 
 # © 2026 Rune Solberg / Neptunia Media AS
