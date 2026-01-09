@@ -1,547 +1,373 @@
-# 🐇 SRAGI Bunny.net CDN Integration
+# **🐇 SRAGI Bunny.net CDN Integration (Master Guide)**
 
-**File:** `/docs/architecture/BUNNY-CDN-INTEGRATION.md`  
-**Maintainer:** Rune Solberg / Neptunia Media AS  
-**Version:** 1.0c  
-**Status:** 🟡 Planning → Implementation  
-**Target Completion:** Q1 2026  
-**Last Updated:** October 29, 2025 (Marked for change, Rune Solberg, 06.12.2025)
+File: /docs/architecture/BUNNY-CDN-INTEGRATION.md
 
-# This file need a major update as this is now implemented!! (Rune Solberg, 06.12.2025)
----
+Maintainer: Rune Solberg / Neptunia Media AS
 
-## 🎯 Purpose
+Version: 2.2 (Complete Implementation Guide)
 
-Integrate **Bunny.net CDN** into sragi.org for:
-- ⚡ **Global performance** (edge caching)
-- 🖼️ **Automatic image optimization** (WebP/AVIF)
-- 🌍 **Reduced server load** (static asset offloading)
-- 📊 **Better analytics** (bandwidth insights)
+Status: ✅ PRODUCTION ACTIVE
+
+Platform: One.com Guru \+ WordPress \+ Bunny.net
+
+Last Updated: January 2026
 
 ---
 
-## 📋 Current Status
+## **🎯 Purpose**
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| **Bunny Account** | ✅ Active | Account: neptunia-media |
-| **Pull Zone Created** | ⏳ Pending | Target: `sragi.b-cdn.net` |
-| **CNAME Setup** | ⏳ Pending | DNS: `media.sragi.org` |
-| **WordPress Integration** | ⏳ Pending | URL rewrite filter |
-| **Image Optimization** | ⏳ Pending | WebP/AVIF enabled |
-| **Cache Purge Logic** | ⏳ Pending | Auto-purge on update |
+Integrate **Bunny.net CDN** into sragi.org (and future Neptunia sites) to achieve:
+
+* ⚡ **Edge Performance:** Serve media from global nodes closer to the user.  
+* 🖼️ **Asset Offloading:** Reduce load on the One.com origin server.  
+* 💰 **Lean Cost Structure:** Using local optimization pipeline (no paid CDN add-ons).  
+* 🔐 **SSOT Compliance:** Configuration via code (wp-config.php), not database settings.)
 
 ---
 
-## 🌊 Implementation Journey (Kairos Approach)
+## **📋 System Status**
 
-### Phase 1: Foundation
-
-**Kairos Marker:** When WordPress and content structure feel ready for transformation
-
-**Goal:** Prepare the field – create clarity before velocity
-
-**Readiness Signals:**
-- You feel confident in media organization
-- Performance baseline is documented
-- Team understands the *why*, not just the *how*
-- Energy is present for systemic change
-
-**Tasks:**
-- [x] Define folder structure (`/content/`, `/visuals/`)
-- [x] Audit existing media library
-- [x] Optimize images with TinyPNG/SVGO
-- [ ] Benchmark current site performance
-  - Tools: GTmetrix, Lighthouse, Pingdom
-  - Metrics: TTFB, LCP, CLS, Speed Index
-- [ ] Document baseline performance
-  - Create `/docs/performance/baseline-2025-10.md`
-
-**Success Criteria:**
-- ✅ All images under 500KB
-- ✅ SVG diagrams optimized
-- ✅ Baseline metrics documented
+| Component | Status | Configuration |
+| :---- | ----- | ----- |
+| Bunny Account | ✅ Active | Rune Solberg, bruker@info-nett.no, firma Neptunia Media AS |
+| Pull Zone | ✅ Active | sragi-org (Standard Tier) |
+| Hostname | ✅ Active | [https://media.sragi.org](https://media.sragi.org/) |
+| WordPress Bridge | ✅ Active | Custom PHP Rewrite (WPCodeBox) |
 
 ---
 
-### Phase 2: CDN Deployment (Week 3-4)
+## **🏗️ Architecture Overview**
 
-**Goal:** Configure and connect Bunny.net CDN
+| Component | Setting | Value / Note |
+| :---- | :---- | :---- |
+| **Origin Strategy** | **Root Origin** | CDN points to https://www.sragi.org (allows caching CSS/JS later). |
+| **URL Rewriting** | **Uploads Path** | Rewrites /wp-content/uploads/ to media.sragi.org/wp-content/uploads/. |
+| **Optimization** | **Local Pipeline** | We upload optimized AVIF. Bunny Optimizer is **DISABLED** to save costs. |
+| **SSL** | **Full** | media.sragi.org secured via Let's Encrypt in Bunny. |
 
-#### Step 1: Create Pull Zone
+---
 
-**Bunny Dashboard:**
+## 
+
+## **🛠️ Step-by-Step Implementation Guide**
+
+### **1\. Bunny.net Configuration**
+
+1. **Create Pull Zone:**  
+   * Name: sragi-org (becomes sragi-org.b-cdn.net).  
+   * Origin URL: https://www.sragi.org (**Note:** Point to root, not uploads).  
+   * Pricing Tier: Standard.
+
+2. **Add Hostname:**  
+   * Add media.sragi.org.  
+   * Enable SSL (Let's Encrypt).
+
+3. **Disable Optimizer:**  
+   * Ensure "Bunny Optimizer" is **OFF** (We optimize locally).
+
+---
+
+### **2\. DNS Setup (One.com Control Panel)**
+
+*Critical step to link media.sragi.org to Bunny.*
+
+1. Log in to **One.com** → **DNS Settings**.  
+2. Create a new record under **DNS records**:  
+   * **Type:** CNAME  
+   * **Hostname (Alias):** media  
+   * **Value (Target):** sragi-org.b-cdn.net (Check your specific Bunny hostname).  
+   * **TTL:** 3600 (1 hour).  
+3. Click **Create record**.  
+4. *Wait 15-60 minutes for propagation.*
+
+---
+
+### **3\. Server Configuration (wp-config.php)**
+
+*This file activates the logic. It keeps credentials out of the database.*
+
+1. Access server via **SFTP** or **One.com File Manager**.  
+2. Edit wp-config.php in the root folder.  
+3. Add this block **above** /\* That's all, stop editing\! \*/:
+
+PHP
+
 ```
-1. Go to: https://dash.bunny.net/
-2. Pull Zones → Add Pull Zone
-3. Settings:
-   - Name: sragi-org
-   - Origin URL: https://sragi.org/wp-content/uploads/
-   - CDN URL: sragi.b-cdn.net
+// ===========================================================
+// 🐰 SRAGI BUNNY CDN CONFIGURATION
+// ===========================================================
+// Master Switch
+define('SRAGI_CDN_ENABLED', true);
+
+// Purge Credentials (Get from Bunny Dashboard -> Account / Pull Zone)
+define('BUNNY_API_KEY', 'ditt-lange-api-passord-her'); 
+define('BUNNY_PULL_ZONE_ID', 'din-id-her'); // ID from Pull Zone Overview
+
+// URL Definitions (The "Root Origin" Strategy)
+// Note: We include the full path to align the rewrite logic accurately.
+define('SRAGI_CDN_URL', 'https://media.sragi.org/wp-content/uploads');
+define('SRAGI_ORIGIN_URL', 'https://www.sragi.org/wp-content/uploads');
 ```
 
-**Configuration:**
-```yaml
-pull_zone:
-  name: sragi-org
-  origin: https://sragi.org/wp-content/uploads/
-  cdn_url: sragi.b-cdn.net
-  
-optimizer:
-  enabled: true
-  webp: true
-  avif: true
-  quality: 85
-  
-edge_rules:
-  - match: "*.{jpg,jpeg,png,gif,svg,webp}"
-    cache_ttl: 31536000  # 1 year
-  - match: "*.{css,js}"
-    cache_ttl: 86400     # 1 day
-  - match: "*.pdf"
-    cache_ttl: 604800    # 1 week
+---
+
+### **4\. WordPress Integration (The Bridge Logic)**
+
+*The engine that rewrites the URLs on the fly.*
+
+Tool: WPCodeBox (or functions.php).
+
+Snippet Name: SRAGI Bunny CDN Bridge.
+
+Type: PHP (Run everywhere).
+
+PHP
+
 ```
-
-#### Step 2: DNS Configuration
-
-**Add CNAME Record:**
-```
-Type:  CNAME
-Host:  media
-Value: sragi.b-cdn.net
-TTL:   3600
-```
-
-**Result:**
-```
-https://media.sragi.org → https://sragi.b-cdn.net
-```
-
-#### Step 3: WordPress Integration
-
-**Create WPCodeBox Snippet:**
-
-File: `/wordpress/wpcodebox/sragi_bunny_cdn.php`
-
-```php
 <?php
-/**
- * SRAGI Bunny.net CDN Integration
- * 
- * Rewrites all wp-content/uploads URLs to Bunny CDN
- * Includes cache purge functionality
- * 
- * @package SRAGI
- * @version 1.0
- */
+/*
+Snippet Name: SRAGI Bunny CDN Integration (Robust)
+Description: Advanced rewriting to Bunny CDN with dynamic origin, type safety, and auto-purge.
+Version: 2.3 (Robust Edition)
+Author: Rune Solberg / Neptunia Media AS
+License: CC BY-SA 4.0 via SRL
+*/
 
 // ===========================================================
-// CONFIGURATION
+// 1. KONFIGURASJON & HJELPERE
 // ===========================================================
 
-// Enable/disable CDN (set in wp-config.php)
-// define('SRAGI_CDN_ENABLED', true);
-// define('BUNNY_API_KEY', 'your-api-key-here');
-// define('BUNNY_PULL_ZONE_ID', 'your-pull-zone-id');
+if (!defined('SRAGI_CDN_URL')) {
+    // VIKTIG: Pek denne mot mappen i Bunny hvis du bruker root-origin strategi
+    define('SRAGI_CDN_URL', 'https://media.sragi.org/wp-content/uploads');
+}
 
-define('SRAGI_CDN_URL', 'https://media.sragi.org');
-define('SRAGI_ORIGIN_URL', 'https://sragi.org/wp-content/uploads');
+// Fallback hvis WP ikke klarer å finne egen upload-dir
+if (!defined('SRAGI_ORIGIN_URL')) {
+    define('SRAGI_ORIGIN_URL', 'https://www.sragi.org/wp-content/uploads');
+}
+
+function sragi_cdn_enabled(): bool {
+    return (defined('SRAGI_CDN_ENABLED') && SRAGI_CDN_ENABLED);
+}
+
+// Henter den FAKTISKE URL-en til opplastinger dynamisk
+function sragi_origin_baseurl(): string {
+    $uploads = wp_upload_dir(null, false);
+    if (!empty($uploads['baseurl'])) {
+        return rtrim($uploads['baseurl'], '/');
+    }
+    return rtrim(SRAGI_ORIGIN_URL, '/');
+}
+
+function sragi_cdn_baseurl(): string {
+    return rtrim(SRAGI_CDN_URL, '/');
+}
 
 // ===========================================================
-// URL REWRITING
+// 2. URL REWRITING (Motoren)
 // ===========================================================
 
-/**
- * Rewrite attachment URLs to CDN
- */
 add_filter('wp_get_attachment_url', 'sragi_cdn_rewrite_url', 10, 2);
 
 function sragi_cdn_rewrite_url($url, $post_id = null) {
-    // Check if CDN is enabled
-    if (!defined('SRAGI_CDN_ENABLED') || !SRAGI_CDN_ENABLED) {
-        return $url;
+    // Fail-fast sjekker
+    if (!sragi_cdn_enabled() || !is_string($url) || $url === '') return $url;
+
+    // Kun påvirke filer i uploads-mappen
+    if (strpos($url, '/wp-content/uploads/') === false) return $url;
+
+    $origin = sragi_origin_baseurl();
+    $cdn    = sragi_cdn_baseurl();
+
+    // 1. Unngå dobbel rewrite (hvis URL allerede er CDN)
+    if (strpos($url, $cdn) === 0) return $url;
+
+    // 2. Hvis URL starter med origin (det vanlige tilfellet)
+    if (strpos($url, $origin) === 0) {
+        return $cdn . substr($url, strlen($origin));
     }
-    
-    // Only rewrite uploads directory
-    if (strpos($url, '/wp-content/uploads/') === false) {
-        return $url;
-    }
-    
-    return str_replace(SRAGI_ORIGIN_URL, SRAGI_CDN_URL, $url);
+
+    // 3. Fallback: Prøv hardkodet replace hvis dynamisk feilet
+    return str_replace(rtrim(SRAGI_ORIGIN_URL, '/'), $cdn, $url);
 }
 
 /**
- * Rewrite srcset URLs for responsive images
+ * Rewrite SRCSET (Responsive bilder)
  */
 add_filter('wp_calculate_image_srcset', 'sragi_cdn_rewrite_srcset', 10, 5);
 
 function sragi_cdn_rewrite_srcset($sources, $size_array, $image_src, $image_meta, $attachment_id) {
-    if (!defined('SRAGI_CDN_ENABLED') || !SRAGI_CDN_ENABLED) {
-        return $sources;
-    }
-    
+    if (!sragi_cdn_enabled() || !is_array($sources)) return $sources;
+
+    $origin = sragi_origin_baseurl();
+    $cdn    = sragi_cdn_baseurl();
+
     foreach ($sources as &$source) {
-        $source['url'] = str_replace(SRAGI_ORIGIN_URL, SRAGI_CDN_URL, $source['url']);
+        if (!isset($source['url']) || !is_string($source['url'])) continue;
+
+        // Skip hvis allerede CDN
+        if (strpos($source['url'], $cdn) === 0) continue;
+
+        if (strpos($source['url'], $origin) === 0) {
+            $source['url'] = $cdn . substr($source['url'], strlen($origin));
+        } else {
+            $source['url'] = str_replace(rtrim(SRAGI_ORIGIN_URL, '/'), $cdn, $source['url']);
+        }
     }
-    
     return $sources;
 }
 
 // ===========================================================
-// CACHE PURGING
+// 3. CACHE PURGING (Renholdet)
 // ===========================================================
 
-/**
- * Purge Bunny CDN cache for specific URLs
- * 
- * @param string|array $urls URLs to purge
- * @return bool Success status
- */
 function sragi_bunny_purge_cache($urls) {
-    // Check credentials
     if (!defined('BUNNY_API_KEY') || !defined('BUNNY_PULL_ZONE_ID')) {
-        error_log('SRAGI: Bunny CDN credentials not configured');
         return false;
     }
-    
-    $api_key = BUNNY_API_KEY;
-    $pull_zone_id = BUNNY_PULL_ZONE_ID;
-    
-    // Ensure array
-    if (!is_array($urls)) {
-        $urls = [$urls];
-    }
-    
-    $success = true;
-    
+
+    if (!is_array($urls)) $urls = [$urls];
+
+    $origin = sragi_origin_baseurl();
+    $cdn    = sragi_cdn_baseurl();
+
     foreach ($urls as $url) {
-        $response = wp_remote_post(
-            "https://api.bunny.net/pullzone/{$pull_zone_id}/purgeCache",
+        if (!is_string($url) || $url === '') continue;
+
+        // Sørg for at vi purger CDN-urlen, ikke origin-urlen
+        $cdn_url = $url;
+
+        if (strpos($cdn_url, $cdn) !== 0) {
+            if (strpos($cdn_url, $origin) === 0) {
+                $cdn_url = $cdn . substr($cdn_url, strlen($origin));
+            } else {
+                $cdn_url = str_replace(rtrim(SRAGI_ORIGIN_URL, '/'), $cdn, $cdn_url);
+            }
+        }
+
+        // Send API-kall (Async/Non-blocking for hastighet)
+        wp_remote_post(
+            "https://api.bunny.net/pullzone/" . BUNNY_PULL_ZONE_ID . "/purgeCache",
             [
                 'headers' => [
-                    'AccessKey' => $api_key,
+                    'AccessKey' => BUNNY_API_KEY,
                     'Content-Type' => 'application/json',
                 ],
-                'body' => json_encode(['url' => $url]),
-                'timeout' => 10,
+                'body' => wp_json_encode(['url' => esc_url_raw($cdn_url)]),
+                'timeout' => 5,
+                'blocking' => false,
             ]
         );
-        
-        if (is_wp_error($response)) {
-            error_log('SRAGI Bunny purge failed: ' . $response->get_error_message());
-            $success = false;
-        } else {
-            error_log('SRAGI Bunny purged: ' . $url);
-        }
     }
-    
-    return $success;
+    return true;
 }
 
-/**
- * Auto-purge cache when post/page is updated
- */
-add_action('save_post', 'sragi_auto_purge_post', 10, 3);
+// ===========================================================
+// 4. ADMIN & AUTOMATIKK
+// ===========================================================
 
-function sragi_auto_purge_post($post_id, $post, $update) {
-    // Skip for revisions
-    if (wp_is_post_revision($post_id)) {
-        return;
-    }
-    
-    // Skip if not published
-    if ($post->post_status !== 'publish') {
-        return;
-    }
-    
-    // Get post URL and featured image
-    $urls_to_purge = [get_permalink($post_id)];
-    
-    // Add featured image if exists
-    $thumbnail_id = get_post_thumbnail_id($post_id);
-    if ($thumbnail_id) {
-        $thumbnail_url = wp_get_attachment_url($thumbnail_id);
-        if ($thumbnail_url) {
-            $urls_to_purge[] = $thumbnail_url;
-        }
-    }
-    
-    // Purge cache
-    sragi_bunny_purge_cache($urls_to_purge);
-}
-
-/**
- * Manual cache purge button (admin only)
- */
+// Legg til knapp i admin bar
 add_action('admin_bar_menu', 'sragi_add_purge_button', 100);
 
 function sragi_add_purge_button($wp_admin_bar) {
-    if (!current_user_can('manage_options')) {
-        return;
-    }
-    
+    if (!current_user_can('manage_options')) return;
+
     $wp_admin_bar->add_node([
         'id'    => 'sragi-purge-cache',
-        'title' => '🐇 Purge CDN Cache',
-        'href'  => wp_nonce_url(admin_url('admin-post.php?action=sragi_purge_all_cache'), 'sragi_purge_cache'),
+        'title' => '🐇 Purge CDN',
+        'href'  => wp_nonce_url(admin_url('admin-post.php?action=sragi_purge_all'), 'sragi_purge')
     ]);
 }
 
-/**
- * Handle manual purge request
- */
-add_action('admin_post_sragi_purge_all_cache', 'sragi_handle_manual_purge');
+// Håndter manuell purge
+add_action('admin_post_sragi_purge_all', 'sragi_handle_manual_purge');
 
 function sragi_handle_manual_purge() {
-    // Verify nonce
-    if (!wp_verify_nonce($_GET['_wpnonce'], 'sragi_purge_cache')) {
-        wp_die('Invalid request');
+    $nonce = $_GET['_wpnonce'] ?? '';
+
+    if (!current_user_can('manage_options') || !wp_verify_nonce($nonce, 'sragi_purge')) {
+        wp_die('Ingen tilgang.');
     }
-    
-    // Check permissions
-    if (!current_user_can('manage_options')) {
-        wp_die('Insufficient permissions');
+
+    if (!defined('BUNNY_API_KEY') || !defined('BUNNY_PULL_ZONE_ID')) {
+        wp_die('Mangler API-nøkler i wp-config.php');
     }
-    
-    // Purge homepage
-    $success = sragi_bunny_purge_cache(home_url('/'));
-    
-    // Redirect back with message
-    $redirect = add_query_arg([
-        'message' => $success ? 'cache_purged' : 'cache_purge_failed',
-    ], wp_get_referer());
-    
-    wp_safe_redirect($redirect);
+
+    // Purge hele sonen (Purge All)
+    wp_remote_post(
+        "https://api.bunny.net/pullzone/" . BUNNY_PULL_ZONE_ID . "/purgeCache",
+        [
+            'headers' => ['AccessKey' => BUNNY_API_KEY],
+            'timeout' => 5
+        ]
+    );
+
+    wp_safe_redirect(add_query_arg(['sragi_purged' => 1], wp_get_referer()));
     exit;
 }
-```
 
-**Enable in wp-config.php:**
-```php
-// Bunny CDN Configuration
-define('SRAGI_CDN_ENABLED', true);
-define('BUNNY_API_KEY', 'your-bunny-api-key-here');
-define('BUNNY_PULL_ZONE_ID', 'your-pull-zone-id-here');
-```
+// Auto-purge ved lagring
+add_action('save_post', 'sragi_auto_purge_on_save', 10, 3);
 
-#### Step 4: Testing
+function sragi_auto_purge_on_save($post_id, $post, $update) {
+    if (!sragi_cdn_enabled()) return;
 
-**Test URLs:**
-```
-Before: https://sragi.org/wp-content/uploads/2025/10/logo.png
-After:  https://media.sragi.org/2025/10/logo.png
-```
+    // Viktig: Unngå purge på autosave og revisjoner
+    if (wp_is_post_revision($post_id) || wp_is_post_autosave($post_id)) return;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!is_object($post) || $post->post_status !== 'publish') return;
 
-**Verification:**
-```bash
-# Check if CDN is serving
-curl -I https://media.sragi.org/2025/10/logo.png
+    $thumb_id = get_post_thumbnail_id($post_id);
+    if ($thumb_id) {
+        $url = wp_get_attachment_url($thumb_id);
+        if ($url) sragi_bunny_purge_cache($url);
+    }
+}
 
-# Should see:
-# X-Cache: HIT
-# Server: BunnyCDN
-```
+// Auto-purge ved sletting
+add_action('delete_attachment', 'sragi_auto_purge_on_delete');
 
-**Success Criteria:**
-- ✅ Images load from `media.sragi.org`
-- ✅ HTTP headers show Bunny cache
-- ✅ Page load time improved
-- ✅ No broken images
+function sragi_auto_purge_on_delete($post_id) {
+    if (!sragi_cdn_enabled()) return;
 
----
+    $url = wp_get_attachment_url($post_id);
+    if ($url) sragi_bunny_purge_cache($url);
+}
 
-### Phase 3: Optimization (Week 5-6)
-
-**Goal:** Fine-tune performance and automation
-
-**Tasks:**
-- [ ] Enable WebP/AVIF auto-conversion
-- [ ] Configure cache TTL rules
-- [ ] Set up Bunny Analytics dashboard
-- [ ] Implement lazy loading for images
-- [ ] Configure preload hints for critical assets
-- [ ] Monitor bandwidth usage
-- [ ] Document performance improvements
-
-**Monitoring:**
-```
-Weekly checks:
-- Bandwidth usage (Bunny Dashboard)
-- Cache hit ratio (target: >90%)
-- Image optimization stats
-- Page speed scores (GTmetrix)
-```
-
-**Success Criteria:**
-- ✅ Cache hit ratio >90%
-- ✅ LCP improved by 30%+
-- ✅ Bandwidth reduced by 50%+
-- ✅ All images auto-converted to WebP
-
----
-
-## 📊 Performance Targets
-
-| Metric | Before CDN | Target | Measurement |
-|--------|-----------|--------|-------------|
-| **TTFB** | TBD | <200ms | GTmetrix |
-| **LCP** | TBD | <2.5s | Lighthouse |
-| **CLS** | TBD | <0.1 | Lighthouse |
-| **Speed Index** | TBD | <3s | GTmetrix |
-| **Total Page Size** | TBD | <1MB | DevTools |
-| **Cache Hit Ratio** | N/A | >90% | Bunny Dashboard |
-
----
-
-## 💰 Cost Estimate
-
-**Bunny.net Pricing (Pay-as-you-go):**
-```
-Storage:    $0.01/GB/month
-Bandwidth:  $0.01-0.05/GB (region dependent)
-Requests:   $1.00/million requests
-```
-
-**Expected Monthly Cost:**
-```
-Storage:    10 GB × $0.01 = $0.10
-Bandwidth:  100 GB × $0.01 = $1.00
-Requests:   1M × $0.001 = $1.00
----
-Total:      ~$2-5/month
-```
-
-**Comparison:**
-- Bunny.net: $2-5/month
-- Cloudflare: $20/month (Pro)
-- AWS CloudFront: $10-50/month
-
-**Savings:** ~80% vs alternatives
-
----
-
-## 🔧 Configuration Reference
-
-### Bunny Dashboard Settings
-
-**Optimizer:**
-```
-✅ Enable Optimizer
-✅ WebP Conversion
-✅ AVIF Conversion
-   Quality: 85
-✅ Automatic Mobile Optimization
-✅ Lazy Loading
-```
-
-**Caching:**
-```
-✅ Enable CDN
-   Cache TTL: 1 year (images)
-   Browser Cache: 1 year
-✅ Query String Handling: Ignore
-✅ Vary Header: Accept-Encoding
-```
-
-**Security:**
-```
-✅ Token Authentication: Disabled (public assets)
-✅ Geo-blocking: Disabled
-✅ Hotlink Protection: Enabled
-   Allowed domains: sragi.org, neptuniamedia.org
-```
-
-### WordPress Settings
-
-**WPCodeBox Snippet:**
-```
-Name: SRAGI Bunny CDN
-Type: PHP
-Location: Global (all pages)
-Status: Active
-```
-
-**wp-config.php:**
-```php
-define('SRAGI_CDN_ENABLED', true);
-define('BUNNY_API_KEY', '[secret]');
-define('BUNNY_PULL_ZONE_ID', '[id]');
 ```
 
 ---
 
-## 📚 Related Documentation
+## **📊 Verification Checklist**
 
-- [SRAGI Conventions](../docs/SRAGI-CONVENTIONS.md)
-- [SRAGI Image Guidelines](../assets/docs/image-guidelines.md)
-- [SRAGI Architecture](../ARCHITECTURE.md)
-- [Bunny.net Official Docs](https://docs.bunny.net/)
+1. **Check Image URLs:** Right-click an image on the site.  
+   * Start with: https://media.sragi.org/... ✅
 
----
+2. **Check Headers:** Inspect Network tab in DevTools.  
+   * x-cache: HIT or MISS (shows Bunny is active).  
+   * server: BunnyCDN.
 
-## 🐛 Troubleshooting
-
-### Images Not Loading from CDN
-
-**Symptoms:** Images still load from origin
-
-**Check:**
-1. Is `SRAGI_CDN_ENABLED` set to `true`?
-2. Is WPCodeBox snippet active?
-3. Clear browser cache
-4. Check WordPress debug.log for errors
-
-### Cache Not Purging
-
-**Symptoms:** Old images still showing
-
-**Check:**
-1. Are `BUNNY_API_KEY` and `BUNNY_PULL_ZONE_ID` correct?
-2. Check WordPress error logs
-3. Manually purge via Bunny Dashboard
-4. Verify webhook/action triggers
-
-### Poor Cache Hit Ratio
-
-**Symptoms:** Cache hit ratio <70%
-
-**Solutions:**
-1. Increase cache TTL
-2. Check for dynamic query strings
-3. Review Vary headers
-4. Enable "Ignore Query String" in Bunny
+3. **Mobile Check:** Ensure images load on phones (validates srcset logic).
 
 ---
 
-## ✅ Completion Checklist
+## **🆘 Troubleshooting**
 
-- [ ] Phase 1: Foundation complete
-- [ ] Phase 2: CDN deployed and tested
-- [ ] Phase 3: Optimizations implemented
-- [ ] Performance targets met
-- [ ] Documentation updated
-- [ ] Team trained on cache purging
-- [ ] Monitoring dashboard set up
-- [ ] Backup/rollback plan documented
+**Images Broken (404)?**
 
----
+* Check wp-config.php: Did you include /wp-content/uploads in both URL constants?  
+* Check DNS: Has media.sragi.org propagated? (Use whatsmydns.net).
 
-## 📞 Support
+**Changes not showing?**
 
-**Bunny.net Support:**
-- 📧 support@bunny.net
-- 💬 https://support.bunny.net/
-
-**SRAGI Team:**
-- 📧 kontakt@sragi.org
-- 🌐 https://sragi.org
+* Go to Bunny Dashboard \-\> **Purge Cache** (Purge All) to force a refresh.
 
 ---
 
-**© 2025 Rune Solberg / Neptunia Media AS**  
-Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL) v1.0
+© 2026 Rune Solberg / Neptunia Media AS
 
----
+Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL).
 
-*"Speed is not velocity without direction."*  
-— SRAGI Performance Philosophy
+
+
