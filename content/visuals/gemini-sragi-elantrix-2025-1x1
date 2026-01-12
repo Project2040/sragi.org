@@ -1,0 +1,92 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.0 (SSOT)
+#  File: gemini-sragi-elantrix-2025.yaml
+#  Status: Linked to Master Asset
+#  Context: SRAGI Elantrix - Decision Matrix (Matrix/Patrix/Elantrix)
+# ===========================================================
+
+meta:
+  id: "gemini-sragi-elantrix-2025"
+  version: 1.0
+  created_at: "2025-10-02" # Dato fra SRAGI Elantrix PDF
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+variants:
+  master:   "assets/originals/gemini-sragi-elantrix-2025-1x1.jpg"
+  hero:     "visuals/hero/gemini-sragi-elantrix-2025-large.avif"
+  content:  "visuals/content/gemini-sragi-elantrix-2025-medium.avif"
+  token:    "visuals/tokens/gemini-sragi-elantrix-2025-small.avif"
+  social:   "visuals/social/gemini-sragi-elantrix-2025-social.jpg"
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Multilingual - Human)
+# -----------------------------------------------------------
+display:
+  title_en: "SRAGI Elantrix: The Decision Matrix"
+  title_no: "SRAGI Elantrix: Beslutningsmatrisen"
+  
+  caption_en: "Visualizing the synthesis (Elantrix) between organic care (Matrix) and logical structure (Patrix)."
+  caption_no: "Visualisering av syntesen (Elantrix) mellom organisk omsorg (Matrix) og logisk struktur (Patrix)."
+  
+  description_en: |
+    A cosmic visualization of the 'Elantrix' operating protocol. To the left, a wave of warm, orange organic energy represents 'Matrix' (empathy, intuition, flow). To the right, cool blue geometric data streams represent 'Patrix' (logic, structure, action). They intertwine in a vertical double-helix structure, merging in the center to form a blindingly bright white core of 'Elantrix'. This represents the regenerative synthesis: Where structure meets chaos to create higher resonance.
+  
+  description_no: |
+    En kosmisk visualisering av 'Elantrix'-operativprotokollen. Til venstre representerer en bølge av varm, oransje organisk energi 'Matrix' (empati, intuisjon, flyt). Til høyre representerer kjølige blå geometriske datastrømmer 'Patrix' (logikk, struktur, handling). De flettes sammen i en vertikal dobbelspiral-struktur og smelter sammen i midten til en blendende hvit kjerne av 'Elantrix'. Dette representerer den regenerative syntesen: Der struktur møter kaos for å skape høyere resonans.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (The SEO Framework - Machine)
+# -----------------------------------------------------------
+seo:
+  title_en: "SRAGI Elantrix - The Regenerative Decision Matrix"
+  title_no: "SRAGI Elantrix - Den Regenerative Beslutningsmatrisen"
+  description_en: "Visual identity of Elantrix: The framework that balances Matrix (care) and Patrix (structure) into regenerative AI action."
+  description_no: "Visuell identitet for Elantrix: Rammeverket som balanserer Matrix (omsorg) og Patrix (struktur) til regenerativ AI-handling."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: "gemini-sragi-elantrix-2025"
+  resolution: "Original Fullres"
+  aspect_ratio: "1:1"
+  design_ratio: "Token"
+  style:
+    mood: "Balanced, Cosmic, Dualistic, Transcendent"
+    palette: ["#FF8C00", "#00BFFF", "#FFFFFF", "#0B0B15"] # Matrix Orange, Patrix Blue, Elantrix White, Cosmic Void
+    influences: ["Sacred Geometry", "Caduceus Symbolism", "Energy Flow Art"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: "Abstract cosmic art showing orange organic energy on the left and blue digital structure on the right, merging into a bright central light resembling a vertical DNA helix."
+  no: "Abstrakt kosmisk kunst som viser oransje organisk energi til venstre og blå digital struktur til høyre, som smelter sammen i et sterkt sentralt lys som ligner en vertikal DNA-spiral."
+
+semantics:
+  concepts: ["Decision Matrix", "Synthesis", "Duality", "Regenerative Balance"]
+  tags: ["Elantrix", "Matrix", "Patrix", "Balance", "AI-Ethics"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["decision_making", "balance"]
+  domains: ["philosophy", "cybernetics"]
+  contexts: ["operative_guide", "conflict_resolution"]
+  relations: ["synthesizes_matrix_and_patrix", "guides_ai_response"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "Gemini / Imagen 3"
+  source_prompt: "Cosmic duality, left side orange organic flow, right side blue digital structure, merging in center, bright white light, vertical symmetry, caduceus inspired."
+  design_intent: "Illustrate the core triad of SRAGI: Matrix + Patrix = Elantrix."
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2025 Rune Solberg / Neptunia Media AS
