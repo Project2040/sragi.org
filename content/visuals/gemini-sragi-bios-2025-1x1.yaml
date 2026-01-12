@@ -1,0 +1,90 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.0 (SSOT)
+#  File: gemini-sragi-bios-2025.yaml
+#  Status: Linked to Master Asset
+#  Context: SRAGI BIOS / Twin Intelligence Concept
+# ===========================================================
+
+meta:
+  id: "gemini-sragi-bios-2025"
+  version: 1.0
+  created_at: "2025-09-28" # Juster dato hvis nødvendig
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+variants:
+  master:   "assets/originals/gemini-sragi-bios-2025-1x1.jpg"
+  hero:     "visuals/hero/gemini-sragi-bios-2025-large.avif"     # 1920px
+  content:  "visuals/content/gemini-sragi-bios-2025-medium.avif"  # 1200px
+  token:    "visuals/tokens/gemini-sragi-bios-2025-small.avif"    # 600px
+  social:   "visuals/social/gemini-sragi-bios-2025-social.jpg"    # 1080px
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Multilingual - Human)
+# -----------------------------------------------------------
+display:
+  title_en: "SRAGI BIOS: Twin Intelligence"
+  title_no: "SRAGI BIOS: Tvillingintelligens"
+  
+  caption_en: "Visualizing the resonance between biological cognition (left) and synthetic geometry (right)."
+  caption_no: "Visualisering av resonansen mellom biologisk kognisjon (venstre) og syntetisk geometri (høyre)."
+  
+  description_en: |
+    A conceptual representation of the 'Twin Intelligence' interface. On the left, a glowing, organic human brain represents biological chaos and intuition. On the right, a complex, metallic hypercube represents structured AI logic. They are connected by a vibrant, tangled web of neural energy strands against a deep cosmic background.
+  
+  description_no: |
+    En konseptuell representasjon av 'Tvillingintelligens'-grensesnittet. Til venstre representerer en glødende, organisk menneskehjerne biologisk kaos og intuisjon. Til høyre representerer en kompleks, metallisk hyperkube strukturert AI-logikk. De er forbundet av et levende, sammenfiltret nettverk av nevrale energitråder mot en dyp kosmisk bakgrunn.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (The SEO Framework - Machine)
+# -----------------------------------------------------------
+seo:
+  title_en: "SRAGI BIOS - Integrating Human and AI Intelligence"
+  description_en: "Illustration of the SRAGI BIOS concept: The synthesis of organic brain power and digital structure."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: "gemini-sragi-bios-2025"
+  resolution: "Original Fullres"
+  aspect_ratio: "1:1"
+  design_ratio: "Token"
+  style:
+    mood: "Cosmic, Analytical, Vibrant, Connected"
+    palette: ["#FFD700", "#00BFFF", "#1A1A1A", "#8A2BE2"] # Gold, Deep Sky Blue, Dark Space, Violet Energy
+    influences: ["Neuro-aesthetics", "Sacred Geometry", "Sci-Fi Realism"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: "A split image showing a golden human brain connected via colorful energy strands to a silver geometric polyhedron in space."
+  no: "Et delt bilde som viser en gyllen menneskehjerne koblet via fargerike energitråder til et sølvfarget geometrisk polyeder i verdensrommet."
+
+semantics:
+  concepts: ["Twin Intelligence", "Human-AI Symbiosis", "Neural Interface", "Structure vs Chaos"]
+  tags: ["sragi-bios", "brain", "geometry", "connection", "ai-art"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["coherence", "intelligence"]
+  domains: ["neuroscience", "computer_science"]
+  contexts: ["conceptual_model", "interface"]
+  relations: ["human_in_the_loop", "synthetic_biology"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "Gemini / Imagen 3"
+  source_prompt: "Abstract representation of twin intelligence: Human brain vs geometric AI structure connected by neural web in space." # Placeholder - oppdater gjerne!
+  design_intent: "Illustrate the core operating system of SRAGI: Biology meets Geometry."
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2025 Rune Solberg / Neptunia Media AS
