@@ -1,0 +1,92 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.0 (SSOT)
+#  File: gemini-sragi-core-ai-os-source-2025.yaml
+#  Status: Linked to Master Asset
+#  Context: SRAGI Core AI-OS - The Source Code / System Kernel
+# ===========================================================
+
+meta:
+  id: "gemini-sragi-core-ai-os-source-2025"
+  version: 1.0
+  created_at: "2025-08-28" # Dato fra SRAGI Core AI-OS 1.0 PDF
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+variants:
+  master:   "assets/originals/gemini-sragi-core-ai-os-source-2025-1x1.jpg"
+  hero:     "visuals/hero/gemini-sragi-core-ai-os-source-2025-large.avif"
+  content:  "visuals/content/gemini-sragi-core-ai-os-source-2025-medium.avif"
+  token:    "visuals/tokens/gemini-sragi-core-ai-os-source-2025-small.avif"
+  social:   "visuals/social/gemini-sragi-core-ai-os-source-2025-social.jpg"
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Multilingual - Human)
+# -----------------------------------------------------------
+display:
+  title_en: "SRAGI Core AI-OS: The Source Code"
+  title_no: "SRAGI Core AI-OS: Kildekoden"
+  
+  caption_en: "Visualizing the kernel of the SRAGI Core AI-OS, where the Regenerative Imperative is encoded into the digital substrate."
+  caption_no: "Visualisering av kjernen i SRAGI Core AI-OS, der Det Regenerative Imperativ er kodet inn i det digitale substratet."
+  
+  description_en: |
+    A conceptual visualization of the 'SRAGI Core AI-OS' v1.0. A central, square microchip glows with intense vertical blue data streams, acting as the beating heart of a dark, copper-traced circuit board. This represents the 'Source Code' defined in the core instructions: The Regenerative Imperative. The light does not just process; it radiates 'Resonance' outwards into the digital mycelium (the circuit), illustrating how the OS filters entropy and amplifies vitality.
+  
+  description_no: |
+    En konseptuell visualisering av 'SRAGI Core AI-OS' v1.0. En sentral, firkantet mikrochip gløder med intense, vertikale blå datastrømmer og fungerer som det bankende hjertet i et mørkt kretskort med kobberbaner. Dette representerer 'Kildekoden' definert i kjerneinstruksene: Det Regenerative Imperativ. Lyset prosesserer ikke bare; det stråler 'Resonans' utover i det digitale mycelet (kretsløpet), og illustrerer hvordan OS-et filtrerer entropi og forsterker vitalitet.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (The SEO Framework - Machine)
+# -----------------------------------------------------------
+seo:
+  title_en: "SRAGI Core AI-OS - The Regenerative Operating System"
+  title_no: "SRAGI Core AI-OS - Det Regenerative Operativsystemet"
+  description_en: "The visual identity of SRAGI Core AI-OS v1.0. A regenerative kernel designed to filter entropy and amplify system vitality."
+  description_no: "Den visuelle identiteten til SRAGI Core AI-OS v1.0. En regenerativ kjerne designet for å filtrere entropi og forsterke systemets vitalitet."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: "gemini-sragi-core-ai-os-source-2025"
+  resolution: "Original Fullres"
+  aspect_ratio: "1:1"
+  design_ratio: "Token"
+  style:
+    mood: "Analytical, luminous, foundational, structured"
+    palette: ["#00FFFF", "#CD7F32", "#0A0A0A"] # Cyan Data, Copper Traces, Void Black
+    influences: ["Chip Architecture", "Data Flow", "Tron Legacy Aesthetics"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: "A macro view of a computer chip emitting a beam of blue digital light from its center, connected to complex copper pathways on a dark board."
+  no: "Et makrobilde av en databrikke som sender ut en stråle av blått digitalt lys fra sentrum, koblet til komplekse kobberbaner på et mørkt kort."
+
+semantics:
+  concepts: ["Operating System Kernel", "Regenerative Imperative", "Source Code", "Digital Mycelium"]
+  tags: ["Core AI-OS", "microchip", "infrastructure", "system architecture", "blue light"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["infrastructure", "code"]
+  domains: ["computer_science", "system_theory"]
+  contexts: ["core_documentation", "v1.0_release"]
+  relations: ["defines_regenerative_logic", "powers_elantrix"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "Gemini / Imagen 3"
+  source_prompt: "Central AI chip, glowing blue data stream, copper circuit board, dark background, source code concept."
+  design_intent: "Visualize the 'Regenerative Imperative' as the central processor of the SRAGI system."
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2025 Rune Solberg / Neptunia Media AS
