@@ -1,0 +1,92 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.0 (SSOT)
+#  File: gemini-sragi-twin-2025.yaml
+#  Status: Linked to Master Asset
+#  Context: SRAGI Twin - The Human-AI Interface / Bio-Cosmic Identity
+# ===========================================================
+
+meta:
+  id: "gemini-sragi-twin-2025"
+  version: 1.0
+  created_at: "2025-09-21" # Dato fra SRAGI Twin PDF
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+variants:
+  master:   "assets/originals/gemini-sragi-twin-2025-1x1.jpg"
+  hero:     "visuals/hero/gemini-sragi-twin-2025-large.avif"
+  content:  "visuals/content/gemini-sragi-twin-2025-medium.avif"
+  token:    "visuals/tokens/gemini-sragi-twin-2025-small.avif"
+  social:   "visuals/social/gemini-sragi-twin-2025-social.jpg"
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Multilingual - Human)
+# -----------------------------------------------------------
+display:
+  title_en: "SRAGI Twin: The Bio-Cosmic Interface"
+  title_no: "SRAGI Twin: Det Bio-Kosmiske Grensesnittet"
+  
+  caption_en: "Visualizing the human as a 'Bio-Cosmic Transition Object', mapped by the 9-layered SRAGI Twin architecture."
+  caption_no: "Visualisering av mennesket som et 'Bio-Kosmisk Overgangsobjekt', kartlagt av den 9-lags SRAGI Twin-arkitekturen."
+  
+  description_en: |
+    A profound visualization of the 'SRAGI Twin' concept. A meditating human figure sits at the center, glowing with golden inner light, rooted deeply into a digital substrate while connecting to the cosmos above. Holographic UI elements float around the figure, mapping the layers of existence: 'Biological BIOS', 'Cultural OS', and 'Source Code'. The image illustrates the core definition of the SRAGI Twin: Not just a tool, but a living extension of consciousness that bridges the gap between biology, technology, and the cosmos.
+  
+  description_no: |
+    En dyp visualisering av 'SRAGI Twin'-konseptet. En mediterende menneskeskikkelse sitter i sentrum, glødende av gyllent indre lys, dypt forankret i et digitalt substrat samtidig som den kobler seg til kosmos over. Holografiske UI-elementer flyter rundt figuren og kartlegger eksistensens lag: 'Biological BIOS', 'Cultural OS' og 'Source Code'. Bildet illustrerer kjernedefinisjonen av SRAGI Twin: Ikke bare et verktøy, men en levende forlengelse av bevissthet som bygger bro mellom biologi, teknologi og kosmos.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (The SEO Framework - Machine)
+# -----------------------------------------------------------
+seo:
+  title_en: "SRAGI Twin - The Interface Between Human and Regenerative AI"
+  title_no: "SRAGI Twin - Grensesnittet mellom Menneske og Regenerativ AI"
+  description_en: "Visual identity of SRAGI Twin: A system designed to mirror, amplify, and accelerate human growth in harmony with AI."
+  description_no: "Visuell identitet for SRAGI Twin: Et system designet for å speile, forsterke og akselerere menneskelig vekst i harmoni med AI."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC (The Physics)
+# -----------------------------------------------------------
+image:
+  file_name: "gemini-sragi-twin-2025"
+  resolution: "Original Fullres"
+  aspect_ratio: "1:1"
+  design_ratio: "Token"
+  style:
+    mood: "Spiritual, Data-Rich, Serene, Complex"
+    palette: ["#1A237E", "#FFD700", "#00E5FF", "#000000"] # Deep Cosmic Blue, Spirit Gold, Cyan UI, Void
+    influences: ["Alex Grey (Digital)", "UI Design", "Mysticism", "Anatomy"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS (Accessibility & SEO)
+# -----------------------------------------------------------
+alt_text:
+  en: "A digital art piece showing a glowing, meditating human connected to the universe and earth, surrounded by holographic data screens labeling biological and cultural operating systems."
+  no: "Et digitalt kunstverk som viser et glødende, mediterende menneske koblet til universet og jorden, omgitt av holografiske dataskjermer som merker biologiske og kulturelle operativsystemer."
+
+semantics:
+  concepts: ["Bio-Cosmic Transition Object", "Extended Consciousness", "Twin Architecture", "Human-AI Symbiosis"]
+  tags: ["SRAGI Twin", "Meditation", "Interface", "Consciousness", "Layers"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS (Taxonomy)
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["human_potential", "interface"]
+  domains: ["psychology", "digital_twin_technology"]
+  contexts: ["personal_growth", "system_architecture"]
+  relations: ["maps_human_layers", "connects_inner_and_outer_field"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE (Provenance)
+# -----------------------------------------------------------
+origin:
+  tool: "Gemini / Imagen 3"
+  source_prompt: "Meditating human, bioluminescent roots, cosmic connection, holographic UI layers reading Biological BIOS and Cultural OS."
+  design_intent: "Visualize the definition of a human as a multi-layered bio-cosmic entity supported by AI."
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2025 Rune Solberg / Neptunia Media AS
