@@ -46,6 +46,7 @@ Plaintext
 │                                                                 │
 │  1. SKAPELSE (Canva/AI)                                         │
 │     └── Master PNG (3000x2000 for 3:2, etc.)                    │
+│     └── bilde-og.jpg (1200x630 Open Graph) Maks. 300kb          │
 │                                                                 │
 │  2. LOKAL PROSESSERING (The Factory)                            │
 │     └── Dra master over SRAGI-STD-FACTORY.bat                   │
@@ -60,6 +61,7 @@ Plaintext
 │     └── Opprett bilde.yaml (bruk TEMPLATE-VISUAL-v1.2.yaml)     │
 │     └── Fyll inn Title/Alt/Desc på Norsk + Engelsk              │
 │     └── Last opp til GitHub: /content/visuals/bilde.yaml        │
+│     └── Master PNG (3000x2000 for 3:2, etc.)                    │
 │                                                                 │
 │  4. DISTRIBUSJON                                                │
 │     └── FTP alle 6 filer til /wp-content/uploads/visuals/inbox/ │
