@@ -1,0 +1,107 @@
+# ===========================================================
+#  SRAGI VISUAL TOKEN IDENTITY CARD v1.1 (SSOT)
+#  File: regenerative-manifesto-sragi-ai-2026-16x9.yaml
+#  Status: Linked to Master Asset
+# ===========================================================
+
+meta:
+  id: "regenerative-manifesto-sragi-ai-2026-16x9"
+  version: 1.1
+  created_at: "2026-05-11"
+  author: "Rune Solberg"
+  organization: "Neptunia Media AS"
+
+# -----------------------------------------------------------
+# 1. PHYSICAL ASSETS (File Map)
+# -----------------------------------------------------------
+variants:
+  master:   "chatgpt-regenerative-manifesto-sragi-ai-2026-16x9.png"
+  hero:     "chatgpt-regenerative-manifesto-sragi-ai-2026-16x9-large.avif"
+  content:  "chatgpt-regenerative-manifesto-sragi-ai-2026-16x9-medium.avif"
+  token:    "chatgpt-regenerative-manifesto-sragi-ai-2026-16x9-small.avif"
+  social:   "chatgpt-regenerative-manifesto-sragi-ai-2026-16x9-social.jpg"
+
+# -----------------------------------------------------------
+# 2. WORDPRESS DISPLAY (Human Readable)
+# -----------------------------------------------------------
+display:
+  title_en: "The Regenerative Manifesto — Wide Hero"
+  title_no: "Det regenerative manifestet — bred hero"
+
+  caption_en: "A panoramic vision of SRAGI: humans, AI, soil, water and community connected by a regenerative intelligence layer."
+  caption_no: "En panoramisk visjon av SRAGI: mennesker, KI, jord, vann og fellesskap koblet sammen av et regenerativt intelligenslag."
+
+  description_en: |
+    A wide cinematic solarpunk landscape at golden hour, showing a human figure overlooking a thriving regenerative valley.
+    The scene contains gardens, water systems, forest edges, low-impact architecture, solar panels, collaborative community life,
+    and a luminous AI-inspired systems layer woven through the landscape as transparent nodes, signals and relational overlays.
+    The 16:9 composition is designed as a hero image for The Regenerative Manifesto, presenting SRAGI as a practical framework
+    where human judgment, artificial intelligence and living systems cooperate to create more life than they take.
+  description_no: |
+    Et bredt filmatisk solarpunk-landskap i gyllent kveldslys, der en menneskeskikkelse ser utover en levende regenerativ dal.
+    Scenen inneholder hager, vannsystemer, skogkanter, lavpåvirkningsarkitektur, solceller, samarbeidende lokalsamfunn
+    og et lysende KI-inspirert systemlag vevd gjennom landskapet som transparente noder, signaler og relasjonelle overlegg.
+    16:9-komposisjonen er laget som hero-bilde for Det regenerative manifestet, og fremstiller SRAGI som et praktisk rammeverk
+    der menneskelig dømmekraft, kunstig intelligens og levende systemer samarbeider om å skape mer liv enn de tar.
+
+# -----------------------------------------------------------
+# 3. SEO METADATA (Max 160 chars)
+# -----------------------------------------------------------
+seo:
+  title_en: "The Regenerative Manifesto - SRAGI AI Hero Image"
+  title_no: "Det regenerative manifestet - SRAGI KI hero-bilde"
+  description_en: "Wide solarpunk hero image visualizing SRAGI, regenerative AI, living soil, community resilience and technology with a compass."
+  description_no: "Bredt solarpunk hero-bilde som visualiserer SRAGI, regenerativ KI, levende jord, lokal robusthet og teknologi med kompass."
+
+# -----------------------------------------------------------
+# 4. IMAGE TECH SPEC
+# -----------------------------------------------------------
+image:
+  file_name: "chatgpt-regenerative-manifesto-sragi-ai-2026-16x9"
+  resolution: "1672x941"
+  aspect_ratio: "16:9"
+  design_ratio: "Wide Hero"
+  style:
+    mood: "Epic, Hopeful, Cinematic, Regenerative, System-Aware"
+    palette: ["Deep Green", "Warm Gold", "Earth Brown", "Slate Blue", "Luminous Cyan"]
+    influences: ["Solarpunk", "Cinematic Landscape Art", "Regenerative Systems Mapping", "Augmented Reality Data Visualization", "Editorial Concept Art"]
+
+# -----------------------------------------------------------
+# 5. SEMANTICS
+# -----------------------------------------------------------
+alt_text:
+  en: "Wide solarpunk landscape at sunset with a human figure overlooking gardens, water systems, forest, community buildings, solar panels and glowing AI network overlays connecting soil, people and ecosystems."
+  no: "Bredt solarpunk-landskap ved solnedgang med en menneskeskikkelse som ser utover hager, vannsystemer, skog, fellesskapsbygg, solceller og lysende KI-nettverk som kobler jord, mennesker og økosystemer."
+
+semantics:
+  concepts: ["Regeneration", "Human-AI Cooperation", "Living Systems", "System Design", "Regenerative Singularity", "Technology with a Compass"]
+  tags: ["sragi", "regenerative-manifesto", "human-ai", "solarpunk", "living-systems", "wide-hero", "regenerative-singularity"]
+
+# -----------------------------------------------------------
+# 6. KNOWLEDGE GRAPH BINDINGS
+# -----------------------------------------------------------
+knowledge_graph:
+  pillars: ["Regenerative Thinking", "Intelligens", "Technology with a Compass"]
+  domains: ["Society & Ecology", "Technology & AI", "Education", "Health", "Economy", "Agriculture", "Community Resilience"]
+  contexts: ["The Regenerative Manifesto", "Vision 2040", "SRAGI Framework", "AI as Thinking Partner", "Regenerative Singularity"]
+  relations: ["Living Systems", "Smart Technology", "Local Resilience", "Human-AI Field", "Soil & Community", "Water Systems", "Distributed Intelligence"]
+  actor_types: ["Human", "AI", "Community", "Future Generation", "Regenerative Builder", "Local Steward"]
+
+# -----------------------------------------------------------
+# 7. ORIGIN & LICENSE
+# -----------------------------------------------------------
+origin:
+  tool: "ChatGPT Image Generation"
+  source_prompt: |
+    Create a new 16:9 wide-format version of the concept shown in Image A. Image A is the style and content anchor.
+    Preserve the core idea: an epic, hopeful regenerative solarpunk landscape at golden hour, with one thoughtful human figure
+    in the foreground overlooking a thriving community of gardens, water systems, forest edge, low-impact buildings, people collaborating,
+    and a subtle luminous AI intelligence layer woven through the scene as elegant network lines, nodes, and transparent systems overlays.
+    Keep the same overall mood, palette, and message of regenerative intelligence—humans, AI, nature, and community working together.
+    Recompose the scene for a cinematic horizontal 16:9 frame with more breadth across the valley, wider sky, broader community detail,
+    and a balanced panoramic layout. Do not render any text. Avoid dystopia, generic robots, corporate sterility, and classical wind turbines.
+  design_intent: "To create the wide hero version of The Regenerative Manifesto: a panoramic visual anchor for SRAGI as regenerative intelligence, where AI reveals relationships across soil, water, people, community and future-capable systems."
+  model: "ChatGPT Image Generation"
+  license: "CC BY-SA 4.0 + SRAGI RSL"
+
+# © 2026 Rune Solberg / Neptunia Media AS
