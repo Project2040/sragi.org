@@ -9,10 +9,10 @@
             "default_license_scope": "Gjelder generelt redaksjonelt innhold på sragi.org med mindre et navngitt verk eller en release angir en annen lisens."
         },
         "source": "https://sragi.org",
-        "generated": "NDS Trust Export Generator (2026-07-19T04:50:55+00:00)"
+        "generated": "NDS Trust Export Generator (2026-07-19T04:59:33+00:00)"
     },
     "organization": {
-        "author": "Neptunia Media AS",
+        "author": "Rune Solberg, Neptunia Media AS",
         "rights_holder": "Neptunia Media AS",
         "contact_email": "contact@sragi.org",
         "contact_email_nb": "kontakt@sragi.org",
@@ -76,5 +76,16 @@
     "commercial_licensing": {
         "available": false
     },
-    "repository": "https://github.com/Project2040/sragi.org"
+    "repository": "https://github.com/Project2040/sragi.org",
+    "links": {
+        "license_md": "https://sragi.org/content/license/REGENERATIVE_LICENSE.md",
+        "license_json": "https://sragi.org/content/license/license.json",
+        "license_rsl_xml": "https://sragi.org/content/license/LICENSE-RSL.xml",
+        "ai_policy_xml": "https://sragi.org/content/license/ai-policy.xml",
+        "ai_policy_txt": "https://sragi.org/ai-policy.txt",
+        "license_html": "https://sragi.org/license",
+        "principles_md": "https://www.sragi.org/regenerative-principles/",
+        "robots_txt": "https://sragi.org/robots.txt",
+        "sitemap_xml": "https://sragi.org/sitemap.xml"
+    }
 }
