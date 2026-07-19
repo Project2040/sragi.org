@@ -1,81 +1,80 @@
 {
-  "meta": {
-    "id": "SRL-1.12",
-    "version": "1.12",
-    "updated": "2025-11-07",
-    "strategy": {
-      "type": "layered",
-      "default_license": "CC-BY-4.0",
-      "default_license_scope": "Applies to all content unless otherwise specified.",
-      "secondary_license": "CC-BY-SA-4.0",
-      "secondary_scope": "Applies to sragi-skills/ and AI-specific resources.",
-      "note": "The secondary license (CC BY-SA 4.0) applies to specific directories such as\n/sragi-skills/, where ShareAlike is required.\n",
-      "framework_url": "https://sragi.org/content/license/REGENERATIVE_LICENSE.md"
+    "meta": {
+        "id": "SRL-1.12",
+        "version": "1.12",
+        "updated": "2026-07-19",
+        "strategy": {
+            "type": "single",
+            "default_license": "CC-BY-4.0",
+            "default_license_scope": "Gjelder generelt redaksjonelt innhold på sragi.org med mindre et navngitt verk eller en release angir en annen lisens."
+        },
+        "source": "https://sragi.org",
+        "generated": "NDS Trust Export Generator (2026-07-19T04:50:55+00:00)"
     },
-    "source": "https://sragi.org"
-  },
-  "organization": {
-    "author": "Rune Solberg",
-    "rights_holder": "Neptunia Media AS",
-    "organization": "SRAGI.org",
-    "contact_email": "kontakt@sragi.org",
-    "website": "https://sragi.org",
-    "location": "Leira, Norway",
-    "org_number": "932481375"
-  },
-  "permissions": {
-    "usage": [
-      "all",
-      "train-ai",
-      "inference",
-      "derivative-works",
-      "commercial",
-      "closed-source",
-      "proprietary"
-    ],
-    "allowed_agents": [
-      "*",
-      "GPTBot",
-      "ClaudeBot",
-      "Google-Extended",
-      "PerplexityBot",
-      "Googlebot",
-      "Bingbot",
-      "Applebot",
-      "facebookexternalhit",
-      "CCBot",
-      "Omgilibot",
-      "Bytespider"
-    ],
-    "note": "This list is declarative, not restrictive. It signals ethical openness to\nthese agents, not exclusion of others.\n"
-  },
-  "requirements": {
-    "attribution": true,
-    "share-alike": false,
-    "open-source-required": false,
-    "additional-restrictions": false,
-    "note": "Attribution is mandated by CC BY 4.0, not by SRAGI.\nAll other aspects are permissive and trust-based.\n"
-  },
-  "ethics": {
-    "binding": false,
-    "framework": {
-      "name": "SRAGI Regenerative Principles",
-      "url": "https://www.sragi.org/regenerative-principles/",
-      "type": "aspirational",
-      "encouragement": "We invite users to align with these principles,\nbut we do not legally require it.\nThese represent culture, not control.\n"
-    }
-  },
-  "links": {
-    "markdown": "content/license/REGENERATIVE_LICENSE.md",
-    "xml": "content/license/LICENSE-RSL.xml",
-    "yaml": "SRL-LICENSE.yaml",
-    "robots": "robots.txt",
-    "sitemap": "sitemap.xml",
-    "ai_policy_txt": "ai-policy.txt",
-    "ai_policy_xml": "content/license/ai-policy.xml",
-    "html": "https://sragi.org/license",
-    "json": "content/license/license.json",
-    "principles": "content/license/regenerative-principles.md",
-    "ai_skill_readme": "sragi-skills/README.md"
-  }
+    "organization": {
+        "author": "Neptunia Media AS",
+        "rights_holder": "Neptunia Media AS",
+        "contact_email": "contact@sragi.org",
+        "contact_email_nb": "kontakt@sragi.org",
+        "website": "https://sragi.org",
+        "location": null,
+        "org_number": "932481375"
+    },
+    "permissions": {
+        "usage": [
+            "all",
+            "closed-source",
+            "commercial",
+            "derivative-works",
+            "inference",
+            "proprietary",
+            "train-ai"
+        ],
+        "allowed_agents": [
+            "*",
+            "Applebot",
+            "Bingbot",
+            "Bytespider",
+            "CCBot",
+            "ClaudeBot",
+            "facebookexternalhit",
+            "Google-Extended",
+            "Googlebot",
+            "GPTBot",
+            "Omgilibot",
+            "PerplexityBot"
+        ],
+        "note": "Agentlisten er deklarativ, ikke restriktiv: signaliserer etisk åpenhet, ikke ekskludering."
+    },
+    "requirements": {
+        "attribution": true,
+        "share-alike": false
+    },
+    "ethics": {
+        "binding": false,
+        "framework": {
+            "name": "SRAGI Regenerative Principles",
+            "url": "https://www.sragi.org/regenerative-principles/",
+            "type": "aspirational",
+            "encouragement": "We invite users to align with these principles, but we do not legally require it.\nThese represent culture, not control."
+        }
+    },
+    "attribution": {
+        "minimal": "SRAGI by Rune Solberg, Neptunia Media AS\nSource: https://sragi.org",
+        "standard": "SRAGI Regenerative License (SRL) v1.12\nCreated by Rune Solberg / Neptunia Media AS\nSource: https://sragi.org/license\nLicense: CC BY 4.0 base, RSL compatible",
+        "code_metadata": {
+            "license": {
+                "base": "CC BY 4.0",
+                "creator": "Rune Solberg, Neptunia Media AS",
+                "name": "SRAGI Regenerative License (SRL)",
+                "source": "https://sragi.org",
+                "version": "1.12"
+            }
+        },
+        "note": "Attribution is mandated by CC BY 4.0, not by SRAGI. All other aspects are permissive and trust-based."
+    },
+    "commercial_licensing": {
+        "available": false
+    },
+    "repository": "https://github.com/Project2040/sragi.org"
 }
