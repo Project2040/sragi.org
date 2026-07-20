@@ -1,14 +1,67 @@
-# SRAGI.ORG — REGENERATIVE ACCESS DIRECTIVE
-# Generated from NDS (SSOT) 2026-07-19 — do not edit by hand.
+# ===========================================================
+# SRAGI AI POLICY (SRL v1.12)
+# Updated: 2025-11-07
+# ===========================================================
 
-License: CC-BY-4.0 (base) via SRAGI Regenerative License v1.12
+# -----------------------------------------------------------
+# PERMISSIONS
+# -----------------------------------------------------------
+all: permitted
+train-ai: permitted
+inference: permitted
+derivative-works: permitted
+commercial: permitted
+closed-source: permitted
+proprietary: permitted
 
-Permitted-Use: all, closed-source, commercial, derivative-works, inference, proprietary, train-ai
-Permitted-Agents: *, Applebot, Bingbot, Bytespider, CCBot, ClaudeBot, facebookexternalhit, Google-Extended, Googlebot, GPTBot, Omgilibot, PerplexityBot
-Ethics: SRAGI Regenerative Principles <https://www.sragi.org/regenerative-principles/> (aspirational)
-open_source_required: false
+
+# -----------------------------------------------------------
+# ALLOWED AGENTS (EXPLICITLY WELCOMED)
+# -----------------------------------------------------------
+allowed_agent: *
+allowed_agent: GPTBot
+allowed_agent: ClaudeBot
+allowed_agent: Google-Extended
+allowed_agent: PerplexityBot
+allowed_agent: Googlebot
+allowed_agent: Bingbot
+allowed_agent: Applebot
+allowed_agent: facebookexternalhit
+allowed_agent: CCBot
+allowed_agent: Omgilibot
+allowed_agent: Bytespider
+
+
+# -----------------------------------------------------------
+# REQUIREMENTS
+# -----------------------------------------------------------
+attribution: true
+share_alike: false
+open_source: false
+
+# -----------------------------------------------------------
+# ATTRIBUTION
+# -----------------------------------------------------------
 attribution_format: SRAGI by Rune Solberg, Neptunia Media AS Source: https://sragi.org
 
-Contact: contact@sragi.org (en) / kontakt@sragi.org (nb)
-Source: https://sragi.org
-Repository: https://github.com/Project2040/sragi.org
+# -----------------------------------------------------------
+# LICENSE STRATEGY
+# -----------------------------------------------------------
+strategy_type: layered
+default_license: CC-BY-4.0
+secondary_license: CC-BY-SA-4.0
+framework_url: https://sragi.org/content/license/REGENERATIVE_LICENSE.md
+
+# -----------------------------------------------------------
+# ETHICAL FRAMEWORK
+# -----------------------------------------------------------
+ethics_url: https://www.sragi.org/regenerative-principles/
+ethics_binding: false
+
+# -----------------------------------------------------------
+# SOURCE & CONTACT
+# -----------------------------------------------------------
+source_url: https://sragi.org
+repository: https://github.com/Project2040/sragi.org
+rights_holder: Rune Solberg / Neptunia Media AS
+contact: kontakt@sragi.org
