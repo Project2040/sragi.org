@@ -1,0 +1,97 @@
+SRAGI® Commercial Suite License Reference
+
+License Reference Identifier: LicenseRef-SRAGI-Commercial
+Rights Holder: Neptunia Media AS
+Canonical Licensing Portal: https://sragi.org/licensing/
+Licensing Contact: licensing@sragi.org
+
+Purpose
+=======
+
+LicenseRef-SRAGI-Commercial identifies the alternative commercial licensing
+path offered by Neptunia Media AS for eligible SRAGI® artifacts.
+
+Where an artifact carries a license expression such as:
+
+    CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial
+
+the recipient may use the artifact under the applicable open-license terms,
+or — where the recipient has a valid applicable commercial agreement with
+Neptunia Media AS — under the terms and scope of that commercial agreement.
+
+No Grant by Reference
+=====================
+
+The presence of LicenseRef-SRAGI-Commercial in an artifact, repository,
+metadata record, SPDX expression or other material does not itself grant any
+rights under the SRAGI® Commercial Suite License.
+
+Commercial-license rights arise only through a valid applicable agreement
+with Neptunia Media AS and only within the scope expressly granted by that
+agreement.
+
+Commercial activity alone does not imply that a SRAGI® Commercial Suite
+License is required. Where an open license permits commercial use, that use
+may proceed under the terms of the applicable open license.
+
+Possible Commercial Scope
+=========================
+
+Depending on the applicable agreement, commercial licensing may include
+rights for internal commercial use, modification and adaptation for own use,
+professional services, application or API integration, and private, cloud or
+on-premises deployment.
+
+Rights such as customer-facing embedded use, redistribution, sublicensing,
+OEM, white-label use, platform or ecosystem distribution, model/provider or
+AI-provider integration, trademark use or co-branding require explicit scope
+where applicable and are not granted merely by this LicenseRef.
+
+Not Automatic
+=============
+
+No commercial agreement, and no reference to this LicenseRef, automatically
+grants SRAGI® certification status, official partner status, ownership of
+SRAGI intellectual property, unrestricted trademark rights, or rights to
+register SRAGI names, domains or trademarks.
+
+Regenerative Commitments
+========================
+
+The SRAGI® Commercial Suite is built around the regenerative principle:
+"Give more than you take."
+
+An applicable commercial agreement may incorporate specific and measurable
+regenerative commitments appropriate to the licensed use, organization,
+sector or deployment. Any binding regenerative obligation must be expressly
+defined in the applicable commercial agreement.
+
+Contributor and Third-Party Rights
+==================================
+
+Neptunia Media AS can grant only rights that it owns, controls or is otherwise
+authorized to license. Third-party materials remain governed by their
+respective licenses, agreements and applicable rights.
+
+A contributed artifact may be represented as available under
+LicenseRef-SRAGI-Commercial only where Neptunia Media AS possesses sufficient
+rights to offer that artifact under the applicable commercial terms.
+
+Trademark
+=========
+
+Copyright and software licensing do not automatically grant trademark,
+certification, partnership, endorsement or branding rights.
+
+SRAGI® is a trademark of Neptunia Media AS.
+
+Canonical Information
+=====================
+
+Licensing portal: https://sragi.org/licensing/
+Licensing contact: licensing@sragi.org
+Project: https://sragi.org/
+Repository: https://github.com/Project2040/sragi.org
+
+This LicenseRef is a license reference and routing instrument. The applicable
+commercial agreement is authoritative for the commercial rights it grants.
