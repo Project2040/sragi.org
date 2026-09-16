@@ -18,8 +18,8 @@ source:
 
 rights:
   authority: artifact
-  ecosystem_default_license: null
-  unspecified_artifact_policy: "No license grant should be inferred."
+  rule_ref: /SRL-LICENSE.yaml#/rights
+  website_policy_ref: /SRL-LICENSE.yaml#/website_licensing
 
 note: |
   The root SRL-LICENSE.yaml defines the licensing architecture and

@@ -5,7 +5,8 @@
 # This file defines the SRAGI licensing architecture.
 # The license identifier, expression, rights statement or applicable
 # agreement attached to an individual artifact is authoritative.
-# This framework does not independently grant rights to SRAGI artifacts.
+# The website policy below expressly licenses eligible sragi.org content.
+# It is not an ecosystem-wide license and does not override artifact notices.
 # ===========================================================
 
 meta:
@@ -37,10 +38,14 @@ rights:
   artifact_license_authoritative: true
   ecosystem_default_license: null
   principle: |
-    This framework does not independently grant rights to SRAGI artifacts.
+    The website_licensing section records the explicit default license for
+    eligible public sragi.org content. It does not license the wider ecosystem.
     Rights are determined by the license identifier, license expression,
     rights statement, contract and applicable law governing each artifact.
-  unspecified_artifact_policy: "No license grant should be inferred."
+  unspecified_artifact_policy: |
+    On sragi.org, eligible public content without a different license notice
+    is covered by the express website policy. Outside that defined scope,
+    no license grant should be inferred.
   third_party_policy: |
     Third-party material remains governed by its applicable third-party
     license, rights statement or agreement.
@@ -53,7 +58,9 @@ licensing:
   rule: |
     Every SRAGI artifact SHOULD identify its applicable license, license
     expression, rights statement or governing terms. Where attached, that
-    information is authoritative. No ecosystem-wide default license exists.
+    information is authoritative. Eligible public sragi.org content may inherit
+    the explicit website default; products and other artifacts retain their
+    applicable terms. No ecosystem-wide default overrides artifact rights.
   open_path:
     enabled: true
   commercial_path:
@@ -63,6 +70,47 @@ licensing:
     New artifact classes, technologies, media, AI systems, distribution
     mechanisms, business models and licensing approaches may be added
     without replacing the core artifact-level rights architecture.
+
+website_licensing:
+  id: sragi_org_public_content
+  origins: [https://sragi.org, https://www.sragi.org]
+  default_spdx: CC-BY-4.0
+  default_license_url: https://creativecommons.org/licenses/by/4.0/
+  policy_url: https://sragi.org/content/license/WEBSITE-LICENSE.html
+  rsl_path: /
+  explicit_artifact_terms_override: true
+  third_party_rights_preserved: true
+  default_scope: owned_or_authorized_public_website_content
+  title: SRAGI.org website licensing policy
+  grant: |
+    Unless otherwise indicated, public content on sragi.org that Neptunia
+    Media AS owns or is authorized to license is made available under
+    {{ website_licensing.default_spdx }} at {{ website_licensing.default_license_url }}.
+  exceptions: |
+    A license notice, SPDX expression, rights statement or applicable agreement
+    attached to a specific artifact takes precedence over the website default.
+    Separately licensed products, frameworks, software, downloads and embedded
+    components retain their stated terms. Third-party material remains subject
+    to its own rights. The website default does not grant trademark rights.
+  machine_use: |
+    Search engines, AI systems and other machine agents are welcome to access
+    public content. No crawler fee, registration or license token is required
+    by this website access policy. Content under {{ website_licensing.default_spdx }} is available for
+    AI use, including training, subject to that license and applicable law.
+    Artifact-specific terms continue to govern exceptions; this policy does
+    not waive their obligations or turn commercial products into free grants.
+  scope_rule: |
+    This is an explicit website policy, not a license for every SRAGI artifact
+    or repository. Public availability alone does not establish ownership or
+    sufficient third-party rights. Existing grants are not revoked.
+  precedence: [artifact_terms, third_party_terms, website_default]
+
+content_templates:
+  basic: {path: content-template.md.yaml, profile: website_content}
+  editorial: {path: docs/_CONFIG/CONTENT-TEMPLATE.yaml, profile: website_content}
+  visual: {path: docs/_CONFIG/TEMPLATE-VISUAL.yaml, profile: website_content}
+  product: {path: docs/_CONFIG/PRODUCT-TEMPLATE.yaml, profile: explicit_artifact}
+
 
 license_classes:
   open_knowledge:
@@ -153,13 +201,20 @@ machine_readable:
     media_type: application/rsl+xml
     url: https://sragi.org/content/license/LICENSE-RSL.xml
     manifest: content/license/RESOURCE_LICENSE_MANIFEST.yaml
-    scope: explicit_artifacts_only
+    scope: website_policy_with_artifact_overrides
     rule: |
-      RSL represents existing licenses for explicitly recorded artifacts.
-      SPDX identifies their licenses; RSL supplies interoperable discovery.
-      RSL 1.0 and SRLF 2.0 are independently versioned.
-      No site-wide license, AI-training interpretation or commercial grant
-      is inferred from discovery. Unresolved records are not exported.
+      RSL references the explicit website policy for the site-wide scope,
+      including its configured default and artifact/third-party exceptions.
+      Verified artifact records may reference their standard license directly.
+      No crawler fee or license token is introduced. SPDX identifies licenses;
+      RSL 1.0 and SRLF 2.0 remain independently versioned.
+    standard_licenses:
+      CC-BY-4.0: {url: https://creativecommons.org/licenses/by/4.0/, payment_type: attribution}
+      CC-BY-SA-4.0: {url: https://creativecommons.org/licenses/by-sa/4.0/, payment_type: attribution}
+    expression_mappings:
+      "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial":
+        open_license: CC-BY-SA-4.0
+        requires_commercial_provenance: true
   instruction_header:
     copyright: "SPDX-FileCopyrightText: 2024-2026 Neptunia Media AS"
     license: "SPDX-License-Identifier: CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial"
@@ -191,6 +246,14 @@ machine_access:
     research crawlers and other machine agents.
   agents:
     default: "*"
+    named: [Googlebot, Google-Extended, Bingbot, OAI-SearchBot, GPTBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, Claude-User, PerplexityBot, Perplexity-User, CCBot]
+    list_is_exhaustive: false
+    rule: Named agents receive the same open access as the wildcard; unlisted agents are welcome.
+    sources:
+      - https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers
+      - https://developers.openai.com/api/docs/bots
+      - https://docs.perplexity.ai/docs/resources/perplexity-crawlers
+      - https://commoncrawl.org/ccbot
   discovery:
     allow_by_default: true
     allow_crawling: true
@@ -201,8 +264,9 @@ machine_access:
   rights_rule: |
     Technical access, crawler accessibility, indexing or discovery metadata
     does not independently grant copyright or other intellectual-property rights.
-    Rights relating to an artifact are determined by its applicable
-    license, rights statement, contract and applicable law.
+    Rights relating to an artifact are determined by its applicable license,
+    rights statement, contract and law, including the explicit website default
+    where its scope applies.
   robots:
     posture: allow_by_default
     function: technical_access
@@ -214,8 +278,9 @@ machine_access:
   ai_training:
     policy: artifact_license
     rule: |
-      Rights relating to AI training are determined by the license, rights
-      statement, contract and applicable law governing the individual artifact.
+      Rights relating to AI training are determined by the governing license,
+      rights statement, contract and law, including the express website default
+      for eligible public content without a different notice.
   interpretation:
     ai_training_and_adaptation: |
       This framework does not determine whether AI training, model development,
@@ -345,6 +410,10 @@ publication:
     robots: {path: robots.txt, function: technical_access, legal_license_grant: false}
     html: {path: content/license/index.html, function: human_readable_framework}
     sitemap: {path: sitemap.xml, function: technical_discovery}
+    website_policy: {path: content/license/WEBSITE-LICENSE.html, function: website_license_policy}
+  templates:
+    robots: automation/license_builder/templates/robots.txt.tpl
+    website_policy: automation/license_builder/templates/website-policy.html.tpl
   sitemap_urls:
     - https://sragi.org/
     - https://sragi.org/licensing/
@@ -355,6 +424,7 @@ publication:
     - https://sragi.org/content/license/ai-policy.xml
     - https://sragi.org/content/license/license.json
     - https://sragi.org/content/license/REGENERATIVE_LICENSE.md
+    - https://sragi.org/content/license/WEBSITE-LICENSE.html
   repository_files:
     master:
       - {path: SRL-LICENSE.yaml, role: licensing_framework_master}

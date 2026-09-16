@@ -16,4 +16,6 @@ python -m unittest discover -s tests
 
 Edit `SRL-LICENSE.yaml` before regenerating licensing outputs. Do not edit generated policy files independently. Preserve artifact-specific notices and previously granted rights. Record conflicting notices for review instead of silently choosing a new license.
 
+Use the [working content templates](docs/standards/CONTENT-TEMPLATES.md) to create metadata. The website default applies to eligible public sragi.org content; explicit artifact terms and third-party rights take precedence. Product templates require explicit terms. `tools/new_content.py --for-publication` validates licensing metadata and creates a file; it does not deploy content.
+
 Licensing contact: licensing@sragi.org.

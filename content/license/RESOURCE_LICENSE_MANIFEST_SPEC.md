@@ -1,6 +1,6 @@
 # Resource license manifest
 
-The manifest is a scoped discovery and review register, not a repository-wide license grant. Each entry identifies an exact repository path. Omission has no licensing effect.
+The manifest is a scoped discovery and review register, not a repository-wide license grant. Each entry identifies an exact repository path. Omission does not assign a license; the express website policy independently supplies the fallback for eligible public sragi.org content without another notice.
 
 - `license_expression`: an explicitly verified SPDX expression, or `null` when unresolved. Never infer `OR` or `AND` from conflicting notices.
 - `observed_notices`: identifiers and locations already present on the artifact; these are evidence, not a new license choice.
@@ -11,6 +11,8 @@ The manifest is a scoped discovery and review register, not a repository-wide li
 Additional fields and artifact classes are permitted. An approved license decision should record its authority, scope and affected version. Keep historical grants and third-party rights intact.
 
 ## RSL export
+
+The master additionally generates one site-level `/` record pointing to `website_licensing.policy_url`. This record has a free access policy, without a license server. Its standard and terms URL identifies the conditional website policy, including the CC BY default and all artifact/third-party exceptions. It does not directly assign CC BY to every URL. Artifact records below remain independently verified overrides; unmatched website content follows the website policy rather than the manifest's completeness.
 
 Only records with an explicit `rsl_path` are selected for RSL export. They must have `status: explicit_license_verified`, a full-file `source_sha256`, and an exact license notice matching `license_expression` in the source. Changes to the source require renewed review of the evidence hash. An unresolved record with an export path fails the build.
 

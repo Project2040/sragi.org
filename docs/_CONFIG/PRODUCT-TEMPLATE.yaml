@@ -1,0 +1,14 @@
+# Product metadata template. Product terms must be explicitly supplied.
+meta:
+  id: "{{ input.id }}"
+  title: "{{ input.title }}"
+  author: "{{ organization.creator }}"
+  organization: "{{ organization.rights_holder }}"
+  version: "{{ input.version }}"
+  status: draft
+license:
+  policy_ref: explicit_artifact
+  spdx: null
+  rights_statement: null
+  status: unresolved
+  framework_url: "{{ publication.canonical_licensing_portal }}"

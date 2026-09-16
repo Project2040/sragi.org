@@ -3,19 +3,19 @@
 # Operationalized for Neptunia Mission Control v5.x
 # ===========================================================
 
-id: "{{SLUG}}"
-uuid: "{{UUID}}"
+id: "{{ input.SLUG }}"
+uuid: "{{ input.UUID }}"
 type: "article"
 status: "ready_for_loom"
 version: "1.0.0"
-created_at: "{{DATE}}"
+created_at: "{{ input.DATE }}"
 
 # -----------------------------------------------------------
 # 1. TITLES (Multilingual)
 # -----------------------------------------------------------
 title:
-  en: "{{TITLE_EN}}"
-  nb: "{{TITLE_NB}}"
+  en: "{{ input.TITLE_EN }}"
+  nb: "{{ input.TITLE_NB }}"
 
 subtitle:
   en: "" # Fylles ut manuelt senere
@@ -25,24 +25,24 @@ language_primary: "en"
 translations:
   available: ["en", "nb"]
   slugs: 
-    en: "{{SLUG}}"
-    nb: "{{SLUG}}"
+    en: "{{ input.SLUG }}"
+    nb: "{{ input.SLUG }}"
 
 # -----------------------------------------------------------
 # 2. SEO METADATA
 # -----------------------------------------------------------
 seo:
   title:
-    en: "{{SEO_TITLE_EN}}"
-    nb: "{{SEO_TITLE_NB}}"
+    en: "{{ input.SEO_TITLE_EN }}"
+    nb: "{{ input.SEO_TITLE_NB }}"
   description:
-    en: "{{META_DESC}}"
-    nb: "{{META_DESC}}"
-  canonical: "https://www.sragi.org/{{SLUG}}"
+    en: "{{ input.META_DESC }}"
+    nb: "{{ input.META_DESC }}"
+  canonical: "{{ organization.website }}{{ input.SLUG }}"
   keywords:
     en: [] # Loom kan fylle disse senere
     nb: []
-  og_image: "{{SLUG}}-social.jpg"
+  og_image: "{{ input.SLUG }}-social.jpg"
   twitter_card: "summary_large_image"
 
 # -----------------------------------------------------------
@@ -57,12 +57,12 @@ ia:
 # 4. TAXONOMY ATTACHMENTS (Dynamic)
 # -----------------------------------------------------------
 taxonomy:
-  pillar: ["{{PILLAR}}"]
-  domain: ["{{DOMAIN}}"]
-  context: ["{{CONTEXT}}"]
-  phase: ["{{PHASE}}"]
-  scale: ["{{SCALE}}"]
-  mode: ["{{MODE}}"]
+  pillar: ["{{ input.PILLAR }}"]
+  domain: ["{{ input.DOMAIN }}"]
+  context: ["{{ input.CONTEXT }}"]
+  phase: ["{{ input.PHASE }}"]
+  scale: ["{{ input.SCALE }}"]
+  mode: ["{{ input.MODE }}"]
   actor_type: []
   actor_role: []
   relations: []
@@ -72,23 +72,23 @@ taxonomy:
 # -----------------------------------------------------------
 media:
   hero:
-    file: "{{SLUG}}-hero.jpg"
+    file: "{{ input.SLUG }}-hero.jpg"
     ratio: "16:9"
     role: "hero"
     alt:
-      en: "Hero image for {{TITLE_EN}}"
-      nb: "Hovedbilde for {{TITLE_NB}}"
+      en: "Hero image for {{ input.TITLE_EN }}"
+      nb: "Hovedbilde for {{ input.TITLE_NB }}"
 
   card:
-    file: "{{SLUG}}-card.jpg"
+    file: "{{ input.SLUG }}-card.jpg"
     ratio: "4:3"
     role: "card"
     alt:
-      en: "Card image for {{TITLE_EN}}"
-      nb: "Kortbilde for {{TITLE_NB}}"
+      en: "Card image for {{ input.TITLE_EN }}"
+      nb: "Kortbilde for {{ input.TITLE_NB }}"
 
   social:
-    file: "{{SLUG}}-social.jpg"
+    file: "{{ input.SLUG }}-social.jpg"
     ratio: "1.91:1"
     role: "social"
     alt:
@@ -101,11 +101,11 @@ media:
 # 6. ASSOCIATED CONTENT FILES
 # -----------------------------------------------------------
 content:
-  en: "{{SLUG}}.en.md"
-  nb: "{{SLUG}}.nb.md"
+  en: "{{ input.SLUG }}.en.md"
+  nb: "{{ input.SLUG }}.nb.md"
   summary:
-    en: "{{META_DESC}}"
-    nb: "{{META_DESC}}"
+    en: "{{ input.META_DESC }}"
+    nb: "{{ input.META_DESC }}"
 
 # -----------------------------------------------------------
 # 7. KNOWLEDGE GRAPH LINKS
@@ -121,7 +121,7 @@ graph:
 # 8. AUTHORS & CONTRIBUTORS
 # -----------------------------------------------------------
 authors:
-  primary: "rune-solberg"
+  primary: "{{ input.author_id }}"
   contributors: ["neptunia-mission-control"]
 
 reviewed_by: []
@@ -130,12 +130,12 @@ reviewed_by: []
 # 9. PUBLICATION METADATA
 # -----------------------------------------------------------
 publication:
-  created_at: "{{DATE}}"
-  updated_at: "{{DATE}}"
+  created_at: "{{ input.DATE }}"
+  updated_at: "{{ input.DATE }}"
   published_at: ""
   revision_history: 
     - version: "1.0.0"
-      date: "{{DATE}}"
+      date: "{{ input.DATE }}"
       action: "Initial generation via Mission Control"
 
 # -----------------------------------------------------------
@@ -151,6 +151,8 @@ loom:
 # 11. LICENSE
 # -----------------------------------------------------------
 license:
-  type: "CC-BY-SA-4.0"
-  framework_url: "https://sragi.org/licensing/"
-  attribution: "© Rune Solberg / Neptunia Media AS"
+  policy_ref: website_content
+  spdx: null
+  rights_statement: null
+  status: unresolved
+  framework_url: "{{ publication.canonical_licensing_portal }}"

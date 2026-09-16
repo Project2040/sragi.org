@@ -2,8 +2,11 @@
 """Deterministic SRLF representations. Render first; the builder owns file I/O."""
 import html
 import json
+from pathlib import Path
+from string import Template
 from xml.etree import ElementTree as ET
 from rsl import render_rsl
+from policy import expand
 
 
 def compact(value):
@@ -21,10 +24,19 @@ def field(parent, name, value, **attributes):
     return node
 
 
+def text_template(data, name, values):
+    root = Path(__file__).resolve().parents[2]
+    path = (root / data['publication']['templates'][name]).resolve()
+    if not path.is_relative_to(root):
+        raise ValueError('Output template must stay in the repository')
+    return Template(path.read_text(encoding='utf-8')).substitute(values)
+
+
 def human_sections(data):
     """Both human formats carry the same substantive source statements."""
     sections = [
         ('Rights authority', [data['rights']['principle'], data['rights']['unspecified_artifact_policy'], data['rights']['non_override_rule']]),
+        ('Website default license', [expand(data['website_licensing'][key], data) for key in ('grant', 'exceptions', 'machine_use', 'scope_rule')]),
         ('Licensing paths', [data['licensing']['rule'], data['dual_licensing']['interpretation']]),
         ('Commercial licensing', [data['commercial']['grant_rule'], 'Commercial reference: ' + data['commercial']['identifier']]),
         ('Machine access', [data['machine_access']['access_policy'], data['machine_access']['rights_rule']]),
@@ -42,7 +54,7 @@ def human_sections(data):
         choices = record.get('possible_licenses') or [record.get('preferred_expression') or record.get('identifier') or 'future artifact-specific selection']
         classes.append(f"{name}: {', '.join(choices)}. {compact(record['description'])}")
     sections.insert(2, ('Available license classes (not grants)', classes))
-    sections.append(('Canonical information', [data['publication']['canonical_licensing_portal'], data['organization']['licensing_email'], 'Source: SRL-LICENSE.yaml. This generated representation does not independently license any artifact.']))
+    sections.append(('Canonical information', [data['publication']['canonical_licensing_portal'], data['organization']['licensing_email'], 'Source: SRL-LICENSE.yaml. The website policy and artifact-specific terms define their respective scopes.']))
     return sections
 
 
@@ -72,9 +84,17 @@ def render(data, rsl_records):
         field(root, 'rights-authority', rights['authority'])
         field(root, 'rights-rule', rights['principle'])
         field(root, 'ecosystem-default-license', 'none')
+        site = ET.SubElement(root, 'website-license-policy')
+        field(site, 'default-spdx', data['website_licensing']['default_spdx'])
+        field(site, 'policy-url', data['website_licensing']['policy_url'])
+        field(site, 'scope', data['website_licensing']['default_scope'])
+        field(site, 'exceptions', data['website_licensing']['exceptions'])
+        field(site, 'machine-use', expand(data['website_licensing']['machine_use'], data))
         field(root, 'unspecified-artifact-policy', rights['unspecified_artifact_policy'])
         access = ET.SubElement(root, 'machine-access', {'posture': machine['posture'], 'legal-license-grant': 'false'})
         field(access, 'agents', machine['agents']['default'])
+        for name in machine['agents']['named']:
+            field(access, 'named-agent', name)
         field(access, 'scope', 'publicly accessible resources')
         for activity in ('crawling', 'indexing', 'retrieval', 'search_discovery'):
             field(access, activity.replace('_', '-'), 'allow-by-default')
@@ -95,9 +115,16 @@ def render(data, rsl_records):
         'Function: rights-discovery', 'Legal-License-Grant: false',
         'Access-Posture: ' + machine['posture'], 'Access-Scope: publicly accessible resources',
         'Machine-Agents: ' + machine['agents']['default'],
+        'Named-Machine-Agents: ' + ', '.join(machine['agents']['named']),
+        'Named-Agent-List-Exhaustive: false',
         'Discovery: allowed-by-default', 'Crawling: allowed-by-default',
         'Indexing: allowed-by-default', 'Retrieval: allowed-by-default',
         'Rights-Authority: ' + rights['authority'], 'Ecosystem-Default-License: none',
+        'Website-Default-License: ' + data['website_licensing']['default_spdx'],
+        'Website-License-Policy: ' + data['website_licensing']['policy_url'],
+        'Website-License-Scope: ' + data['website_licensing']['default_scope'],
+        'Website-License-Exceptions: ' + compact(data['website_licensing']['exceptions']),
+        'Website-Machine-Use: ' + compact(expand(data['website_licensing']['machine_use'], data)),
         'Rights-Rule: ' + compact(rights['principle']),
         'Access-Rights-Rule: ' + compact(machine['rights_rule']),
         'Unspecified-Artifact-Policy: ' + compact(rights['unspecified_artifact_policy']),
@@ -113,7 +140,22 @@ def render(data, rsl_records):
         'Licensing: ' + portal, 'Licensing-Contact: ' + contact,
     ]
     put('ai_policy_txt', '\n'.join(lines))
-    put('robots', f"# RSL discovery; licenses apply only to the identified artifacts\nLicense: {data['machine_readable']['rsl']['url']}\n\n# Technical crawler access to public resources\nUser-agent: {machine['agents']['default']}\nDisallow:\n\nSitemap: {website}/sitemap.xml\n")
+    agents = [machine['agents']['default']] + machine['agents']['named']
+    put('robots', text_template(data, 'robots', {
+        'rsl_url': data['machine_readable']['rsl']['url'],
+        'agent_groups': '\n'.join(f'User-agent: {agent}\nDisallow:\n' for agent in agents),
+        'sitemap_url': website + '/sitemap.xml',
+    }))
+    site = data['website_licensing']
+    put('website_policy', text_template(data, 'website_policy', {
+        key: html.escape(compact(expand(value, data)), quote=True) for key, value in {
+            'title': site['title'], 'policy_url': site['policy_url'],
+            'grant': site['grant'], 'license_url': site['default_license_url'],
+            'license_identifier': site['default_spdx'], 'exceptions': site['exceptions'],
+            'machine_use': site['machine_use'], 'scope_rule': site['scope_rule'],
+            'contact': contact,
+        }.items()
+    }))
     title = f"{meta['name']} v{meta['version']}"
     sections = human_sections(data)
     markdown = ['# ' + title, '', '<!-- Generated from SRL-LICENSE.yaml; edit the source, then rebuild. -->', '']

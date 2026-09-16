@@ -4,17 +4,21 @@
 
 ## Rights authority
 
-This framework does not independently grant rights to SRAGI artifacts. Rights are determined by the license identifier, license expression, rights statement, contract and applicable law governing each artifact.
+The website_licensing section records the explicit default license for eligible public sragi.org content. It does not license the wider ecosystem. Rights are determined by the license identifier, license expression, rights statement, contract and applicable law governing each artifact.
 
-No license grant should be inferred.
+On sragi.org, eligible public content without a different license notice is covered by the express website policy. Outside that defined scope, no license grant should be inferred.
 
 No statement in this framework expands, reduces or replaces rights explicitly granted or reserved at artifact level.
 
-## Licensing paths
+## Website default license
 
-Every SRAGI artifact SHOULD identify its applicable license, license expression, rights statement or governing terms. Where attached, that information is authoritative. No ecosystem-wide default license exists.
+Unless otherwise indicated, public content on sragi.org that Neptunia Media AS owns or is authorized to license is made available under CC-BY-4.0 at https://creativecommons.org/licenses/by/4.0/.
 
-OR denotes alternative licensing paths subject to the terms applicable to the selected path. Commercial activity alone does not require the SRAGI Commercial Suite; the commercial path exists where alternative or additional rights or terms are required.
+A license notice, SPDX expression, rights statement or applicable agreement attached to a specific artifact takes precedence over the website default. Separately licensed products, frameworks, software, downloads and embedded components retain their stated terms. Third-party material remains subject to its own rights. The website default does not grant trademark rights.
+
+Search engines, AI systems and other machine agents are welcome to access public content. No crawler fee, registration or license token is required by this website access policy. Content under CC-BY-4.0 is available for AI use, including training, subject to that license and applicable law. Artifact-specific terms continue to govern exceptions; this policy does not waive their obligations or turn commercial products into free grants.
+
+This is an explicit website policy, not a license for every SRAGI artifact or repository. Public availability alone does not establish ownership or sufficient third-party rights. Existing grants are not revoked.
 
 ## Available license classes (not grants)
 
@@ -30,6 +34,12 @@ commercial: LicenseRef-SRAGI-Commercial. Alternative commercial licensing terms 
 
 future: future artifact-specific selection. Additional license classes may be introduced without changing the core architecture.
 
+## Licensing paths
+
+Every SRAGI artifact SHOULD identify its applicable license, license expression, rights statement or governing terms. Where attached, that information is authoritative. Eligible public sragi.org content may inherit the explicit website default; products and other artifacts retain their applicable terms. No ecosystem-wide default overrides artifact rights.
+
+OR denotes alternative licensing paths subject to the terms applicable to the selected path. Commercial activity alone does not require the SRAGI Commercial Suite; the commercial path exists where alternative or additional rights or terms are required.
+
 ## Commercial licensing
 
 Commercial-license rights arise only through an applicable commercial agreement with Neptunia Media AS and only within its licensed scope.
@@ -40,17 +50,17 @@ Commercial reference: LicenseRef-SRAGI-Commercial
 
 Public SRAGI resources should by default be technically accessible for discovery, crawling, indexing and retrieval by search engines, AI systems, research crawlers and other machine agents.
 
-Technical access, crawler accessibility, indexing or discovery metadata does not independently grant copyright or other intellectual-property rights. Rights relating to an artifact are determined by its applicable license, rights statement, contract and applicable law.
+Technical access, crawler accessibility, indexing or discovery metadata does not independently grant copyright or other intellectual-property rights. Rights relating to an artifact are determined by its applicable license, rights statement, contract and law, including the explicit website default where its scope applies.
 
 ## Really Simple Licensing (RSL)
 
-RSL represents existing licenses for explicitly recorded artifacts. SPDX identifies their licenses; RSL supplies interoperable discovery. RSL 1.0 and SRLF 2.0 are independently versioned. No site-wide license, AI-training interpretation or commercial grant is inferred from discovery. Unresolved records are not exported.
+RSL references the explicit website policy for the site-wide scope, including its configured default and artifact/third-party exceptions. Verified artifact records may reference their standard license directly. No crawler fee or license token is introduced. SPDX identifies licenses; RSL 1.0 and SRLF 2.0 remain independently versioned.
 
 https://sragi.org/content/license/LICENSE-RSL.xml
 
 ## AI training
 
-Rights relating to AI training are determined by the license, rights statement, contract and applicable law governing the individual artifact.
+Rights relating to AI training are determined by the governing license, rights statement, contract and law, including the express website default for eligible public content without a different notice.
 
 This framework does not determine whether AI training, model development, model outputs or related machine-learning activities constitute Adapted Material or trigger particular obligations under an applicable license. Such questions are governed by the applicable license, applicable law and the circumstances of the specific use.
 
@@ -98,4 +108,4 @@ https://sragi.org/licensing/
 
 licensing@sragi.org
 
-Source: SRL-LICENSE.yaml. This generated representation does not independently license any artifact.
+Source: SRL-LICENSE.yaml. The website policy and artifact-specific terms define their respective scopes.

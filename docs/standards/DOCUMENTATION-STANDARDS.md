@@ -50,7 +50,7 @@ CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial
 
 For other artifacts, select the license appropriate to that artifact. Do not copy the instruction-framework expression onto software, articles, schemas or third-party material unless it actually applies.
 
-If an artifact has no stated license or rights statement, **no license grant should be inferred**.
+Eligible public sragi.org content without a different notice inherits the explicit website license defined in `SRL-LICENSE.yaml → website_licensing`. A specific artifact notice takes precedence, and third-party rights are preserved. Outside that website scope, **no license grant should be inferred**. Content templates reference the master policy; separately licensed products require explicit terms. See `CONTENT-TEMPLATES.md` for the working generation and licensing-validation commands.
 
 Canonical licensing portal: https://sragi.org/licensing/
 

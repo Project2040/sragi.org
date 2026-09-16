@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rsl xmlns="https://rslstandard.org/rsl" xmlns:sragi="https://sragi.org/ns/licensing">
+  <content url="/">
+    <license>
+      <payment type="attribution">
+        <standard>https://sragi.org/content/license/WEBSITE-LICENSE.html</standard>
+      </payment>
+    </license>
+    <terms>https://sragi.org/content/license/WEBSITE-LICENSE.html</terms>
+    <sragi:default-spdx>CC-BY-4.0</sragi:default-spdx>
+    <sragi:scope>owned_or_authorized_public_website_content</sragi:scope>
+    <sragi:exceptions>A license notice, SPDX expression, rights statement or applicable agreement attached to a specific artifact takes precedence over the website default. Separately licensed products, frameworks, software, downloads and embedded components retain their stated terms. Third-party material remains subject to its own rights. The website default does not grant trademark rights.</sragi:exceptions>
+  </content>
   <content url="/content/license/no/regenerative-principles.md$">
     <license>
       <payment type="attribution">
@@ -20,8 +31,8 @@
   </content>
   <sragi:framework version="2.0" legal-license-grant="false">
     <sragi:rights-authority>artifact</sragi:rights-authority>
-    <sragi:rights-rule>This framework does not independently grant rights to SRAGI artifacts. Rights are determined by the license identifier, license expression, rights statement, contract and applicable law governing each artifact.</sragi:rights-rule>
-    <sragi:unspecified-artifact-policy>No license grant should be inferred.</sragi:unspecified-artifact-policy>
+    <sragi:rights-rule>The website_licensing section records the explicit default license for eligible public sragi.org content. It does not license the wider ecosystem. Rights are determined by the license identifier, license expression, rights statement, contract and applicable law governing each artifact.</sragi:rights-rule>
+    <sragi:unspecified-artifact-policy>On sragi.org, eligible public content without a different license notice is covered by the express website policy. Outside that defined scope, no license grant should be inferred.</sragi:unspecified-artifact-policy>
     <sragi:ai-training-and-adaptation>This framework does not determine whether AI training, model development, model outputs or related machine-learning activities constitute Adapted Material or trigger particular obligations under an applicable license. Such questions are governed by the applicable license, applicable law and the circumstances of the specific use.</sragi:ai-training-and-adaptation>
     <sragi:commercial-grant-rule>Commercial-license rights arise only through an applicable commercial agreement with Neptunia Media AS and only within its licensed scope.</sragi:commercial-grant-rule>
   </sragi:framework>

@@ -10,7 +10,8 @@ rule: |
   This scoped register records unresolved provenance and existing notices.
   It does not select a license, relicense material, or revoke historical grants.
   Unlisted artifacts retain their own license, rights statement or agreement.
-  No license grant should be inferred from a missing entry.
+  A missing entry is not itself a grant. Eligible public website content may
+  separately fall under the express website_licensing policy in the master.
 artifacts:
   - path: docs/core/ETHICAL-CONTACT-PROTOCOL.md
     status: needs_rights_review

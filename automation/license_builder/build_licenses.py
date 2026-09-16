@@ -5,10 +5,13 @@ import hashlib
 import json
 from pathlib import Path
 import sys
+import re
+from urllib.parse import urlsplit
 from xml.etree import ElementTree as ET
 import yaml
 from generate_files import render
 from rsl import select_records, validate_projection
+from policy import validate_content_templates
 
 ROOT = Path(__file__).resolve().parents[2]
 STANDARD_LICENSES = {'CC-BY-4.0', 'CC-BY-SA-4.0', 'AGPL-3.0-only', 'Apache-2.0', 'CC0-1.0'}
@@ -16,6 +19,7 @@ EXPECTED_OUTPUTS = {
     'content/license/LICENSE-RSL.xml', 'content/license/REGENERATIVE_LICENSE.md',
     'content/license/index.html', 'content/license/license.json',
     'content/license/ai-policy.xml', 'ai-policy.txt', 'robots.txt', 'sitemap.xml',
+    'content/license/WEBSITE-LICENSE.html',
 }
 
 
@@ -68,12 +72,14 @@ def validate_v2(data):
         'machine_readable.rsl.protocol_version': '1.0',
         'machine_readable.rsl.namespace': 'https://rslstandard.org/rsl',
         'machine_readable.rsl.media_type': 'application/rsl+xml',
-        'machine_readable.rsl.scope': 'explicit_artifacts_only',
+        'machine_readable.rsl.scope': 'website_policy_with_artifact_overrides',
         'machine_readable.rsl.manifest': 'content/license/RESOURCE_LICENSE_MANIFEST.yaml',
-        'machine_readable.rsl.url': 'https://sragi.org/content/license/LICENSE-RSL.xml',
         'publication.generated_formats.xml.standard': 'RSL',
         'publication.generated_formats.xml.protocol_version': '1.0',
         'publication.generated_formats.xml.media_type': 'application/rsl+xml',
+        'website_licensing.explicit_artifact_terms_override': True,
+        'website_licensing.third_party_rights_preserved': True,
+        'machine_access.agents.list_is_exhaustive': False,
     }
     for activity in ('allow_by_default', 'allow_crawling', 'allow_indexing', 'allow_retrieval', 'allow_search_discovery'):
         expected['machine_access.discovery.' + activity] = True
@@ -86,6 +92,21 @@ def validate_v2(data):
             actual = actual.get(part, object()) if isinstance(actual, dict) else object()
         if actual != value or type(actual) is not type(value):
             errors.append(f'{dotted} must be {value!r}')
+    site = data['website_licensing']
+    config = data['machine_readable']['rsl']
+    selected = config['standard_licenses'].get(site['default_spdx'], {})
+    if selected.get('url') != site['default_license_url']:
+        errors.append('Website default license must match the configured standard URL')
+    for key, output in [('policy_url', 'website_policy'), ('rsl_url', 'xml')]:
+        url = site['policy_url'] if key == 'policy_url' else config['url']
+        parsed = urlsplit(url)
+        if f'{parsed.scheme}://{parsed.netloc}' not in site['origins'] or parsed.path != '/' + data['publication']['generated_formats'][output]['path'] or parsed.query or parsed.fragment:
+            errors.append('Policy/RSL URL must match its generated file on a configured website origin')
+    if site['rsl_path'] != '/':
+        errors.append('Website policy must cover the site; artifact exceptions live in its terms')
+    names = data['machine_access']['agents']['named']
+    if not isinstance(names, list) or len({n.casefold() for n in names}) != len(names) or any(not re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]*', n) for n in names):
+        errors.append('Named agents must be unique product tokens without directives or whitespace')
     custom = data['machine_readable']['custom_license_references']
     if custom.get('LicenseRef-SRAGI-Commercial', {}).get('file') != 'LICENSES/LicenseRef-SRAGI-Commercial.txt':
         errors.append('The commercial LicenseRef must point to its local text')
@@ -128,7 +149,7 @@ def verify_output(outputs, data, rsl_records):
     exported = json.loads(outputs['content/license/license.json'])
     if exported != json.loads(json.dumps(data, default=str)):
         raise ValueError('JSON representation differs from the master')
-    validate_projection(outputs['content/license/LICENSE-RSL.xml'], rsl_records)
+    validate_projection(outputs['content/license/LICENSE-RSL.xml'], rsl_records, data)
     for path in ('content/license/ai-policy.xml',):
         root = ET.fromstring(outputs[path])
         if root.get('legal-license-grant') != 'false' or root.findtext('rights-authority') != 'artifact':
@@ -136,9 +157,10 @@ def verify_output(outputs, data, rsl_records):
         if not root.findtext('ai-training-and-adaptation'):
             raise ValueError(f'Missing AI interpretation statement in {path}')
     robots = [line for line in outputs['robots.txt'].splitlines() if line and not line.startswith('#')]
-    expected = ['License: ' + data['machine_readable']['rsl']['url'],
-                'User-agent: *', 'Disallow:',
-                'Sitemap: ' + data['organization']['website'].rstrip('/') + '/sitemap.xml']
+    expected = ['License: ' + data['machine_readable']['rsl']['url']]
+    for agent in [data['machine_access']['agents']['default']] + data['machine_access']['agents']['named']:
+        expected.extend(['User-agent: ' + agent, 'Disallow:'])
+    expected.append('Sitemap: ' + data['organization']['website'].rstrip('/') + '/sitemap.xml')
     if robots != expected:
         raise ValueError('robots.txt must preserve RSL discovery and open technical access')
 
@@ -151,8 +173,9 @@ def main():
         data = load_yaml(ROOT / 'SRL-LICENSE.yaml')
         validate_v2(data)
         verify_license_files(ROOT, data)
+        validate_content_templates(ROOT, data)
         manifest = load_yaml(ROOT / data['machine_readable']['rsl']['manifest'])
-        rsl_records = select_records(ROOT, manifest)
+        rsl_records = select_records(ROOT, manifest, data)
         outputs = render(data, rsl_records)
         verify_output(outputs, data, rsl_records)
         stale = [name for name, content in outputs.items() if not (ROOT / name).is_file() or (ROOT / name).read_bytes() != content.encode('utf-8')]

@@ -2,8 +2,8 @@
 
 Based on https://rslstandard.org/rsl sections 1.2, 2.2, 3 and 4.4 and
 https://rslstandard.org/guide/standard-licenses (checked 2026-09-16).
-Only explicitly evidenced CC licenses are currently projected. Other license
-classes require a reviewed mapping; there is no fallback license.
+The website fallback points to its scoped policy, including exceptions.
+Explicit artifact standards and expression mappings are configured in the master.
 """
 import hashlib
 from pathlib import Path
@@ -13,23 +13,16 @@ from xml.etree import ElementTree as ET
 RSL = 'https://rslstandard.org/rsl'
 SRAGI = 'https://sragi.org/ns/licensing'
 NS = {'r': RSL, 's': SRAGI}
-STANDARDS = {
-    'CC-BY-4.0': 'https://creativecommons.org/licenses/by/4.0/',
-    'CC-BY-SA-4.0': 'https://creativecommons.org/licenses/by-sa/4.0/',
-}
-DUAL = 'CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial'
-
-
-def standard_for(expression):
-    # The open path is represented in RSL Core. Two RSL licenses would combine
-    # obligations, not express SPDX OR. The complete expression stays metadata.
-    identifier = 'CC-BY-SA-4.0' if expression == DUAL else expression
-    if identifier not in STANDARDS:
+def standard_for(data, expression):
+    config = data['machine_readable']['rsl']
+    mapping = config['expression_mappings'].get(expression, {})
+    identifier = mapping.get('open_license', expression)
+    if identifier not in config['standard_licenses']:
         raise ValueError(f'No reviewed RSL mapping for {expression!r}')
-    return STANDARDS[identifier]
+    return config['standard_licenses'][identifier]
 
 
-def select_records(root, manifest):
+def select_records(root, manifest, data):
     if manifest.get('authority') != 'artifact' or manifest.get('meta', {}).get('legal_license_grant') is not False:
         raise ValueError('RSL manifest must preserve artifact authority')
     records, scopes = [], set()
@@ -54,8 +47,9 @@ def select_records(root, manifest):
                    'SPDX-License-Identifier: ' + expression}
         if not notices.intersection(line.strip() for line in source.decode('utf-8').splitlines()):
             raise ValueError(f'RSL expression lacks an explicit source notice: {path}')
-        standard_for(expression)
-        if expression == DUAL and record.get('commercial_relicensing_verified') is not True:
+        standard_for(data, expression)
+        mapping = data['machine_readable']['rsl']['expression_mappings'].get(expression, {})
+        if mapping.get('requires_commercial_provenance') and record.get('commercial_relicensing_verified') is not True:
             raise ValueError('Dual-license RSL metadata requires verified commercial rights')
         records.append(record)
         scopes.add(scope)
@@ -68,11 +62,24 @@ def render_rsl(data, records):
     ET.register_namespace('', RSL)
     ET.register_namespace('sragi', SRAGI)
     root = ET.Element(f'{{{RSL}}}rsl')
+    site = data['website_licensing']
+    default = ET.SubElement(root, f'{{{RSL}}}content', {'url': site['rsl_path']})
+    license_node = ET.SubElement(default, f'{{{RSL}}}license')
+    payment_type = standard_for(data, site['default_spdx'])['payment_type']
+    payment = ET.SubElement(license_node, f'{{{RSL}}}payment', {'type': payment_type})
+    # This URI identifies the conditional website policy, not an unconditional
+    # CC grant to every resource beneath '/'. Core readers see its full terms.
+    ET.SubElement(payment, f'{{{RSL}}}standard').text = site['policy_url']
+    ET.SubElement(default, f'{{{RSL}}}terms').text = site['policy_url']
+    ET.SubElement(default, f'{{{SRAGI}}}default-spdx').text = site['default_spdx']
+    ET.SubElement(default, f'{{{SRAGI}}}scope').text = site['default_scope']
+    ET.SubElement(default, f'{{{SRAGI}}}exceptions').text = ' '.join(site['exceptions'].split())
     for record in records:
         content = ET.SubElement(root, f'{{{RSL}}}content', {'url': record['rsl_path']})
         license_node = ET.SubElement(content, f'{{{RSL}}}license')
-        payment = ET.SubElement(license_node, f'{{{RSL}}}payment', {'type': 'attribution'})
-        ET.SubElement(payment, f'{{{RSL}}}standard').text = standard_for(record['license_expression'])
+        standard = standard_for(data, record['license_expression'])
+        payment = ET.SubElement(license_node, f'{{{RSL}}}payment', {'type': standard['payment_type']})
+        ET.SubElement(payment, f'{{{RSL}}}standard').text = standard['url']
         ET.SubElement(content, f'{{{SRAGI}}}license-expression').text = record['license_expression']
         ET.SubElement(content, f'{{{SRAGI}}}source-sha256').text = record['source_sha256']
     metadata = ET.SubElement(root, f'{{{SRAGI}}}framework', {'version': str(data['meta']['version']), 'legal-license-grant': 'false'})
@@ -88,7 +95,7 @@ def render_rsl(data, records):
     return root
 
 
-def validate_projection(text, records):
+def validate_projection(text, records, data):
     """Reject deviations from our reviewed subset, including valid-but-broader RSL.
 
     This is a project conformance check, not official RSL certification.
@@ -97,9 +104,9 @@ def validate_projection(text, records):
     root = ET.fromstring(text)
     if root.tag != f'{{{RSL}}}rsl' or root.attrib:
         raise ValueError('Expected RSL 1.0 root/namespace; SRLF version is not an RSL version')
-    structure = {'rsl': ({'content'}, set()), 'content': ({'license'}, {'url'}),
+    structure = {'rsl': ({'content'}, set()), 'content': ({'license', 'terms'}, {'url'}),
                  'license': ({'payment'}, set()), 'payment': ({'standard'}, {'type'}),
-                 'standard': (set(), set())}
+                 'standard': (set(), set()), 'terms': (set(), set())}
     def visit(node):
         if node.tag.startswith(f'{{{SRAGI}}}'):
             return
@@ -118,6 +125,10 @@ def validate_projection(text, records):
     visit(root)
     contents = root.findall('r:content', NS)
     expected = {r['rsl_path']: r for r in records}
+    site = data['website_licensing']
+    if site['rsl_path'] in expected:
+        raise ValueError('Artifact record collides with website fallback')
+    expected[site['rsl_path']] = None
     if not expected or len(contents) != len(expected) or {c.get('url') for c in contents} != set(expected):
         raise ValueError('RSL content scope differs from verified manifest')
     for content in contents:
@@ -126,11 +137,19 @@ def validate_projection(text, records):
         if len(licenses) != 1 or len(licenses[0]) != 1:
             raise ValueError('RSL projection must preserve a single open path')
         payment = licenses[0].find('r:payment', NS)
-        if payment is None or payment.attrib != {'type': 'attribution'} or len(payment) != 1:
+        spec = standard_for(data, record['license_expression']) if record else {
+            'url': site['policy_url'],
+            'payment_type': standard_for(data, site['default_spdx'])['payment_type'],
+        }
+        if payment is None or payment.attrib != {'type': spec['payment_type']} or len(payment) != 1:
             raise ValueError('Expected the reviewed RSL attribution standard form')
         standard = payment.find('r:standard', NS)
-        if standard is None or standard.text != standard_for(record['license_expression']):
+        if standard is None or standard.text != spec['url']:
             raise ValueError('RSL standard license differs from source artifact')
+        if record is None:
+            if content.findtext('r:terms', namespaces=NS) != site['policy_url']:
+                raise ValueError('Website fallback lost its exception-bearing terms')
+            continue
         if content.findtext('s:license-expression', namespaces=NS) != record['license_expression']:
             raise ValueError('RSL metadata lost the artifact license expression')
     metadata = root.find('s:framework', NS)

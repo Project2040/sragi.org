@@ -3,19 +3,38 @@
   <framework>SRAGI® Regenerative Licensing Framework</framework>
   <canonical>https://sragi.org/licensing/</canonical>
   <rights-authority>artifact</rights-authority>
-  <rights-rule>This framework does not independently grant rights to SRAGI artifacts. Rights are determined by the license identifier, license expression, rights statement, contract and applicable law governing each artifact.</rights-rule>
+  <rights-rule>The website_licensing section records the explicit default license for eligible public sragi.org content. It does not license the wider ecosystem. Rights are determined by the license identifier, license expression, rights statement, contract and applicable law governing each artifact.</rights-rule>
   <ecosystem-default-license>none</ecosystem-default-license>
-  <unspecified-artifact-policy>No license grant should be inferred.</unspecified-artifact-policy>
+  <website-license-policy>
+    <default-spdx>CC-BY-4.0</default-spdx>
+    <policy-url>https://sragi.org/content/license/WEBSITE-LICENSE.html</policy-url>
+    <scope>owned_or_authorized_public_website_content</scope>
+    <exceptions>A license notice, SPDX expression, rights statement or applicable agreement attached to a specific artifact takes precedence over the website default. Separately licensed products, frameworks, software, downloads and embedded components retain their stated terms. Third-party material remains subject to its own rights. The website default does not grant trademark rights.</exceptions>
+    <machine-use>Search engines, AI systems and other machine agents are welcome to access public content. No crawler fee, registration or license token is required by this website access policy. Content under CC-BY-4.0 is available for AI use, including training, subject to that license and applicable law. Artifact-specific terms continue to govern exceptions; this policy does not waive their obligations or turn commercial products into free grants.</machine-use>
+  </website-license-policy>
+  <unspecified-artifact-policy>On sragi.org, eligible public content without a different license notice is covered by the express website policy. Outside that defined scope, no license grant should be inferred.</unspecified-artifact-policy>
   <machine-access posture="maximally_open" legal-license-grant="false">
     <agents>*</agents>
+    <named-agent>Googlebot</named-agent>
+    <named-agent>Google-Extended</named-agent>
+    <named-agent>Bingbot</named-agent>
+    <named-agent>OAI-SearchBot</named-agent>
+    <named-agent>GPTBot</named-agent>
+    <named-agent>ChatGPT-User</named-agent>
+    <named-agent>ClaudeBot</named-agent>
+    <named-agent>Claude-SearchBot</named-agent>
+    <named-agent>Claude-User</named-agent>
+    <named-agent>PerplexityBot</named-agent>
+    <named-agent>Perplexity-User</named-agent>
+    <named-agent>CCBot</named-agent>
     <scope>publicly accessible resources</scope>
     <crawling>allow-by-default</crawling>
     <indexing>allow-by-default</indexing>
     <retrieval>allow-by-default</retrieval>
     <search-discovery>allow-by-default</search-discovery>
-    <rights-rule>Technical access, crawler accessibility, indexing or discovery metadata does not independently grant copyright or other intellectual-property rights. Rights relating to an artifact are determined by its applicable license, rights statement, contract and applicable law.</rights-rule>
+    <rights-rule>Technical access, crawler accessibility, indexing or discovery metadata does not independently grant copyright or other intellectual-property rights. Rights relating to an artifact are determined by its applicable license, rights statement, contract and law, including the explicit website default where its scope applies.</rights-rule>
   </machine-access>
-  <ai-training-rights policy="artifact_license">Rights relating to AI training are determined by the license, rights statement, contract and applicable law governing the individual artifact.</ai-training-rights>
+  <ai-training-rights policy="artifact_license">Rights relating to AI training are determined by the governing license, rights statement, contract and law, including the express website default for eligible public content without a different notice.</ai-training-rights>
   <ai-training-and-adaptation>This framework does not determine whether AI training, model development, model outputs or related machine-learning activities constitute Adapted Material or trigger particular obligations under an applicable license. Such questions are governed by the applicable license, applicable law and the circumstances of the specific use.</ai-training-and-adaptation>
   <preferred-machine-attribution binding="false">SRAGI® — Neptunia Media AS — https://sragi.org/</preferred-machine-attribution>
   <attribution-note>This does not replace or reduce requirements imposed by the artifact license.</attribution-note>

@@ -24,7 +24,7 @@ class LicensingTests(unittest.TestCase):
     def setUp(self):
         self.data = builder.load_yaml(ROOT / 'SRL-LICENSE.yaml')
         self.manifest = builder.load_yaml(ROOT / self.data['machine_readable']['rsl']['manifest'])
-        self.records = select_records(ROOT, self.manifest)
+        self.records = select_records(ROOT, self.manifest, self.data)
 
     def test_machine_access_cannot_become_a_grant(self):
         for path, value in [
@@ -114,7 +114,7 @@ class LicensingTests(unittest.TestCase):
             root = Path(directory)
             shutil.copytree(ROOT / 'LICENSES', root / 'LICENSES')
             shutil.copyfile(ROOT / 'SRL-LICENSE.yaml', root / 'SRL-LICENSE.yaml')
-            for name in [self.data['machine_readable']['rsl']['manifest']] + [r['path'] for r in self.records]:
+            for name in [self.data['machine_readable']['rsl']['manifest']] + [r['path'] for r in self.records] + [s['path'] for s in self.data['content_templates'].values()]:
                 destination = root / name
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(ROOT / name, destination)
@@ -139,7 +139,7 @@ class LicensingTests(unittest.TestCase):
     def test_rsl_core_has_exact_scopes_and_standard_licenses_without_extensions(self):
         root = ET.fromstring(render(self.data, self.records)['content/license/LICENSE-RSL.xml'])
         self.assertEqual(root.tag, '{https://rslstandard.org/rsl}rsl')
-        contents = root.findall('r:content', NS)
+        contents = [c for c in root.findall('r:content', NS) if c.get('url') != '/']
         self.assertEqual(len(contents), 2)
         for content in contents:
             self.assertTrue(content.get('url').endswith('.md$'))
@@ -168,7 +168,7 @@ class LicensingTests(unittest.TestCase):
             with self.subTest(changed=changed[:100]):
                 ET.fromstring(changed)
                 with self.assertRaises(ValueError):
-                    validate_projection(changed, self.records)
+                    validate_projection(changed, self.records, self.data)
         outputs = render(self.data, self.records)
         outputs['robots.txt'] = '\n'.join(line for line in outputs['robots.txt'].splitlines() if not line.startswith('License:'))
         with self.assertRaisesRegex(ValueError, 'RSL discovery'):
@@ -181,11 +181,11 @@ class LicensingTests(unittest.TestCase):
             record = next(r for r in manifest['artifacts'] if 'rsl_path' in r)
             record[key] = value
             with self.subTest(key=key), self.assertRaises(ValueError):
-                select_records(ROOT, manifest)
+                select_records(ROOT, manifest, self.data)
 
     def test_dual_license_preserves_open_path_and_requires_commercial_provenance(self):
         import hashlib
-        from rsl import DUAL
+        DUAL = self.data['dual_licensing']['canonical_instruction_expression']
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             source = ('SPDX-License-Identifier: ' + DUAL + '\n').encode()
@@ -196,16 +196,17 @@ class LicensingTests(unittest.TestCase):
                       'commercial_relicensing_verified': False}
             manifest = {'authority': 'artifact', 'meta': {'legal_license_grant': False}, 'artifacts': [record]}
             with self.assertRaisesRegex(ValueError, 'commercial rights'):
-                select_records(root, manifest)
+                select_records(root, manifest, self.data)
             record['commercial_relicensing_verified'] = True
-            records = select_records(root, manifest)
+            records = select_records(root, manifest, self.data)
             text = render(self.data, records)['content/license/LICENSE-RSL.xml']
-            validate_projection(text, records)
+            validate_projection(text, records, self.data)
             node = ET.fromstring(text)
-            self.assertEqual(len(node.findall('r:content/r:license', NS)), 1)
-            self.assertEqual(node.findtext('r:content/r:license/r:payment/r:standard', namespaces=NS),
+            node = next(c for c in node.findall('r:content', NS) if c.get('url') == '/example.txt$')
+            self.assertEqual(len(node.findall('r:license', NS)), 1)
+            self.assertEqual(node.findtext('r:license/r:payment/r:standard', namespaces=NS),
                              'https://creativecommons.org/licenses/by-sa/4.0/')
-            self.assertEqual(node.findtext('r:content/s:license-expression', namespaces=NS), DUAL)
+            self.assertEqual(node.findtext('s:license-expression', namespaces=NS), DUAL)
 
 
 if __name__ == '__main__':
