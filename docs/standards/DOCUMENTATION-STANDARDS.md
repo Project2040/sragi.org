@@ -1,19 +1,18 @@
 # 📝 SRAGI Markdown & Documentation Standards
 
-**File:** `/docs/SRAGI-DOCUMENTATION-STANDARDS.md`
+**File:** `/docs/standards/DOCUMENTATION-STANDARDS.md`
 
 **Maintainer:** Rune Solberg / Neptunia Media AS
 
-**Version:** 1.2
+**Version:** 2.0
 
-**Last Updated:** December 2025
+**Last Updated:** September 2026
 
 ---
 
 ## 🧭 Purpose
 
-This document defines the **Markdown, formatting, and documentation structure standards** for SRAGI.org.
-It ensures consistency between GitHub (Kairos) and WordPress (Chronos) via the **Content Sync Engine**.
+This document defines Markdown, formatting, documentation metadata and licensing-reference standards for SRAGI.org.
 
 ---
 
@@ -21,124 +20,102 @@ It ensures consistency between GitHub (Kairos) and WordPress (Chronos) via the *
 
 ### 1. Heading Levels
 
-| Level  | Usage                   | Example                   |
-| ------ | ----------------------- | ------------------------- |
-| `#`    | **Page Title (H1)** | `# What is SRAGI?`        |
-| `##`   | **Major Section (H2)** | `## Core Principles`      |
-| `###`  | **Subsection (H3)** | `### The Fractal Nature`  |
-| `####` | **Detail (H4)** | `#### Implementation`     |
+| Level | Usage | Example |
+| --- | --- | --- |
+| `#` | Page Title (H1) | `# What is SRAGI?` |
+| `##` | Major Section (H2) | `## Core principles` |
+| `###` | Subsection (H3) | `### The fractal nature` |
+| `####` | Detail (H4) | `#### Implementation` |
 
-**Strict Rules:**
-* **One H1 per file:** The `# Title` must match `title_en` in the YAML frontmatter.
-* **No skipping:** Do not jump from H2 to H4.
-* **Sentence Case:** Use "Core principles", not "CORE PRINCIPLES".
+**Strict rules:**
+- One H1 per file.
+- Do not skip heading levels.
+- Use sentence case unless a proper name requires otherwise.
 
 ---
 
-## ⚙️ Frontmatter (The Brain)
+## ⚙️ Frontmatter
 
-Every content file (`.md`) **MUST** have a YAML frontmatter block defining its identity.
-This is the source code for the Sync Engine.
+Content files should carry machine-readable identity metadata where the publishing pipeline uses it. Use the applicable content schema rather than inventing file-specific fields.
 
-```yaml
----
-meta:
-  type: documentation
-  title: "Page Title"
-  slug: "page-slug"
-ia:
-  pillar: "sragi-os"
-  parent: "about"
-sync:
-  auto_publish: true
+### Licensing metadata
+
+SRLF 2.0 has **no ecosystem-wide default license**. Every publishable SRAGI artifact should identify its applicable license, SPDX expression, rights statement or governing terms.
+
+For dual-licensed SRAGI instruction YAML, the canonical expression is:
+
+```text
+CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial
 ```
-*See content-template.md.yaml for the full schema.*
+
+For other artifacts, select the license appropriate to that artifact. Do not copy the instruction-framework expression onto software, articles, schemas or third-party material unless it actually applies.
+
+If an artifact has no stated license or rights statement, **no license grant should be inferred**.
+
+Canonical licensing portal: https://sragi.org/licensing/
 
 ---
 
-## **🌐 Language & File Structure (Twin-File Strategy)**
+## 🌐 Language & File Structure
 
-We use a **Sibling File** approach for multilingual content to ensure clean git diffs.
+Where sibling language files are used, keep their semantic structure aligned while allowing natural translation.
 
 | Language | Filename Pattern | Example |
-| :---- | :---- | :---- |
-| **English (Master)** | \[slug\].md | what-is-sragi.md |
-| **Norwegian** | \[slug\]-nb.md | what-is-sragi-nb.md |
-| **YAML Controller** | \[slug\].yaml | what-is-sragi.yaml |
-
-**Rule:** The English file is the structure master. The Norwegian file mirrors the structure (headings) of the English file exactly.
+| --- | --- | --- |
+| English | `[slug].md` | `what-is-sragi.md` |
+| Norwegian | `[slug]-nb.md` | `what-is-sragi-nb.md` |
+| YAML controller | `[slug].yaml` | `what-is-sragi.yaml` |
 
 ---
 
-## **🎨 Text Formatting**
+## 🎨 Text Formatting
 
-### **Emphasis**
+- **Bold:** concepts and UI elements.
+- *Italic:* emphasis or foreign words.
+- `Code`: file paths, variables, identifiers and technical terms.
+- Use `-` for unordered lists and `1.` for ordered lists.
 
-* **Bold:** \*\*text\*\* for concepts and UI elements.  
-* *Italic:* \_text\_ for emphasis or foreign words.  
-* Code: \`text\` for file paths, variables, or technical terms.
+### Callouts
 
-### **Admonitions (Callouts)**
+```markdown
+> **Note:** General information.
 
-Use blockquotes with specific prefixes to create styled boxes in Bricks:
+> **Warning:** A material risk or constraint.
 
-Markdown
-
-```
-> **Note:** This is a general note.
-
-> **Warning:** Be careful with this setting.
-
-> **Tip:** Try using the CLI for speed.
+> **Tip:** Practical guidance.
 ```
 
-### **Lists**
+---
 
-* Use \- for unordered lists.  
-* Use 1\. for ordered lists.
+## 🖼️ Visuals & Media
+
+- Alt text is mandatory where meaningful.
+- Prefer efficient modern formats such as AVIF or WebP where supported.
+- Preserve provenance and applicable rights information for third-party media.
 
 ---
 
-## **🖼️ Visuals & Media**
+## 🔗 Links
 
-Refer to **SRAGI Visual Protocol v1.1** for full details.
-
-In Markdown:
-
-Always use the relative path from the content root, or the absolute path for stability.
-
-Markdown
-
-```
-![Epic alt text describing the latent space](../assets/images/visuals/hero/gemini-nebula-2025-16x9-content.avif)
-```
-
-*   
-  **Alt Text:** Mandatory. Must describe the concept, not just the pixels.  
-* **Format:** Prefer .avif or .webp.
+- Repository documentation: prefer stable relative links where appropriate.
+- Site links: use canonical SRAGI URLs.
+- External sources: use full canonical URLs.
 
 ---
 
-## **🔗 Links**
+## 🪄 Summary
 
-* **Internal (Docs):** Relative links (../setup/install.md).  
-* **Internal (Site):** Absolute paths (/about/what-is-sragi).  
-* **External:** Full URL (https://example.com).
+- YAML carries structured context.
+- Markdown carries human-readable content.
+- Git carries version history.
+- The artifact carries its rights.
+- SRLF describes the licensing architecture; it does not silently license every artifact.
 
----
-
-## **🪄 Summary**
-
-* **YAML** defines the context.  
-* **Markdown** defines the content.  
-* **Git** tracks the truth.
-
-“Documentation is not bureaucracy — it’s the living memory of the system.”
+> Documentation is not bureaucracy — it is the living memory of the system.
 
 ---
 
-© 2025 Rune Solberg / Neptunia Media AS
+© 2024-2026 Neptunia Media AS
 
-Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL).
-
-See SRL-LICENSE.yaml for details.
+License: see the artifact-specific SPDX identifier, license expression or rights statement.  
+Licensing framework: https://sragi.org/licensing/
