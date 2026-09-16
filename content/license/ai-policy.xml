@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sragi-ai-policy version="2.0" function="rights-discovery" legal-license-grant="false">
-  <access posture="maximally-open">
-    <agents>*</agents>
-    <crawling>allow-by-default</crawling>
-    <indexing>allow-by-default</indexing>
-    <retrieval>allow-by-default</retrieval>
-  </access>
-  <rights-authority>artifact</rights-authority>
-  <ecosystem-default-license>none</ecosystem-default-license>
+  <access posture="maximally-open"><agents>*</agents><crawling>allow-by-default</crawling><indexing>allow-by-default</indexing><retrieval>allow-by-default</retrieval></access>
+  <rights-authority>artifact</rights-authority><ecosystem-default-license>none</ecosystem-default-license>
   <unspecified-artifact-policy>No license grant should be inferred.</unspecified-artifact-policy>
   <ai-training-rights>artifact-license</ai-training-rights>
   <preferred-machine-attribution binding="false">SRAGI® — Neptunia Media AS — https://sragi.org/</preferred-machine-attribution>
-  <licensing>https://sragi.org/licensing/</licensing>
-  <licensing-contact>licensing@sragi.org</licensing-contact>
+  <licensing>https://sragi.org/licensing/</licensing><licensing-contact>licensing@sragi.org</licensing-contact>
 </sragi-ai-policy>
