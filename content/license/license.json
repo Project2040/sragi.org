@@ -1,91 +1,46 @@
 {
-    "meta": {
-        "id": "SRL-1.12",
-        "version": "1.12",
-        "updated": "2026-07-19",
-        "strategy": {
-            "type": "single",
-            "default_license": "CC-BY-4.0",
-            "default_license_scope": "Gjelder generelt redaksjonelt innhold på sragi.org med mindre et navngitt verk eller en release angir en annen lisens."
-        },
-        "source": "https://sragi.org",
-        "generated": "NDS Trust Export Generator (2026-07-19T04:59:33+00:00)"
-    },
-    "organization": {
-        "author": "Rune Solberg, Neptunia Media AS",
-        "rights_holder": "Neptunia Media AS",
-        "contact_email": "contact@sragi.org",
-        "contact_email_nb": "kontakt@sragi.org",
-        "website": "https://sragi.org",
-        "location": null,
-        "org_number": "932481375"
-    },
-    "permissions": {
-        "usage": [
-            "all",
-            "closed-source",
-            "commercial",
-            "derivative-works",
-            "inference",
-            "proprietary",
-            "train-ai"
-        ],
-        "allowed_agents": [
-            "*",
-            "Applebot",
-            "Bingbot",
-            "Bytespider",
-            "CCBot",
-            "ClaudeBot",
-            "facebookexternalhit",
-            "Google-Extended",
-            "Googlebot",
-            "GPTBot",
-            "Omgilibot",
-            "PerplexityBot"
-        ],
-        "note": "Agentlisten er deklarativ, ikke restriktiv: signaliserer etisk åpenhet, ikke ekskludering."
-    },
-    "requirements": {
-        "attribution": true,
-        "share-alike": false
-    },
-    "ethics": {
-        "binding": false,
-        "framework": {
-            "name": "SRAGI Regenerative Principles",
-            "url": "https://www.sragi.org/regenerative-principles/",
-            "type": "aspirational",
-            "encouragement": "We invite users to align with these principles, but we do not legally require it.\nThese represent culture, not control."
-        }
-    },
-    "attribution": {
-        "minimal": "SRAGI by Rune Solberg, Neptunia Media AS\nSource: https://sragi.org",
-        "standard": "SRAGI Regenerative License (SRL) v1.12\nCreated by Rune Solberg / Neptunia Media AS\nSource: https://sragi.org/license\nLicense: CC BY 4.0 base, RSL compatible",
-        "code_metadata": {
-            "license": {
-                "base": "CC BY 4.0",
-                "creator": "Rune Solberg, Neptunia Media AS",
-                "name": "SRAGI Regenerative License (SRL)",
-                "source": "https://sragi.org",
-                "version": "1.12"
-            }
-        },
-        "note": "Attribution is mandated by CC BY 4.0, not by SRAGI. All other aspects are permissive and trust-based."
-    },
-    "commercial_licensing": {
-        "available": false
-    },
-    "repository": "https://github.com/Project2040/sragi.org",
-    "links": {
-        "license_md": "https://sragi.org/content/license/REGENERATIVE_LICENSE.md",
-        "license_json": "https://sragi.org/content/license/license.json",
-        "license_rsl_xml": "https://sragi.org/content/license/LICENSE-RSL.xml",
-        "ai_policy_xml": "https://sragi.org/content/license/ai-policy.xml",
-        "ai_policy_txt": "https://sragi.org/ai-policy.txt",
-        "license_html": "https://sragi.org/license",
-        "principles_md": "https://www.sragi.org/regenerative-principles/",
-        "robots_txt": "https://sragi.org/robots.txt",
-        "sitemap_xml": "https://sragi.org/sitemap.xml"
-    }
+  "meta": {
+    "id": "SRAGI_REGENERATIVE_LICENSING_FRAMEWORK",
+    "name": "SRAGI® Regenerative Licensing Framework",
+    "version": "2.0",
+    "status": "active",
+    "canonical_url": "https://sragi.org/licensing/"
+  },
+  "rights": {
+    "authority": "artifact",
+    "ecosystem_default_license": null,
+    "unspecified_artifact_policy": "No license grant should be inferred."
+  },
+  "dual_licensing": {
+    "canonical_instruction_expression": "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial",
+    "commercial_grant_by_reference": false
+  },
+  "machine_access": {
+    "posture": "maximally_open",
+    "agents": "*",
+    "crawling": "allow_by_default",
+    "indexing": "allow_by_default",
+    "retrieval": "allow_by_default",
+    "legal_license_grant": false,
+    "ai_training_rights": "artifact_license"
+  },
+  "commercial": {
+    "identifier": "LicenseRef-SRAGI-Commercial",
+    "name": "SRAGI® Commercial Suite License",
+    "grant_by_reference": false,
+    "licensing_url": "https://sragi.org/licensing/"
+  },
+  "attribution": {
+    "preferred_machine_attribution": "SRAGI® — Neptunia Media AS — https://sragi.org/",
+    "binding": false
+  },
+  "regenerative": {
+    "principle": "Give more than you take.",
+    "open_license_layer_binding": false,
+    "commercial_covenant_supported": true
+  },
+  "organization": {
+    "rights_holder": "Neptunia Media AS",
+    "licensing_email": "licensing@sragi.org"
+  }
 }
