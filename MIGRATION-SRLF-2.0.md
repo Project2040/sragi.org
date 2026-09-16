@@ -20,6 +20,7 @@
 - [x] Replace legacy `_CONFIG` redirect semantics.
 - [x] Add SPDX standard-license synchronization tool.
 - [x] Regenerate human-readable framework, JSON, XML and HTML summaries on branch.
+- [x] Replace legacy `/license/` sitemap entry with canonical `/licensing/` portal.
 
 ## Required before merge
 
