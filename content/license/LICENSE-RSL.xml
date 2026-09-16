@@ -6,10 +6,7 @@
   <ecosystem-default-license>none</ecosystem-default-license>
   <unspecified-artifact-policy>No license grant should be inferred.</unspecified-artifact-policy>
   <machine-access posture="maximally_open" legal-license-grant="false">
-    <agents>*</agents>
-    <crawling>allow-by-default</crawling>
-    <indexing>allow-by-default</indexing>
-    <retrieval>allow-by-default</retrieval>
+    <agents>*</agents><crawling>allow-by-default</crawling><indexing>allow-by-default</indexing><retrieval>allow-by-default</retrieval>
   </machine-access>
   <canonical-instruction-expression>CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial</canonical-instruction-expression>
   <commercial-license-ref>LicenseRef-SRAGI-Commercial</commercial-license-ref>
