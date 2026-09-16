@@ -11,24 +11,21 @@
     "ecosystem_default_license": null,
     "unspecified_artifact_policy": "No license grant should be inferred."
   },
+  "machine_access": {
+    "posture": "maximally_open",
+    "agents": "*",
+    "legal_license_grant": false,
+    "ai_training_rights": "artifact_license"
+  },
   "dual_licensing": {
     "canonical_instruction_expression": "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial",
     "commercial_grant_by_reference": false
   },
-  "machine_access": {
-    "posture": "maximally_open",
-    "agents": "*",
-    "crawling": "allow_by_default",
-    "indexing": "allow_by_default",
-    "retrieval": "allow_by_default",
-    "legal_license_grant": false,
-    "ai_training_rights": "artifact_license"
-  },
   "commercial": {
     "identifier": "LicenseRef-SRAGI-Commercial",
-    "name": "SRAGI® Commercial Suite License",
-    "grant_by_reference": false,
-    "licensing_url": "https://sragi.org/licensing/"
+    "license_name": "SRAGI® Commercial Suite License",
+    "licensing_url": "https://sragi.org/licensing/",
+    "grant_by_reference": false
   },
   "attribution": {
     "preferred_machine_attribution": "SRAGI® — Neptunia Media AS — https://sragi.org/",
@@ -42,5 +39,6 @@
   "organization": {
     "rights_holder": "Neptunia Media AS",
     "licensing_email": "licensing@sragi.org"
-  }
+  },
+  "note": "Compact checked-in rights-discovery summary. The SRLF 2.0 builder may emit an expanded representation from SRL-LICENSE.yaml."
 }
