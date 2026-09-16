@@ -1,158 +1,117 @@
 #!/usr/bin/env python3
 # ===========================================================
-#  SRAGI LICENSE BUILDER — v1.4 (Zombie-Fix Edition)
-#  © 2025 Rune Solberg / Neptunia Media AS
-#  Reads SRL-LICENSE.yaml and generates all license artifacts
-#  All files output to: content/license/
+# SRAGI® LICENSE BUILDER — SRLF 2.0
+# Reads SRL-LICENSE.yaml and generates licensing/discovery artifacts.
 # ===========================================================
 
+import json
 import os
 import sys
-import yaml
-import json
 import traceback
 from datetime import datetime, timezone
-from generate_files import *
 
-# Paths
+import yaml
+from generate_files import (
+    generate_ai_policy_txt,
+    generate_ai_policy_xml,
+    generate_human_license,
+    generate_license_html,
+    generate_license_json,
+    generate_robots,
+    generate_rsl_xml,
+    generate_sitemap,
+)
+
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 YAML_FILE = os.path.join(BASE_DIR, "SRL-LICENSE.yaml")
-LOG_FILE = os.path.join(BASE_DIR, "sync/sync-log.json")
+LOG_FILE = os.path.join(BASE_DIR, "sync", "sync-log.json")
 LICENSE_DIR = os.path.join(BASE_DIR, "content", "license")
 
+
 def load_yaml(path):
-    """Load, parse, and hydrate YAML file."""
     with open(path, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
-
-    # 💧 KAIROS HYDRATION STEP
-    # Også kjent som: "Magic Self-Reference Fixer"
-    # Vi sørger for at code_metadata alltid har riktig versjon fra meta-blokken.
-    try:
-        version = data.get('meta', {}).get('version')
-        if version and 'attribution' in data and 'code_metadata' in data['attribution']:
-             # Overskriv placeholderen {{ meta.version }} med den faktiske verdien
-             data['attribution']['code_metadata']['license']['version'] = version
-    except Exception as e:
-        print(f"⚠️ Warning: Auto-hydration of code_metadata failed: {e}")
-
+    if not isinstance(data, dict):
+        raise ValueError("SRL-LICENSE.yaml must contain a YAML mapping at the document root")
     return data
 
+
+def validate_v2(data):
+    errors = []
+    meta = data.get("meta", {})
+    rights = data.get("rights", {})
+    machine = data.get("machine_access", {})
+
+    if str(meta.get("version")) != "2.0":
+        errors.append("meta.version must be 2.0")
+    if rights.get("authority") != "artifact":
+        errors.append("rights.authority must be artifact")
+    if rights.get("ecosystem_default_license", "sentinel") is not None:
+        errors.append("rights.ecosystem_default_license must be null")
+    if machine.get("agents", {}).get("default") != "*":
+        errors.append("machine_access.agents.default must be '*'")
+    if machine.get("robots", {}).get("legal_license_grant") is not False:
+        errors.append("machine_access.robots.legal_license_grant must be false")
+    if machine.get("ai_policy", {}).get("legal_license_grant") is not False:
+        errors.append("machine_access.ai_policy.legal_license_grant must be false")
+
+    if errors:
+        raise ValueError("SRLF 2.0 validation failed:\n- " + "\n- ".join(errors))
+
+
 def log_event(result):
-    """Append build result to sync log."""
     os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
     with open(LOG_FILE, "a", encoding="utf-8") as f:
-        json.dump(result, f, ensure_ascii=False, indent=2)
+        json.dump(result, f, ensure_ascii=False, default=str)
         f.write("\n")
 
-def show_debug_info(data):
-    """Show debug information if DEBUG env var is set."""
-    if not os.getenv("DEBUG"):
-        return
-
-    print("\n🔍 DEBUG MODE\n")
-    print(f"📋 YAML Structure:")
-    print(f"  - Version: {data.get('meta', {}).get('version')}")
-    print(f"  - License: {data.get('meta', {}).get('base_license')}")
-    print(f"  - Strategy: {data.get('meta', {}).get('license_strategy', {}).get('type')}")
-    print(f"  - Permissions: {len(data.get('permissions', {}).get('usage', []))} items")
-
-    if data.get('content'):
-        print(f"  - Content sections: {', '.join(data['content'].keys())}")
-
-    print()
 
 def verify_output():
-    """Verify that all expected files were created."""
-    expected_files = [
-        "LICENSE-RSL.xml",
-        "REGENERATIVE_LICENSE.md",
-        "index.html",
-        "license.json",
-        "ai-policy.xml",
-        "ai-policy.txt",
-        "robots.txt",
-        "sitemap.xml"
+    expected = [
+        os.path.join(LICENSE_DIR, "LICENSE-RSL.xml"),
+        os.path.join(LICENSE_DIR, "REGENERATIVE_LICENSE.md"),
+        os.path.join(LICENSE_DIR, "index.html"),
+        os.path.join(LICENSE_DIR, "license.json"),
+        os.path.join(LICENSE_DIR, "ai-policy.xml"),
+        os.path.join(BASE_DIR, "ai-policy.txt"),
+        os.path.join(BASE_DIR, "robots.txt"),
+        os.path.join(BASE_DIR, "sitemap.xml"),
     ]
-
-    missing = []
-    for filename in expected_files:
-        filepath = os.path.join(LICENSE_DIR, filename)
-        if filename in ["robots.txt", "sitemap.xml", "ai-policy.txt"]:
-             # Sjekk rot-filene der de faktisk ligger nå
-             filepath = os.path.join(BASE_DIR, filename)
-
-        if not os.path.exists(filepath):
-            missing.append(filename)
-
+    missing = [os.path.relpath(p, BASE_DIR) for p in expected if not os.path.exists(p)]
     if missing:
-        print(f"\n⚠️  WARNING: Missing files: {', '.join(missing)}\n")
-        return False
+        raise RuntimeError("Missing generated files: " + ", ".join(missing))
 
-    print(f"\n✅ All {len(expected_files)} artifacts verified.\n")
-    return True
 
 def main():
-    """Main build function."""
-    # Load YAML
     try:
         data = load_yaml(YAML_FILE)
-        print(f"📖 Loaded {os.path.relpath(YAML_FILE, BASE_DIR)}")
-    except FileNotFoundError:
-        print(f"❌ ERROR: Could not find {YAML_FILE}")
-        sys.exit(1)
-    except yaml.YAMLError as e:
-        print(f"❌ ERROR: Invalid YAML syntax:\n{e}")
-        sys.exit(1)
+        validate_v2(data)
+        print(f"Loaded {os.path.relpath(YAML_FILE, BASE_DIR)} — SRLF 2.0")
 
-    # Show debug info if enabled
-    show_debug_info(data)
+        results = {
+            "LICENSE-RSL.xml": generate_rsl_xml(data),
+            "REGENERATIVE_LICENSE.md": generate_human_license(data),
+            "index.html": generate_license_html(data),
+            "license.json": generate_license_json(data),
+            "ai-policy.xml": generate_ai_policy_xml(data),
+            "ai-policy.txt": generate_ai_policy_txt(data),
+            "robots.txt": generate_robots(data),
+            "sitemap.xml": generate_sitemap(data),
+        }
 
-    # Use SSOT timestamp if available, otherwise fallback to now (Kairos principle)
-    ssot_time = data.get("meta", {}).get("last_updated")
-    # SIKKERHETSFIKS: Tving til string umiddelbart
-    timestamp = str(ssot_time) if ssot_time else datetime.now(timezone.utc).strftime("%Y-%m-%d")
-
-    results = {}
-
-    print(f"\n🧩 Building SRAGI License Files — SSOT Date: {timestamp}\n")
-
-    # Generate all files
-    try:
-        results["LICENSE-RSL.xml"] = generate_rsl_xml(data)
-        results["REGENERATIVE_LICENSE.md"] = generate_human_license(data)
-        results["index.html"] = generate_license_html(data)
-        results["license.json"] = generate_license_json(data)
-        results["ai-policy.xml"] = generate_ai_policy_xml(data)
-        results["ai-policy.txt"] = generate_ai_policy_txt(data)
-        results["robots.txt"] = generate_robots(data)
-        results["sitemap.xml"] = generate_sitemap(data)
-
-        # Log success - SIKRET MOT DATO-FEIL
+        verify_output()
         log_event({
             "build_time": datetime.now(timezone.utc).isoformat(),
-            "ssot_version": str(data.get("meta", {}).get("version")),
-            "ssot_date": timestamp, # Nå garantert en string
+            "framework_version": str(data.get("meta", {}).get("version")),
+            "framework_date": str(data.get("meta", {}).get("last_updated", "")),
             "status": "success",
-            "results": results
+            "results": results,
         })
-
-        # Verify output
-        if verify_output():
-            print("🚀 Kairos Sync Complete! All artifacts are up to date.\n")
-        else:
-             print("⚠️  Build finished, but some files are missing.\n")
-             sys.exit(1)
-
-    except FileNotFoundError as e:
-        error_msg = f"Template file not found: {e}"
-        print(f"❌ ERROR: {error_msg}")
-        sys.exit(1)
-
+        print("SRLF 2.0 build complete and verified.")
     except Exception:
-        # Full traceback for unexpected errors
         traceback.print_exc()
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
