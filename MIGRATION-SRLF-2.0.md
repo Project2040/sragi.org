@@ -20,12 +20,16 @@
 ## Required before merge
 
 - [ ] Materialize canonical standard SPDX license texts under `LICENSES/` by running `python tools/sync_spdx_license_texts.py` in a checkout with network access.
-- [ ] Run `python automation/license_builder/build_licenses.py` after the standard texts exist and commit deterministic output changes (notably full `license.json`).
+- [ ] Run `python automation/license_builder/build_licenses.py` after the standard texts exist and commit deterministic output changes.
 - [ ] Run `python tools/enforce_version_refs.py` and resolve remaining live-document legacy grants.
 - [ ] Validate YAML, JSON and XML in CI/local checkout.
 - [ ] Review remaining live documentation for obsolete SRL 1.x terminology.
 - [ ] Legal review of `LicenseRef-SRAGI-Commercial.txt` and contributor-rights language before production publication.
 - [ ] Confirm canonical web endpoint `/licensing/` exists before deployment.
+
+## Branch state
+
+Migration branch is intentionally ahead of `main` and PR #9 remains draft. Do not merge until the release gates above pass.
 
 ## Core invariant
 
