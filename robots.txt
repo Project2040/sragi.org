@@ -1,21 +1,9 @@
 # SRAGI® — TECHNICAL ACCESS POLICY
-# SRLF 2.0
-#
-# Posture: maximally open
-# Function: technical access and discovery
-# Legal license grant: false
-#
-# Technical accessibility does not independently grant copyright or
-# other intellectual-property rights. Artifact-level licensing governs.
-
+# SRLF 2.0 | Posture: maximally open | Legal license grant: false
 User-agent: *
 Disallow:
 
-# Discovery
 Sitemap: https://sragi.org/sitemap.xml
-
-# Rights discovery
-# AI policy: https://sragi.org/ai-policy.txt
+# Rights discovery: https://sragi.org/ai-policy.txt
 # Licensing: https://sragi.org/licensing/
-# Repository: https://github.com/Project2040/sragi.org
 # Licensing contact: licensing@sragi.org
