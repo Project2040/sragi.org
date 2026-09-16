@@ -18,4 +18,16 @@ Do not hand-edit synchronized standard license texts. The SRLF 2.0 builder inten
 
 `LicenseRef-SRAGI-Commercial.txt` is maintained by Neptunia Media AS. It identifies the alternative SRAGI® Commercial Suite licensing path. Its presence does not itself grant commercial-license rights.
 
+## Release preparation
+
+Run from repository root:
+
+```bash
+python tools/sync_spdx_license_texts.py
+python automation/license_builder/build_licenses.py
+python tools/enforce_version_refs.py
+```
+
+Then review and commit the generated diff before merging a licensing release.
+
 Canonical licensing portal: https://sragi.org/licensing/
