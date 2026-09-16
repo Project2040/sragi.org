@@ -71,7 +71,11 @@ The license builder reads [`SRL-LICENSE.yaml`](SRL-LICENSE.yaml) and generates m
 
 Run `python automation/license_builder/build_licenses.py` to rebuild, and add `--check` to verify checked-in output without writing files. CI runs the check and regression tests on pull requests and branch pushes; it does not commit generated changes automatically. See [CONTRIBUTING.md](CONTRIBUTING.md) for commands.
 
-`LICENSE-RSL.xml` retains its historical filename for compatibility. Its contents are SRAGI-specific rights-discovery XML, not a claim to implement an external RSL schema or a universal license grant.
+[`LICENSE-RSL.xml`](content/license/LICENSE-RSL.xml) uses **Really Simple Licensing 1.0**, with the standard `https://rslstandard.org/rsl` namespace. `robots.txt` advertises it through the RSL `License:` directive while retaining open crawler access. SPDX identifies licenses; RSL represents and exposes artifact-specific terms; SRLF 2.0 describes the framework. These are separate roles and version numbers.
+
+The initial RSL projection covers the two explicitly CC-BY-4.0-licensed Regenerative Principles source documents at their exact static repository paths. It does not license the entire domain or assume that WordPress pages contain the same material. Source hashes and explicit notices are checked before export. Unresolved entries are excluded; unsupported license mappings fail instead of selecting a default. SRAGI metadata lives in its own XML namespace. A future verified dual-license entry exports its open standard-license path and preserves its full SPDX expression as metadata; it does not turn a commercial reference into a grant.
+
+The builder validates this limited RSL profile against the [RSL 1.0 specification](https://rslstandard.org/rsl) and its [standard-license form](https://rslstandard.org/guide/standard-licenses). These project checks are not official RSL certification. See [RSL deployment](content/license/RSL_DEPLOYMENT.md) for HTTP requirements and the remaining live-site verification.
 
 The [resource manifest](content/license/RESOURCE_LICENSE_MANIFEST.yaml) records two pre-existing conflicting document notices requiring review. It does not silently resolve or relicense them. Unchanged historical license grants are not revoked by this migration.
 

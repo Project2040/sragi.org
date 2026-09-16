@@ -22,5 +22,6 @@ Attribution-Note: This does not replace or reduce requirements imposed by the ar
 Commercial-Grant-Rule: Commercial-license rights arise only through an applicable commercial agreement with Neptunia Media AS and only within its licensed scope.
 Third-Party-Rights: Neptunia Media AS can grant only rights it owns, controls or is otherwise authorized to license. Third-party materials remain governed by their terms.
 Artifact-Manifest: https://github.com/Project2040/sragi.org/blob/main/content/license/RESOURCE_LICENSE_MANIFEST.yaml
+RSL-License-Document: https://sragi.org/content/license/LICENSE-RSL.xml
 Licensing: https://sragi.org/licensing/
 Licensing-Contact: licensing@sragi.org

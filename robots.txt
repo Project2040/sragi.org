@@ -1,3 +1,6 @@
+# RSL discovery; licenses apply only to the identified artifacts
+License: https://sragi.org/content/license/LICENSE-RSL.xml
+
 # Technical crawler access to public resources
 User-agent: *
 Disallow:

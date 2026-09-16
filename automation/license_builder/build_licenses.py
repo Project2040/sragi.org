@@ -8,6 +8,7 @@ import sys
 from xml.etree import ElementTree as ET
 import yaml
 from generate_files import render
+from rsl import select_records, validate_projection
 
 ROOT = Path(__file__).resolve().parents[2]
 STANDARD_LICENSES = {'CC-BY-4.0', 'CC-BY-SA-4.0', 'AGPL-3.0-only', 'Apache-2.0', 'CC0-1.0'}
@@ -63,6 +64,16 @@ def validate_v2(data):
         'dual_licensing.commercial_grant_by_reference': False,
         'dual_licensing.canonical_instruction_expression': 'CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial',
         'evolution.retroactive_relicensing': False,
+        'machine_readable.rsl.enabled': True,
+        'machine_readable.rsl.protocol_version': '1.0',
+        'machine_readable.rsl.namespace': 'https://rslstandard.org/rsl',
+        'machine_readable.rsl.media_type': 'application/rsl+xml',
+        'machine_readable.rsl.scope': 'explicit_artifacts_only',
+        'machine_readable.rsl.manifest': 'content/license/RESOURCE_LICENSE_MANIFEST.yaml',
+        'machine_readable.rsl.url': 'https://sragi.org/content/license/LICENSE-RSL.xml',
+        'publication.generated_formats.xml.standard': 'RSL',
+        'publication.generated_formats.xml.protocol_version': '1.0',
+        'publication.generated_formats.xml.media_type': 'application/rsl+xml',
     }
     for activity in ('allow_by_default', 'allow_crawling', 'allow_indexing', 'allow_retrieval', 'allow_search_discovery'):
         expected['machine_access.discovery.' + activity] = True
@@ -106,7 +117,7 @@ def verify_license_files(root, data):
             raise ValueError(f'Canonical license text checksum mismatch: {identifier}')
 
 
-def verify_output(outputs, data):
+def verify_output(outputs, data, rsl_records):
     if set(outputs) != EXPECTED_OUTPUTS:
         raise ValueError('Generated output set changed; update publication and validation together')
     for path, content in outputs.items():
@@ -117,15 +128,19 @@ def verify_output(outputs, data):
     exported = json.loads(outputs['content/license/license.json'])
     if exported != json.loads(json.dumps(data, default=str)):
         raise ValueError('JSON representation differs from the master')
-    for path in ('content/license/LICENSE-RSL.xml', 'content/license/ai-policy.xml'):
+    validate_projection(outputs['content/license/LICENSE-RSL.xml'], rsl_records)
+    for path in ('content/license/ai-policy.xml',):
         root = ET.fromstring(outputs[path])
         if root.get('legal-license-grant') != 'false' or root.findtext('rights-authority') != 'artifact':
             raise ValueError(f'Unexpected rights grant in {path}')
         if not root.findtext('ai-training-and-adaptation'):
             raise ValueError(f'Missing AI interpretation statement in {path}')
     robots = [line for line in outputs['robots.txt'].splitlines() if line and not line.startswith('#')]
-    if robots[:2] != ['User-agent: *', 'Disallow:'] or any(not line.startswith(('User-agent:', 'Disallow:', 'Sitemap:')) for line in robots):
-        raise ValueError('robots.txt must remain an open technical access policy')
+    expected = ['License: ' + data['machine_readable']['rsl']['url'],
+                'User-agent: *', 'Disallow:',
+                'Sitemap: ' + data['organization']['website'].rstrip('/') + '/sitemap.xml']
+    if robots != expected:
+        raise ValueError('robots.txt must preserve RSL discovery and open technical access')
 
 
 def main():
@@ -136,8 +151,10 @@ def main():
         data = load_yaml(ROOT / 'SRL-LICENSE.yaml')
         validate_v2(data)
         verify_license_files(ROOT, data)
-        outputs = render(data)
-        verify_output(outputs, data)
+        manifest = load_yaml(ROOT / data['machine_readable']['rsl']['manifest'])
+        rsl_records = select_records(ROOT, manifest)
+        outputs = render(data, rsl_records)
+        verify_output(outputs, data, rsl_records)
         stale = [name for name, content in outputs.items() if not (ROOT / name).is_file() or (ROOT / name).read_bytes() != content.encode('utf-8')]
         if args.check and stale:
             raise ValueError('Stale generated files (rebuild and commit): ' + ', '.join(stale))
@@ -146,7 +163,7 @@ def main():
                 path = ROOT / name
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_bytes(content.encode('utf-8'))
-        print(f'SRLF 2.0: {len(outputs)} outputs validated; canonical license checksums verified.')
+        print(f'SRLF 2.0: {len(outputs)} outputs validated; {len(rsl_records)} explicit RSL 1.0 records; canonical license checksums verified.')
         return 0
     except (ValueError, KeyError, TypeError, OSError, yaml.YAMLError) as exc:
         print(f'ERROR: {exc}', file=sys.stderr)

@@ -1,7 +1,7 @@
 meta:
   id: SRAGI_RESOURCE_LICENSE_MANIFEST
   version: '1.0'
-  status: review_register
+  status: scoped_discovery_and_review_register
   exhaustive: false
   reviewed_source_commit: 529b9a5e3964f10fe1464dbe817ab51913c4ae47
   legal_license_grant: false
@@ -41,4 +41,18 @@ artifacts:
       - location: document_footer
         identifier: CC-BY-4.0
     note: The embedded snippet and surrounding document carry different notices; this is not represented as an OR expression.
+    commercial_relicensing_verified: false
+  - path: content/license/regenerative-principles.md
+    status: explicit_license_verified
+    license_expression: CC-BY-4.0
+    source_sha256: 2419192e5b44f650be08eb95745753daed25b21d727779371ff4fcab55915ea9
+    rsl_path: /content/license/regenerative-principles.md$
+    evidence: Explicit CC-BY-4.0 document notice in migration commit 63d4cf6eb49f3642f1fdab646eabdc8e3da5e2a2.
+    commercial_relicensing_verified: false
+  - path: content/license/no/regenerative-principles.md
+    status: explicit_license_verified
+    license_expression: CC-BY-4.0
+    source_sha256: 1dcadb4b0d27bf6764d711a8996f6b68e2c2ee94e55ee5118c089cc9567b12d0
+    rsl_path: /content/license/no/regenerative-principles.md$
+    evidence: Explicit CC-BY-4.0 document notice in migration commit 63d4cf6eb49f3642f1fdab646eabdc8e3da5e2a2.
     commercial_relicensing_verified: false

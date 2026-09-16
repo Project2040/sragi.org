@@ -138,6 +138,17 @@
   },
   "machine_readable": {
     "licensing_standard": "SPDX",
+    "rsl": {
+      "enabled": true,
+      "protocol_version": "1.0",
+      "namespace": "https://rslstandard.org/rsl",
+      "specification": "https://rslstandard.org/rsl",
+      "media_type": "application/rsl+xml",
+      "url": "https://sragi.org/content/license/LICENSE-RSL.xml",
+      "manifest": "content/license/RESOURCE_LICENSE_MANIFEST.yaml",
+      "scope": "explicit_artifacts_only",
+      "rule": "RSL represents existing licenses for explicitly recorded artifacts.\nSPDX identifies their licenses; RSL supplies interoperable discovery.\nRSL 1.0 and SRLF 2.0 are independently versioned.\nNo site-wide license, AI-training interpretation or commercial grant\nis inferred from discovery. Unresolved records are not exported.\n"
+    },
     "instruction_header": {
       "copyright": "SPDX-FileCopyrightText: 2024-2026 Neptunia Media AS",
       "license": "SPDX-License-Identifier: CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial"
@@ -321,7 +332,10 @@
       },
       "xml": {
         "path": "content/license/LICENSE-RSL.xml",
-        "function": "machine_readable_rights_discovery"
+        "function": "artifact_license_discovery",
+        "standard": "RSL",
+        "protocol_version": "1.0",
+        "media_type": "application/rsl+xml"
       },
       "ai_policy_txt": {
         "path": "ai-policy.txt",

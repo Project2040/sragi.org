@@ -11,7 +11,18 @@
 - Old unused v1 templates removed; Git history retains them.
 - Explicit existing CC-BY and CC-BY-SA notices retained at artifact level; old SRL wrappers and blanket claims removed from live documents and metadata.
 - Source and output checks run in GitHub Actions on Node 24 actions. CI is read-only and no longer auto-commits generated changes.
-- Eight regression tests cover grant boundaries, propagation/escaping, determinism, duplicate YAML, license integrity, drift detection and guard false positives.
+- Twelve regression tests cover grant boundaries, propagation/escaping, determinism, duplicate YAML, license integrity, drift detection, guard false positives and the RSL standard-license profile.
+
+## RSL regression corrected
+
+The earlier migration replaced Really Simple Licensing with custom XML while retaining the `LICENSE-RSL.xml` filename and removed the robots `License:` directive. The previous eight tests missed that interoperability regression; one even prohibited the discovery directive. That check has been replaced.
+
+- RSL 1.0 root and namespace restored, separately versioned from SRLF 2.0.
+- Global `License:` discovery restored without changing open crawling.
+- Two explicitly licensed source documents projected using the official standard-license form, exact paths and verified SHA-256 evidence; no domain-wide fallback.
+- SRAGI metadata separated into its own namespace. Open-license terms remain intelligible to a core-only RSL reader. No AI-use permission tokens or commercial acquisition requirements are invented.
+- Regression tests reject custom/wrong namespaces, incorrect RSL versions, unsupported core elements, added broad permissions, license substitutions, lost discovery, broad scopes and unresolved/changed source evidence. Dual-license mapping preserves the open path and requires commercial provenance.
+- Apache MIME configuration and a [deployment check](content/license/RSL_DEPLOYMENT.md) added. The public server/CDN and official online validator remain deployment checks, not claims established by local tests.
 
 ## Local validation
 
@@ -20,7 +31,7 @@ The source was read through the GitHub connector at commit `529b9a5e3964f10fe146
 - Builder and `--check`: passed for all eight generated outputs.
 - SPDX checksums: all five standard texts passed.
 - Legacy-reference guard: passed.
-- Regression suite: 8/8 passed.
+- Regression suite after the RSL correction: 12/12 passed.
 - Changed/new structured files at validation: 37 YAML/workflow files, 2 JSON files and 3 XML files parsed successfully.
 
 ## Required review before merge

@@ -22,5 +22,6 @@
   <artifact-manifest>https://github.com/Project2040/sragi.org/blob/main/content/license/RESOURCE_LICENSE_MANIFEST.yaml</artifact-manifest>
   <commercial-grant-rule>Commercial-license rights arise only through an applicable commercial agreement with Neptunia Media AS and only within its licensed scope.</commercial-grant-rule>
   <third-party-rights>Neptunia Media AS can grant only rights it owns, controls or is otherwise authorized to license. Third-party materials remain governed by their terms.</third-party-rights>
+  <rsl-license-document>https://sragi.org/content/license/LICENSE-RSL.xml</rsl-license-document>
   <licensing-contact>licensing@sragi.org</licensing-contact>
 </sragi-ai-policy>

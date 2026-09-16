@@ -42,6 +42,12 @@ Public SRAGI resources should by default be technically accessible for discovery
 
 Technical access, crawler accessibility, indexing or discovery metadata does not independently grant copyright or other intellectual-property rights. Rights relating to an artifact are determined by its applicable license, rights statement, contract and applicable law.
 
+## Really Simple Licensing (RSL)
+
+RSL represents existing licenses for explicitly recorded artifacts. SPDX identifies their licenses; RSL supplies interoperable discovery. RSL 1.0 and SRLF 2.0 are independently versioned. No site-wide license, AI-training interpretation or commercial grant is inferred from discovery. Unresolved records are not exported.
+
+https://sragi.org/content/license/LICENSE-RSL.xml
+
 ## AI training
 
 Rights relating to AI training are determined by the license, rights statement, contract and applicable law governing the individual artifact.

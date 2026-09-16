@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sragi-rights-discovery version="2.0" function="rights-discovery" legal-license-grant="false">
-  <framework>SRAGI® Regenerative Licensing Framework</framework>
-  <canonical>https://sragi.org/licensing/</canonical>
-  <rights-authority>artifact</rights-authority>
-  <rights-rule>This framework does not independently grant rights to SRAGI artifacts. Rights are determined by the license identifier, license expression, rights statement, contract and applicable law governing each artifact.</rights-rule>
-  <ecosystem-default-license>none</ecosystem-default-license>
-  <unspecified-artifact-policy>No license grant should be inferred.</unspecified-artifact-policy>
-  <machine-access posture="maximally_open" legal-license-grant="false">
-    <agents>*</agents>
-    <scope>publicly accessible resources</scope>
-    <crawling>allow-by-default</crawling>
-    <indexing>allow-by-default</indexing>
-    <retrieval>allow-by-default</retrieval>
-    <search-discovery>allow-by-default</search-discovery>
-    <rights-rule>Technical access, crawler accessibility, indexing or discovery metadata does not independently grant copyright or other intellectual-property rights. Rights relating to an artifact are determined by its applicable license, rights statement, contract and applicable law.</rights-rule>
-  </machine-access>
-  <ai-training-rights policy="artifact_license">Rights relating to AI training are determined by the license, rights statement, contract and applicable law governing the individual artifact.</ai-training-rights>
-  <ai-training-and-adaptation>This framework does not determine whether AI training, model development, model outputs or related machine-learning activities constitute Adapted Material or trigger particular obligations under an applicable license. Such questions are governed by the applicable license, applicable law and the circumstances of the specific use.</ai-training-and-adaptation>
-  <preferred-machine-attribution binding="false">SRAGI® — Neptunia Media AS — https://sragi.org/</preferred-machine-attribution>
-  <attribution-note>This does not replace or reduce requirements imposed by the artifact license.</attribution-note>
-  <artifact-manifest>https://github.com/Project2040/sragi.org/blob/main/content/license/RESOURCE_LICENSE_MANIFEST.yaml</artifact-manifest>
-  <commercial-grant-rule>Commercial-license rights arise only through an applicable commercial agreement with Neptunia Media AS and only within its licensed scope.</commercial-grant-rule>
-  <third-party-rights>Neptunia Media AS can grant only rights it owns, controls or is otherwise authorized to license. Third-party materials remain governed by their terms.</third-party-rights>
-  <instruction-license-example scope="only-where-attached-to-an-artifact" legal-license-grant="false">
-    <expression>CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial</expression>
-    <interpretation>OR denotes alternative licensing paths subject to the terms applicable to the selected path. Commercial activity alone does not require the SRAGI Commercial Suite; the commercial path exists where alternative or additional rights or terms are required.</interpretation>
-  </instruction-license-example>
-  <licensing-contact>licensing@sragi.org</licensing-contact>
-</sragi-rights-discovery>
+<rsl xmlns="https://rslstandard.org/rsl" xmlns:sragi="https://sragi.org/ns/licensing">
+  <content url="/content/license/no/regenerative-principles.md$">
+    <license>
+      <payment type="attribution">
+        <standard>https://creativecommons.org/licenses/by/4.0/</standard>
+      </payment>
+    </license>
+    <sragi:license-expression>CC-BY-4.0</sragi:license-expression>
+    <sragi:source-sha256>1dcadb4b0d27bf6764d711a8996f6b68e2c2ee94e55ee5118c089cc9567b12d0</sragi:source-sha256>
+  </content>
+  <content url="/content/license/regenerative-principles.md$">
+    <license>
+      <payment type="attribution">
+        <standard>https://creativecommons.org/licenses/by/4.0/</standard>
+      </payment>
+    </license>
+    <sragi:license-expression>CC-BY-4.0</sragi:license-expression>
+    <sragi:source-sha256>2419192e5b44f650be08eb95745753daed25b21d727779371ff4fcab55915ea9</sragi:source-sha256>
+  </content>
+  <sragi:framework version="2.0" legal-license-grant="false">
+    <sragi:rights-authority>artifact</sragi:rights-authority>
+    <sragi:rights-rule>This framework does not independently grant rights to SRAGI artifacts. Rights are determined by the license identifier, license expression, rights statement, contract and applicable law governing each artifact.</sragi:rights-rule>
+    <sragi:unspecified-artifact-policy>No license grant should be inferred.</sragi:unspecified-artifact-policy>
+    <sragi:ai-training-and-adaptation>This framework does not determine whether AI training, model development, model outputs or related machine-learning activities constitute Adapted Material or trigger particular obligations under an applicable license. Such questions are governed by the applicable license, applicable law and the circumstances of the specific use.</sragi:ai-training-and-adaptation>
+    <sragi:commercial-grant-rule>Commercial-license rights arise only through an applicable commercial agreement with Neptunia Media AS and only within its licensed scope.</sragi:commercial-grant-rule>
+  </sragi:framework>
+</rsl>

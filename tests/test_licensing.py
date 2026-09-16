@@ -17,15 +17,20 @@ sys.path.insert(0, str(ROOT / 'tools'))
 import build_licenses as builder
 import enforce_version_refs as guard
 from generate_files import render
+from rsl import NS, RSL, SRAGI, select_records, validate_projection
 
 
 class LicensingTests(unittest.TestCase):
     def setUp(self):
         self.data = builder.load_yaml(ROOT / 'SRL-LICENSE.yaml')
+        self.manifest = builder.load_yaml(ROOT / self.data['machine_readable']['rsl']['manifest'])
+        self.records = select_records(ROOT, self.manifest)
 
     def test_machine_access_cannot_become_a_grant(self):
         for path, value in [
             (('rights', 'ecosystem_default_license'), 'CC-BY-4.0'),
+            (('machine_readable', 'rsl', 'protocol_version'), '2.0'),
+            (('machine_readable', 'rsl', 'enabled'), False),
             (('machine_access', 'ai_policy', 'legal_license_grant'), True),
             (('machine_access', 'robots', 'legal_license_grant'), True),
             (('machine_access', 'agents', 'default'), 'GPTBot'),
@@ -44,17 +49,21 @@ class LicensingTests(unittest.TestCase):
                     builder.validate_v2(data)
 
     def test_machine_output_preserves_rights_and_unresolved_ai_interpretation(self):
-        outputs = render(self.data)
-        builder.verify_output(outputs, self.data)
+        outputs = render(self.data, self.records)
+        builder.verify_output(outputs, self.data, self.records)
         self.assertNotIn('Give more than you take', outputs['ai-policy.txt'])
-        for path in ('content/license/ai-policy.xml', 'content/license/LICENSE-RSL.xml'):
+        for path in ('content/license/ai-policy.xml',):
             root = ET.fromstring(outputs[path])
             self.assertEqual(root.get('legal-license-grant'), 'false')
             self.assertEqual(root.find('preferred-machine-attribution').get('binding'), 'false')
             self.assertIn('does not determine', root.findtext('ai-training-and-adaptation'))
             self.assertEqual(root.findtext('machine-access/agents'), '*')
             self.assertIn('applicable', root.findtext('commercial-grant-rule'))
-        self.assertNotIn('License:', outputs['robots.txt'])
+        self.assertIn('License: https://sragi.org/content/license/LICENSE-RSL.xml', outputs['robots.txt'])
+        rsl = ET.fromstring(outputs['content/license/LICENSE-RSL.xml'])
+        self.assertIn('does not determine', rsl.findtext('s:framework/s:ai-training-and-adaptation', namespaces=NS))
+        self.assertEqual(rsl.find('s:framework', NS).get('version'), '2.0')
+        self.assertIsNone(rsl.get('version'))
         self.assertNotIn('CC-BY', outputs['robots.txt'])
 
     def test_master_changes_propagate_and_markup_is_escaped(self):
@@ -63,7 +72,7 @@ class LicensingTests(unittest.TestCase):
         data['meta']['name'] = name
         data['organization']['licensing_email'] = 'test@example.invalid'
         data['attribution']['preferred_machine_attribution']['value'] = name
-        outputs = render(data)
+        outputs = render(data, self.records)
         root = ET.fromstring(outputs['content/license/ai-policy.xml'])
         self.assertEqual(root.findtext('framework'), name)
         self.assertEqual(root.findtext('preferred-machine-attribution'), name)
@@ -72,10 +81,10 @@ class LicensingTests(unittest.TestCase):
         self.assertNotIn('<demo>', outputs['content/license/index.html'])
 
     def test_render_is_deterministic_and_json_retains_all_master_sections(self):
-        self.assertEqual(render(self.data), render(copy.deepcopy(self.data)))
+        self.assertEqual(render(self.data, self.records), render(copy.deepcopy(self.data), self.records))
         data = copy.deepcopy(self.data)
         data['future_extension'] = {'example': 'preserved'}
-        result = json.loads(render(data)['content/license/license.json'])
+        result = json.loads(render(data, self.records)['content/license/license.json'])
         self.assertEqual(result['future_extension'], data['future_extension'])
         self.assertIn('machine_readable', result)
 
@@ -105,7 +114,11 @@ class LicensingTests(unittest.TestCase):
             root = Path(directory)
             shutil.copytree(ROOT / 'LICENSES', root / 'LICENSES')
             shutil.copyfile(ROOT / 'SRL-LICENSE.yaml', root / 'SRL-LICENSE.yaml')
-            for name, content in render(self.data).items():
+            for name in [self.data['machine_readable']['rsl']['manifest']] + [r['path'] for r in self.records]:
+                destination = root / name
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(ROOT / name, destination)
+            for name, content in render(self.data, self.records).items():
                 path = root / name
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_bytes(content.encode())
@@ -122,6 +135,77 @@ class LicensingTests(unittest.TestCase):
                 self.assertTrue(any(p.search(text) for p in guard.BAD_PATTERNS.values()))
         valid = 'Private by default.\n\nLicensed under CC-BY-4.0.'
         self.assertFalse(any(p.search(valid) for p in guard.BAD_PATTERNS.values()))
+
+    def test_rsl_core_has_exact_scopes_and_standard_licenses_without_extensions(self):
+        root = ET.fromstring(render(self.data, self.records)['content/license/LICENSE-RSL.xml'])
+        self.assertEqual(root.tag, '{https://rslstandard.org/rsl}rsl')
+        contents = root.findall('r:content', NS)
+        self.assertEqual(len(contents), 2)
+        for content in contents:
+            self.assertTrue(content.get('url').endswith('.md$'))
+            self.assertIsNone(content.get('server'))
+            # Core-only processors retain the complete CC standard reference.
+            for extension in list(content):
+                if extension.tag.startswith('{' + SRAGI + '}'):
+                    content.remove(extension)
+            self.assertEqual(content.findtext('r:license/r:payment/r:standard', namespaces=NS),
+                             'https://creativecommons.org/licenses/by/4.0/')
+            self.assertEqual(content.find('r:license/r:payment', NS).get('type'), 'attribution')
+        self.assertFalse(root.findall('.//r:permits', NS))
+        self.assertFalse(root.findall('.//r:prohibits', NS))
+
+    def test_rsl_regressions_fail_even_when_xml_parses(self):
+        text = render(self.data, self.records)['content/license/LICENSE-RSL.xml']
+        mutations = [
+            text.replace('xmlns="https://rslstandard.org/rsl"', 'xmlns="urn:custom"'),
+            text.replace('<rsl ', '<rsl version="2.0" ', 1),
+            text.replace('<license>', '<license><permits type="usage">all</permits>', 1),
+            text.replace('by/4.0/', 'by-sa/4.0/', 1),
+            text.replace(self.records[0]['rsl_path'], '/', 1),
+            text.replace('<standard>', '<made-up-standard>', 1).replace('</standard>', '</made-up-standard>', 1),
+        ]
+        for changed in mutations:
+            with self.subTest(changed=changed[:100]):
+                ET.fromstring(changed)
+                with self.assertRaises(ValueError):
+                    validate_projection(changed, self.records)
+        outputs = render(self.data, self.records)
+        outputs['robots.txt'] = '\n'.join(line for line in outputs['robots.txt'].splitlines() if not line.startswith('License:'))
+        with self.assertRaisesRegex(ValueError, 'RSL discovery'):
+            builder.verify_output(outputs, self.data, self.records)
+
+    def test_rsl_manifest_requires_evidence_and_rejects_unresolved_or_broad_scope(self):
+        for key, value in [('source_sha256', '0' * 64), ('status', 'needs_rights_review'),
+                           ('rsl_path', '/'), ('license_expression', 'CC-BY-SA-4.0')]:
+            manifest = copy.deepcopy(self.manifest)
+            record = next(r for r in manifest['artifacts'] if 'rsl_path' in r)
+            record[key] = value
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                select_records(ROOT, manifest)
+
+    def test_dual_license_preserves_open_path_and_requires_commercial_provenance(self):
+        import hashlib
+        from rsl import DUAL
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = ('SPDX-License-Identifier: ' + DUAL + '\n').encode()
+            (root / 'example.txt').write_bytes(source)
+            record = {'path': 'example.txt', 'rsl_path': '/example.txt$',
+                      'status': 'explicit_license_verified', 'license_expression': DUAL,
+                      'source_sha256': hashlib.sha256(source).hexdigest(),
+                      'commercial_relicensing_verified': False}
+            manifest = {'authority': 'artifact', 'meta': {'legal_license_grant': False}, 'artifacts': [record]}
+            with self.assertRaisesRegex(ValueError, 'commercial rights'):
+                select_records(root, manifest)
+            record['commercial_relicensing_verified'] = True
+            records = select_records(root, manifest)
+            text = render(self.data, records)['content/license/LICENSE-RSL.xml']
+            validate_projection(text, records)
+            node = ET.fromstring(text)
+            self.assertEqual(len(node.findall('r:content/r:license', NS)), 1)
+            self.assertEqual(node.findtext('r:content/r:license/r:payment/r:standard', namespaces=NS),
+                             'https://creativecommons.org/licenses/by-sa/4.0/')
+            self.assertEqual(node.findtext('r:content/s:license-expression', namespaces=NS), DUAL)
 
 
 if __name__ == '__main__':

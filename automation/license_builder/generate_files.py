@@ -3,6 +3,7 @@
 import html
 import json
 from xml.etree import ElementTree as ET
+from rsl import render_rsl
 
 
 def compact(value):
@@ -27,6 +28,7 @@ def human_sections(data):
         ('Licensing paths', [data['licensing']['rule'], data['dual_licensing']['interpretation']]),
         ('Commercial licensing', [data['commercial']['grant_rule'], 'Commercial reference: ' + data['commercial']['identifier']]),
         ('Machine access', [data['machine_access']['access_policy'], data['machine_access']['rights_rule']]),
+        ('Really Simple Licensing (RSL)', [data['machine_readable']['rsl']['rule'], data['machine_readable']['rsl']['url']]),
         ('AI training', [data['machine_access']['ai_training']['rule'], data['machine_access']['interpretation']['ai_training_and_adaptation']]),
         ('Attribution', [data['attribution']['rule'], data['attribution']['preferred_machine_attribution']['value'], data['attribution']['preferred_machine_attribution']['note']]),
         ('Regenerative invitation', [data['regenerative']['open_license_layer']['principle'], data['regenerative']['open_license_layer']['invitation'], data['regenerative']['commercial_covenant']['rule']]),
@@ -44,7 +46,7 @@ def human_sections(data):
     return sections
 
 
-def render(data):
+def render(data, rsl_records):
     """Return repository-relative output paths and UTF-8 text, without side effects."""
     meta = data['meta']
     rights = data['rights']
@@ -62,7 +64,8 @@ def render(data):
         outputs[formats[kind]['path']] = text.rstrip() + '\n'
 
     put('json', json.dumps(data, indent=2, ensure_ascii=False, default=str))
-    for kind, tag in [('xml', 'sragi-rights-discovery'), ('ai_policy_xml', 'sragi-ai-policy')]:
+    put('xml', xml_text(render_rsl(data, rsl_records)))
+    for kind, tag in [('ai_policy_xml', 'sragi-ai-policy')]:
         root = ET.Element(tag, {'version': str(meta['version']), 'function': 'rights-discovery', 'legal-license-grant': 'false'})
         field(root, 'framework', meta['name'])
         field(root, 'canonical', portal)
@@ -83,10 +86,7 @@ def render(data):
         field(root, 'artifact-manifest', manifest)
         field(root, 'commercial-grant-rule', data['commercial']['grant_rule'])
         field(root, 'third-party-rights', data['third_party']['rule'])
-        if kind == 'xml':
-            example = ET.SubElement(root, 'instruction-license-example', {'scope': 'only-where-attached-to-an-artifact', 'legal-license-grant': 'false'})
-            field(example, 'expression', data['dual_licensing']['canonical_instruction_expression'])
-            field(example, 'interpretation', data['dual_licensing']['interpretation'])
+        field(root, 'rsl-license-document', data['machine_readable']['rsl']['url'])
         field(root, 'licensing-contact', contact)
         put(kind, xml_text(root))
 
@@ -109,10 +109,11 @@ def render(data):
         'Attribution-Note: ' + compact(attribution['note']),
         'Commercial-Grant-Rule: ' + compact(data['commercial']['grant_rule']),
         'Third-Party-Rights: ' + compact(data['third_party']['rule']),
-        'Artifact-Manifest: ' + manifest, 'Licensing: ' + portal, 'Licensing-Contact: ' + contact,
+        'Artifact-Manifest: ' + manifest, 'RSL-License-Document: ' + data['machine_readable']['rsl']['url'],
+        'Licensing: ' + portal, 'Licensing-Contact: ' + contact,
     ]
     put('ai_policy_txt', '\n'.join(lines))
-    put('robots', f"# Technical crawler access to public resources\nUser-agent: {machine['agents']['default']}\nDisallow:\n\nSitemap: {website}/sitemap.xml\n")
+    put('robots', f"# RSL discovery; licenses apply only to the identified artifacts\nLicense: {data['machine_readable']['rsl']['url']}\n\n# Technical crawler access to public resources\nUser-agent: {machine['agents']['default']}\nDisallow:\n\nSitemap: {website}/sitemap.xml\n")
     title = f"{meta['name']} v{meta['version']}"
     sections = human_sections(data)
     markdown = ['# ' + title, '', '<!-- Generated from SRL-LICENSE.yaml; edit the source, then rebuild. -->', '']
