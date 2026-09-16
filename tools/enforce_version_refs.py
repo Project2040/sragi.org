@@ -1,119 +1,79 @@
 #!/usr/bin/env python3
-# ===========================================================
-#  SRAGI SSOT Version Enforcement Script
-#  tools/enforce_version_refs.py
-#
-#  Ensures all repository files reference the SRAGI License
-#  (SRL) dynamically — never with hardcoded version numbers.
-#
-#  Author: Rune Solberg / Neptunia Media AS
-#  License: CC BY 4.0 via the SRAGI Regenerative License (SRL)
-#  -----------------------------------------------------------
-#  ✅ Purpose:
-#     - Scan repository for invalid SRL version strings
-#     - Auto-clean old references where safe
-#     - Exit non-zero if violations persist (CI enforcement)
-#
-#  🧭 Kairos Principle:
-#     Chronos updates break continuity.
-#     Kairos pointers align all documents to the living SSOT.
-# ===========================================================
+"""SRAGI® SRLF 2.0 rights-reference enforcement.
 
+The repository has no ecosystem-wide default license. This check prevents
+legacy statements from silently reintroducing one and prevents hard-coded
+SRLF version grants from being used as artifact licenses.
+"""
+
+import pathlib
 import re
 import sys
-import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-FILETYPES = {".md", ".css", ".yaml", ".yml", ".xml", ".txt", ".py"}
+FILETYPES = {".md", ".css", ".yaml", ".yml", ".xml", ".txt", ".py", ".json"}
+SKIP_DIRS = {".git", "archive", "node_modules", "vendor"}
 
-# Canonical footer patterns
-CANONICAL_BY = (
-    "Licensed under CC BY 4.0 via the SRAGI Regenerative License (SRL). "
-    "See SRL-LICENSE.yaml for current version and details."
-)
-CANONICAL_BYSA = (
-    "Licensed under CC BY-SA 4.0 via the SRAGI Regenerative License (SRL). "
-    "See SRL-LICENSE.yaml for current version and details."
-)
+# Legacy claims that conflict with SRLF 2.0 artifact-level authority.
+BAD_PATTERNS = {
+    "ecosystem CC BY default": re.compile(
+        r"(?:all content|everything|ecosystem|default(?:_license)?)"
+        r".{0,100}CC[ -]?BY[ -]?4\.0",
+        re.I | re.S,
+    ),
+    "legacy SRL license grant": re.compile(
+        r"Licensed under CC BY 4\.0 via (?:the )?SRAGI Regenerative License",
+        re.I,
+    ),
+    "versioned SRL grant": re.compile(
+        r"(?:SRL|SRAGI Regenerative License)\s+v\d+(?:\.\d+)*",
+        re.I,
+    ),
+}
 
-# Regex patterns that represent bad / legacy references
-BAD_PATTERNS = [
-    r"SRL v\d+(\.\d+)*",  # e.g., SRL v1.0, SRL v1.1, etc.
-    r"CC BY[- ]?SA 4\.0.*SRL v\d+(\.\d+)*",
-    r"CC BY 4\.0.*SRL v\d+(\.\d+)*",
-]
-
-# Directories that are allowed to use CC BY-SA (visuals etc.)
-BYSA_DIRS = {"assets", "visuals", "sragi-skills"}
+ALLOWED_CONTEXT_FILES = {
+    "SRL-LICENSE.yaml",  # may mention historical versions in history
+}
 
 
-def clean_text(text: str, is_bysa_area: bool) -> str:
-    """Replace outdated license strings with canonical references."""
-    # Normalize CRLF → LF
-    text = text.replace("\r\n", "\n")
-
-    # Always strip version numbers
-    text = re.sub(r"SRL v\d+(\.\d+)*", "SRL", text, flags=re.I)
-
-    if is_bysa_area:
-        # Replace BY-SA references with canonical BY-SA form (no version)
-        text = re.sub(
-            r"Licensed under CC BY[- ]?SA 4\.0.*SRL.*",
-            CANONICAL_BYSA,
-            text,
-            flags=re.I,
-        )
-    else:
-        # Replace any BY or BY-SA pattern with canonical BY form
-        text = re.sub(
-            r"Licensed under CC BY(?:-SA)? 4\.0.*SRL.*",
-            CANONICAL_BY,
-            text,
-            flags=re.I,
-        )
-    return text
+def skipped(path: pathlib.Path) -> bool:
+    return any(part in SKIP_DIRS for part in path.parts)
 
 
 def main() -> int:
-    print("🔍 Scanning repository for hardcoded SRL version references...\n")
-
-    bad_hits = []
-    files_checked = 0
+    print("Scanning repository for legacy ecosystem-wide license grants...\n")
+    hits = []
+    checked = 0
 
     for path in ROOT.rglob("*"):
-        if path.is_file() and path.suffix.lower() in FILETYPES:
-            files_checked += 1
-            try:
-                text = path.read_text(encoding="utf-8", errors="ignore")
-            except Exception as e:
-                print(f"⚠️  Could not read {path}: {e}")
-                continue
+        if not path.is_file() or path.suffix.lower() not in FILETYPES or skipped(path):
+            continue
+        checked += 1
+        try:
+            text = path.read_text(encoding="utf-8", errors="ignore")
+        except Exception as exc:
+            print(f"WARNING: could not read {path}: {exc}")
+            continue
 
-            original = text
-            is_bysa_area = any(part in BYSA_DIRS for part in path.parts)
-            text = clean_text(text, is_bysa_area=is_bysa_area)
+        if path.name in ALLOWED_CONTEXT_FILES:
+            continue
 
-            if text != original:
-                path.write_text(text, encoding="utf-8")
+        for label, pattern in BAD_PATTERNS.items():
+            if pattern.search(text):
+                hits.append((str(path.relative_to(ROOT)), label))
 
-            for pat in BAD_PATTERNS:
-                if re.search(pat, text, flags=re.I):
-                    bad_hits.append(str(path))
-                    break
-
-    print(f"🧩 Files checked: {files_checked}")
-
-    if bad_hits:
-        print("\n❌ Found hardcoded SRL versions in:")
-        for f in sorted(set(bad_hits)):
-            print(f"  - {f}")
+    print(f"Files checked: {checked}")
+    if hits:
+        print("\nERROR: legacy licensing claims found:")
+        for path, label in sorted(set(hits)):
+            print(f"  - {path}: {label}")
         print(
-            "\n🛑 Fix or remove these references. "
-            "All files must point to SRL-LICENSE.yaml as SSOT.\n"
+            "\nSRLF 2.0 rule: the framework describes; the artifact grants. "
+            "Attach an SPDX identifier/expression or rights statement to the artifact."
         )
         return 1
 
-    print("\n✅ All version references are clean and SSOT-compliant.")
+    print("\nOK: no legacy ecosystem-wide license grants detected.")
     return 0
 
 
