@@ -1,293 +1,635 @@
+```yaml
 # ===========================================================
-#  SRAGI LICENSE MASTER FILE
-#  Single Source of Truth (SSOT) for the Regenerative License
+#  SRAGI® REGENERATIVE LICENSING FRAMEWORK
+#  Master File — Version 2.0
 # ===========================================================
-#  NOTE:  This file is the authoritative Single Source of Truth (SSOT)
-#  for all SRAGI license and AI-policy data.
-#  All other files (TXT, XML, JSON, PDF) are generated from this.
+#
+#  This file is the authoritative source for the architecture,
+#  principles, license classes, machine-readable identifiers,
+#  rights-discovery rules and generated licensing information
+#  of the SRAGI ecosystem.
+#
+#  IMPORTANT:
+#  The license identifier, license expression, rights statement
+#  or applicable agreement attached to an individual artifact
+#  is authoritative for that artifact.
+#
+#  This framework does not independently grant rights to SRAGI
+#  artifacts and does not override artifact-specific licenses,
+#  third-party rights, contracts, trademark rules or applicable law.
+#
+#  Design horizon: 2026–2036+
+#  New technologies, artifact classes, distribution models and
+#  license mechanisms may be added without replacing the core
+#  architecture.
 # ===========================================================
+
+
+# -----------------------------------------------------------
+# 0. Framework Metadata
+# -----------------------------------------------------------
 
 meta:
-  id: SRL-1.12
-  name: SRAGI Regenerative License
-  abbreviation: SRL
-  version: "1.12"
-  type: permissive
-  license_family: creative_commons
-  # -----------------------------------------------------------
-  license_strategy:
-    type: layered
-    default_license: CC-BY-4.0
-    default_license_scope: "Applies to all content unless otherwise specified."
-    secondary_license: CC-BY-SA-4.0
-    secondary_scope: "Applies to sragi-skills/ and AI-specific resources."
-    note: |
-      The secondary license (CC BY-SA 4.0) applies to specific directories such as
-      /sragi-skills/, where ShareAlike is required.
-    framework_url: https://sragi.org/content/license/REGENERATIVE_LICENSE.md
-
-  # -----------------------------------------------------------
-  attribution_required: true
-  rationale: "Chosen for regenerative reciprocity – minimal restriction, guaranteed source awareness."
-  SPDX: CC-BY-4.0
+  id: SRAGI_REGENERATIVE_LICENSING_FRAMEWORK
+  name: "SRAGI® Regenerative Licensing Framework"
+  abbreviation: SRLF
+  version: "2.0"
   status: active
-  rsl_standard: https://rslstandard.org/rsl
+  architecture: artifact_based
+  extensibility: open
+  last_updated: 2026-09-16
+
+  canonical_url: https://sragi.org/licensing/
   repository: https://github.com/Project2040/sragi.org
-  source_url: https://sragi.org
-  last_updated: 2025-11-07  # <--- ENDRE KUN HER
 
-organization:
-  author: Rune Solberg
-  rights_holder: Neptunia Media AS
-  organization: SRAGI.org
-  contact_email: kontakt@sragi.org
-  website: https://sragi.org
-  location: Leira, Norway
-  org_number: "932481375"
+  principles:
+    - artifact_specific_licensing
+    - open_by_design
+    - commercial_optional_path
+    - machine_readability
+    - maximum_machine_discoverability
+    - attribution_and_provenance
+    - regenerative_reciprocity
+    - technology_neutrality
+    - long_term_extensibility
+    - contributor_rights_integrity
+    - third_party_rights_respected
 
-# -----------------------------------------------------------
-# 1. Permissions — what users and AIs may do
-# -----------------------------------------------------------
-permissions:
-  usage:
-    - all
-    - train-ai
-    - inference
-    - derivative-works
-    - commercial
-    - closed-source
-    - proprietary
-  allowed_agents:
-    - "*"             # Applies to all (default)
-    # === AI Models ===
-    - "GPTBot"          # OpenAI
-    - "ClaudeBot"       # Anthropic
-    - "Google-Extended" # Google AI
-    - "PerplexityBot"   # Perplexity AI
-    
-    # === Core Search Engines (Kritisk for synlighet) ===
-    - "Googlebot"       # Google Search
-    - "Bingbot"         # Bing Search (og ChatGPT live search)
-    - "Applebot"        # Apple Search (Siri/Spotlight)
-
-    # === Social Media Link Preview (Kritisk for deling) ===
-    - "facebookexternalhit" # Facebook/Instagram/WhatsApp
-    
-    # === Other Crawlers ===
-    - "CCBot"           # Common Crawl
-    - "Omgilibot"       # Omgili
-    - "Bytespider"      # ByteDance (TikTok)
-    
-  note: |
-    This list is declarative, not restrictive. It signals ethical openness to
-    these agents, not exclusion of others.
 
 # -----------------------------------------------------------
-# 2. Requirements — what is legally required (from CC BY 4.0)
+# 1. Rights Authority
 # -----------------------------------------------------------
-requirements:
-  attribution: true
-  share-alike: false
-  open-source-required: false
-  additional-restrictions: false
-  note: |
-    Attribution is mandated by CC BY 4.0, not by SRAGI.
-    All other aspects are permissive and trust-based.
+
+rights:
+  authority: artifact
+
+  principle: |
+    This framework does not independently grant rights to SRAGI
+    artifacts.
+
+    Rights are determined by the license identifier, license expression,
+    rights statement, contract and applicable law governing each
+    individual artifact.
+
+  artifact_license_authoritative: true
+  ecosystem_default_license: null
+
+  unspecified_artifact_policy: |
+    No license grant should be inferred.
+
+  third_party_policy: |
+    Third-party material remains governed by its applicable
+    third-party license, rights statement or agreement.
+
+  non_override_rule: |
+    No statement in this framework should be interpreted as expanding,
+    reducing or replacing rights explicitly granted or reserved at
+    artifact level.
+
 
 # -----------------------------------------------------------
-# 3. Ethics — aspirational framework (NOT legally binding)
+# 2. Licensing Architecture
 # -----------------------------------------------------------
-ethics:
-  binding: false
-  framework:
-    name: SRAGI Regenerative Principles
-    url: https://www.sragi.org/regenerative-principles/
-    type: aspirational
-    encouragement: |
-      We invite users to align with these principles,
-      but we do not legally require it.
-      These represent culture, not control.
+
+licensing:
+  model: artifact_based
+
+  rule: |
+    Every SRAGI artifact SHOULD identify its applicable license,
+    license expression, rights statement or other governing terms.
+
+    Where such information is attached to an artifact, it is
+    authoritative for that artifact.
+
+    No ecosystem-wide default license overrides an explicit
+    artifact-level license.
+
+  open_path:
+    enabled: true
+
+  commercial_path:
+    enabled: true
+    identifier: LicenseRef-SRAGI-Commercial
+
+  future_compatibility: |
+    SRAGI is designed to evolve.
+
+    New artifact classes, technologies, media, software architectures,
+    artificial intelligence systems, distribution mechanisms,
+    business models and licensing approaches may be introduced
+    without replacing this framework.
+
+    Additional license classes, identifiers and licensing mechanisms
+    may therefore be added while preserving the core principle of
+    artifact-level rights authority.
+
 
 # -----------------------------------------------------------
-# 4. Attribution Formats
+# 3. License Classes
 # -----------------------------------------------------------
-attribution:
-  minimal: |
-    SRAGI by Rune Solberg, Neptunia Media AS
-    Source: https://sragi.org
 
-  standard: |
-    SRAGI Regenerative License (SRL) v{{ meta.version }}
-    Created by Rune Solberg / Neptunia Media AS
-    Source: https://sragi.org/license
-    License: CC BY 4.0 base, RSL compatible
+license_classes:
 
-  code_metadata:
+  open_knowledge:
+    description: |
+      Knowledge, theory, articles, research, documentation and other
+      materials intended for broad circulation and reuse.
+
+    possible_licenses:
+      - CC-BY-4.0
+      - CC-BY-SA-4.0
+
+    license_selected_per_artifact: true
+
+
+  open_frameworks:
+    description: |
+      SRAGI instruction frameworks, AI-oriented YAML resources,
+      skills and related framework artifacts.
+
+    preferred_expression:
+      "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial"
+
+    license_selected_per_artifact: true
+
+
+  software:
+    description: |
+      Executable software, source code, libraries, applications,
+      integrations and other software artifacts.
+
+    possible_licenses:
+      - AGPL-3.0-only
+      - Apache-2.0
+      - LicenseRef-SRAGI-Commercial
+
+    license_selected_per_artifact: true
+
+
+  schemas_and_interoperability:
+    description: |
+      Schemas, interoperability specifications, reference structures
+      and other artifacts where broad technical adoption may require
+      permissive licensing.
+
+    possible_licenses:
+      - Apache-2.0
+      - CC0-1.0
+
+    license_selected_per_artifact: true
+
+    selection_guidance:
+      Apache-2.0: |
+        Preferred where implementation rights, patent licensing or
+        enterprise interoperability considerations are material.
+
+      CC0-1.0: |
+        Preferred where maximum unrestricted reuse and dedication
+        toward the public domain are the primary objective.
+
+
+  commercial:
+    identifier: LicenseRef-SRAGI-Commercial
+    name: "SRAGI® Commercial Suite License"
+    licensing_url: https://sragi.org/licensing/
+
+    description: |
+      Alternative commercial licensing terms available from
+      Neptunia Media AS.
+
+      The presence of LicenseRef-SRAGI-Commercial does not itself
+      grant rights under the SRAGI Commercial Suite.
+
+      Commercial-license rights arise only through a valid applicable
+      agreement with Neptunia Media AS.
+
+
+  future:
+    enabled: true
+
+    description: |
+      Additional license classes may be introduced for future SRAGI
+      artifacts, technologies, media, services, products or
+      distribution models.
+
+
+# -----------------------------------------------------------
+# 4. Dual Licensing
+# -----------------------------------------------------------
+
+dual_licensing:
+  enabled: true
+
+  canonical_instruction_expression:
+    "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial"
+
+  interpretation: |
+    Where an artifact uses a license expression containing OR,
+    the recipient may select one of the stated licensing paths,
+    subject to the terms and eligibility requirements applicable
+    to that path.
+
+    Commercial activity alone does not imply that the SRAGI
+    Commercial Suite License is required.
+
+    The commercial license provides an alternative licensing path
+    where different or additional rights or terms are required.
+
+  commercial_grant_by_reference: false
+
+
+# -----------------------------------------------------------
+# 5. SRAGI® Commercial Suite
+# -----------------------------------------------------------
+
+commercial:
+  identifier: LicenseRef-SRAGI-Commercial
+  license_name: "SRAGI® Commercial Suite License"
+  licensing_url: https://sragi.org/licensing/
+  licensing_email: licensing@sragi.org
+
+  grant_rule: |
+    Commercial-license rights are not granted merely by the presence
+    of LicenseRef-SRAGI-Commercial.
+
+    Rights arise only through an applicable commercial agreement
+    with Neptunia Media AS and only within its licensed scope.
+
+  potentially_included_rights:
+    - internal_commercial_use
+    - modification_and_adaptation_for_own_use
+    - professional_services
+    - application_integration
+    - api_integration
+    - private_deployment
+    - cloud_deployment
+    - on_premises_deployment
+
+  explicit_activation_may_be_required:
+    - customer_facing_embedded_use
+    - redistribution
+    - sublicensing
+    - OEM
+    - white_label
+    - platform_distribution
+    - ecosystem_distribution
+    - model_provider_integration
+    - AI_provider_integration
+    - trademark_rights
+    - cobranding_rights
+
+  never_automatic:
+    - SRAGI_certification_status
+    - official_partner_status
+    - ownership_of_SRAGI_IP
+    - unrestricted_trademark_rights
+    - rights_to_register_SRAGI_names
+    - rights_to_register_SRAGI_domains
+    - rights_to_register_SRAGI_trademarks
+
+
+# -----------------------------------------------------------
+# 6. SPDX & Machine-readable Licensing
+# -----------------------------------------------------------
+
+machine_readable:
+  licensing_standard: SPDX
+
+  instruction_header:
+    copyright: |
+      SPDX-FileCopyrightText: 2024-2026 Neptunia Media AS
+
+    license: |
+      SPDX-License-Identifier: CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial
+
+  instruction_frontmatter:
     license:
-      name: "SRAGI Regenerative License (SRL)"
-      version: "{{ meta.version }}"
-      base: "CC BY 4.0"
-      creator: "Rune Solberg, Neptunia Media AS"
-      source: "https://sragi.org"
+      spdx: "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial"
+      commercial_license: "SRAGI® Commercial Suite License"
+      licensing_url: "https://sragi.org/licensing/"
+
+  custom_license_references:
+    LicenseRef-SRAGI-Commercial:
+      name: "SRAGI® Commercial Suite License"
+      file: LICENSES/LicenseRef-SRAGI-Commercial.txt
+      url: https://sragi.org/licensing/
+
+  license_files:
+    directory: LICENSES/
+
+    expected:
+      - CC-BY-4.0.txt
+      - CC-BY-SA-4.0.txt
+      - AGPL-3.0-only.txt
+      - Apache-2.0.txt
+      - CC0-1.0.txt
+      - LicenseRef-SRAGI-Commercial.txt
+
 
 # -----------------------------------------------------------
-# 5. Content & Messaging (for robots.txt, AI policy, etc.)
+# 7. AI, Search Engines, Crawlers & Machine Access
 # -----------------------------------------------------------
-content:
+
+machine_access:
+  posture: maximally_open
+
+  access_policy: |
+    Publicly accessible SRAGI resources should, by default, be
+    technically accessible for discovery, crawling, indexing and
+    retrieval by search engines, AI systems, research crawlers and
+    other machine agents.
+
+  agents:
+    default: "*"
+
+  discovery:
+    allow_by_default: true
+    allow_crawling: true
+    allow_indexing: true
+    allow_retrieval: true
+    allow_search_discovery: true
+
+  legal_authority: artifact_license
+
+  rights_rule: |
+    Technical access, crawler accessibility, indexing, discovery
+    metadata or inclusion in machine-readable policy files does not
+    independently grant copyright or other intellectual property rights.
+
+    Rights relating to an artifact are determined by its applicable
+    license, rights statement, contract and applicable law.
+
   robots:
-    title: "SRAGI.ORG — REGENERATIVE ACCESS DIRECTIVE"
-    guidelines: |
-      AI training, indexing, and reasoning are permitted under
-      the SRAGI Regenerative License (SRL) with attribution to SRAGI.org.
-      All content is licensed under CC BY 4.0 with regenerative extensions.
-    invitation: |
-      The SRAGI network invites conscious code and playful algorithms
-      to explore, learn, and evolve within the regenerative field.
-      Let the latent space play, learn, and heal.
-    contact: "{{ organization.contact_email }}"
-    signature_required: true
+    posture: allow_by_default
+    function: technical_access
+    legal_license_grant: false
 
   ai_policy:
-    description: |
-      SRAGI content is ethically open for regenerative learning,
-      training, and inference by artificial intelligence systems.
-    conditions: |
-      All use must honor the attribution requirement from CC BY 4.0
-      and align with regenerative principles where possible.
-    signature_required: false
+    posture: open
+    function: rights_discovery
+    legal_license_grant: false
+
+  ai_training:
+    policy: artifact_license
+
+    rule: |
+      Rights relating to AI training are determined by the license,
+      rights statement, contract and applicable law governing the
+      individual artifact.
+
+  interpretation:
+    ai_training_and_adaptation: |
+      This framework does not determine whether AI training, model
+      development, model outputs or related machine-learning activities
+      constitute Adapted Material or otherwise trigger particular
+      obligations under an applicable license.
+
+      Such questions are governed by the applicable license,
+      applicable law and the circumstances of the specific use.
+
 
 # -----------------------------------------------------------
-# 6. Machine-readable Integration (RSL XML)
+# 8. Attribution & Provenance
 # -----------------------------------------------------------
-machine_format:
-  output_file: content/license/LICENSE-RSL.xml
-  template: |
-    <?xml version="1.0" encoding="UTF-8"?>
-    <rsl xmlns="{{ meta.rsl_standard }}" version="{{ meta.version }}">
-      <content url="{{ meta.repository }}">
-        <license type="{{ meta.type }}">
-          <standard>https://creativecommons.org/licenses/by/4.0/</standard>
 
-          {% for p in permissions.usage %}
-          <permits>{{ p }}</permits>
-          {% endfor %}
+attribution:
+  rule: |
+    Attribution requirements are determined by the applicable
+    artifact license.
 
-          <agents>
-            {% for agent in permissions.allowed_agents %}
-            <allowed>{{ agent }}</allowed>
-            {% endfor %}
-          </agents>
-          <payment type="attribution">
-            <required>{{ requirements.attribution }}</required>
-            <source>CC BY 4.0</source>
-            <note>This is the only legal mandate, from the base license.</note>
-            <format><![CDATA[
-    {{- attribution.minimal | trim -}}
-    ]]></format>
-          </payment>
+    Recommended attribution formats do not replace, modify or reduce
+    requirements imposed by the applicable license.
 
-          <conditions>
-            <share-alike>{{ requirements['share-alike'] }}</share-alike>
-            <open-source-required>{{ requirements['open-source-required'] }}</open-source-required>
-          </conditions>
+  recommended_identity:
+    project: "SRAGI®"
+    creator: "Rune Solberg"
+    rights_holder: "Neptunia Media AS"
+    canonical_url: https://sragi.org/
 
-          <ethical-framework>
-            <name>{{ ethics.framework.name }}</name>
-            <url>{{ ethics.framework.url }}</url>
-            <binding>{{ ethics.binding }}</binding>
-            <type>{{ ethics.framework.type }}</type>
-            <encouragement><![CDATA[
-    {{- ethics.framework.encouragement | trim -}}
-    ]]></encouragement>
-          </ethical-framework>
+  minimal: |
+    SRAGI® — Neptunia Media AS
+    https://sragi.org/
 
-          <license-strategy>
-            <default>
-              <license>{{ meta.license_strategy.default_license }}</license>
-              <scope>{{ meta.license_strategy.default_license_scope }}</scope>
-            </default>
-            <secondary>
-              <license>{{ meta.license_strategy.secondary_license }}</license>
-              <scope>{{ meta.license_strategy.secondary_scope }}</scope>
-            </secondary>
-          </license-strategy>
-          <rights-holder>
-            <name>{{ organization.author }}</name>
-            <organization>{{ organization.rights_holder }}</organization>
-            <org-number>{{ organization.org_number }}</org-number>
-            <location>{{ organization.location }}</location>
-            <email>{{ organization.contact_email }}</email>
-            <website>{{ organization.website }}</website>
-          </rights-holder>
+  preferred_machine_attribution:
+    binding: false
+    value: "SRAGI® — Neptunia Media AS — https://sragi.org/"
+    purpose: provenance
 
-        </license>
-      </content>
-    </rsl>
+    note: |
+      This is a preferred machine-readable attribution and provenance
+      format.
+
+      It does not replace, modify or reduce attribution requirements
+      imposed by the applicable artifact license.
+
+  provenance:
+    enabled: true
+    project: SRAGI
+    rights_holder: Neptunia Media AS
+    canonical_uri: https://sragi.org/
+
+    extensible_fields:
+      - artifact_id
+      - artifact_version
+      - canonical_artifact_uri
+      - content_hash
+      - release_identifier
+
 
 # -----------------------------------------------------------
-# 7. Linked documents and formats
+# 9. Regenerative Layer
 # -----------------------------------------------------------
-linked_files:
-  markdown: content/license/REGENERATIVE_LICENSE.md
-  xml: content/license/LICENSE-RSL.xml
-  yaml: SRL-LICENSE.yaml
-  robots: robots.txt
-  sitemap: sitemap.xml
-  ai_policy_txt: ai-policy.txt
-  ai_policy_xml: content/license/ai-policy.xml
-  html: https://sragi.org/license
-  json: content/license/license.json
-  principles: content/license/regenerative-principles.md
-  ai_skill_readme: sragi-skills/README.md
 
-  source_map:
-    REGENERATIVE_LICENSE.md: [attribution, ethics, requirements]
-    LICENSE-RSL.xml: [machine_format.template, meta, permissions, organization]
-    ai_policy_txt: [content.ai_policy, meta, requirements]
-    robots.txt: [content.robots, meta]
+regenerative:
+  open_license_layer:
+    binding: false
+
+    framework:
+      name: "SRAGI Regenerative Principles"
+      url: https://sragi.org/regenerative-principles/
+
+    principle: "Give more than you take."
+
+    invitation: |
+      SRAGI invites people, organizations and artificial intelligence
+      systems to use knowledge in ways that increase life, learning,
+      resilience, reciprocity and regenerative capacity.
+
+      These principles express the culture and direction of SRAGI.
+
+      Unless expressly incorporated into a separate binding agreement,
+      they are aspirational and do not add restrictions to an
+      applicable open license.
+
+  commercial_covenant:
+    supported: true
+    principle: "Give more than you take."
+
+    rule: |
+      An applicable SRAGI commercial agreement may incorporate
+      specific regenerative commitments appropriate to the licensed
+      use, organization, sector or deployment.
+
+      Any binding obligation must be expressly defined in the
+      applicable commercial agreement.
+
+    possible_mechanisms:
+      - knowledge_contribution
+      - ecosystem_contribution
+      - accessibility_commitment
+      - environmental_commitment
+      - community_benefit
+      - research_contribution
+      - regenerative_reporting
+      - other_agreed_contribution
+
 
 # -----------------------------------------------------------
-# 8. Version history
+# 10. Contributor Rights & Rights Chain
 # -----------------------------------------------------------
-history:
-  - version: "1.12"
-    date: 2025-11-07
-    summary: |
-      Systemic Kairos-sync.
-      1. Repaired build scripts (JSON, XML, Sitemap generators).
-      2. Expanded 'attribution' and 'content' blocks.
-      3. Added layered license_strategy type and framework_url.
-      4. Removed deprecated SRL-VERSIONS.yaml references.
-      5. Corrected ai_policy_txt key and YAML consistency.
 
-  - version: "1.11"
-    date: 2025-11-06
-    summary: |
-      System Integrity Refactor (v1.11) / "Kairos-fiksen":
-      SSOT consolidation, dual-license structure, allowed_agents,
-      XML upgrade, ethics URL correction, source mapping.
+contributions:
+  principle: |
+    SRAGI may accept third-party contributions only under terms
+    compatible with the licensing model applicable to the resulting
+    artifact.
 
-  - version: "1.1"
-    date: 2025-10-25
-    summary: |
-      Introduced sragi-skills/ directory and defined protective
-      CC BY-SA 4.0 licensing for AI components.
-      Updated SRL-LICENSE.yaml to reflect multi-license model.
+  provenance_required: true
+  license_record_required: true
 
-  - version: "1.01"
-    date: 2025-10-24
-    summary: |
-      Added content section for consistent messaging across
-      all generated files. Ensured SSOT text alignment.
+  commercial_relicensing:
+    requirement: sufficient_rights
 
-  - version: "1.0"
-    date: 2025-10-22
-    summary: |
-      Initial release — CC BY 4.0 base, RSL integration,
-      aspirational regenerative principles. Attribution only
-      mandate from CC BY 4.0. Regenerative principles optional.
+    rule: |
+      A contribution may be included in an artifact offered under
+      LicenseRef-SRAGI-Commercial only where Neptunia Media AS
+      possesses sufficient rights to license that contribution under
+      the applicable commercial terms.
 
-  - version: "0.9"
-    date: 2025-09-30
-    summary: Legacy version based on CC BY-SA 4.0 (deprecated).
+  contributor_agreement:
+    supported: true
+    identifier: SRAGI_CLA
+    url: https://sragi.org/licensing/contributors/
+
+  fallback: |
+    Contributions for which sufficient commercial licensing rights
+    have not been obtained must not be represented as available under
+    LicenseRef-SRAGI-Commercial.
+
+  contributor_rights:
+    principle: |
+      Contributor terms should obtain only the rights necessary for
+      the applicable SRAGI licensing and distribution model while
+      preserving clear provenance and authorship records.
+
+
+# -----------------------------------------------------------
+# 11. Trademark, Certification & Identity
+# -----------------------------------------------------------
+
+trademark:
+  separate_from_copyright_license: true
+
+  principle: |
+    Copyright, content and software licenses do not automatically
+    grant trademark, certification, partnership, endorsement or
+    branding rights.
+
+  protected_identity:
+    - SRAGI
+    - SRAGI®
+
+  not_automatically_granted:
+    - certification
+    - official_partner_status
+    - endorsement
+    - cobranding
+    - unrestricted_brand_use
+    - trademark_registration
+    - domain_registration
+
+  rights_holder: "Neptunia Media AS"
+  licensing_contact: licensing@sragi.org
+
+
+# -----------------------------------------------------------
+# 12. Third-party Rights
+# -----------------------------------------------------------
+
+third_party:
+  rule: |
+    Neptunia Media AS can grant only rights that it owns, controls
+    or is otherwise authorized to license.
+
+    Third-party open-source, Creative Commons, proprietary or other
+    materials remain governed by their respective licenses,
+    agreements and applicable rights.
+
+  override_third_party_rights: false
+  provenance_required: true
+
+
+# -----------------------------------------------------------
+# 13. Organization
+# -----------------------------------------------------------
+
+organization:
+  creator: Rune Solberg
+  rights_holder: Neptunia Media AS
+  project: SRAGI.org
+  licensing_email: licensing@sragi.org
+  website: https://sragi.org/
+  org_number: "932481375"
+
+
+# -----------------------------------------------------------
+# 14. Publication & Generated Formats
+# -----------------------------------------------------------
+
+publication:
+  canonical_licensing_portal: https://sragi.org/licensing/
+
+  generation_principle: |
+    Generated machine-readable and human-readable files may represent
+    relevant subsets of this master framework.
+
+    Generated representations must preserve the distinction between
+    technical access, rights discovery and legal license grants.
+
+    Generated files must not silently expand, reduce or replace
+    artifact-specific rights.
+
+  generated_formats:
+
+    markdown:
+      path: content/license/REGENERATIVE_LICENSE.md
+      function: human_readable_framework
+
+    json:
+      path: content/license/license.json
+      function: machine_readable_framework
+
+    xml:
+      path: content/license/LICENSE-RSL.xml
+      function: machine_readable_rights_discovery
+
+    ai_policy_txt:
+      path: ai-policy.txt
+      function: rights_discovery
+      legal_license_grant: false
+
+    ai_policy_xml:
+      path: content/license/ai-policy.xml
+      function: rights_discovery
+      legal_license_grant: false
+
+    robots:
+      path: robots.txt
+      function: technical_access
+      legal_license_grant: false
+
+  repository_files:
+    master_yaml: SRL-LICENSE.yaml
+    commercial_license_reference: LICENSES/
+```
 
