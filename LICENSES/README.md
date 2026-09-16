@@ -12,7 +12,7 @@ The canonical text files for these standard identifiers are synchronized from th
 - `Apache-2.0.txt`
 - `CC0-1.0.txt`
 
-Do not hand-edit those synchronized standard texts.
+Do not hand-edit synchronized standard license texts. The SRLF 2.0 builder intentionally fails release validation if any required standard text is missing.
 
 ## SRAGI custom reference
 
