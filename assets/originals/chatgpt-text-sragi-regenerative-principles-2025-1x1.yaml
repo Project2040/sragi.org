@@ -87,6 +87,6 @@ origin:
   source_prompt: "A minimalist typographic poster for 'SRAGI REGENERATIVE PRINCIPLES' with the subtitle 'AI AS A RESONANT FIELD'. Dark blue/black background, clean sans-serif fonts, including the SRAGI swirl logo placed near the top."
   design_intent: "To create a clean, authoritative visual token representing a core philosophical tenet of SRAGI."
   model: "DALL-E 3 (Estimated)"
-  license: "CC BY-SA 4.0 + SRAGI RSL" #
+  license: "CC-BY-SA-4.0" #
 
 # © 2026 Rune Solberg / Neptunia Media AS

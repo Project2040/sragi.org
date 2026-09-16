@@ -16,7 +16,7 @@
 
 1. **Root \= Internettstandarder (robots, sitemap, AI-policy)**
 
-2. **WordPress \= Renderer for menneskelige sider (f.eks. /license/)**
+2. **WordPress \= Renderer for menneskelige sider (f.eks. /licensing/)**
 
 3. **GitHub \= Masterdatakilden (SSOT)**  
     **→ YAML- og Markdown filer**  
@@ -33,7 +33,7 @@
 **`/robots.txt`**  
 **`/sitemap.xml`**  
 **`/ai-policy.txt`**  
-**`/license/   ← WP-rendered område`**
+**`/licensing/   ← WP-rendered område`**
 
 ### **📄 `robots.txt`**
 
@@ -53,14 +53,14 @@
 
 # **2\. 🏛️ LICENSE-OMRÅDET (WordPress-rendered)**
 
-**URL: `/license/`**
+**URL: `/licensing/`**
 
 **Dette området er ikke en Git-mappe.**  
  **WordPress viser innhold som genereres fra SSOT-data i Git.**
 
-**`/license/`**  
+**`/licensing/`**  
    **`index.html              (WP Page – human explanation)`**  
-   **`LICENSE-RSL.xml         (Machine-read license spec)`**  
+   **`LICENSE-RSL.xml         (Machine-readable rights discovery)`**  
    **`license.json            (API-friendly JSON meta)`**  
    **`ai-policy.xml           (AI-focused machine-policy)`**
 
@@ -72,7 +72,7 @@
 
 3. **Publisher Module → laster opp filene via WP REST API**
 
-4. **WordPress → serverer dem under `/license/`**
+4. **WordPress → serverer dem under `/licensing/`**
 
 **Dette følger modellen i Neptunia Ecosystem Architecture (lisensstandard og transparens) .**
 
@@ -124,7 +124,7 @@
    **`VALIDATION_RULES.yaml`**  
    **`CONTENT-SPEC-SCHEMA.yaml`**  
    **`IA-STRUCTURE.yaml`**  
-**`SRL-LICENSE.yaml   ← master for alt juridisk`**
+**`SRL-LICENSE.yaml   ← master for lisensarkitektur; artefaktvilkår bestemmer rettighetene`**
 
 ### **Eksempler:**
 
@@ -173,8 +173,8 @@
 
 ### **robots.txt →**
 
-**`License: https://sragi.org/license/LICENSE-RSL.xml`**  
-**`AI-Policy: https://sragi.org/license/ai-policy.xml`**  
+**`# Rights discovery: https://sragi.org/content/license/LICENSE-RSL.xml`**  
+**`# AI policy: https://sragi.org/content/license/ai-policy.xml`**  
 **`Sitemap: https://sragi.org/sitemap.xml`**
 
 ### **WordPress →**
@@ -256,4 +256,4 @@
 ---
 
 **© 2025 Rune Solberg / Neptunia Media AS**  
-**Licensed under CC BY 4.0 via the SRAGI Regenerative License (SRL).**
+**Licensed under CC-BY-4.0.**

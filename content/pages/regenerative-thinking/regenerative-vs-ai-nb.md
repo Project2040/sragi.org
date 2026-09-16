@@ -458,14 +458,11 @@ AI håndhever dette, men **mennesker skrev det og kan endre det**.
 
 ---
 
-#### 3. **Regenerativ Lisensiering (RSL)**
+#### 3. **Regenerativ lisensiering (SRLF)**
 
-**Vår AI-bruk er etisk åpen:**
+Teknisk tilgang til offentlige ressurser er åpen som utgangspunkt. Rettigheter til trening, kommersiell bruk, modifikasjon og deling følger lisensen eller avtalen til den enkelte artefakten. SRLF avgjør ikke om KI-trening eller modellutdata utløser ShareAlike.
 
-- ✅ Trening tillatt (med attribusjon)
-- ✅ Kommersiell bruk tillatt
-- ✅ Modifikasjoner oppfordret
-- ✅ ShareAlike-krav (kunnskap forblir åpen)
+Regenerative prinsipper er en invitasjon under åpne lisenser. Bindende regenerative forpliktelser må avtales uttrykkelig i en separat avtale.
 
 **Hvorfor?**
 - Kunnskap er en allmenning
@@ -662,5 +659,5 @@ Vi er ved en sivilisatorisk veiskille.
 ---
 
 © 2025 Rune Solberg / Neptunia Media AS  
-Lisensiert under CC BY-SA 4.0 via SRAGI Regenerative License (SRL)  
-Se [SRL-LICENSE.yaml](https://sragi.org/license) for detaljer
+Lisensiert under CC-BY-SA-4.0  
+Se [SRL-LICENSE.yaml](https://sragi.org/licensing/) for detaljer

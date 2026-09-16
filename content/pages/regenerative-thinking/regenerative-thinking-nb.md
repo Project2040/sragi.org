@@ -577,5 +577,5 @@ Vi lærer bare å tenke som livet tenker.
 ---
 
 © 2025 Rune Solberg / Neptunia Media AS  
-Lisensiert under CC BY-SA 4.0 via SRAGI Regenerative License (SRL)  
-Se [SRL-LICENSE.yaml](https://sragi.org/license) for detaljer
+Lisensiert under CC-BY-SA-4.0  
+Se [SRL-LICENSE.yaml](https://sragi.org/licensing/) for detaljer

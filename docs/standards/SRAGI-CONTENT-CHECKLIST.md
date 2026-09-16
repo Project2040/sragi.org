@@ -317,7 +317,7 @@ Før du committer/sender til review:
 ---
 
 **© 2025 Rune Solberg / Neptunia Media AS**  
-Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL)
+Licensed under CC-BY-4.0
 
 ---
 

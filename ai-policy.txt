@@ -1,6 +1,8 @@
-# SRAGI® — AI & MACHINE RIGHTS DISCOVERY
-# SRLF 2.0 | Function: rights discovery | Legal license grant: false
-Access-Posture: maximally-open
+# SRAGI® Regenerative Licensing Framework 2.0 — AI & machine rights discovery
+Function: rights-discovery
+Legal-License-Grant: false
+Access-Posture: maximally_open
+Access-Scope: publicly accessible resources
 Machine-Agents: *
 Discovery: allowed-by-default
 Crawling: allowed-by-default
@@ -8,9 +10,17 @@ Indexing: allowed-by-default
 Retrieval: allowed-by-default
 Rights-Authority: artifact
 Ecosystem-Default-License: none
+Rights-Rule: This framework does not independently grant rights to SRAGI artifacts. Rights are determined by the license identifier, license expression, rights statement, contract and applicable law governing each artifact.
+Access-Rights-Rule: Technical access, crawler accessibility, indexing or discovery metadata does not independently grant copyright or other intellectual-property rights. Rights relating to an artifact are determined by its applicable license, rights statement, contract and applicable law.
 Unspecified-Artifact-Policy: No license grant should be inferred.
-AI-Training-Rights: artifact-license
+AI-Training-Policy: artifact_license
+AI-Training-Rights: Rights relating to AI training are determined by the license, rights statement, contract and applicable law governing the individual artifact.
+AI-Training-And-Adaptation: This framework does not determine whether AI training, model development, model outputs or related machine-learning activities constitute Adapted Material or trigger particular obligations under an applicable license. Such questions are governed by the applicable license, applicable law and the circumstances of the specific use.
 Preferred-Machine-Attribution: SRAGI® — Neptunia Media AS — https://sragi.org/
 Preferred-Machine-Attribution-Binding: false
+Attribution-Note: This does not replace or reduce requirements imposed by the artifact license.
+Commercial-Grant-Rule: Commercial-license rights arise only through an applicable commercial agreement with Neptunia Media AS and only within its licensed scope.
+Third-Party-Rights: Neptunia Media AS can grant only rights it owns, controls or is otherwise authorized to license. Third-party materials remain governed by their terms.
+Artifact-Manifest: https://github.com/Project2040/sragi.org/blob/main/content/license/RESOURCE_LICENSE_MANIFEST.yaml
 Licensing: https://sragi.org/licensing/
 Licensing-Contact: licensing@sragi.org

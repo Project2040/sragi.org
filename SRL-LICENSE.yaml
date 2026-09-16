@@ -186,6 +186,8 @@ machine_access:
   rights_rule: |
     Technical access, crawler accessibility, indexing or discovery metadata
     does not independently grant copyright or other intellectual-property rights.
+    Rights relating to an artifact are determined by its applicable
+    license, rights statement, contract and applicable law.
   robots:
     posture: allow_by_default
     function: technical_access
@@ -204,6 +206,8 @@ machine_access:
       This framework does not determine whether AI training, model development,
       model outputs or related machine-learning activities constitute Adapted
       Material or trigger particular obligations under an applicable license.
+      Such questions are governed by the applicable license,
+      applicable law and the circumstances of the specific use.
 
 attribution:
   rule: Attribution requirements are determined by the applicable artifact license.
@@ -273,6 +277,11 @@ contributions:
   fallback: |
     Contributions lacking sufficient commercial licensing rights must not be
     represented as available under LicenseRef-SRAGI-Commercial.
+  contributor_rights:
+    principle: |
+      Contributor terms should obtain only the rights necessary for
+      the applicable SRAGI licensing and distribution model while
+      preserving clear provenance and authorship records.
 
 trademark:
   separate_from_copyright_license: true
@@ -319,6 +328,18 @@ publication:
     ai_policy_txt: {path: ai-policy.txt, function: rights_discovery, legal_license_grant: false}
     ai_policy_xml: {path: content/license/ai-policy.xml, function: rights_discovery, legal_license_grant: false}
     robots: {path: robots.txt, function: technical_access, legal_license_grant: false}
+    html: {path: content/license/index.html, function: human_readable_framework}
+    sitemap: {path: sitemap.xml, function: technical_discovery}
+  sitemap_urls:
+    - https://sragi.org/
+    - https://sragi.org/licensing/
+    - https://sragi.org/ai-policy.txt
+    - https://sragi.org/robots.txt
+    - https://sragi.org/regenerative-principles/
+    - https://sragi.org/content/license/LICENSE-RSL.xml
+    - https://sragi.org/content/license/ai-policy.xml
+    - https://sragi.org/content/license/license.json
+    - https://sragi.org/content/license/REGENERATIVE_LICENSE.md
   repository_files:
     master:
       - {path: SRL-LICENSE.yaml, role: licensing_framework_master}
@@ -332,8 +353,13 @@ publication:
     human_readable:
       - {path: content/license/REGENERATIVE_LICENSE.md, role: human_readable_framework}
       - {path: content/license/SRAGI_CLA.md, role: contributor_rights_framework}
+      - {path: content/license/RESOURCE_LICENSE_MANIFEST_SPEC.md, role: manifest_specification}
+    manifests:
+      - {path: content/license/RESOURCE_LICENSE_MANIFEST.yaml, role: scoped_rights_review_registry}
+      - {path: content/license/THIRD_PARTY_LICENSES.yaml, role: third_party_license_registry}
     machine_readable:
       - {path: content/license/license.json, role: structured_license_data}
+      - {path: content/license/index.html, role: human_readable_framework}
       - {path: content/license/LICENSE-RSL.xml, role: machine_rights_discovery}
       - {path: content/license/ai-policy.xml, role: machine_rights_discovery}
       - {path: ai-policy.txt, role: machine_rights_discovery}

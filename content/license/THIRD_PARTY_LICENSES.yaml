@@ -1,0 +1,17 @@
+meta:
+  version: '1.0'
+  exhaustive: false
+  legal_license_grant: false
+rule: |
+  This is a scoped inventory of licensing infrastructure sources, not a
+  declaration that every repository artifact has a verified rights chain.
+  Third-party and contributor rights remain governed by their own terms.
+records:
+  - path: LICENSES/
+    source: https://github.com/spdx/license-list-data
+    revision: 16f3aa6c3bdd62e50f8b1cf618f32d2a510250ee
+    verification: LICENSES/SPDX-SOURCES.json
+    scope: Five unchanged standard license texts; no project-wide license is assigned by their presence.
+  - path: docs/architecture/BUNNY-CDN-INTEGRATION.md
+    scope: Embedded PHP snippet carries its own license notice; see RESOURCE_LICENSE_MANIFEST.yaml.
+    commercial_relicensing_verified: false

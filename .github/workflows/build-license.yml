@@ -1,56 +1,32 @@
-# ===========================================================
-#  SRAGI LICENSE BUILDER — GitHub Workflow
-#  Runs automatically when SRL-LICENSE.yaml changes
-#  Updated: 2025-11-07 (Kairos Sync - Hybrid Root Fix)
-# ===========================================================
-
 name: Build SRAGI Licenses
 
 on:
   push:
-    paths:
-      - "SRL-LICENSE.yaml"
-      - "automation/license_builder/**"
+    branches: [main, dev, sragi-licensing-2.0-migration]
+  pull_request:
+    branches: [main, dev]
   workflow_dispatch:
 
 permissions:
-  contents: write  # ✅ gives push permission to github-actions[bot]
+  contents: read
 
 jobs:
   build:
+    name: Validate SRLF generated artifacts
     runs-on: ubuntu-latest
-
+    timeout-minutes: 5
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7.0.0
         with:
           python-version: "3.12"
-
       - name: Install dependencies
-        run: |
-          pip install pyyaml jinja2
-
-      - name: Build licenses
-        run: |
-          cd automation/license_builder
-          python build_licenses.py
-
-      - name: Commit and push generated files
-        run: |
-          git config user.name "SRAGI Automation"
-          git config user.email "bot@sragi.org"
-
-          # ✅ VITAL: Add root traffic directors explicitly
-          git add robots.txt
-          git add sitemap.xml
-          git add ai-policy.txt
-
-          # ✅ Add everything in the license content folder
-          git add content/license/
-
-          # Commit only if there are actual changes
-          git diff --staged --quiet || git commit -m "chore(license): auto-update artifacts [skip ci]"
-          git push
+        run: python -m pip install -r automation/license_builder/requirements.txt
+      - name: Validate master, license texts and generated output
+        run: python automation/license_builder/build_licenses.py --check
+      - name: Test licensing boundaries and generator regressions
+        run: python -m unittest discover -s tests -v

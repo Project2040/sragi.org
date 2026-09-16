@@ -1,0 +1,44 @@
+meta:
+  id: SRAGI_RESOURCE_LICENSE_MANIFEST
+  version: '1.0'
+  status: review_register
+  exhaustive: false
+  reviewed_source_commit: 529b9a5e3964f10fe1464dbe817ab51913c4ae47
+  legal_license_grant: false
+authority: artifact
+rule: |
+  This scoped register records unresolved provenance and existing notices.
+  It does not select a license, relicense material, or revoke historical grants.
+  Unlisted artifacts retain their own license, rights statement or agreement.
+  No license grant should be inferred from a missing entry.
+artifacts:
+  - path: docs/core/ETHICAL-CONTACT-PROTOCOL.md
+    status: needs_rights_review
+    license_expression: null
+    observed_notices:
+      - location: document_header
+        identifier: CC-BY-SA-4.0
+      - location: document_footer
+        identifier: CC-BY-4.0
+    decision_needed: Confirm the intended document license and account for previously published grants.
+    commercial_relicensing_verified: false
+  - path: docs/standards/VISUAL-PROTOCOL.md
+    status: needs_rights_review
+    license_expression: null
+    observed_notices:
+      - location: document_header
+        identifier: CC-BY-SA-4.0
+      - location: document_footer
+        identifier: CC-BY-4.0
+    decision_needed: Confirm the intended document license and account for previously published grants.
+    commercial_relicensing_verified: false
+  - path: docs/architecture/BUNNY-CDN-INTEGRATION.md
+    status: scoped_notices_preserved
+    license_expression: null
+    observed_notices:
+      - location: embedded_PHP_snippet
+        identifier: CC-BY-SA-4.0
+      - location: document_footer
+        identifier: CC-BY-4.0
+    note: The embedded snippet and surrounding document carry different notices; this is not represented as an OR expression.
+    commercial_relicensing_verified: false

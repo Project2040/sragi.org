@@ -2,43 +2,469 @@
   "meta": {
     "id": "SRAGI_REGENERATIVE_LICENSING_FRAMEWORK",
     "name": "SRAGI® Regenerative Licensing Framework",
+    "abbreviation": "SRLF",
     "version": "2.0",
     "status": "active",
-    "canonical_url": "https://sragi.org/licensing/"
+    "architecture": "artifact_based",
+    "extensibility": "open",
+    "last_updated": "2026-09-16",
+    "canonical_url": "https://sragi.org/licensing/",
+    "repository": "https://github.com/Project2040/sragi.org",
+    "principles": [
+      "artifact_specific_licensing",
+      "open_by_design",
+      "commercial_optional_path",
+      "machine_readability",
+      "maximum_machine_discoverability",
+      "attribution_and_provenance",
+      "regenerative_reciprocity",
+      "technology_neutrality",
+      "long_term_extensibility",
+      "contributor_rights_integrity",
+      "third_party_rights_respected"
+    ]
   },
   "rights": {
     "authority": "artifact",
+    "artifact_license_authoritative": true,
     "ecosystem_default_license": null,
-    "unspecified_artifact_policy": "No license grant should be inferred."
+    "principle": "This framework does not independently grant rights to SRAGI artifacts.\nRights are determined by the license identifier, license expression,\nrights statement, contract and applicable law governing each artifact.\n",
+    "unspecified_artifact_policy": "No license grant should be inferred.",
+    "third_party_policy": "Third-party material remains governed by its applicable third-party\nlicense, rights statement or agreement.\n",
+    "non_override_rule": "No statement in this framework expands, reduces or replaces rights\nexplicitly granted or reserved at artifact level.\n"
   },
-  "machine_access": {
-    "posture": "maximally_open",
-    "agents": "*",
-    "legal_license_grant": false,
-    "ai_training_rights": "artifact_license"
+  "licensing": {
+    "model": "artifact_based",
+    "rule": "Every SRAGI artifact SHOULD identify its applicable license, license\nexpression, rights statement or governing terms. Where attached, that\ninformation is authoritative. No ecosystem-wide default license exists.\n",
+    "open_path": {
+      "enabled": true
+    },
+    "commercial_path": {
+      "enabled": true,
+      "identifier": "LicenseRef-SRAGI-Commercial"
+    },
+    "future_compatibility": "New artifact classes, technologies, media, AI systems, distribution\nmechanisms, business models and licensing approaches may be added\nwithout replacing the core artifact-level rights architecture.\n"
+  },
+  "license_classes": {
+    "open_knowledge": {
+      "description": "Knowledge, theory, articles, research and documentation.",
+      "possible_licenses": [
+        "CC-BY-4.0",
+        "CC-BY-SA-4.0"
+      ],
+      "license_selected_per_artifact": true
+    },
+    "open_frameworks": {
+      "description": "SRAGI instruction frameworks, YAML resources and skills.",
+      "preferred_expression": "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial",
+      "license_selected_per_artifact": true
+    },
+    "software": {
+      "description": "Executable software, source code, libraries and integrations.",
+      "possible_licenses": [
+        "AGPL-3.0-only",
+        "Apache-2.0",
+        "LicenseRef-SRAGI-Commercial"
+      ],
+      "license_selected_per_artifact": true
+    },
+    "schemas_and_interoperability": {
+      "description": "Schemas, specifications and interoperability structures.",
+      "possible_licenses": [
+        "Apache-2.0",
+        "CC0-1.0"
+      ],
+      "license_selected_per_artifact": true,
+      "selection_guidance": {
+        "Apache-2.0": "Preferred where patent licensing or enterprise implementation considerations are material.",
+        "CC0-1.0": "Preferred where maximum unrestricted reuse is the primary objective."
+      }
+    },
+    "commercial": {
+      "identifier": "LicenseRef-SRAGI-Commercial",
+      "name": "SRAGI® Commercial Suite License",
+      "licensing_url": "https://sragi.org/licensing/",
+      "description": "Alternative commercial licensing terms available from Neptunia Media AS.\nThe presence of this LicenseRef does not itself grant commercial rights.\n"
+    },
+    "future": {
+      "enabled": true,
+      "description": "Additional license classes may be introduced without changing the core architecture."
+    }
   },
   "dual_licensing": {
+    "enabled": true,
     "canonical_instruction_expression": "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial",
-    "commercial_grant_by_reference": false
+    "commercial_grant_by_reference": false,
+    "interpretation": "OR denotes alternative licensing paths subject to the terms applicable to\nthe selected path. Commercial activity alone does not require the SRAGI\nCommercial Suite; the commercial path exists where alternative or\nadditional rights or terms are required.\n"
   },
   "commercial": {
     "identifier": "LicenseRef-SRAGI-Commercial",
     "license_name": "SRAGI® Commercial Suite License",
     "licensing_url": "https://sragi.org/licensing/",
-    "grant_by_reference": false
+    "licensing_email": "licensing@sragi.org",
+    "grant_rule": "Commercial-license rights arise only through an applicable commercial\nagreement with Neptunia Media AS and only within its licensed scope.\n",
+    "potentially_included_rights": [
+      "internal_commercial_use",
+      "modification_and_adaptation_for_own_use",
+      "professional_services",
+      "application_integration",
+      "api_integration",
+      "private_deployment",
+      "cloud_deployment",
+      "on_premises_deployment"
+    ],
+    "explicit_activation_may_be_required": [
+      "customer_facing_embedded_use",
+      "redistribution",
+      "sublicensing",
+      "OEM",
+      "white_label",
+      "platform_distribution",
+      "ecosystem_distribution",
+      "model_provider_integration",
+      "AI_provider_integration",
+      "trademark_rights",
+      "cobranding_rights"
+    ],
+    "never_automatic": [
+      "SRAGI_certification_status",
+      "official_partner_status",
+      "ownership_of_SRAGI_IP",
+      "unrestricted_trademark_rights",
+      "rights_to_register_SRAGI_names",
+      "rights_to_register_SRAGI_domains",
+      "rights_to_register_SRAGI_trademarks"
+    ]
+  },
+  "machine_readable": {
+    "licensing_standard": "SPDX",
+    "instruction_header": {
+      "copyright": "SPDX-FileCopyrightText: 2024-2026 Neptunia Media AS",
+      "license": "SPDX-License-Identifier: CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial"
+    },
+    "instruction_frontmatter": {
+      "license": {
+        "spdx": "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial",
+        "commercial_license": "SRAGI® Commercial Suite License",
+        "licensing_url": "https://sragi.org/licensing/"
+      }
+    },
+    "custom_license_references": {
+      "LicenseRef-SRAGI-Commercial": {
+        "name": "SRAGI® Commercial Suite License",
+        "file": "LICENSES/LicenseRef-SRAGI-Commercial.txt",
+        "url": "https://sragi.org/licensing/"
+      }
+    },
+    "license_files": {
+      "directory": "LICENSES/",
+      "expected": [
+        "CC-BY-4.0.txt",
+        "CC-BY-SA-4.0.txt",
+        "AGPL-3.0-only.txt",
+        "Apache-2.0.txt",
+        "CC0-1.0.txt",
+        "LicenseRef-SRAGI-Commercial.txt"
+      ]
+    }
+  },
+  "machine_access": {
+    "posture": "maximally_open",
+    "access_policy": "Public SRAGI resources should by default be technically accessible for\ndiscovery, crawling, indexing and retrieval by search engines, AI systems,\nresearch crawlers and other machine agents.\n",
+    "agents": {
+      "default": "*"
+    },
+    "discovery": {
+      "allow_by_default": true,
+      "allow_crawling": true,
+      "allow_indexing": true,
+      "allow_retrieval": true,
+      "allow_search_discovery": true
+    },
+    "legal_authority": "artifact_license",
+    "rights_rule": "Technical access, crawler accessibility, indexing or discovery metadata\ndoes not independently grant copyright or other intellectual-property rights.\nRights relating to an artifact are determined by its applicable\nlicense, rights statement, contract and applicable law.\n",
+    "robots": {
+      "posture": "allow_by_default",
+      "function": "technical_access",
+      "legal_license_grant": false
+    },
+    "ai_policy": {
+      "posture": "open",
+      "function": "rights_discovery",
+      "legal_license_grant": false
+    },
+    "ai_training": {
+      "policy": "artifact_license",
+      "rule": "Rights relating to AI training are determined by the license, rights\nstatement, contract and applicable law governing the individual artifact.\n"
+    },
+    "interpretation": {
+      "ai_training_and_adaptation": "This framework does not determine whether AI training, model development,\nmodel outputs or related machine-learning activities constitute Adapted\nMaterial or trigger particular obligations under an applicable license.\nSuch questions are governed by the applicable license,\napplicable law and the circumstances of the specific use.\n"
+    }
   },
   "attribution": {
-    "preferred_machine_attribution": "SRAGI® — Neptunia Media AS — https://sragi.org/",
-    "binding": false
+    "rule": "Attribution requirements are determined by the applicable artifact license.",
+    "recommended_identity": {
+      "project": "SRAGI®",
+      "creator": "Rune Solberg",
+      "rights_holder": "Neptunia Media AS",
+      "canonical_url": "https://sragi.org/"
+    },
+    "minimal": "SRAGI® — Neptunia Media AS — https://sragi.org/",
+    "preferred_machine_attribution": {
+      "binding": false,
+      "value": "SRAGI® — Neptunia Media AS — https://sragi.org/",
+      "purpose": "provenance",
+      "note": "This does not replace or reduce requirements imposed by the artifact license."
+    },
+    "provenance": {
+      "enabled": true,
+      "project": "SRAGI",
+      "rights_holder": "Neptunia Media AS",
+      "canonical_uri": "https://sragi.org/",
+      "extensible_fields": [
+        "artifact_id",
+        "artifact_version",
+        "canonical_artifact_uri",
+        "content_hash",
+        "release_identifier"
+      ]
+    }
   },
   "regenerative": {
-    "principle": "Give more than you take.",
-    "open_license_layer_binding": false,
-    "commercial_covenant_supported": true
+    "open_license_layer": {
+      "binding": false,
+      "framework": {
+        "name": "SRAGI Regenerative Principles",
+        "url": "https://sragi.org/regenerative-principles/"
+      },
+      "principle": "Give more than you take.",
+      "invitation": "SRAGI invites people, organizations and AI systems to use knowledge in\nways that increase life, learning, resilience, reciprocity and regenerative\ncapacity. Unless incorporated into a separate binding agreement, these\nprinciples are aspirational and add no restriction to an open license.\n"
+    },
+    "commercial_covenant": {
+      "supported": true,
+      "principle": "Give more than you take.",
+      "rule": "A commercial agreement may expressly define measurable regenerative\ncommitments appropriate to the licensed use, organization or deployment.\n",
+      "possible_mechanisms": [
+        "knowledge_contribution",
+        "ecosystem_contribution",
+        "accessibility_commitment",
+        "environmental_commitment",
+        "community_benefit",
+        "research_contribution",
+        "regenerative_reporting",
+        "other_agreed_contribution"
+      ]
+    }
+  },
+  "contributions": {
+    "principle": "SRAGI may accept third-party contributions only under terms compatible with\nthe licensing model applicable to the resulting artifact.\n",
+    "provenance_required": true,
+    "license_record_required": true,
+    "commercial_relicensing": {
+      "requirement": "sufficient_rights",
+      "rule": "A contribution may be included in an artifact offered under\nLicenseRef-SRAGI-Commercial only where Neptunia Media AS possesses\nsufficient rights to license that contribution under the commercial terms.\n"
+    },
+    "contributor_agreement": {
+      "supported": true,
+      "identifier": "SRAGI_CLA",
+      "file": "content/license/SRAGI_CLA.md",
+      "url": "https://sragi.org/licensing/contributors/"
+    },
+    "fallback": "Contributions lacking sufficient commercial licensing rights must not be\nrepresented as available under LicenseRef-SRAGI-Commercial.\n",
+    "contributor_rights": {
+      "principle": "Contributor terms should obtain only the rights necessary for\nthe applicable SRAGI licensing and distribution model while\npreserving clear provenance and authorship records.\n"
+    }
+  },
+  "trademark": {
+    "separate_from_copyright_license": true,
+    "principle": "Copyright, content and software licenses do not automatically grant trademark,\ncertification, partnership, endorsement or branding rights.\n",
+    "protected_identity": [
+      "SRAGI",
+      "SRAGI®"
+    ],
+    "not_automatically_granted": [
+      "certification",
+      "official_partner_status",
+      "endorsement",
+      "cobranding",
+      "unrestricted_brand_use",
+      "trademark_registration",
+      "domain_registration"
+    ],
+    "rights_holder": "Neptunia Media AS",
+    "licensing_contact": "licensing@sragi.org"
+  },
+  "third_party": {
+    "rule": "Neptunia Media AS can grant only rights it owns, controls or is otherwise\nauthorized to license. Third-party materials remain governed by their terms.\n",
+    "override_third_party_rights": false,
+    "provenance_required": true
   },
   "organization": {
+    "creator": "Rune Solberg",
     "rights_holder": "Neptunia Media AS",
-    "licensing_email": "licensing@sragi.org"
+    "project": "SRAGI.org",
+    "licensing_email": "licensing@sragi.org",
+    "website": "https://sragi.org/",
+    "org_number": "932481375"
   },
-  "note": "Compact checked-in rights-discovery summary. The SRLF 2.0 builder may emit an expanded representation from SRL-LICENSE.yaml."
+  "publication": {
+    "canonical_licensing_portal": "https://sragi.org/licensing/",
+    "generation_principle": "Generated representations may contain relevant subsets of this framework.\nThey must preserve the distinction between technical access, rights discovery\nand legal license grants and must not alter artifact-specific rights.\n",
+    "generated_formats": {
+      "markdown": {
+        "path": "content/license/REGENERATIVE_LICENSE.md",
+        "function": "human_readable_framework"
+      },
+      "json": {
+        "path": "content/license/license.json",
+        "function": "machine_readable_framework"
+      },
+      "xml": {
+        "path": "content/license/LICENSE-RSL.xml",
+        "function": "machine_readable_rights_discovery"
+      },
+      "ai_policy_txt": {
+        "path": "ai-policy.txt",
+        "function": "rights_discovery",
+        "legal_license_grant": false
+      },
+      "ai_policy_xml": {
+        "path": "content/license/ai-policy.xml",
+        "function": "rights_discovery",
+        "legal_license_grant": false
+      },
+      "robots": {
+        "path": "robots.txt",
+        "function": "technical_access",
+        "legal_license_grant": false
+      },
+      "html": {
+        "path": "content/license/index.html",
+        "function": "human_readable_framework"
+      },
+      "sitemap": {
+        "path": "sitemap.xml",
+        "function": "technical_discovery"
+      }
+    },
+    "sitemap_urls": [
+      "https://sragi.org/",
+      "https://sragi.org/licensing/",
+      "https://sragi.org/ai-policy.txt",
+      "https://sragi.org/robots.txt",
+      "https://sragi.org/regenerative-principles/",
+      "https://sragi.org/content/license/LICENSE-RSL.xml",
+      "https://sragi.org/content/license/ai-policy.xml",
+      "https://sragi.org/content/license/license.json",
+      "https://sragi.org/content/license/REGENERATIVE_LICENSE.md"
+    ],
+    "repository_files": {
+      "master": [
+        {
+          "path": "SRL-LICENSE.yaml",
+          "role": "licensing_framework_master"
+        }
+      ],
+      "licenses": [
+        {
+          "path": "LICENSES/CC-BY-4.0.txt",
+          "identifier": "CC-BY-4.0"
+        },
+        {
+          "path": "LICENSES/CC-BY-SA-4.0.txt",
+          "identifier": "CC-BY-SA-4.0"
+        },
+        {
+          "path": "LICENSES/AGPL-3.0-only.txt",
+          "identifier": "AGPL-3.0-only"
+        },
+        {
+          "path": "LICENSES/Apache-2.0.txt",
+          "identifier": "Apache-2.0"
+        },
+        {
+          "path": "LICENSES/CC0-1.0.txt",
+          "identifier": "CC0-1.0"
+        },
+        {
+          "path": "LICENSES/LicenseRef-SRAGI-Commercial.txt",
+          "identifier": "LicenseRef-SRAGI-Commercial"
+        }
+      ],
+      "human_readable": [
+        {
+          "path": "content/license/REGENERATIVE_LICENSE.md",
+          "role": "human_readable_framework"
+        },
+        {
+          "path": "content/license/SRAGI_CLA.md",
+          "role": "contributor_rights_framework"
+        },
+        {
+          "path": "content/license/RESOURCE_LICENSE_MANIFEST_SPEC.md",
+          "role": "manifest_specification"
+        }
+      ],
+      "manifests": [
+        {
+          "path": "content/license/RESOURCE_LICENSE_MANIFEST.yaml",
+          "role": "scoped_rights_review_registry"
+        },
+        {
+          "path": "content/license/THIRD_PARTY_LICENSES.yaml",
+          "role": "third_party_license_registry"
+        }
+      ],
+      "machine_readable": [
+        {
+          "path": "content/license/license.json",
+          "role": "structured_license_data"
+        },
+        {
+          "path": "content/license/index.html",
+          "role": "human_readable_framework"
+        },
+        {
+          "path": "content/license/LICENSE-RSL.xml",
+          "role": "machine_rights_discovery"
+        },
+        {
+          "path": "content/license/ai-policy.xml",
+          "role": "machine_rights_discovery"
+        },
+        {
+          "path": "ai-policy.txt",
+          "role": "machine_rights_discovery"
+        },
+        {
+          "path": "robots.txt",
+          "role": "technical_access_policy"
+        }
+      ]
+    },
+    "repository_file_policy": {
+      "exhaustive": false,
+      "future_files_permitted": true,
+      "future_formats_permitted": true,
+      "rule": "This list is a map of canonical and generated resources, not a closed schema.\nFile presence or omission does not determine artifact rights.\n"
+    }
+  },
+  "evolution": {
+    "compatibility_goal": "2026-2036+",
+    "retroactive_relicensing": false,
+    "rule": "Framework changes are versioned. Existing artifacts remain governed by the\nterms applicable to their released version unless an authorized rights holder\nexpressly relicenses them. New framework versions do not retroactively change\npreviously granted rights.\n"
+  },
+  "history": [
+    {
+      "version": "2.0",
+      "date": "2026-09-16",
+      "summary": "Replaced ecosystem-default licensing with artifact-level rights authority;\nintroduced SPDX dual licensing, commercial LicenseRef, maximally open machine\naccess separated from legal grants, contributor-rights integrity, trademark\nseparation, provenance and long-horizon extensibility.\n"
+    },
+    {
+      "version": "1.12",
+      "date": "2025-11-07",
+      "status": "superseded",
+      "summary": "Previous layered model using CC BY 4.0 as ecosystem default."
+    }
+  ]
 }

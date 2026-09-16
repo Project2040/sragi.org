@@ -4,7 +4,7 @@
 **Maintainer:** Rune Solberg / Neptunia Media AS
 **Version:** 1.0
 **Updated:** 2025-10-25
-**License:** CC BY 4.0 (via SRL v1.1)
+**License:** CC-BY-4.0
 
 ---
 
@@ -12,7 +12,7 @@
 
 This document defines the ethical, philosophical, and "spiritual" framework for SRAGI.org. This is what we mean by "regenerative principles."
 
-While our machine-readable files (like `LICENSE-RSL.xml` and `ai-policy.xml`) define the *legal* and *technical* permissions, this document defines the *intention* and *spirit* behind them.
+Machine-readable files such as `LICENSE-RSL.xml` and `ai-policy.xml` support rights discovery. The individual artifact license determines legal rights; `robots.txt` describes technical access. This document expresses our intention and spirit and adds no restrictions to an open license.
 
 This is culture, not control.
 

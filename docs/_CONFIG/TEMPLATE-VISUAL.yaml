@@ -100,6 +100,6 @@ origin:
   source_prompt: ""           # Lim inn original prompt her
   design_intent: ""           # Hva ville du oppnå?
   model: ""                   # f.eks. "v6.0 Alpha"
-  license: "CC BY-SA 4.0 + SRAGI RSL"
+  license: "CC-BY-SA-4.0"
 
 # © 2026 Rune Solberg / Neptunia Media AS

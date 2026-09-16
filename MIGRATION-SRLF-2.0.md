@@ -1,38 +1,33 @@
-# SRLF 2.0 Migration Checklist
+# SRLF 2.0 migration review
 
-## Completed on migration branch
+## Technical implementation
 
-- [x] Replace ecosystem-default licensing with artifact-level rights authority.
-- [x] Set `ecosystem_default_license: null` and `No license grant should be inferred.`
-- [x] Normalize and complete `SRL-LICENSE.yaml` as pure YAML.
-- [x] Add 2026–2036+ evolution and repository-file policies.
-- [x] Separate maximally open machine access from legal license grants.
-- [x] Replace legacy TXT/XML machine policies and universal license XML semantics.
-- [x] Simplify `robots.txt` to technical access/discovery.
-- [x] Add `LicenseRef-SRAGI-Commercial.txt` and contributor-rights framework.
-- [x] Rewrite builder/generators for SRLF 2.0 and add invariant validation.
-- [x] Replace legacy default-license enforcement script.
-- [x] Rewrite repository README and documentation licensing standard.
-- [x] Replace legacy `_CONFIG` redirect semantics.
-- [x] Add SPDX standard-license synchronization tool and license-directory provenance README.
-- [x] Align generated human-readable, XML, HTML, TXT and sitemap outputs with the v2 generator.
+- Pure YAML master with artifact rights authority and no ecosystem-wide default.
+- Five canonical SPDX license texts materialized from pinned revision `16f3aa6c3bdd62e50f8b1cf618f32d2a510250ee`, with SHA-256 verification.
+- Deterministic generator for eight Markdown, HTML, JSON, XML, TXT and sitemap outputs.
+- Non-mutating `--check` detects stale output. YAML duplicate keys and fences, missing/altered texts and broken licensing invariants fail validation.
+- Complete JSON master representation, including SPDX machine-readable settings and future fields.
+- Open crawler access retained; AI policy preserves artifact authority, attribution guidance and the neutral position on AI training and adaptation.
+- Old unused v1 templates removed; Git history retains them.
+- Explicit existing CC-BY and CC-BY-SA notices retained at artifact level; old SRL wrappers and blanket claims removed from live documents and metadata.
+- Source and output checks run in GitHub Actions on Node 24 actions. CI is read-only and no longer auto-commits generated changes.
+- Eight regression tests cover grant boundaries, propagation/escaping, determinism, duplicate YAML, license integrity, drift detection and guard false positives.
 
-## Required before merge
+## Local validation
 
-- [ ] Materialize canonical standard SPDX license texts under `LICENSES/` by running `python tools/sync_spdx_license_texts.py` in a checkout with network access.
-- [ ] Run `python automation/license_builder/build_licenses.py` after the standard texts exist and commit deterministic output changes.
-- [ ] Run `python tools/enforce_version_refs.py` and resolve remaining live-document legacy grants.
-- [ ] Validate YAML, JSON and XML in CI/local checkout.
-- [ ] Review remaining live documentation for obsolete SRL 1.x terminology.
-- [ ] Legal review of `LicenseRef-SRAGI-Commercial.txt` and contributor-rights language before production publication.
-- [ ] Confirm canonical web endpoint `/licensing/` exists before deployment.
+The source was read through the GitHub connector at commit `529b9a5e3964f10fe1464dbe817ab51913c4ae47`. All 115 text files were retrieved; existing binary assets were left unchanged in the remote base tree.
 
-## Branch state
+- Builder and `--check`: passed for all eight generated outputs.
+- SPDX checksums: all five standard texts passed.
+- Legacy-reference guard: passed.
+- Regression suite: 8/8 passed.
+- Changed/new structured files at validation: 37 YAML/workflow files, 2 JSON files and 3 XML files parsed successfully.
 
-Migration branch is intentionally ahead of `main` and PR #9 remains draft. Do not merge until the release gates above pass.
+## Required review before merge
 
-## Core invariant
+1. **Conflicting existing notices:** `docs/core/ETHICAL-CONTACT-PROTOCOL.md` and `docs/standards/VISUAL-PROTOCOL.md` each carried CC-BY-SA-4.0 in the header and CC-BY-4.0 in the footer. Both were preserved and registered; no OR expression or new license choice was invented.
+2. **Different scoped notices:** The PHP snippet in `BUNNY-CDN-INTEGRATION.md` carries CC-BY-SA-4.0, while the surrounding document carries CC-BY-4.0. These scopes remain separate.
+3. **Commercial/contributor instruments:** The commercial LicenseRef is a routing/reference document, not an executed commercial agreement. The CLA file is a contributor-rights notice, not evidence that a contributor has signed. Review these alongside the intended agreements and provenance records.
+4. **Output and deployment review:** Confirm wording and the actual serving of `/licensing/`, policy files and licensing contact before website deployment. Repository changes do not establish WordPress routes or email mailboxes.
 
-**Framework describes; artifact grants.**
-
-Machine access is maximally open. Rights remain artifact-specific.
+PR #9 remains draft for this review. No merge or WordPress deployment is performed by this migration.

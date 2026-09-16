@@ -44,7 +44,7 @@ Vi stoler på intuisjon for retning, men bruker data for korreksjon.
 ### V. Regenerativ Leveranse
 Vi etterlater systemene renere enn vi fant dem.
 * **Prinsipp:** R > 1. Verdien vi skaper skal være større enn ressursene vi forbruker.
-* **Praksis:** Vi optimaliserer bilder for lavt energiforbruk (Green Web), bruker åpne standarder, og deler kunnskap åpent under SRL-lisens.
+* **Praksis:** Vi optimaliserer bilder for lavt energiforbruk (Green Web), bruker åpne standarder, og deler kunnskap under eksplisitte artefaktlisenser innen SRLF-rammeverket.
 
 ---
 

@@ -1,126 +1,157 @@
 #!/usr/bin/env python3
-"""Build and validate SRLF 2.0 licensing/discovery artifacts."""
-
+"""Build SRLF outputs or check them without changing the checkout."""
+import argparse
+import hashlib
 import json
-import os
+from pathlib import Path
 import sys
-import traceback
-from datetime import datetime, timezone
-
+from xml.etree import ElementTree as ET
 import yaml
-from generate_files import (
-    generate_ai_policy_txt,
-    generate_ai_policy_xml,
-    generate_human_license,
-    generate_license_html,
-    generate_license_json,
-    generate_robots,
-    generate_rsl_xml,
-    generate_sitemap,
-)
+from generate_files import render
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-YAML_FILE = os.path.join(BASE_DIR, "SRL-LICENSE.yaml")
-LOG_FILE = os.path.join(BASE_DIR, "sync", "sync-log.json")
-LICENSE_DIR = os.path.join(BASE_DIR, "content", "license")
+ROOT = Path(__file__).resolve().parents[2]
+STANDARD_LICENSES = {'CC-BY-4.0', 'CC-BY-SA-4.0', 'AGPL-3.0-only', 'Apache-2.0', 'CC0-1.0'}
+EXPECTED_OUTPUTS = {
+    'content/license/LICENSE-RSL.xml', 'content/license/REGENERATIVE_LICENSE.md',
+    'content/license/index.html', 'content/license/license.json',
+    'content/license/ai-policy.xml', 'ai-policy.txt', 'robots.txt', 'sitemap.xml',
+}
+
+
+class UniqueKeyLoader(yaml.SafeLoader):
+    """Reject duplicate keys instead of silently losing policy statements."""
+
+
+def unique_mapping(loader, node, deep=False):
+    mapping = {}
+    for key_node, value_node in node.value:
+        key = loader.construct_object(key_node, deep=deep)
+        if key in mapping:
+            raise ValueError(f'Duplicate YAML key: {key}')
+        mapping[key] = loader.construct_object(value_node, deep=deep)
+    return mapping
+
+
+UniqueKeyLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, unique_mapping)
 
 
 def load_yaml(path):
-    raw = open(path, "r", encoding="utf-8").read()
-    if raw.lstrip().startswith("```") or raw.rstrip().endswith("```"):
-        raise ValueError("SRL-LICENSE.yaml must be pure YAML, not a Markdown code fence")
-    data = yaml.safe_load(raw)
+    raw = Path(path).read_text(encoding='utf-8')
+    if raw.lstrip().startswith(chr(96) * 3) or raw.rstrip().endswith(chr(96) * 3):
+        raise ValueError(f'{path} must be pure YAML, without Markdown fences')
+    data = yaml.load(raw, Loader=UniqueKeyLoader)
     if not isinstance(data, dict):
-        raise ValueError("SRL-LICENSE.yaml must contain a YAML mapping at document root")
+        raise ValueError(f'{path} must contain a mapping')
     return data
 
 
 def validate_v2(data):
+    expected = {
+        'meta.version': '2.0', 'rights.authority': 'artifact',
+        'rights.ecosystem_default_license': None, 'rights.artifact_license_authoritative': True,
+        'machine_access.posture': 'maximally_open', 'machine_access.agents.default': '*',
+        'machine_access.robots.posture': 'allow_by_default',
+        'machine_access.robots.function': 'technical_access',
+        'machine_access.robots.legal_license_grant': False,
+        'machine_access.ai_policy.function': 'rights_discovery',
+        'machine_access.ai_policy.legal_license_grant': False,
+        'machine_access.ai_training.policy': 'artifact_license',
+        'attribution.preferred_machine_attribution.binding': False,
+        'regenerative.open_license_layer.binding': False,
+        'third_party.override_third_party_rights': False,
+        'contributions.commercial_relicensing.requirement': 'sufficient_rights',
+        'dual_licensing.commercial_grant_by_reference': False,
+        'dual_licensing.canonical_instruction_expression': 'CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial',
+        'evolution.retroactive_relicensing': False,
+    }
+    for activity in ('allow_by_default', 'allow_crawling', 'allow_indexing', 'allow_retrieval', 'allow_search_discovery'):
+        expected['machine_access.discovery.' + activity] = True
+    for kind in ('ai_policy_txt', 'ai_policy_xml', 'robots'):
+        expected[f'publication.generated_formats.{kind}.legal_license_grant'] = False
     errors = []
-    meta = data.get("meta", {})
-    rights = data.get("rights", {})
-    machine = data.get("machine_access", {})
-    dual = data.get("dual_licensing", {})
-    custom = data.get("machine_readable", {}).get("custom_license_references", {})
-
-    checks = [
-        (str(meta.get("version")) == "2.0", "meta.version must be 2.0"),
-        (rights.get("authority") == "artifact", "rights.authority must be artifact"),
-        (rights.get("ecosystem_default_license", "sentinel") is None, "rights.ecosystem_default_license must be null"),
-        (machine.get("agents", {}).get("default") == "*", "machine_access.agents.default must be '*'"),
-        (machine.get("robots", {}).get("legal_license_grant") is False, "robots must not be a legal license grant"),
-        (machine.get("ai_policy", {}).get("legal_license_grant") is False, "ai_policy must not be a legal license grant"),
-        (dual.get("canonical_instruction_expression") == "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial", "canonical instruction SPDX expression mismatch"),
-        ("LicenseRef-SRAGI-Commercial" in custom, "custom commercial LicenseRef must be defined"),
-    ]
-    errors.extend(message for ok, message in checks if not ok)
+    for dotted, value in expected.items():
+        actual = data
+        for part in dotted.split('.'):
+            actual = actual.get(part, object()) if isinstance(actual, dict) else object()
+        if actual != value or type(actual) is not type(value):
+            errors.append(f'{dotted} must be {value!r}')
+    custom = data['machine_readable']['custom_license_references']
+    if custom.get('LicenseRef-SRAGI-Commercial', {}).get('file') != 'LICENSES/LicenseRef-SRAGI-Commercial.txt':
+        errors.append('The commercial LicenseRef must point to its local text')
+    declared = set(data['machine_readable']['license_files']['expected'])
+    required = {x + '.txt' for x in STANDARD_LICENSES} | {'LicenseRef-SRAGI-Commercial.txt'}
+    if not required.issubset(declared):
+        errors.append('All five standard texts and the commercial reference are required')
+    for spec in data['publication']['generated_formats'].values():
+        p = Path(spec['path'])
+        if p.is_absolute() or '..' in p.parts:
+            errors.append('Generated output paths must remain in the repository')
     if errors:
-        raise ValueError("SRLF 2.0 validation failed:\n- " + "\n- ".join(errors))
+        raise ValueError('SRLF validation failed:\n- ' + '\n- '.join(errors))
 
 
-def verify_license_files(data):
-    expected = data.get("machine_readable", {}).get("license_files", {}).get("expected", [])
-    missing = [name for name in expected if not os.path.exists(os.path.join(BASE_DIR, "LICENSES", name))]
-    if missing:
-        raise RuntimeError(
-            "Missing canonical license files: " + ", ".join(missing) +
-            ". Run tools/sync_spdx_license_texts.py for standard SPDX texts."
-        )
+def verify_license_files(root, data):
+    for name in data['machine_readable']['license_files']['expected']:
+        if Path(name).name != name:
+            raise ValueError('License text names must be plain filenames')
+        p = root / 'LICENSES' / name
+        if not p.is_file() or not p.stat().st_size:
+            raise ValueError(f'Missing or empty license text: {name}')
+    lock = json.loads((root / 'LICENSES/SPDX-SOURCES.json').read_text(encoding='utf-8'))
+    if set(lock['licenses']) != STANDARD_LICENSES:
+        raise ValueError('SPDX source lock must cover all five standard licenses')
+    for identifier, item in lock['licenses'].items():
+        actual = hashlib.sha256((root / 'LICENSES' / (identifier + '.txt')).read_bytes()).hexdigest()
+        if actual != item['sha256']:
+            raise ValueError(f'Canonical license text checksum mismatch: {identifier}')
 
 
-def log_event(result):
-    os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
-    with open(LOG_FILE, "a", encoding="utf-8") as f:
-        json.dump(result, f, ensure_ascii=False, default=str)
-        f.write("\n")
-
-
-def verify_output():
-    expected = [
-        os.path.join(LICENSE_DIR, "LICENSE-RSL.xml"),
-        os.path.join(LICENSE_DIR, "REGENERATIVE_LICENSE.md"),
-        os.path.join(LICENSE_DIR, "index.html"),
-        os.path.join(LICENSE_DIR, "license.json"),
-        os.path.join(LICENSE_DIR, "ai-policy.xml"),
-        os.path.join(BASE_DIR, "ai-policy.txt"),
-        os.path.join(BASE_DIR, "robots.txt"),
-        os.path.join(BASE_DIR, "sitemap.xml"),
-    ]
-    missing = [os.path.relpath(p, BASE_DIR) for p in expected if not os.path.exists(p)]
-    if missing:
-        raise RuntimeError("Missing generated files: " + ", ".join(missing))
+def verify_output(outputs, data):
+    if set(outputs) != EXPECTED_OUTPUTS:
+        raise ValueError('Generated output set changed; update publication and validation together')
+    for path, content in outputs.items():
+        if path.endswith('.xml'):
+            ET.fromstring(content)
+        if path.endswith('.json'):
+            json.loads(content)
+    exported = json.loads(outputs['content/license/license.json'])
+    if exported != json.loads(json.dumps(data, default=str)):
+        raise ValueError('JSON representation differs from the master')
+    for path in ('content/license/LICENSE-RSL.xml', 'content/license/ai-policy.xml'):
+        root = ET.fromstring(outputs[path])
+        if root.get('legal-license-grant') != 'false' or root.findtext('rights-authority') != 'artifact':
+            raise ValueError(f'Unexpected rights grant in {path}')
+        if not root.findtext('ai-training-and-adaptation'):
+            raise ValueError(f'Missing AI interpretation statement in {path}')
+    robots = [line for line in outputs['robots.txt'].splitlines() if line and not line.startswith('#')]
+    if robots[:2] != ['User-agent: *', 'Disallow:'] or any(not line.startswith(('User-agent:', 'Disallow:', 'Sitemap:')) for line in robots):
+        raise ValueError('robots.txt must remain an open technical access policy')
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check', action='store_true', help='Fail on stale output without modifying any files')
+    args = parser.parse_args()
     try:
-        data = load_yaml(YAML_FILE)
+        data = load_yaml(ROOT / 'SRL-LICENSE.yaml')
         validate_v2(data)
-        verify_license_files(data)
-        print("Loaded SRL-LICENSE.yaml — SRLF 2.0 validated")
-
-        results = {
-            "LICENSE-RSL.xml": generate_rsl_xml(data),
-            "REGENERATIVE_LICENSE.md": generate_human_license(data),
-            "index.html": generate_license_html(data),
-            "license.json": generate_license_json(data),
-            "ai-policy.xml": generate_ai_policy_xml(data),
-            "ai-policy.txt": generate_ai_policy_txt(data),
-            "robots.txt": generate_robots(data),
-            "sitemap.xml": generate_sitemap(data),
-        }
-        verify_output()
-        log_event({
-            "build_time": datetime.now(timezone.utc).isoformat(),
-            "framework_version": str(data.get("meta", {}).get("version")),
-            "framework_date": str(data.get("meta", {}).get("last_updated", "")),
-            "status": "success",
-            "results": results,
-        })
-        print("SRLF 2.0 build complete and verified.")
-    except Exception:
-        traceback.print_exc()
-        sys.exit(1)
+        verify_license_files(ROOT, data)
+        outputs = render(data)
+        verify_output(outputs, data)
+        stale = [name for name, content in outputs.items() if not (ROOT / name).is_file() or (ROOT / name).read_bytes() != content.encode('utf-8')]
+        if args.check and stale:
+            raise ValueError('Stale generated files (rebuild and commit): ' + ', '.join(stale))
+        if not args.check:
+            for name, content in outputs.items():
+                path = ROOT / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(content.encode('utf-8'))
+        print(f'SRLF 2.0: {len(outputs)} outputs validated; canonical license checksums verified.')
+        return 0
+    except (ValueError, KeyError, TypeError, OSError, yaml.YAMLError) as exc:
+        print(f'ERROR: {exc}', file=sys.stderr)
+        return 1
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    raise SystemExit(main())

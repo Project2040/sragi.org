@@ -8,7 +8,7 @@
 
 **Last Updated:** January 2026
 
-**License:** CC BY-SA 4.0 via SRAGI Regenerative License (SRL)
+**License:** CC-BY-SA-4.0
 
 ---
 
@@ -226,6 +226,6 @@ Controller v5.5 har en function\_exists wrapper. Dette hindrer at siden krasjer 
 
 ---
 
-**© 2026 Neptunia Media AS** **Licensed under CC BY-SA 4.0 via SRAGI Regenerative License (SRL)**
+**© 2026 Neptunia Media AS** **Licensed under CC-BY-SA-4.0**
 
 

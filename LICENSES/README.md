@@ -12,7 +12,7 @@ The canonical text files for these standard identifiers are synchronized from th
 - `Apache-2.0.txt`
 - `CC0-1.0.txt`
 
-Do not hand-edit synchronized standard license texts. The SRLF 2.0 builder intentionally fails release validation if any required standard text is missing.
+The exact upstream revision and SHA-256 checksums are recorded in `SPDX-SOURCES.json`. Do not hand-edit standard license texts. The builder fails if a required text is missing, empty or changed. The sync tool downloads that pinned revision and verifies every text before replacing files.
 
 ## SRAGI custom reference
 
@@ -23,11 +23,15 @@ Do not hand-edit synchronized standard license texts. The SRLF 2.0 builder inten
 Run from repository root:
 
 ```bash
-python tools/sync_spdx_license_texts.py
+python -m pip install -r automation/license_builder/requirements.txt
 python automation/license_builder/build_licenses.py
+python automation/license_builder/build_licenses.py --check
 python tools/enforce_version_refs.py
+python -m unittest discover -s tests
 ```
 
 Then review and commit the generated diff before merging a licensing release.
+
+Standard license texts are checked in; ordinary builds do not fetch them from the network. Run `python tools/sync_spdx_license_texts.py` only to restore the pinned copies.
 
 Canonical licensing portal: https://sragi.org/licensing/

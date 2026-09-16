@@ -69,6 +69,12 @@ The license builder reads [`SRL-LICENSE.yaml`](SRL-LICENSE.yaml) and generates m
 2. rights discovery; and
 3. legal license grants.
 
+Run `python automation/license_builder/build_licenses.py` to rebuild, and add `--check` to verify checked-in output without writing files. CI runs the check and regression tests on pull requests and branch pushes; it does not commit generated changes automatically. See [CONTRIBUTING.md](CONTRIBUTING.md) for commands.
+
+`LICENSE-RSL.xml` retains its historical filename for compatibility. Its contents are SRAGI-specific rights-discovery XML, not a claim to implement an external RSL schema or a universal license grant.
+
+The [resource manifest](content/license/RESOURCE_LICENSE_MANIFEST.yaml) records two pre-existing conflicting document notices requiring review. It does not silently resolve or relicense them. Unchanged historical license grants are not revoked by this migration.
+
 ## Contributing
 
 Before contributing, review the documentation standards and contributor-rights framework. Every publishable artifact should carry its applicable license expression or rights statement; do not assume a repository-wide license.

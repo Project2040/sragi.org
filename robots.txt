@@ -1,9 +1,5 @@
-# SRAGI® — TECHNICAL ACCESS POLICY
-# SRLF 2.0 | Posture: maximally open | Legal license grant: false
+# Technical crawler access to public resources
 User-agent: *
 Disallow:
 
 Sitemap: https://sragi.org/sitemap.xml
-# Rights discovery: https://sragi.org/ai-policy.txt
-# Licensing: https://sragi.org/licensing/
-# Licensing contact: licensing@sragi.org

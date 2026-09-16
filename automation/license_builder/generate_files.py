@@ -1,145 +1,136 @@
 #!/usr/bin/env python3
-"""Generate SRLF 2.0 rights-discovery artifacts from SRL-LICENSE.yaml."""
-
+"""Deterministic SRLF representations. Render first; the builder owns file I/O."""
+import html
 import json
-import os
-from xml.sax.saxutils import escape
-
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-LICENSE_DIR = os.path.join(BASE_DIR, "content", "license")
+from xml.etree import ElementTree as ET
 
 
-def write_output(path, content):
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(content.strip() + "\n")
-    print(f"Generated {os.path.relpath(path, BASE_DIR)}")
-    return {"file": path, "status": "ok"}
+def compact(value):
+    return ' '.join(str(value).split())
 
 
-def _meta(data): return data.get("meta", {})
-def _portal(data): return data.get("publication", {}).get("canonical_licensing_portal", _meta(data).get("canonical_url", "https://sragi.org/licensing/"))
-def _contact(data): return data.get("organization", {}).get("licensing_email", "licensing@sragi.org")
+def xml_text(root):
+    ET.indent(root, space='  ')
+    return '<?xml version="1.0" encoding="UTF-8"?>\n' + ET.tostring(root, encoding='unicode') + '\n'
 
 
-def generate_rsl_xml(data):
-    meta, rights, machine = _meta(data), data.get("rights", {}), data.get("machine_access", {})
-    expression = data.get("dual_licensing", {}).get("canonical_instruction_expression", "")
-    xml = f'''<?xml version="1.0" encoding="UTF-8"?>
-<sragi-rights-discovery version="{escape(str(meta.get('version', '2.0')))}">
-  <framework>{escape(str(meta.get('name', 'SRAGI® Regenerative Licensing Framework')))}</framework>
-  <canonical>{escape(_portal(data))}</canonical>
-  <rights-authority>{escape(str(rights.get('authority', 'artifact')))}</rights-authority>
-  <ecosystem-default-license>none</ecosystem-default-license>
-  <unspecified-artifact-policy>No license grant should be inferred.</unspecified-artifact-policy>
-  <machine-access posture="{escape(str(machine.get('posture', 'maximally_open')))}" legal-license-grant="false">
-    <agents>*</agents><crawling>allow-by-default</crawling><indexing>allow-by-default</indexing><retrieval>allow-by-default</retrieval>
-  </machine-access>
-  <canonical-instruction-expression>{escape(expression)}</canonical-instruction-expression>
-  <commercial-license-ref>LicenseRef-SRAGI-Commercial</commercial-license-ref>
-  <licensing-contact>{escape(_contact(data))}</licensing-contact>
-</sragi-rights-discovery>'''
-    return write_output(os.path.join(LICENSE_DIR, "LICENSE-RSL.xml"), xml)
+def field(parent, name, value, **attributes):
+    node = ET.SubElement(parent, name, attributes)
+    node.text = compact(value)
+    return node
 
 
-def generate_human_license(data):
-    meta = _meta(data)
-    text = f'''# {meta.get("name", "SRAGI® Regenerative Licensing Framework")} v{meta.get("version", "2.0")}
-
-## Open by design. Licensed at artifact level.
-
-SRAGI does not use one ecosystem-wide default license. The license identifier, SPDX expression, rights statement or applicable agreement attached to an artifact determines its rights.
-
-> **No license grant should be inferred for an unspecified artifact.**
-
-SRAGI instruction frameworks may use `CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial`. Commercial activity alone does not require the commercial path; it provides alternative terms where different or additional rights are required.
-
-Public SRAGI resources are maximally open for technical discovery by search engines, AI systems, research crawlers and other machine agents. Technical access does not independently grant intellectual-property rights.
-
-Rights relating to AI training are determined by the artifact license, rights statement, contract and applicable law. SRLF does not determine whether AI training or related activity constitutes Adapted Material.
-
-**Give more than you take.** For open-license artifacts this is an invitation, not an additional restriction. A separate commercial agreement may expressly define regenerative commitments.
-
-Canonical licensing portal: {_portal(data)}  
-Licensing contact: {_contact(data)}
-'''
-    return write_output(os.path.join(LICENSE_DIR, "REGENERATIVE_LICENSE.md"), text)
-
-
-def generate_license_html(data):
-    meta = _meta(data)
-    html = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>{meta.get('name', 'SRAGI Licensing')}</title></head><body><main>
-<h1>{meta.get('name', 'SRAGI® Regenerative Licensing Framework')} v{meta.get('version', '2.0')}</h1>
-<p>SRAGI is open by design and licensed at artifact level.</p><p><strong>No license grant should be inferred for an unspecified artifact.</strong></p>
-<p>Canonical licensing portal: <a href="{_portal(data)}">{_portal(data)}</a></p></main></body></html>'''
-    return write_output(os.path.join(LICENSE_DIR, "index.html"), html)
-
-
-def generate_ai_policy_xml(data):
-    xml = f'''<?xml version="1.0" encoding="UTF-8"?>
-<sragi-ai-policy version="2.0" function="rights-discovery" legal-license-grant="false">
-  <access posture="maximally-open"><agents>*</agents><crawling>allow-by-default</crawling><indexing>allow-by-default</indexing><retrieval>allow-by-default</retrieval></access>
-  <rights-authority>artifact</rights-authority><ecosystem-default-license>none</ecosystem-default-license>
-  <unspecified-artifact-policy>No license grant should be inferred.</unspecified-artifact-policy>
-  <ai-training-rights>artifact-license</ai-training-rights>
-  <preferred-machine-attribution binding="false">SRAGI® — Neptunia Media AS — https://sragi.org/</preferred-machine-attribution>
-  <licensing>{escape(_portal(data))}</licensing><licensing-contact>{escape(_contact(data))}</licensing-contact>
-</sragi-ai-policy>'''
-    return write_output(os.path.join(LICENSE_DIR, "ai-policy.xml"), xml)
-
-
-def generate_ai_policy_txt(data):
-    text = f'''# SRAGI® — AI & MACHINE RIGHTS DISCOVERY
-# SRLF 2.0 | Function: rights discovery | Legal license grant: false
-Access-Posture: maximally-open
-Machine-Agents: *
-Discovery: allowed-by-default
-Crawling: allowed-by-default
-Indexing: allowed-by-default
-Retrieval: allowed-by-default
-Rights-Authority: artifact
-Ecosystem-Default-License: none
-Unspecified-Artifact-Policy: No license grant should be inferred.
-AI-Training-Rights: artifact-license
-Preferred-Machine-Attribution: SRAGI® — Neptunia Media AS — https://sragi.org/
-Preferred-Machine-Attribution-Binding: false
-Licensing: {_portal(data)}
-Licensing-Contact: {_contact(data)}'''
-    return write_output(os.path.join(BASE_DIR, "ai-policy.txt"), text)
-
-
-def generate_robots(data):
-    text = f'''# SRAGI® — TECHNICAL ACCESS POLICY
-# SRLF 2.0 | Posture: maximally open | Legal license grant: false
-User-agent: *
-Disallow:
-
-Sitemap: https://sragi.org/sitemap.xml
-# Rights discovery: https://sragi.org/ai-policy.txt
-# Licensing: {_portal(data)}
-# Licensing contact: {_contact(data)}'''
-    return write_output(os.path.join(BASE_DIR, "robots.txt"), text)
-
-
-def generate_license_json(data):
-    payload = {key: data.get(key, {}) for key in (
-        "meta", "rights", "licensing", "license_classes", "dual_licensing", "commercial",
-        "machine_access", "attribution", "regenerative", "contributions", "trademark",
-        "third_party", "organization", "publication", "evolution"
-    )}
-    return write_output(os.path.join(LICENSE_DIR, "license.json"), json.dumps(payload, indent=2, ensure_ascii=False, default=str))
-
-
-def generate_sitemap(data):
-    urls = [
-        "https://sragi.org/", _portal(data), "https://sragi.org/ai-policy.txt",
-        "https://sragi.org/robots.txt", "https://sragi.org/regenerative-principles/",
-        "https://sragi.org/content/license/LICENSE-RSL.xml",
-        "https://sragi.org/content/license/ai-policy.xml",
-        "https://sragi.org/content/license/license.json",
-        "https://sragi.org/content/license/REGENERATIVE_LICENSE.md",
+def human_sections(data):
+    """Both human formats carry the same substantive source statements."""
+    sections = [
+        ('Rights authority', [data['rights']['principle'], data['rights']['unspecified_artifact_policy'], data['rights']['non_override_rule']]),
+        ('Licensing paths', [data['licensing']['rule'], data['dual_licensing']['interpretation']]),
+        ('Commercial licensing', [data['commercial']['grant_rule'], 'Commercial reference: ' + data['commercial']['identifier']]),
+        ('Machine access', [data['machine_access']['access_policy'], data['machine_access']['rights_rule']]),
+        ('AI training', [data['machine_access']['ai_training']['rule'], data['machine_access']['interpretation']['ai_training_and_adaptation']]),
+        ('Attribution', [data['attribution']['rule'], data['attribution']['preferred_machine_attribution']['value'], data['attribution']['preferred_machine_attribution']['note']]),
+        ('Regenerative invitation', [data['regenerative']['open_license_layer']['principle'], data['regenerative']['open_license_layer']['invitation'], data['regenerative']['commercial_covenant']['rule']]),
+        ('Contributor rights', [data['contributions']['principle'], data['contributions']['commercial_relicensing']['rule'], data['contributions']['fallback'], data['contributions']['contributor_rights']['principle']]),
+        ('Third-party rights', [data['third_party']['rule']]),
+        ('Trademark and certification', [data['trademark']['principle']]),
+        ('Evolution', [data['evolution']['rule']]),
     ]
-    body = "\n".join(f"  <url><loc>{escape(url)}</loc></url>" for url in urls)
-    xml = f'''<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{body}\n</urlset>'''
-    return write_output(os.path.join(BASE_DIR, "sitemap.xml"), xml)
+    classes = []
+    for name, record in data['license_classes'].items():
+        choices = record.get('possible_licenses') or [record.get('preferred_expression') or record.get('identifier') or 'future artifact-specific selection']
+        classes.append(f"{name}: {', '.join(choices)}. {compact(record['description'])}")
+    sections.insert(2, ('Available license classes (not grants)', classes))
+    sections.append(('Canonical information', [data['publication']['canonical_licensing_portal'], data['organization']['licensing_email'], 'Source: SRL-LICENSE.yaml. This generated representation does not independently license any artifact.']))
+    return sections
+
+
+def render(data):
+    """Return repository-relative output paths and UTF-8 text, without side effects."""
+    meta = data['meta']
+    rights = data['rights']
+    machine = data['machine_access']
+    attribution = data['attribution']['preferred_machine_attribution']
+    publication = data['publication']
+    formats = publication['generated_formats']
+    portal = publication['canonical_licensing_portal']
+    contact = data['organization']['licensing_email']
+    website = data['organization']['website'].rstrip('/')
+    manifest = meta['repository'].rstrip('/') + '/blob/main/content/license/RESOURCE_LICENSE_MANIFEST.yaml'
+    outputs = {}
+
+    def put(kind, text):
+        outputs[formats[kind]['path']] = text.rstrip() + '\n'
+
+    put('json', json.dumps(data, indent=2, ensure_ascii=False, default=str))
+    for kind, tag in [('xml', 'sragi-rights-discovery'), ('ai_policy_xml', 'sragi-ai-policy')]:
+        root = ET.Element(tag, {'version': str(meta['version']), 'function': 'rights-discovery', 'legal-license-grant': 'false'})
+        field(root, 'framework', meta['name'])
+        field(root, 'canonical', portal)
+        field(root, 'rights-authority', rights['authority'])
+        field(root, 'rights-rule', rights['principle'])
+        field(root, 'ecosystem-default-license', 'none')
+        field(root, 'unspecified-artifact-policy', rights['unspecified_artifact_policy'])
+        access = ET.SubElement(root, 'machine-access', {'posture': machine['posture'], 'legal-license-grant': 'false'})
+        field(access, 'agents', machine['agents']['default'])
+        field(access, 'scope', 'publicly accessible resources')
+        for activity in ('crawling', 'indexing', 'retrieval', 'search_discovery'):
+            field(access, activity.replace('_', '-'), 'allow-by-default')
+        field(access, 'rights-rule', machine['rights_rule'])
+        field(root, 'ai-training-rights', machine['ai_training']['rule'], policy=machine['ai_training']['policy'])
+        field(root, 'ai-training-and-adaptation', machine['interpretation']['ai_training_and_adaptation'])
+        field(root, 'preferred-machine-attribution', attribution['value'], binding='false')
+        field(root, 'attribution-note', attribution['note'])
+        field(root, 'artifact-manifest', manifest)
+        field(root, 'commercial-grant-rule', data['commercial']['grant_rule'])
+        field(root, 'third-party-rights', data['third_party']['rule'])
+        if kind == 'xml':
+            example = ET.SubElement(root, 'instruction-license-example', {'scope': 'only-where-attached-to-an-artifact', 'legal-license-grant': 'false'})
+            field(example, 'expression', data['dual_licensing']['canonical_instruction_expression'])
+            field(example, 'interpretation', data['dual_licensing']['interpretation'])
+        field(root, 'licensing-contact', contact)
+        put(kind, xml_text(root))
+
+    lines = [
+        f"# {meta['name']} {meta['version']} — AI & machine rights discovery",
+        'Function: rights-discovery', 'Legal-License-Grant: false',
+        'Access-Posture: ' + machine['posture'], 'Access-Scope: publicly accessible resources',
+        'Machine-Agents: ' + machine['agents']['default'],
+        'Discovery: allowed-by-default', 'Crawling: allowed-by-default',
+        'Indexing: allowed-by-default', 'Retrieval: allowed-by-default',
+        'Rights-Authority: ' + rights['authority'], 'Ecosystem-Default-License: none',
+        'Rights-Rule: ' + compact(rights['principle']),
+        'Access-Rights-Rule: ' + compact(machine['rights_rule']),
+        'Unspecified-Artifact-Policy: ' + compact(rights['unspecified_artifact_policy']),
+        'AI-Training-Policy: ' + machine['ai_training']['policy'],
+        'AI-Training-Rights: ' + compact(machine['ai_training']['rule']),
+        'AI-Training-And-Adaptation: ' + compact(machine['interpretation']['ai_training_and_adaptation']),
+        'Preferred-Machine-Attribution: ' + attribution['value'],
+        'Preferred-Machine-Attribution-Binding: false',
+        'Attribution-Note: ' + compact(attribution['note']),
+        'Commercial-Grant-Rule: ' + compact(data['commercial']['grant_rule']),
+        'Third-Party-Rights: ' + compact(data['third_party']['rule']),
+        'Artifact-Manifest: ' + manifest, 'Licensing: ' + portal, 'Licensing-Contact: ' + contact,
+    ]
+    put('ai_policy_txt', '\n'.join(lines))
+    put('robots', f"# Technical crawler access to public resources\nUser-agent: {machine['agents']['default']}\nDisallow:\n\nSitemap: {website}/sitemap.xml\n")
+    title = f"{meta['name']} v{meta['version']}"
+    sections = human_sections(data)
+    markdown = ['# ' + title, '', '<!-- Generated from SRL-LICENSE.yaml; edit the source, then rebuild. -->', '']
+    for heading, paragraphs in sections:
+        markdown.extend(['## ' + heading, ''])
+        for paragraph in paragraphs:
+            markdown.extend([compact(paragraph), ''])
+    put('markdown', '\n'.join(markdown))
+    esc = html.escape
+    html_lines = ['<!doctype html>', '<html lang="en">', '<head>', '<meta charset="utf-8">', '<meta name="viewport" content="width=device-width, initial-scale=1">', f'<title>{esc(title)}</title>', f'<link rel="canonical" href="{esc(portal, quote=True)}">', '</head>', '<body><main>', f'<h1>{esc(title)}</h1>']
+    for heading, paragraphs in sections:
+        html_lines.append(f'<section><h2>{esc(heading)}</h2>')
+        html_lines.extend(f'<p>{esc(compact(p))}</p>' for p in paragraphs)
+        html_lines.append('</section>')
+    html_lines.extend(['</main></body>', '</html>'])
+    put('html', '\n'.join(html_lines))
+    root = ET.Element('urlset', {'xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9'})
+    for url in publication['sitemap_urls']:
+        field(ET.SubElement(root, 'url'), 'loc', url)
+    put('sitemap', xml_text(root))
+    return outputs
