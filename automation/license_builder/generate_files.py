@@ -1,103 +1,193 @@
+#!/usr/bin/env python3
 # ===========================================================
-#  SRAGI LICENSE GENERATORS — v3.1 (Hybrid-Kairos Edition)
-#  © 2025 Rune Solberg / Neptunia Media AS
-#  Generates all SRAGI license artifacts from SRL-LICENSE.yaml
+# SRAGI® LICENSE GENERATORS — SRLF 2.0
+# Generates rights-discovery artifacts from SRL-LICENSE.yaml
 # ===========================================================
 
-import os
 import json
-from jinja2 import Template
-from datetime import datetime, timezone
+import os
+from xml.sax.saxutils import escape
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-TPL_DIR = os.path.join(os.path.dirname(__file__), "templates")
 LICENSE_DIR = os.path.join(BASE_DIR, "content", "license")
 
+
 def write_output(path, content):
-    """Write content to file and create directories if needed."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(content.strip() + "\n")
-    print(f"✅ Generated {os.path.relpath(path, BASE_DIR)}")
+    print(f"Generated {os.path.relpath(path, BASE_DIR)}")
     return {"file": path, "status": "ok"}
 
-def render_template(filename, data):
-    """Render a Jinja2 template with data."""
-    template_path = os.path.join(TPL_DIR, filename)
-    if not os.path.exists(template_path):
-        raise FileNotFoundError(f"CRITICAL: Template not found: {template_path}")
 
-    with open(template_path, "r", encoding="utf-8") as f:
-        tpl = Template(f.read())
-        return tpl.render(**data)
+def _meta(data):
+    return data.get("meta", {})
 
-# -----------------------------------------------------------
-# 1. LICENSE-RSL.xml
-# -----------------------------------------------------------
+
+def _portal(data):
+    return data.get("publication", {}).get(
+        "canonical_licensing_portal",
+        _meta(data).get("canonical_url", "https://sragi.org/licensing/"),
+    )
+
+
+def _contact(data):
+    return data.get("organization", {}).get("licensing_email", "licensing@sragi.org")
+
+
 def generate_rsl_xml(data):
-    template_str = data.get("machine_format", {}).get("template", "")
-    if not template_str:
-        raise ValueError("SSOT Error: No machine_format.template found in YAML!")
-    template = Template(template_str)
-    return write_output(os.path.join(LICENSE_DIR, "LICENSE-RSL.xml"), template.render(**data))
+    meta = _meta(data)
+    rights = data.get("rights", {})
+    machine = data.get("machine_access", {})
+    expression = data.get("dual_licensing", {}).get("canonical_instruction_expression", "")
+    xml = f'''<?xml version="1.0" encoding="UTF-8"?>
+<sragi-rights-discovery version="{escape(str(meta.get('version', '2.0')))}">
+  <framework>{escape(str(meta.get('name', 'SRAGI Regenerative Licensing Framework')))}</framework>
+  <canonical>{escape(_portal(data))}</canonical>
+  <rights-authority>{escape(str(rights.get('authority', 'artifact')))}</rights-authority>
+  <ecosystem-default-license>none</ecosystem-default-license>
+  <unspecified-artifact-policy>No license grant should be inferred.</unspecified-artifact-policy>
+  <machine-access posture="{escape(str(machine.get('posture', 'maximally_open')))}" legal-license-grant="false">
+    <agents>*</agents>
+    <crawling>allow-by-default</crawling>
+    <indexing>allow-by-default</indexing>
+    <retrieval>allow-by-default</retrieval>
+  </machine-access>
+  <canonical-instruction-expression>{escape(expression)}</canonical-instruction-expression>
+  <commercial-license-ref>LicenseRef-SRAGI-Commercial</commercial-license-ref>
+  <licensing-contact>{escape(_contact(data))}</licensing-contact>
+</sragi-rights-discovery>'''
+    return write_output(os.path.join(LICENSE_DIR, "LICENSE-RSL.xml"), xml)
 
-# -----------------------------------------------------------
-# 2. REGENERATIVE_LICENSE.md
-# -----------------------------------------------------------
+
 def generate_human_license(data):
-    return write_output(os.path.join(LICENSE_DIR, "REGENERATIVE_LICENSE.md"), render_template("regenerative_license.md.j2", data))
+    meta = _meta(data)
+    text = f'''# {meta.get("name", "SRAGI® Regenerative Licensing Framework")} v{meta.get("version", "2.0")}
 
-# -----------------------------------------------------------
-# 3. license.html
-# -----------------------------------------------------------
+SRAGI is open by design and licensed at artifact level.
+
+## Rights authority
+
+This framework does not independently grant rights to SRAGI artifacts. Rights are determined by the license identifier, license expression, rights statement, contract and applicable law governing each individual artifact.
+
+**No license grant should be inferred for an unspecified artifact.**
+
+## Open and commercial paths
+
+Different SRAGI artifacts may use different licenses. SRAGI instruction frameworks may use the dual-license expression:
+
+`CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial`
+
+Commercial activity alone does not imply that the SRAGI® Commercial Suite License is required. The commercial path provides alternative terms where different or additional rights are required.
+
+## Machine access
+
+Public SRAGI resources are intended to be maximally discoverable by search engines, AI systems, research crawlers and other machine agents. Technical access does not independently grant copyright or other intellectual-property rights; artifact-level licensing governs.
+
+## Regenerative principle
+
+**Give more than you take.**
+
+For open-license material this is an invitation, not an additional restriction. A separate commercial agreement may expressly define binding regenerative commitments.
+
+## Licensing
+
+Canonical portal: {_portal(data)}  
+Licensing contact: {_contact(data)}
+'''
+    return write_output(os.path.join(LICENSE_DIR, "REGENERATIVE_LICENSE.md"), text)
+
+
 def generate_license_html(data):
-    return write_output(os.path.join(LICENSE_DIR, "index.html"), render_template("license.html.j2", data))
+    meta = _meta(data)
+    html = f'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>{meta.get('name', 'SRAGI Licensing')}</title></head>
+<body><main><h1>{meta.get('name', 'SRAGI® Regenerative Licensing Framework')} v{meta.get('version', '2.0')}</h1>
+<p>SRAGI is open by design and licensed at artifact level.</p>
+<p><strong>No license grant should be inferred for an unspecified artifact.</strong></p>
+<p>Canonical licensing portal: <a href="{_portal(data)}">{_portal(data)}</a></p>
+</main></body></html>'''
+    return write_output(os.path.join(LICENSE_DIR, "index.html"), html)
 
-# -----------------------------------------------------------
-# 4. AI Policy Files (TXT in ROOT, XML in folder)
-# -----------------------------------------------------------
+
 def generate_ai_policy_xml(data):
-    return write_output(os.path.join(LICENSE_DIR, "ai-policy.xml"), render_template("ai_policy.xml.j2", data))
+    xml = f'''<?xml version="1.0" encoding="UTF-8"?>
+<sragi-ai-policy version="2.0" function="rights-discovery" legal-license-grant="false">
+  <access posture="maximally-open"><agents>*</agents></access>
+  <rights-authority>artifact</rights-authority>
+  <unspecified-artifact-policy>No license grant should be inferred.</unspecified-artifact-policy>
+  <training-rights>artifact-license</training-rights>
+  <preferred-machine-attribution binding="false">SRAGI® — Neptunia Media AS — https://sragi.org/</preferred-machine-attribution>
+  <licensing>{escape(_portal(data))}</licensing>
+</sragi-ai-policy>'''
+    return write_output(os.path.join(LICENSE_DIR, "ai-policy.xml"), xml)
+
 
 def generate_ai_policy_txt(data):
-    # ✅ ENDRING: Lagres nå i roten (BASE_DIR)
-    return write_output(os.path.join(BASE_DIR, "ai-policy.txt"), render_template("ai_policy.txt.j2", data))
+    text = f'''# SRAGI® — AI & MACHINE RIGHTS DISCOVERY
+# SRLF 2.0
+# Function: rights discovery
+# Legal license grant: false
 
-# -----------------------------------------------------------
-# 5. robots.txt (in ROOT)
-# -----------------------------------------------------------
+Access-Posture: maximally-open
+Machine-Agents: *
+Discovery: allowed-by-default
+Crawling: allowed-by-default
+Indexing: allowed-by-default
+Retrieval: allowed-by-default
+Rights-Authority: artifact
+Unspecified-Artifact-Policy: No license grant should be inferred.
+AI-Training-Rights: artifact-license
+Preferred-Machine-Attribution: SRAGI® — Neptunia Media AS — https://sragi.org/
+Preferred-Machine-Attribution-Binding: false
+Licensing: {_portal(data)}
+Licensing-Contact: {_contact(data)}
+'''
+    return write_output(os.path.join(BASE_DIR, "ai-policy.txt"), text)
+
+
 def generate_robots(data):
-    # ✅ ENDRING: Lagres nå i roten (BASE_DIR)
-    return write_output(os.path.join(BASE_DIR, "robots.txt"), render_template("robots.txt.j2", data))
+    text = f'''# SRAGI® — TECHNICAL ACCESS POLICY
+# SRLF 2.0
+# Posture: maximally open
+# Function: technical access and discovery
+# Legal license grant: false
 
-# -----------------------------------------------------------
-# 6. license.json
-# -----------------------------------------------------------
+User-agent: *
+Disallow:
+
+Sitemap: https://sragi.org/sitemap.xml
+
+# Rights discovery: https://sragi.org/ai-policy.txt
+# Licensing: {_portal(data)}
+# Licensing contact: {_contact(data)}
+'''
+    return write_output(os.path.join(BASE_DIR, "robots.txt"), text)
+
+
 def generate_license_json(data):
-    meta = data.get("meta", {})
-    linked = data.get("linked_files", {}).copy()
-    linked.pop("source_map", None)
-    updated_date = str(meta.get("last_updated", ""))
-
-    json_data = {
-        "meta": {
-            "id": meta.get("id"),
-            "version": meta.get("version"),
-            "updated": updated_date,
-            "strategy": meta.get("license_strategy", {}),
-            "source": meta.get("source_url")
-        },
+    payload = {
+        "meta": _meta(data),
+        "rights": data.get("rights", {}),
+        "licensing": data.get("licensing", {}),
+        "license_classes": data.get("license_classes", {}),
+        "dual_licensing": data.get("dual_licensing", {}),
+        "machine_access": data.get("machine_access", {}),
+        "attribution": data.get("attribution", {}),
+        "regenerative": data.get("regenerative", {}),
+        "contributions": data.get("contributions", {}),
+        "trademark": data.get("trademark", {}),
+        "third_party": data.get("third_party", {}),
         "organization": data.get("organization", {}),
-        "permissions": data.get("permissions", {}),
-        "requirements": data.get("requirements", {}),
-        "ethics": data.get("ethics", {}),
-        "links": linked
+        "publication": data.get("publication", {}),
     }
-    return write_output(os.path.join(LICENSE_DIR, "license.json"), json.dumps(json_data, indent=2, ensure_ascii=False))
+    return write_output(os.path.join(LICENSE_DIR, "license.json"), json.dumps(payload, indent=2, ensure_ascii=False, default=str))
 
-# -----------------------------------------------------------
-# 7. sitemap.xml (in ROOT)
-# -----------------------------------------------------------
+
 def generate_sitemap(data):
-    # ✅ ENDRING: Lagres nå i roten (BASE_DIR)
-    return write_output(os.path.join(BASE_DIR, "sitemap.xml"), render_template("sitemap.xml.j2", data))
+    xml = '''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://sragi.org/</loc></url>
+  <url><loc>https://sragi.org/licensing/</loc></url>
+</urlset>'''
+    return write_output(os.path.join(BASE_DIR, "sitemap.xml"), xml)
