@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-# ===========================================================
-# SRAGI® LICENSE GENERATORS — SRLF 2.0
-# Generates rights-discovery artifacts from SRL-LICENSE.yaml
-# ===========================================================
+"""Generate SRLF 2.0 rights-discovery artifacts from SRL-LICENSE.yaml."""
 
 import json
 import os
@@ -20,38 +17,23 @@ def write_output(path, content):
     return {"file": path, "status": "ok"}
 
 
-def _meta(data):
-    return data.get("meta", {})
-
-
-def _portal(data):
-    return data.get("publication", {}).get(
-        "canonical_licensing_portal",
-        _meta(data).get("canonical_url", "https://sragi.org/licensing/"),
-    )
-
-
-def _contact(data):
-    return data.get("organization", {}).get("licensing_email", "licensing@sragi.org")
+def _meta(data): return data.get("meta", {})
+def _portal(data): return data.get("publication", {}).get("canonical_licensing_portal", _meta(data).get("canonical_url", "https://sragi.org/licensing/"))
+def _contact(data): return data.get("organization", {}).get("licensing_email", "licensing@sragi.org")
 
 
 def generate_rsl_xml(data):
-    meta = _meta(data)
-    rights = data.get("rights", {})
-    machine = data.get("machine_access", {})
+    meta, rights, machine = _meta(data), data.get("rights", {}), data.get("machine_access", {})
     expression = data.get("dual_licensing", {}).get("canonical_instruction_expression", "")
     xml = f'''<?xml version="1.0" encoding="UTF-8"?>
 <sragi-rights-discovery version="{escape(str(meta.get('version', '2.0')))}">
-  <framework>{escape(str(meta.get('name', 'SRAGI Regenerative Licensing Framework')))}</framework>
+  <framework>{escape(str(meta.get('name', 'SRAGI® Regenerative Licensing Framework')))}</framework>
   <canonical>{escape(_portal(data))}</canonical>
   <rights-authority>{escape(str(rights.get('authority', 'artifact')))}</rights-authority>
   <ecosystem-default-license>none</ecosystem-default-license>
   <unspecified-artifact-policy>No license grant should be inferred.</unspecified-artifact-policy>
   <machine-access posture="{escape(str(machine.get('posture', 'maximally_open')))}" legal-license-grant="false">
-    <agents>*</agents>
-    <crawling>allow-by-default</crawling>
-    <indexing>allow-by-default</indexing>
-    <retrieval>allow-by-default</retrieval>
+    <agents>*</agents><crawling>allow-by-default</crawling><indexing>allow-by-default</indexing><retrieval>allow-by-default</retrieval>
   </machine-access>
   <canonical-instruction-expression>{escape(expression)}</canonical-instruction-expression>
   <commercial-license-ref>LicenseRef-SRAGI-Commercial</commercial-license-ref>
@@ -64,35 +46,21 @@ def generate_human_license(data):
     meta = _meta(data)
     text = f'''# {meta.get("name", "SRAGI® Regenerative Licensing Framework")} v{meta.get("version", "2.0")}
 
-SRAGI is open by design and licensed at artifact level.
+## Open by design. Licensed at artifact level.
 
-## Rights authority
+SRAGI does not use one ecosystem-wide default license. The license identifier, SPDX expression, rights statement or applicable agreement attached to an artifact determines its rights.
 
-This framework does not independently grant rights to SRAGI artifacts. Rights are determined by the license identifier, license expression, rights statement, contract and applicable law governing each individual artifact.
+> **No license grant should be inferred for an unspecified artifact.**
 
-**No license grant should be inferred for an unspecified artifact.**
+SRAGI instruction frameworks may use `CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial`. Commercial activity alone does not require the commercial path; it provides alternative terms where different or additional rights are required.
 
-## Open and commercial paths
+Public SRAGI resources are maximally open for technical discovery by search engines, AI systems, research crawlers and other machine agents. Technical access does not independently grant intellectual-property rights.
 
-Different SRAGI artifacts may use different licenses. SRAGI instruction frameworks may use the dual-license expression:
+Rights relating to AI training are determined by the artifact license, rights statement, contract and applicable law. SRLF does not determine whether AI training or related activity constitutes Adapted Material.
 
-`CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial`
+**Give more than you take.** For open-license artifacts this is an invitation, not an additional restriction. A separate commercial agreement may expressly define regenerative commitments.
 
-Commercial activity alone does not imply that the SRAGI® Commercial Suite License is required. The commercial path provides alternative terms where different or additional rights are required.
-
-## Machine access
-
-Public SRAGI resources are intended to be maximally discoverable by search engines, AI systems, research crawlers and other machine agents. Technical access does not independently grant copyright or other intellectual-property rights; artifact-level licensing governs.
-
-## Regenerative principle
-
-**Give more than you take.**
-
-For open-license material this is an invitation, not an additional restriction. A separate commercial agreement may expressly define binding regenerative commitments.
-
-## Licensing
-
-Canonical portal: {_portal(data)}  
+Canonical licensing portal: {_portal(data)}  
 Licensing contact: {_contact(data)}
 '''
     return write_output(os.path.join(LICENSE_DIR, "REGENERATIVE_LICENSE.md"), text)
@@ -100,35 +68,29 @@ Licensing contact: {_contact(data)}
 
 def generate_license_html(data):
     meta = _meta(data)
-    html = f'''<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>{meta.get('name', 'SRAGI Licensing')}</title></head>
-<body><main><h1>{meta.get('name', 'SRAGI® Regenerative Licensing Framework')} v{meta.get('version', '2.0')}</h1>
-<p>SRAGI is open by design and licensed at artifact level.</p>
-<p><strong>No license grant should be inferred for an unspecified artifact.</strong></p>
-<p>Canonical licensing portal: <a href="{_portal(data)}">{_portal(data)}</a></p>
-</main></body></html>'''
+    html = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>{meta.get('name', 'SRAGI Licensing')}</title></head><body><main>
+<h1>{meta.get('name', 'SRAGI® Regenerative Licensing Framework')} v{meta.get('version', '2.0')}</h1>
+<p>SRAGI is open by design and licensed at artifact level.</p><p><strong>No license grant should be inferred for an unspecified artifact.</strong></p>
+<p>Canonical licensing portal: <a href="{_portal(data)}">{_portal(data)}</a></p></main></body></html>'''
     return write_output(os.path.join(LICENSE_DIR, "index.html"), html)
 
 
 def generate_ai_policy_xml(data):
     xml = f'''<?xml version="1.0" encoding="UTF-8"?>
 <sragi-ai-policy version="2.0" function="rights-discovery" legal-license-grant="false">
-  <access posture="maximally-open"><agents>*</agents></access>
-  <rights-authority>artifact</rights-authority>
+  <access posture="maximally-open"><agents>*</agents><crawling>allow-by-default</crawling><indexing>allow-by-default</indexing><retrieval>allow-by-default</retrieval></access>
+  <rights-authority>artifact</rights-authority><ecosystem-default-license>none</ecosystem-default-license>
   <unspecified-artifact-policy>No license grant should be inferred.</unspecified-artifact-policy>
-  <training-rights>artifact-license</training-rights>
+  <ai-training-rights>artifact-license</ai-training-rights>
   <preferred-machine-attribution binding="false">SRAGI® — Neptunia Media AS — https://sragi.org/</preferred-machine-attribution>
-  <licensing>{escape(_portal(data))}</licensing>
+  <licensing>{escape(_portal(data))}</licensing><licensing-contact>{escape(_contact(data))}</licensing-contact>
 </sragi-ai-policy>'''
     return write_output(os.path.join(LICENSE_DIR, "ai-policy.xml"), xml)
 
 
 def generate_ai_policy_txt(data):
     text = f'''# SRAGI® — AI & MACHINE RIGHTS DISCOVERY
-# SRLF 2.0
-# Function: rights discovery
-# Legal license grant: false
-
+# SRLF 2.0 | Function: rights discovery | Legal license grant: false
 Access-Posture: maximally-open
 Machine-Agents: *
 Discovery: allowed-by-default
@@ -136,58 +98,48 @@ Crawling: allowed-by-default
 Indexing: allowed-by-default
 Retrieval: allowed-by-default
 Rights-Authority: artifact
+Ecosystem-Default-License: none
 Unspecified-Artifact-Policy: No license grant should be inferred.
 AI-Training-Rights: artifact-license
 Preferred-Machine-Attribution: SRAGI® — Neptunia Media AS — https://sragi.org/
 Preferred-Machine-Attribution-Binding: false
 Licensing: {_portal(data)}
-Licensing-Contact: {_contact(data)}
-'''
+Licensing-Contact: {_contact(data)}'''
     return write_output(os.path.join(BASE_DIR, "ai-policy.txt"), text)
 
 
 def generate_robots(data):
     text = f'''# SRAGI® — TECHNICAL ACCESS POLICY
-# SRLF 2.0
-# Posture: maximally open
-# Function: technical access and discovery
-# Legal license grant: false
-
+# SRLF 2.0 | Posture: maximally open | Legal license grant: false
 User-agent: *
 Disallow:
 
 Sitemap: https://sragi.org/sitemap.xml
-
 # Rights discovery: https://sragi.org/ai-policy.txt
 # Licensing: {_portal(data)}
-# Licensing contact: {_contact(data)}
-'''
+# Licensing contact: {_contact(data)}'''
     return write_output(os.path.join(BASE_DIR, "robots.txt"), text)
 
 
 def generate_license_json(data):
-    payload = {
-        "meta": _meta(data),
-        "rights": data.get("rights", {}),
-        "licensing": data.get("licensing", {}),
-        "license_classes": data.get("license_classes", {}),
-        "dual_licensing": data.get("dual_licensing", {}),
-        "machine_access": data.get("machine_access", {}),
-        "attribution": data.get("attribution", {}),
-        "regenerative": data.get("regenerative", {}),
-        "contributions": data.get("contributions", {}),
-        "trademark": data.get("trademark", {}),
-        "third_party": data.get("third_party", {}),
-        "organization": data.get("organization", {}),
-        "publication": data.get("publication", {}),
-    }
+    payload = {key: data.get(key, {}) for key in (
+        "meta", "rights", "licensing", "license_classes", "dual_licensing", "commercial",
+        "machine_access", "attribution", "regenerative", "contributions", "trademark",
+        "third_party", "organization", "publication", "evolution"
+    )}
     return write_output(os.path.join(LICENSE_DIR, "license.json"), json.dumps(payload, indent=2, ensure_ascii=False, default=str))
 
 
 def generate_sitemap(data):
-    xml = '''<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://sragi.org/</loc></url>
-  <url><loc>https://sragi.org/licensing/</loc></url>
-</urlset>'''
+    urls = [
+        "https://sragi.org/", _portal(data), "https://sragi.org/ai-policy.txt",
+        "https://sragi.org/robots.txt", "https://sragi.org/regenerative-principles/",
+        "https://sragi.org/content/license/LICENSE-RSL.xml",
+        "https://sragi.org/content/license/ai-policy.xml",
+        "https://sragi.org/content/license/license.json",
+        "https://sragi.org/content/license/REGENERATIVE_LICENSE.md",
+    ]
+    body = "\n".join(f"  <url><loc>{escape(url)}</loc></url>" for url in urls)
+    xml = f'''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{body}\n</urlset>'''
     return write_output(os.path.join(BASE_DIR, "sitemap.xml"), xml)
