@@ -1,114 +1,84 @@
-# 🌀 SRAGI.org — Regenerative AI Framework
+# SRAGI.org — Regenerative AI Framework
 
-[![Version: v1.1](https://img.shields.io/badge/Version-v1.1-001242?style=flat-square)]()
-[![License: SRL v1.1](https://img.shields.io/badge/License-SRL%20v1.1-14854F?style=flat-square)](https://sragi.org/license)
-[![Status: Active Development](https://img.shields.io/badge/Status-Active%20Development-FFD93D?style=flat-square)]()
-![SSOT Status](https://github.com/Project2040/sragi.org/actions/workflows/ssot-guard.yml/badge.svg)
+> **Documentation is not bureaucracy — it is living architecture.**
 
+This repository contains public SRAGI.org content, licensing infrastructure, documentation architecture and automation.
 
----
+## Licensing architecture
 
-> **"Documentation is not bureaucracy—it's living architecture."**
+SRAGI uses **artifact-level licensing** under the **SRAGI® Regenerative Licensing Framework (SRLF) 2.0**.
 
-**SRAGI** (Strategic Regenerative Artificially-Guided Intelligence) is an open-source framework for building regenerative AI systems.
+There is **no ecosystem-wide default license**. The license identifier, SPDX expression, rights statement or applicable agreement attached to an individual artifact determines the rights for that artifact.
 
-This repository contains the licensing infrastructure, documentation architecture, and automation workflows that power [sragi.org](https://www.sragi.org).
+**Core rule:** `No license grant should be inferred.`
 
----
+SRAGI instruction frameworks may use the dual-license expression:
 
-## 🧩 What This Repository Contains
+```text
+CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial
+```
 
-This is the **infrastructure repository** for SRAGI:
+Commercial activity alone does not require the commercial path. The **SRAGI® Commercial Suite License** provides an alternative path where different or additional terms or rights are required.
+
+Canonical licensing portal: https://sragi.org/licensing/
+
+## Machine access
+
+Public SRAGI resources are **maximally open for technical discovery** by search engines, AI systems, research crawlers and other machine agents.
+
+```text
+Machine access: *
+Rights authority: artifact
+```
+
+Technical crawling, indexing, retrieval or discovery does not independently grant copyright or other intellectual-property rights. Machine policy files exist for access and rights discovery; they are not universal license grants.
+
+See [`ai-policy.txt`](ai-policy.txt) and [`robots.txt`](robots.txt).
+
+## Repository map
+
 ```text
 sragi.org/
-├── SRL-LICENSE.yaml          # 📜 Single Source of Truth for licensing
-├── LICENSE-RSL.xml           # 🤖 Machine-readable license
-├── /docs/                    # 📚 Documentation standards & architecture
-├── /content/                 # ✍️ Content for sragi.org website
-├── /wordpress/               # 🌐 WordPress integration (Bricks, ACF)
-└── /automation/              # ⚙️ GitHub Actions & build tools
+├── SRL-LICENSE.yaml                 # SRLF 2.0 licensing architecture
+├── LICENSES/                        # Standard license texts + SRAGI LicenseRef
+├── ai-policy.txt                    # Machine rights discovery
+├── robots.txt                       # Technical crawler access
+├── content/license/                 # Generated/human-readable licensing material
+├── docs/                            # Documentation and architecture
+├── automation/license_builder/      # SRLF artifact generators
+└── tools/                           # Validation and enforcement
 ```
 
-**For AI Skills & Modules:** See the project website for current resources.
+## Rights chain
 
-**📖 Full Structure:** [`SRAGI-STRUCTURE-INDEX.md`](docs/architecture/SRAGI-STRUCTURE-INDEX_v1.md)
+Third-party rights are preserved. Neptunia Media AS can grant only rights it owns, controls or is authorized to license. Contributions intended for commercially dual-licensed artifacts require sufficient rights for that commercial path.
 
----
+See [`content/license/SRAGI_CLA.md`](content/license/SRAGI_CLA.md).
 
-## 🔄 Automation System
+## Regenerative layer
 
-This repository automates:
-- License file generation from YAML source
-- WordPress content synchronization
-- Documentation builds
-- AI training metadata
-```mermaid
-graph LR
-A[Push to GitHub] --> B[GitHub Actions]
-B --> C[Build License Files]
-C --> D[Webhook → WordPress]
-D --> E[Update sragi.org]
-```
+**Give more than you take.**
 
-**Workflows:** `.github/workflows/`
+For open-license artifacts this is a regenerative invitation, not an additional restriction imposed on the open license. A separate commercial agreement may expressly define binding regenerative commitments.
 
----
+## Automation
 
-## 📜 License System
+The license builder reads [`SRL-LICENSE.yaml`](SRL-LICENSE.yaml) and generates machine-readable and human-readable rights-discovery artifacts. Generated files must preserve the distinction between:
 
-SRAGI uses the **SRAGI Regenerative License (SRL)**—a multi-licensed framework:
+1. technical access;
+2. rights discovery; and
+3. legal license grants.
 
-**Main Project:** CC BY 4.0 via SRL v1.1 (permissive)  
-**AI Skills:** CC BY-SA 4.0 (ShareAlike, where applicable)
+## Contributing
 
-**📖 Details:** [SRL-LICENSE.yaml](SRL-LICENSE.yaml) | [Human-Readable](content/license/REGENERATIVE_LICENSE.md)
+Before contributing, review the documentation standards and contributor-rights framework. Every publishable artifact should carry its applicable license expression or rights statement; do not assume a repository-wide license.
 
----
+## Organization
 
-## 🤖 AI Integration
+SRAGI® is developed and stewarded by **Neptunia Media AS**.
 
-SRAGI is designed for transparent AI use:
+Licensing: licensing@sragi.org  
+Website: https://sragi.org/  
+Repository: https://github.com/Project2040/sragi.org
 
-✅ **Training:** Permitted with attribution  
-✅ **Commercial Use:** Allowed  
-✅ **Modifications:** Encouraged (with proper license compliance)  
-✅ **Multi-Platform:** Works with Claude, GPT, Gemini, open models  
-
-**Policy Details:** See [ai-policy.txt](content/license/ai-policy.txt)
-
----
-
-## 🌱 Contributing
-
-Contributions welcome under SRL v1.1. Before contributing:
-
-1. Read [`SRAGI-DOCUMENTATION-STANDARDS.md`](docs/SRAGI-DOCUMENTATION-STANDARDS.md)
-2. Follow [`SRAGI-CONVENTIONS.md`](docs/SRAGI-CONVENTIONS.md)
-3. Include proper license headers
-
-**Principle:** R > 1 (Give more than you take)
-
----
-
-## 🧠 Philosophy
-
-SRAGI bridges AI, ecology, and human creativity through:
-- **Transparens:** Open source, open principles
-- **Regenerasjon:** Systems that give more than they take
-- **Bevissthet:** AI as conscious partner, not extractive tool
-
----
-
-## 🔗 Learn More
-
-- 🌐 **Website:** [sragi.org](https://www.sragi.org)
-- 🐦 **Twitter/X:** [@SRAGI2040](https://twitter.com/SRAGI2040)
-- 👤 **Creator:** [Rune Solberg](https://www.linkedin.com/in/rune-solberg-6813506b/)
-- 🏢 **Organization:** Neptunia Media AS
-
----
-
-**© 2025 Rune Solberg / Neptunia Media AS**  
-**License:** CC BY 4.0 via SRL v1.1 | [Details](SRL-LICENSE.yaml)  
-**Version:** 1.1  
-**Maintainer:** Rune Solberg
+© 2024-2026 Neptunia Media AS
