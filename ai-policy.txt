@@ -1,35 +1,16 @@
 # SRAGI® — AI & MACHINE RIGHTS DISCOVERY
-# SRLF 2.0
-#
-# Function: rights discovery
-# Legal license grant: false
-# Canonical licensing portal: https://sragi.org/licensing/
-
+# SRLF 2.0 | Function: rights discovery | Legal license grant: false
 Access-Posture: maximally-open
 Machine-Agents: *
 Discovery: allowed-by-default
 Crawling: allowed-by-default
 Indexing: allowed-by-default
 Retrieval: allowed-by-default
-
 Rights-Authority: artifact
+Ecosystem-Default-License: none
 Unspecified-Artifact-Policy: No license grant should be inferred.
-
-# Technical access, crawler accessibility, indexing, discovery metadata,
-# or inclusion in this file does not independently grant copyright or
-# other intellectual-property rights.
-#
-# Rights relating to an artifact — including rights relating to AI
-# training — are determined by the license identifier, license expression,
-# rights statement, contract and applicable law governing that artifact.
-#
-# This policy does not determine whether AI training, model development,
-# model outputs or related machine-learning activities constitute Adapted
-# Material or trigger particular obligations under an applicable license.
-
+AI-Training-Rights: artifact-license
 Preferred-Machine-Attribution: SRAGI® — Neptunia Media AS — https://sragi.org/
 Preferred-Machine-Attribution-Binding: false
-
 Licensing: https://sragi.org/licensing/
 Licensing-Contact: licensing@sragi.org
-Repository: https://github.com/Project2040/sragi.org
