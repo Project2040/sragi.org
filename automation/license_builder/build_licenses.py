@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-# ===========================================================
-# SRAGI® LICENSE BUILDER — SRLF 2.0
-# Reads SRL-LICENSE.yaml and generates licensing/discovery artifacts.
-# ===========================================================
+"""Build and validate SRLF 2.0 licensing/discovery artifacts."""
 
 import json
 import os
@@ -29,10 +26,12 @@ LICENSE_DIR = os.path.join(BASE_DIR, "content", "license")
 
 
 def load_yaml(path):
-    with open(path, "r", encoding="utf-8") as f:
-        data = yaml.safe_load(f)
+    raw = open(path, "r", encoding="utf-8").read()
+    if raw.lstrip().startswith("```") or raw.rstrip().endswith("```"):
+        raise ValueError("SRL-LICENSE.yaml must be pure YAML, not a Markdown code fence")
+    data = yaml.safe_load(raw)
     if not isinstance(data, dict):
-        raise ValueError("SRL-LICENSE.yaml must contain a YAML mapping at the document root")
+        raise ValueError("SRL-LICENSE.yaml must contain a YAML mapping at document root")
     return data
 
 
@@ -41,22 +40,32 @@ def validate_v2(data):
     meta = data.get("meta", {})
     rights = data.get("rights", {})
     machine = data.get("machine_access", {})
+    dual = data.get("dual_licensing", {})
+    custom = data.get("machine_readable", {}).get("custom_license_references", {})
 
-    if str(meta.get("version")) != "2.0":
-        errors.append("meta.version must be 2.0")
-    if rights.get("authority") != "artifact":
-        errors.append("rights.authority must be artifact")
-    if rights.get("ecosystem_default_license", "sentinel") is not None:
-        errors.append("rights.ecosystem_default_license must be null")
-    if machine.get("agents", {}).get("default") != "*":
-        errors.append("machine_access.agents.default must be '*'")
-    if machine.get("robots", {}).get("legal_license_grant") is not False:
-        errors.append("machine_access.robots.legal_license_grant must be false")
-    if machine.get("ai_policy", {}).get("legal_license_grant") is not False:
-        errors.append("machine_access.ai_policy.legal_license_grant must be false")
-
+    checks = [
+        (str(meta.get("version")) == "2.0", "meta.version must be 2.0"),
+        (rights.get("authority") == "artifact", "rights.authority must be artifact"),
+        (rights.get("ecosystem_default_license", "sentinel") is None, "rights.ecosystem_default_license must be null"),
+        (machine.get("agents", {}).get("default") == "*", "machine_access.agents.default must be '*'"),
+        (machine.get("robots", {}).get("legal_license_grant") is False, "robots must not be a legal license grant"),
+        (machine.get("ai_policy", {}).get("legal_license_grant") is False, "ai_policy must not be a legal license grant"),
+        (dual.get("canonical_instruction_expression") == "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial", "canonical instruction SPDX expression mismatch"),
+        ("LicenseRef-SRAGI-Commercial" in custom, "custom commercial LicenseRef must be defined"),
+    ]
+    errors.extend(message for ok, message in checks if not ok)
     if errors:
         raise ValueError("SRLF 2.0 validation failed:\n- " + "\n- ".join(errors))
+
+
+def verify_license_files(data):
+    expected = data.get("machine_readable", {}).get("license_files", {}).get("expected", [])
+    missing = [name for name in expected if not os.path.exists(os.path.join(BASE_DIR, "LICENSES", name))]
+    if missing:
+        raise RuntimeError(
+            "Missing canonical license files: " + ", ".join(missing) +
+            ". Run tools/sync_spdx_license_texts.py for standard SPDX texts."
+        )
 
 
 def log_event(result):
@@ -86,7 +95,8 @@ def main():
     try:
         data = load_yaml(YAML_FILE)
         validate_v2(data)
-        print(f"Loaded {os.path.relpath(YAML_FILE, BASE_DIR)} — SRLF 2.0")
+        verify_license_files(data)
+        print("Loaded SRL-LICENSE.yaml — SRLF 2.0 validated")
 
         results = {
             "LICENSE-RSL.xml": generate_rsl_xml(data),
@@ -98,7 +108,6 @@ def main():
             "robots.txt": generate_robots(data),
             "sitemap.xml": generate_sitemap(data),
         }
-
         verify_output()
         log_event({
             "build_time": datetime.now(timezone.utc).isoformat(),
