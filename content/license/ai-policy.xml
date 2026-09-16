@@ -1,47 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rsl xmlns="https://rslstandard.org/rsl" version="1.12">
-  <content url="https://sragi.org">
-    <ai-policy>
-      <all>permitted</all>
-      <closed-source>permitted</closed-source>
-      <commercial>permitted</commercial>
-      <derivative-works>permitted</derivative-works>
-      <inference>permitted</inference>
-      <proprietary>permitted</proprietary>
-      <training>permitted</training>
-      <agents>
-        <allowed>*</allowed>
-        <allowed>Applebot</allowed>
-        <allowed>Bingbot</allowed>
-        <allowed>Bytespider</allowed>
-        <allowed>CCBot</allowed>
-        <allowed>ClaudeBot</allowed>
-        <allowed>facebookexternalhit</allowed>
-        <allowed>Google-Extended</allowed>
-        <allowed>Googlebot</allowed>
-        <allowed>GPTBot</allowed>
-        <allowed>Omgilibot</allowed>
-        <allowed>PerplexityBot</allowed>
-      </agents>
-      <license-standard>CC-BY-4.0</license-standard>
-      <ethics>
-        <url>https://www.sragi.org/regenerative-principles/</url>
-        <binding>false</binding>
-      </ethics>
-      <attribution>
-        <required>True</required>
-        <format><![CDATA[
-SRAGI Regenerative License (SRL) v1.12
-Created by Rune Solberg / Neptunia Media AS
-Source: https://sragi.org/license
-License: CC BY 4.0 base, RSL compatible
-]]></format>
-      </attribution>
-      <rights-holder>
-        <name>Neptunia Media AS</name>
-        <email>contact@sragi.org</email>
-        <website>https://sragi.org</website>
-      </rights-holder>
-    </ai-policy>
-  </content>
-</rsl>
+<sragi-ai-policy version="2.0" function="rights-discovery" legal-license-grant="false">
+  <access posture="maximally-open">
+    <agents>*</agents>
+    <crawling>allow-by-default</crawling>
+    <indexing>allow-by-default</indexing>
+    <retrieval>allow-by-default</retrieval>
+  </access>
+  <rights-authority>artifact</rights-authority>
+  <ecosystem-default-license>none</ecosystem-default-license>
+  <unspecified-artifact-policy>No license grant should be inferred.</unspecified-artifact-policy>
+  <ai-training-rights>artifact-license</ai-training-rights>
+  <preferred-machine-attribution binding="false">SRAGI® — Neptunia Media AS — https://sragi.org/</preferred-machine-attribution>
+  <licensing>https://sragi.org/licensing/</licensing>
+  <licensing-contact>licensing@sragi.org</licensing-contact>
+</sragi-ai-policy>
