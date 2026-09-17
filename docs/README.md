@@ -129,7 +129,7 @@ Every standard in this documentation embodies these core principles:
 
 ---
 
-**© 2025 Rune Solberg / Neptunia Media AS** License: CC BY-SA 4.0 via SRAGI Regenerative License (SRL)  
+**© 2025 Rune Solberg / Neptunia Media AS** License: CC-BY-SA-4.0  
 Repository: [https://github.com/Project2040/sragi.org](https://github.com/Project2040/sragi.org)
 
 *"Quality is not an act, it is a habit."* — Aristotle (Merkur paraphrase)

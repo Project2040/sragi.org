@@ -88,6 +88,6 @@ origin:
   tool: "Gemini / DALL-E 3 (Visual Muse)"
   source_prompt: "SRAGI BIOS concept, biological brain vs geometric structure, cosmic connection"
   [cite_start]design_intent: "Illustrate the Twin concept from BIOS 2.21 [cite: 33]"
-  license: "CC BY-SA 4.0 + SRAGI RSL"
+  license: "CC-BY-SA-4.0"
 
 # © 2025 Rune Solberg / Neptunia Media AS

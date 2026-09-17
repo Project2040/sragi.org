@@ -138,5 +138,5 @@ If content passes QA, the Publisher Module drives it to its final destinations:
 
 ---
 
-**© 2025 Rune Solberg / Neptunia Media AS** Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL).
+**© 2025 Rune Solberg / Neptunia Media AS** Licensed under CC-BY-4.0.
 

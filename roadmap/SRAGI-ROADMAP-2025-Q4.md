@@ -210,4 +210,4 @@ Mens hovedveien følges, kan disse kjøres parallelt:
 ---
 
 **© 2025 Rune Solberg / Neptunia Media AS**  
-Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL)
+Licensed under CC-BY-4.0

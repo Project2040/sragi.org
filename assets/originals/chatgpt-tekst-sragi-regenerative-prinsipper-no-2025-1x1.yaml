@@ -87,6 +87,6 @@ origin:
   source_prompt: "A minimalist typographic poster for 'SRAGI REGENERATIVE PRINSIPPER' (Norwegian) with the subtitle 'KI SOM ET RESONERENDE FELT'. Dark blue/black background, clean sans-serif fonts, including the SRAGI swirl logo placed near the top."
   design_intent: "To create a clean, authoritative visual token representing a core philosophical tenet of SRAGI in Norwegian."
   model: "DALL-E 3 (Estimated)"
-  license: "CC BY-SA 4.0 + SRAGI RSL" #
+  license: "CC-BY-SA-4.0" #
 
 # © 2026 Rune Solberg / Neptunia Media AS

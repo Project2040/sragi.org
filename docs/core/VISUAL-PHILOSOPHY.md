@@ -155,7 +155,7 @@ display:
   title_no: "Nano Banana: Arkitekten"
 origin:
   tool: "Midjourney v6"
-  license: "CC BY-SA 4.0 via SRL"
+  license: "CC-BY-SA-4.0"
 ethics:
   disclosure: true
 
@@ -193,7 +193,7 @@ ethics:
 
 ## **📜 License**
 
-All images distributed under **CC BY-SA 4.0** via **SRAGI Regenerative License (SRL)**.
+Each image must carry its own license or rights statement. Many existing image records specify CC-BY-SA-4.0; that choice is not a default for every image. Third-party rights and source provenance remain applicable.
 
 **© 2026 Rune Solberg / Neptunia Media AS**
 

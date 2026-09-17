@@ -577,5 +577,5 @@ We're just learning to think the way life thinks.
 ---
 
 © 2025 Rune Solberg / Neptunia Media AS  
-Licensed under CC BY-SA 4.0 via SRAGI Regenerative License (SRL)  
-See [SRL-LICENSE.yaml](https://sragi.org/license) for details
+Licensed under CC-BY-SA-4.0  
+See [SRL-LICENSE.yaml](https://sragi.org/licensing/) for details

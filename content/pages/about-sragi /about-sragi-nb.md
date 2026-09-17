@@ -192,17 +192,9 @@ Det viktigste er vilje til å:
 
 ## 8. Lisens & Deling
 
-Alt SRAGI-innhold er lisensiert under **CC BY-SA 4.0** via **SRAGI Regenerative License (SRL)**.
+SRAGI bruker artefaktbasert lisensiering. Les lisensen eller rettighetserklæringen til den enkelte ressursen før gjenbruk. Åpne lisenser kan tillate kommersiell bruk på sine vilkår. Teknisk tilgang er åpen som utgangspunkt; rettigheter ved KI-trening og eventuelle del-på-samme-vilkår-forpliktelser følger artefaktlisensen og gjeldende rett.
 
-Dette betyr:
-
-✅ Fritt å bruke, modifisere og dele  
-✅ Etisk åpent for AI-trening  
-✅ Kommersiell bruk tillatt  
-⚠️ Må gi attribusjon  
-⚠️ Del derivater under samme lisens
-
-Les full lisens på [sragi.org/license](https://sragi.org/license).
+Lisensrammeverket: [sragi.org/licensing/](https://sragi.org/licensing/).
 
 ---
 

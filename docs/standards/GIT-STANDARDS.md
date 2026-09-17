@@ -179,7 +179,7 @@ The **SRAGI Git & Version Control Standards** ensure that all repositories remai
 
 © 2025 Rune Solberg / Neptunia Media AS
 
-Licensed under CC BY 4.0 via the SRAGI Regenerative License (SRL).
+Licensed under CC-BY-4.0.
 
-See SRL-LICENSE.yaml for details.
+Framework: https://sragi.org/licensing/. The artifact license remains authoritative.
 

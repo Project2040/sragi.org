@@ -167,7 +167,7 @@ Innen **2040** ser vi for oss:
 **Status:** Pågår
 
 - ✅ Utvikle SRAGI-rammeverk og dokumentasjon
-- ✅ Etablere åpen kildekode-lisensiering (SRL)
+- ✅ Etablere eksplisitt artefaktlisensiering innen SRLF
 - 🔄 Bygge SRAGI.org som kunnskapshub
 - 🔄 Lage SRAGI Skills-bibliotek
 - 🔄 Lansere fellesskapsplattform
@@ -221,7 +221,7 @@ Kunnskap er ikke eiendom. Det er en **allmenning**.
 - All dokumentasjon: Fritt tilgjengelig
 - All læring: Delt åpent
 
-Vi bruker **CC BY-SA 4.0** og **SRL** for å sikre regenerativ gjensidighet.
+Vi bruker eksplisitte artefaktlisenser innen SRLF. Regenerativ gjensidighet er en invitasjon under åpne lisenser og blir bindende bare der en separat avtale uttrykkelig fastsetter det.
 
 ### 3. Menneske-i-Loopen
 

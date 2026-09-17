@@ -146,16 +146,9 @@ SRAGI is open source and ethically open for regenerative learning.
 
 ## License & Sharing
 
-All SRAGI content is licensed under **CC BY-SA 4.0** via the **SRAGI Regenerative License (SRL)**.
+SRAGI uses artifact-level licensing. Read the license or rights statement attached to each resource before reuse. Open licenses may permit commercial use subject to their terms. Technical access is open by default; AI-training rights and any ShareAlike obligations follow the applicable artifact license and law.
 
-This means:
-- ✅ Free to use, modify, and share
-- ✅ Ethically open for AI training
-- ✅ Commercial use allowed
-- ⚠️ Must give attribution
-- ⚠️ Share derivatives under same license
-
-Read the full license at [sragi.org/license](https://sragi.org/license).
+Licensing framework: [sragi.org/licensing/](https://sragi.org/licensing/).
 
 ## Next Steps
 

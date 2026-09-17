@@ -8,7 +8,7 @@
 
 **Sist oppdatert:** Desember 2025
 
-**Lisens:** CC BY-SA 4.0 via SRL v1.12
+**Lisens:** CC-BY-SA-4.0
 
 ---
 
@@ -124,5 +124,7 @@ Dette er den slaviske prosessen fra idé til publisering.
 
 **Sjekk alltid .yaml\-filen mot TEMPLATE-VISUAL-v1.2.yaml for å sikre at SEO og Alt-tekster er korrekt utfylt for både Norsk og Engelsk.**
 
-**© 2026 Rune Solberg / Neptunia Media AS Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL).**
+**© 2026 Rune Solberg / Neptunia Media AS Licensed under CC-BY-4.0.**
 
+
+> **License review pending:** This document already carried conflicting CC-BY-4.0 and CC-BY-SA-4.0 notices. Both notices are preserved for review; this migration selects neither and does not revoke previously granted rights. See [the rights-review register](../../content/license/RESOURCE_LICENSE_MANIFEST.yaml).

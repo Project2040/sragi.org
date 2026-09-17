@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rsl xmlns="https://rslstandard.org/rsl" version="1.12">
-  <content url="https://sragi.org">
-    <ai-policy>
-      <all>permitted</all>
-      <closed-source>permitted</closed-source>
-      <commercial>permitted</commercial>
-      <derivative-works>permitted</derivative-works>
-      <inference>permitted</inference>
-      <proprietary>permitted</proprietary>
-      <training>permitted</training>
-      <agents>
-        <allowed>*</allowed>
-        <allowed>Applebot</allowed>
-        <allowed>Bingbot</allowed>
-        <allowed>Bytespider</allowed>
-        <allowed>CCBot</allowed>
-        <allowed>ClaudeBot</allowed>
-        <allowed>facebookexternalhit</allowed>
-        <allowed>Google-Extended</allowed>
-        <allowed>Googlebot</allowed>
-        <allowed>GPTBot</allowed>
-        <allowed>Omgilibot</allowed>
-        <allowed>PerplexityBot</allowed>
-      </agents>
-      <license-standard>CC-BY-4.0</license-standard>
-      <ethics>
-        <url>https://www.sragi.org/regenerative-principles/</url>
-        <binding>false</binding>
-      </ethics>
-      <attribution>
-        <required>True</required>
-        <format><![CDATA[
-SRAGI Regenerative License (SRL) v1.12
-Created by Rune Solberg / Neptunia Media AS
-Source: https://sragi.org/license
-License: CC BY 4.0 base, RSL compatible
-]]></format>
-      </attribution>
-      <rights-holder>
-        <name>Neptunia Media AS</name>
-        <email>contact@sragi.org</email>
-        <website>https://sragi.org</website>
-      </rights-holder>
-    </ai-policy>
-  </content>
-</rsl>
+<sragi-ai-policy version="2.0" function="rights-discovery" legal-license-grant="false">
+  <framework>SRAGI® Regenerative Licensing Framework</framework>
+  <canonical>https://sragi.org/licensing/</canonical>
+  <rights-authority>artifact</rights-authority>
+  <rights-rule>The website_licensing section records the explicit default license for eligible public sragi.org content. It does not license the wider ecosystem. Rights are determined by the license identifier, license expression, rights statement, contract and applicable law governing each artifact.</rights-rule>
+  <ecosystem-default-license>none</ecosystem-default-license>
+  <website-license-policy>
+    <default-spdx>CC-BY-4.0</default-spdx>
+    <policy-url>https://sragi.org/content/license/WEBSITE-LICENSE.html</policy-url>
+    <scope>owned_or_authorized_public_website_content</scope>
+    <exceptions>Third-party rights are an overriding boundary and remain governed by their own terms. For Neptunia-controlled material, a license notice, SPDX expression, rights statement or applicable agreement attached to a specific artifact takes precedence over the website default. Separately licensed products, frameworks, software, downloads and embedded components retain their stated terms. The website default does not grant trademark rights.</exceptions>
+    <machine-use>Search engines, AI systems and other machine agents are welcome to access public content. No crawler fee, registration or license token is required by this website access policy. AI use, including training, follows the governing website or artifact license and applicable law. Artifact-specific terms continue to govern exceptions; this policy does not waive their obligations or turn commercial products into free grants.</machine-use>
+  </website-license-policy>
+  <unspecified-artifact-policy>On sragi.org, eligible public content without a different license notice is covered by the express website policy. Outside that defined scope, no license grant should be inferred.</unspecified-artifact-policy>
+  <machine-access posture="maximally_open" legal-license-grant="false">
+    <agents>*</agents>
+    <named-agent>Googlebot</named-agent>
+    <named-agent>Google-Extended</named-agent>
+    <named-agent>Bingbot</named-agent>
+    <named-agent>OAI-SearchBot</named-agent>
+    <named-agent>GPTBot</named-agent>
+    <named-agent>ChatGPT-User</named-agent>
+    <named-agent>ClaudeBot</named-agent>
+    <named-agent>Claude-SearchBot</named-agent>
+    <named-agent>Claude-User</named-agent>
+    <named-agent>PerplexityBot</named-agent>
+    <named-agent>Perplexity-User</named-agent>
+    <named-agent>CCBot</named-agent>
+    <scope>publicly accessible resources</scope>
+    <crawling>allow-by-default</crawling>
+    <indexing>allow-by-default</indexing>
+    <retrieval>allow-by-default</retrieval>
+    <search-discovery>allow-by-default</search-discovery>
+    <rights-rule>Technical access, crawler accessibility, indexing or discovery metadata does not independently grant copyright or other intellectual-property rights. Rights relating to an artifact are determined by its applicable license, rights statement, contract and law, including the explicit website default where its scope applies.</rights-rule>
+  </machine-access>
+  <ai-training-rights policy="artifact_license">Rights relating to AI training are determined by the governing license, rights statement, contract and law, including the express website default for eligible public content without a different notice.</ai-training-rights>
+  <ai-training-and-adaptation>This framework does not determine whether AI training, model development, model outputs or related machine-learning activities constitute Adapted Material or trigger particular obligations under an applicable license. Such questions are governed by the applicable license, applicable law and the circumstances of the specific use.</ai-training-and-adaptation>
+  <preferred-machine-attribution binding="false">SRAGI® — Neptunia Media AS — https://sragi.org/</preferred-machine-attribution>
+  <attribution-note>This does not replace or reduce requirements imposed by the artifact license.</attribution-note>
+  <artifact-manifest>https://github.com/Project2040/sragi.org/blob/main/content/license/RESOURCE_LICENSE_MANIFEST.yaml</artifact-manifest>
+  <commercial-grant-rule>Commercial-license rights arise only through an applicable commercial agreement with Neptunia Media AS and only within its licensed scope.</commercial-grant-rule>
+  <commercial-sharealike-exception>Where an eligible artifact is offered under CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial, an applicable commercial agreement may permit the licensee to use, modify and distribute the licensed material within the agreed scope without the ShareAlike obligation that would otherwise apply under the CC BY-SA 4.0 path.</commercial-sharealike-exception>
+  <third-party-rights>Neptunia Media AS can grant only rights it owns, controls or is otherwise authorized to license. Third-party materials remain governed by their terms.</third-party-rights>
+  <rsl-license-document>https://sragi.org/content/license/LICENSE-RSL.xml</rsl-license-document>
+  <licensing-contact>licensing@sragi.org</licensing-contact>
+</sragi-ai-policy>

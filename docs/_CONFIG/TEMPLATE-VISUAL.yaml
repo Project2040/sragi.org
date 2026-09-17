@@ -12,11 +12,11 @@
 # ===========================================================
 
 meta:
-  id: ""                      # Må matche filnavn uten extension
+  id: "{{ input.id }}"                      # Må matche filnavn uten extension
   version: 1.2
-  created_at: "YYYY-MM-DD"
-  author: "Rune Solberg"
-  organization: "Neptunia Media AS"
+  created_at: "{{ input.date }}"
+  author: "{{ organization.creator }}"
+  organization: "{{ organization.rights_holder }}"
 
 # -----------------------------------------------------------
 # 1. PHYSICAL ASSETS (File Map)
@@ -96,10 +96,16 @@ knowledge_graph:
 # 7. ORIGIN & LICENSE (Provenance)
 # -----------------------------------------------------------
 origin:
-  tool: "DALL-E 3 / Midjourney"
+  tool: "{{ input.tool }}"
   source_prompt: ""           # Lim inn original prompt her
   design_intent: ""           # Hva ville du oppnå?
   model: ""                   # f.eks. "v6.0 Alpha"
-  license: "CC BY-SA 4.0 + SRAGI RSL"
 
-# © 2026 Rune Solberg / Neptunia Media AS
+# Policy and creator details are resolved from the master.
+
+license:
+  policy_ref: website_content
+  spdx: null
+  rights_statement: null
+  status: unresolved
+  framework_url: "{{ publication.canonical_licensing_portal }}"

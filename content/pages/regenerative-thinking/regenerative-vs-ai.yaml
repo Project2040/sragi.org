@@ -77,8 +77,8 @@ sync:
   warnings: []
 
 license:
-  type: "CC BY-SA 4.0"
-  via: "SRAGI Regenerative Source License (SRL)"
+  type: "CC-BY-SA-4.0"
+  framework_url: "https://sragi.org/licensing/"
   attribution: "© Rune Solberg / Neptunia Media AS"
 
 authors:
