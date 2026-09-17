@@ -10,7 +10,7 @@ SRAGI uses **artifact-level licensing** under the **SRAGI® Regenerative Licensi
 
 Public content on **sragi.org defaults to CC BY 4.0 unless otherwise marked**, where Neptunia Media AS owns or is authorized to license it. This is an express website policy. Products, frameworks, downloads and third-party material retain their specific terms.
 
-There is no default for the entire SRAGI ecosystem or this repository. Specific artifact terms take precedence over the website fallback. Outside the website policy's scope, no license grant should be inferred. See the generated [website policy](content/license/WEBSITE-LICENSE.html).
+There is no default for the entire SRAGI ecosystem or this repository. Third-party rights remain governed by their own terms. For Neptunia-controlled material, specific artifact terms take precedence over the website fallback. Outside the website policy's scope, no license grant should be inferred. See the generated [website policy](content/license/WEBSITE-LICENSE.html).
 
 SRAGI instruction frameworks may use the dual-license expression:
 
@@ -18,7 +18,11 @@ SRAGI instruction frameworks may use the dual-license expression:
 CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial
 ```
 
-Commercial activity alone does not require the commercial path. The **SRAGI® Commercial Suite License** provides an alternative path where different or additional terms or rights are required.
+Commercial activity alone does not require the commercial path. For eligible CC BY-SA artifacts, the **SRAGI® Commercial Suite License** provides an alternative path whose primary commercial function is an agreed exception from the ShareAlike obligation within the licensed scope, together with any additional rights expressly activated by agreement.
+
+Professional, Organization, Enterprise, Developer, OEM/Embedded, Vertical and Sovereign are scope, pricing and rights profiles under one commercial licensing architecture; they are not separate master licenses.
+
+Trademark and brand rights are separate from copyright licensing. Approved commercial agreements may separately activate limited brand rights such as **Powered by SRAGI®**, **Guided by SRAGI®** or **Governed by SRAGI®**. These do not automatically mean certification, official partner status, endorsement, ownership or exclusivity.
 
 Canonical licensing portal: https://sragi.org/licensing/
 
@@ -33,7 +37,7 @@ Rights authority: artifact
 
 Technical crawling, indexing, retrieval or discovery does not independently grant copyright or other intellectual-property rights. Machine policy files exist for access and rights discovery; they are not universal license grants.
 
-See [`ai-policy.txt`](ai-policy.txt) and [`robots.txt`](robots.txt). Named Google, Bing, OpenAI, Claude, Perplexity and Common Crawl agents receive the same open access as `*`. The list is non-exclusive. Website access requires no crawler payment, registration or license token; reuse follows the website license or the specific artifact terms.
+See [`ai-policy.txt`](ai-policy.txt) and [`robots.txt`](robots.txt). `robots.txt` uses the wildcard as the technical mechanism so named and future agents follow the same access rules. Named Google, Bing, OpenAI, Claude, Perplexity and Common Crawl agents remain explicitly welcomed in machine-rights metadata as non-exclusive policy signals. Website access requires no crawler payment, registration or license token; reuse follows the website license or the specific artifact terms.
 
 ## Repository map
 
@@ -51,9 +55,9 @@ sragi.org/
 
 ## Rights chain
 
-Third-party rights are preserved. Neptunia Media AS can grant only rights it owns, controls or is authorized to license. Contributions intended for commercially dual-licensed artifacts require sufficient rights for that commercial path.
+Third-party rights are preserved. Neptunia Media AS can grant only rights it owns, controls or is authorized to license. Contributions intended for commercially dual-licensed artifacts require sufficient rights for both the open and commercial paths. A DCO alone is not a commercial relicensing grant.
 
-See [`content/license/SRAGI_CLA.md`](content/license/SRAGI_CLA.md).
+See the [Contributor Rights Framework](content/license/CONTRIBUTOR_RIGHTS_FRAMEWORK.md) and the actual [SRAGI® CLA v2.1](content/license/CLA.md).
 
 ## Regenerative layer
 
@@ -83,7 +87,7 @@ Content templates are executable inputs to [`tools/new_content.py`](tools/new_co
 
 ## Contributing
 
-Before contributing, review the documentation standards and contributor-rights framework. Every publishable artifact should carry its applicable license expression or rights statement; do not assume a repository-wide license.
+Before contributing, review the documentation standards, the Contributor Rights Framework and—where required—the actual CLA. Every publishable artifact should carry its applicable license expression or rights statement; do not assume a repository-wide license.
 
 ## Organization
 
