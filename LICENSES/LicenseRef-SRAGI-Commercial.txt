@@ -19,6 +19,31 @@ the recipient may use the artifact under the applicable open-license terms,
 or — where the recipient has a valid applicable commercial agreement with
 Neptunia Media AS — under the terms and scope of that commercial agreement.
 
+Commercial activity alone does not imply that a SRAGI® Commercial Suite
+License is required. Where an open license permits commercial use, that use
+may proceed under the terms of the applicable open license.
+
+Core Commercial Function — ShareAlike Exception
+================================================
+
+For eligible artifacts offered under:
+
+    CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial
+
+the primary function of the commercial path is to permit agreed use of the
+Licensed Materials within a defined scope without the ShareAlike obligation
+that would otherwise apply under the CC BY-SA 4.0 path.
+
+An applicable commercial agreement may therefore permit the licensee to use,
+modify, combine and distribute the Licensed Materials within the expressly
+licensed scope while keeping permitted adaptations or combined proprietary
+materials closed, subject to the agreement.
+
+This exception applies only to the Licensed Materials and scope expressly
+identified in the commercial agreement. It does not remove attribution,
+third-party, trademark, certification, partner or other obligations unless
+those rights are separately and expressly granted.
+
 No Grant by Reference
 =====================
 
@@ -30,12 +55,12 @@ Commercial-license rights arise only through a valid applicable agreement
 with Neptunia Media AS and only within the scope expressly granted by that
 agreement.
 
-Commercial activity alone does not imply that a SRAGI® Commercial Suite
-License is required. Where an open license permits commercial use, that use
-may proceed under the terms of the applicable open license.
+One Commercial Architecture, Configurable Scope
+================================================
 
-Possible Commercial Scope
-=========================
+Professional, Organization, Enterprise, Developer, OEM/Embedded, Vertical and
+Sovereign are scope, pricing and rights profiles under the SRAGI® Commercial
+Suite architecture. They are not separate master licenses.
 
 Depending on the applicable agreement, commercial licensing may include
 rights for internal commercial use, modification and adaptation for own use,
@@ -47,13 +72,30 @@ OEM, white-label use, platform or ecosystem distribution, model/provider or
 AI-provider integration, trademark use or co-branding require explicit scope
 where applicable and are not granted merely by this LicenseRef.
 
+Brand and Naming Rights
+=======================
+
+Copyright and software licensing do not automatically grant trademark,
+certification, partnership, endorsement or branding rights.
+
+An applicable agreement may separately activate limited SRAGI® brand rights,
+including approved uses such as:
+
+    Powered by SRAGI®
+    Guided by SRAGI®
+    Governed by SRAGI®
+
+These are controlled trademark/co-branding permissions. They do not by
+themselves mean SRAGI Certified, Official SRAGI Partner, endorsement,
+ownership or exclusivity.
+
 Not Automatic
 =============
 
 No commercial agreement, and no reference to this LicenseRef, automatically
 grants SRAGI® certification status, official partner status, ownership of
-SRAGI intellectual property, unrestricted trademark rights, or rights to
-register SRAGI names, domains or trademarks.
+SRAGI intellectual property, unrestricted trademark rights, exclusivity, or
+rights to register SRAGI names, domains or trademarks.
 
 Regenerative Commitments
 ========================
@@ -80,10 +122,7 @@ rights to offer that artifact under the applicable commercial terms.
 Trademark
 =========
 
-Copyright and software licensing do not automatically grant trademark,
-certification, partnership, endorsement or branding rights.
-
-SRAGI® is a trademark of Neptunia Media AS.
+SRAGI® is a registered trademark of Neptunia Media AS (Reg. No. 342880).
 
 Canonical Information
 =====================
