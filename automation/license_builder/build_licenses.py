@@ -67,6 +67,7 @@ def validate_v2(data):
         'contributions.commercial_relicensing.requirement': 'sufficient_rights',
         'dual_licensing.commercial_grant_by_reference': False,
         'dual_licensing.canonical_instruction_expression': 'CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial',
+        'commercial.primary_function': 'sharealike_exception_within_licensed_scope',
         'evolution.retroactive_relicensing': False,
         'machine_readable.rsl.enabled': True,
         'machine_readable.rsl.protocol_version': '1.0',
@@ -93,6 +94,8 @@ def validate_v2(data):
         if actual != value or type(actual) is not type(value):
             errors.append(f'{dotted} must be {value!r}')
     site = data['website_licensing']
+    if site.get('precedence') != ['third_party_terms', 'artifact_terms', 'website_default']:
+        errors.append('Website precedence must preserve third-party terms as the overriding boundary')
     config = data['machine_readable']['rsl']
     selected = config['standard_licenses'].get(site['default_spdx'], {})
     if selected.get('url') != site['default_license_url']:
@@ -118,6 +121,9 @@ def validate_v2(data):
         p = Path(spec['path'])
         if p.is_absolute() or '..' in p.parts:
             errors.append('Generated output paths must remain in the repository')
+    serialized = json.dumps(data, ensure_ascii=False, default=str)
+    if '{{' in serialized or '}}' in serialized:
+        errors.append('Master policy data must not contain unresolved presentation placeholders')
     if errors:
         raise ValueError('SRLF validation failed:\n- ' + '\n- '.join(errors))
 
@@ -142,6 +148,8 @@ def verify_output(outputs, data, rsl_records):
     if set(outputs) != EXPECTED_OUTPUTS:
         raise ValueError('Generated output set changed; update publication and validation together')
     for path, content in outputs.items():
+        if '{{' in content or '}}' in content:
+            raise ValueError(f'Unresolved presentation placeholder in generated output: {path}')
         if path.endswith('.xml'):
             ET.fromstring(content)
         if path.endswith('.json'):
@@ -157,12 +165,18 @@ def verify_output(outputs, data, rsl_records):
         if not root.findtext('ai-training-and-adaptation'):
             raise ValueError(f'Missing AI interpretation statement in {path}')
     robots = [line for line in outputs['robots.txt'].splitlines() if line and not line.startswith('#')]
-    expected = ['License: ' + data['machine_readable']['rsl']['url']]
-    for agent in [data['machine_access']['agents']['default']] + data['machine_access']['agents']['named']:
-        expected.extend(['User-agent: ' + agent, 'Disallow:'])
-    expected.append('Sitemap: ' + data['organization']['website'].rstrip('/') + '/sitemap.xml')
+    expected = [
+        'License: ' + data['machine_readable']['rsl']['url'],
+        'User-agent: ' + data['machine_access']['agents']['default'],
+        'Disallow:',
+        'Sitemap: ' + data['organization']['website'].rstrip('/') + '/sitemap.xml',
+    ]
     if robots != expected:
-        raise ValueError('robots.txt must preserve RSL discovery and open technical access')
+        raise ValueError('robots.txt must use one wildcard group while preserving RSL discovery and open technical access')
+    policy = outputs['content/license/WEBSITE-LICENSE.html']
+    for required in ('rel="license"', str(data['meta']['version']), str(data['meta']['last_updated']), data['attribution']['minimal']):
+        if required not in policy:
+            raise ValueError(f'Website policy missing required publication metadata: {required}')
 
 
 def main():
