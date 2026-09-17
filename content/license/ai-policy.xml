@@ -9,8 +9,8 @@
     <default-spdx>CC-BY-4.0</default-spdx>
     <policy-url>https://sragi.org/content/license/WEBSITE-LICENSE.html</policy-url>
     <scope>owned_or_authorized_public_website_content</scope>
-    <exceptions>A license notice, SPDX expression, rights statement or applicable agreement attached to a specific artifact takes precedence over the website default. Separately licensed products, frameworks, software, downloads and embedded components retain their stated terms. Third-party material remains subject to its own rights. The website default does not grant trademark rights.</exceptions>
-    <machine-use>Search engines, AI systems and other machine agents are welcome to access public content. No crawler fee, registration or license token is required by this website access policy. Content under CC-BY-4.0 is available for AI use, including training, subject to that license and applicable law. Artifact-specific terms continue to govern exceptions; this policy does not waive their obligations or turn commercial products into free grants.</machine-use>
+    <exceptions>Third-party rights are an overriding boundary and remain governed by their own terms. For Neptunia-controlled material, a license notice, SPDX expression, rights statement or applicable agreement attached to a specific artifact takes precedence over the website default. Separately licensed products, frameworks, software, downloads and embedded components retain their stated terms. The website default does not grant trademark rights.</exceptions>
+    <machine-use>Search engines, AI systems and other machine agents are welcome to access public content. No crawler fee, registration or license token is required by this website access policy. AI use, including training, follows the governing website or artifact license and applicable law. Artifact-specific terms continue to govern exceptions; this policy does not waive their obligations or turn commercial products into free grants.</machine-use>
   </website-license-policy>
   <unspecified-artifact-policy>On sragi.org, eligible public content without a different license notice is covered by the express website policy. Outside that defined scope, no license grant should be inferred.</unspecified-artifact-policy>
   <machine-access posture="maximally_open" legal-license-grant="false">
@@ -40,6 +40,7 @@
   <attribution-note>This does not replace or reduce requirements imposed by the artifact license.</attribution-note>
   <artifact-manifest>https://github.com/Project2040/sragi.org/blob/main/content/license/RESOURCE_LICENSE_MANIFEST.yaml</artifact-manifest>
   <commercial-grant-rule>Commercial-license rights arise only through an applicable commercial agreement with Neptunia Media AS and only within its licensed scope.</commercial-grant-rule>
+  <commercial-sharealike-exception>Where an eligible artifact is offered under CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial, an applicable commercial agreement may permit the licensee to use, modify and distribute the licensed material within the agreed scope without the ShareAlike obligation that would otherwise apply under the CC BY-SA 4.0 path.</commercial-sharealike-exception>
   <third-party-rights>Neptunia Media AS can grant only rights it owns, controls or is otherwise authorized to license. Third-party materials remain governed by their terms.</third-party-rights>
   <rsl-license-document>https://sragi.org/content/license/LICENSE-RSL.xml</rsl-license-document>
   <licensing-contact>licensing@sragi.org</licensing-contact>
