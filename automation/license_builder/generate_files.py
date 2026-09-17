@@ -6,7 +6,6 @@ from pathlib import Path
 from string import Template
 from xml.etree import ElementTree as ET
 from rsl import render_rsl
-from policy import expand
 
 
 def compact(value):
@@ -32,21 +31,31 @@ def text_template(data, name, values):
     return Template(path.read_text(encoding='utf-8')).substitute(values)
 
 
+def website_grant(data):
+    site = data['website_licensing']
+    return (
+        f"Unless otherwise indicated, public content on sragi.org that Neptunia "
+        f"Media AS owns or is authorized to license is made available under "
+        f"{site['default_spdx']} at {site['default_license_url']}."
+    )
+
+
 def human_sections(data):
     """Both human formats carry the same substantive source statements."""
+    commercial = data['commercial']
     sections = [
         ('Rights authority', [data['rights']['principle'], data['rights']['unspecified_artifact_policy'], data['rights']['non_override_rule']]),
-        ('Website default license', [expand(data['website_licensing'][key], data) for key in ('grant', 'exceptions', 'machine_use', 'scope_rule')]),
+        ('Website default license', [website_grant(data), data['website_licensing']['exceptions'], data['website_licensing']['machine_use'], data['website_licensing']['scope_rule']]),
         ('Licensing paths', [data['licensing']['rule'], data['dual_licensing']['interpretation']]),
-        ('Commercial licensing', [data['commercial']['grant_rule'], 'Commercial reference: ' + data['commercial']['identifier']]),
+        ('Commercial licensing', [commercial['grant_rule'], commercial['sharealike_exception']['rule'], commercial['profiles']['principle'], 'Commercial reference: ' + commercial['identifier']]),
         ('Machine access', [data['machine_access']['access_policy'], data['machine_access']['rights_rule']]),
         ('Really Simple Licensing (RSL)', [data['machine_readable']['rsl']['rule'], data['machine_readable']['rsl']['url']]),
         ('AI training', [data['machine_access']['ai_training']['rule'], data['machine_access']['interpretation']['ai_training_and_adaptation']]),
         ('Attribution', [data['attribution']['rule'], data['attribution']['preferred_machine_attribution']['value'], data['attribution']['preferred_machine_attribution']['note']]),
         ('Regenerative invitation', [data['regenerative']['open_license_layer']['principle'], data['regenerative']['open_license_layer']['invitation'], data['regenerative']['commercial_covenant']['rule']]),
-        ('Contributor rights', [data['contributions']['principle'], data['contributions']['commercial_relicensing']['rule'], data['contributions']['fallback'], data['contributions']['contributor_rights']['principle']]),
+        ('Contributor rights', [data['contributions']['principle'], data['contributions']['sufficient_rights_definition'], data['contributions']['commercial_relicensing']['rule'], data['contributions']['fallback'], data['contributions']['contributor_rights']['principle']]),
         ('Third-party rights', [data['third_party']['rule']]),
-        ('Trademark and certification', [data['trademark']['principle']]),
+        ('Trademark and certification', [data['trademark']['principle'], 'Commercial brand licensing is separate from copyright licensing and requires an express agreement.']),
         ('Evolution', [data['evolution']['rule']]),
     ]
     classes = []
@@ -89,7 +98,7 @@ def render(data, rsl_records):
         field(site, 'policy-url', data['website_licensing']['policy_url'])
         field(site, 'scope', data['website_licensing']['default_scope'])
         field(site, 'exceptions', data['website_licensing']['exceptions'])
-        field(site, 'machine-use', expand(data['website_licensing']['machine_use'], data))
+        field(site, 'machine-use', data['website_licensing']['machine_use'])
         field(root, 'unspecified-artifact-policy', rights['unspecified_artifact_policy'])
         access = ET.SubElement(root, 'machine-access', {'posture': machine['posture'], 'legal-license-grant': 'false'})
         field(access, 'agents', machine['agents']['default'])
@@ -105,6 +114,7 @@ def render(data, rsl_records):
         field(root, 'attribution-note', attribution['note'])
         field(root, 'artifact-manifest', manifest)
         field(root, 'commercial-grant-rule', data['commercial']['grant_rule'])
+        field(root, 'commercial-sharealike-exception', data['commercial']['sharealike_exception']['rule'])
         field(root, 'third-party-rights', data['third_party']['rule'])
         field(root, 'rsl-license-document', data['machine_readable']['rsl']['url'])
         field(root, 'licensing-contact', contact)
@@ -124,7 +134,7 @@ def render(data, rsl_records):
         'Website-License-Policy: ' + data['website_licensing']['policy_url'],
         'Website-License-Scope: ' + data['website_licensing']['default_scope'],
         'Website-License-Exceptions: ' + compact(data['website_licensing']['exceptions']),
-        'Website-Machine-Use: ' + compact(expand(data['website_licensing']['machine_use'], data)),
+        'Website-Machine-Use: ' + compact(data['website_licensing']['machine_use']),
         'Rights-Rule: ' + compact(rights['principle']),
         'Access-Rights-Rule: ' + compact(machine['rights_rule']),
         'Unspecified-Artifact-Policy: ' + compact(rights['unspecified_artifact_policy']),
@@ -135,27 +145,40 @@ def render(data, rsl_records):
         'Preferred-Machine-Attribution-Binding: false',
         'Attribution-Note: ' + compact(attribution['note']),
         'Commercial-Grant-Rule: ' + compact(data['commercial']['grant_rule']),
+        'Commercial-Primary-Function: ' + data['commercial']['primary_function'],
+        'Commercial-ShareAlike-Exception: ' + compact(data['commercial']['sharealike_exception']['rule']),
         'Third-Party-Rights: ' + compact(data['third_party']['rule']),
         'Artifact-Manifest: ' + manifest, 'RSL-License-Document: ' + data['machine_readable']['rsl']['url'],
         'Licensing: ' + portal, 'Licensing-Contact: ' + contact,
     ]
     put('ai_policy_txt', '\n'.join(lines))
-    agents = [machine['agents']['default']] + machine['agents']['named']
+
     put('robots', text_template(data, 'robots', {
         'rsl_url': data['machine_readable']['rsl']['url'],
-        'agent_groups': '\n'.join(f'User-agent: {agent}\nDisallow:\n' for agent in agents),
+        'user_agent': machine['agents']['default'],
         'sitemap_url': website + '/sitemap.xml',
     }))
+
     site = data['website_licensing']
+    values = {
+        'title': site['title'],
+        'policy_url': site['policy_url'],
+        'grant': website_grant(data),
+        'license_url': site['default_license_url'],
+        'license_identifier': site['default_spdx'],
+        'exceptions': site['exceptions'],
+        'machine_use': site['machine_use'],
+        'ai_interpretation': machine['interpretation']['ai_training_and_adaptation'],
+        'scope_rule': site['scope_rule'],
+        'attribution': data['attribution']['minimal'],
+        'framework_version': str(meta['version']),
+        'effective_date': str(meta['last_updated']),
+        'contact': contact,
+    }
     put('website_policy', text_template(data, 'website_policy', {
-        key: html.escape(compact(expand(value, data)), quote=True) for key, value in {
-            'title': site['title'], 'policy_url': site['policy_url'],
-            'grant': site['grant'], 'license_url': site['default_license_url'],
-            'license_identifier': site['default_spdx'], 'exceptions': site['exceptions'],
-            'machine_use': site['machine_use'], 'scope_rule': site['scope_rule'],
-            'contact': contact,
-        }.items()
+        key: html.escape(compact(value), quote=True) for key, value in values.items()
     }))
+
     title = f"{meta['name']} v{meta['version']}"
     sections = human_sections(data)
     markdown = ['# ' + title, '', '<!-- Generated from SRL-LICENSE.yaml; edit the source, then rebuild. -->', '']
