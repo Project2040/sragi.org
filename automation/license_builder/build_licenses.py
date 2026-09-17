@@ -21,6 +21,7 @@ EXPECTED_OUTPUTS = {
     'content/license/ai-policy.xml', 'ai-policy.txt', 'robots.txt', 'sitemap.xml',
     'content/license/WEBSITE-LICENSE.html',
 }
+PLACEHOLDER_RE = re.compile(r'\{\{[^{}]+\}\}')
 
 
 class UniqueKeyLoader(yaml.SafeLoader):
@@ -122,7 +123,7 @@ def validate_v2(data):
         if p.is_absolute() or '..' in p.parts:
             errors.append('Generated output paths must remain in the repository')
     serialized = json.dumps(data, ensure_ascii=False, default=str)
-    if '{{' in serialized or '}}' in serialized:
+    if PLACEHOLDER_RE.search(serialized):
         errors.append('Master policy data must not contain unresolved presentation placeholders')
     if errors:
         raise ValueError('SRLF validation failed:\n- ' + '\n- '.join(errors))
@@ -148,7 +149,7 @@ def verify_output(outputs, data, rsl_records):
     if set(outputs) != EXPECTED_OUTPUTS:
         raise ValueError('Generated output set changed; update publication and validation together')
     for path, content in outputs.items():
-        if '{{' in content or '}}' in content:
+        if PLACEHOLDER_RE.search(content):
             raise ValueError(f'Unresolved presentation placeholder in generated output: {path}')
         if path.endswith('.xml'):
             ET.fromstring(content)
