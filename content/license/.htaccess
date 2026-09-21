@@ -1,0 +1,5 @@
+# RSL 1.0 section 2.2. Deploy with LICENSE-RSL.xml on Apache.
+# Other XML documents retain their existing media type.
+<Files "LICENSE-RSL.xml">
+    ForceType application/rsl+xml
+</Files>

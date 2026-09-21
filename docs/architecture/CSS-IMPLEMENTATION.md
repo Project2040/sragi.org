@@ -131,5 +131,5 @@ add_action('wp_head', function() {
 
 ---
 
-**© 2025 Rune Solberg / Neptunia Media AS** Licensed under CC BY 4.0 via the SRAGI Regenerative License (SRL). See SRL-LICENSE.yaml for current version and details.
+**© 2025 Rune Solberg / Neptunia Media AS** Licensed under CC-BY-4.0. The stated artifact license applies to this document. Framework: https://sragi.org/licensing/.
 

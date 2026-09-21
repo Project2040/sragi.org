@@ -13,7 +13,7 @@ Vi er operativsystemet for den regenerative singulariteten.
 - IA.yaml styrer hele strukturen
 - Hver side er en .md + .md.yaml-fil
 - Sync Engine Light publiserer automatisk til sragi.org når du pusher
-- Alt er SRL-lisensiert – ta, bruk, regenerer, krediter
+- Finn lisensen på den enkelte artefakten – bruk, del og krediter i samsvar med dens vilkår
 
 ### Offentlig struktur (Master Content Map v1)
 - About SRAGI

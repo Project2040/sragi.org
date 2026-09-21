@@ -209,6 +209,6 @@ TSF trenger normalt ikke spesialkonfig for å lese sine egne meta‑nøkler, men
 
 © 2025 Rune Solberg / Neptunia Media AS
 
-Licensed under CC BY 4.0 via the SRAGI Regenerative License (SRL).  
- See `SRL-LICENSE.yaml` for full details.
+Licensed under CC-BY-4.0.  
+ Framework: https://sragi.org/licensing/. The artifact license remains authoritative.
 

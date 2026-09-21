@@ -5,7 +5,7 @@
 **Maintainer:** Rune Solberg / Neptunia Media AS  
 **Version:** 1.0  
 **Last Updated:** December 2025  
-**License:** CC BY-SA 4.0 via SRL
+**License:** CC-BY-SA-4.0
 
 ---
 
@@ -135,7 +135,9 @@ Since SRAGI uses AI heavily internally, we must protect external correspondents.
 
 ---
 
-**© 2025 Rune Solberg / Neptunia Media AS** Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL).
+**© 2025 Rune Solberg / Neptunia Media AS** Licensed under CC-BY-4.0.
 
-See SRL-LICENSE.yaml for details.
+Framework: https://sragi.org/licensing/. The artifact license remains authoritative.
 
+
+> **License review pending:** This document already carried conflicting CC-BY-4.0 and CC-BY-SA-4.0 notices. Both notices are preserved for review; this migration selects neither and does not revoke previously granted rights. See [the rights-review register](../../content/license/RESOURCE_LICENSE_MANIFEST.yaml).

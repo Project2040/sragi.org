@@ -130,7 +130,7 @@ Snippet Name: SRAGI Bunny CDN Integration (Robust)
 Description: Advanced rewriting to Bunny CDN with dynamic origin, type safety, and auto-purge.
 Version: 2.3 (Robust Edition)
 Author: Rune Solberg / Neptunia Media AS
-License: CC BY-SA 4.0 via SRL
+License: CC-BY-SA-4.0
 */
 
 // ===========================================================
@@ -367,7 +367,7 @@ function sragi_auto_purge_on_delete($post_id) {
 
 © 2026 Rune Solberg / Neptunia Media AS
 
-Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL).
+Licensed under CC-BY-4.0.
 
 
 

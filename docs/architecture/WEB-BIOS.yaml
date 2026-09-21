@@ -1,7 +1,7 @@
 # ===========================================================
 # SRAGI WEB BIOS v2.2.0r — CLEAN SRAGI ARCHITECTURE (SSOT)
 # © 2025 Rune Solberg / Neptunia Media AS
-# Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL) v1.1
+# Licensed under CC-BY-4.0
 # 
 # Purpose: The absolute Single Source of Truth for SRAGI.org system definition.
 # Philosophy: "Clean SRAGI" — Native WP structures driven by Git SSOT.
@@ -106,7 +106,7 @@ layer_3_governance:
       
     license:
       file: /SRL-LICENSE.yaml
-      controls: [license-metadata, permissions]
+      controls: [licensing-architecture, rights-discovery]
       format: yaml
 
 # ===========================================================
