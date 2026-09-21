@@ -30,9 +30,10 @@ The system is controlled by four specific files in `_CONFIG/` and root. All docu
 | **Ontology** | `/_CONFIG/TAXONOMY_GRAPH.yaml` | `config_bridge.py` |
 | **Quality** | `/_CONFIG/VALIDATION_RULES.yaml` | `validate.php`, `qa_engine.py` |
 | **Structure**| `/_CONFIG/CONTENT-TEMPLATE.yaml` | `process.php` |
-| **Legal** | `/SRL-LICENSE.yaml` | `license_builder.py` |
+| **Licensing architecture** | `/SRL-LICENSE.yaml` | `automation/license_builder/build_licenses.py` |
+| **Artifact rights** | Artifact license, rights statement or agreement | Artifact-level review and provenance |
 
-> **Rule:** If documentation in `/docs/standards/` contradicts a file in `/_CONFIG/`, the documentation is wrong. The Config is the Law.
+> **Rule:** If documentation in `/docs/standards/` contradicts a file in `/_CONFIG/`, the documentation is wrong. Configuration governs system behavior; artifact licenses, contracts and applicable law govern legal rights.
 
 ---
 
@@ -52,7 +53,7 @@ We do not manually copy taxonomy terms into WordPress. The Sync Engine reads `TA
 Do not put version numbers in filenames (e.g., `BIOS-v2.1.yaml`). Put them inside the file content (`version: 2.1`). This keeps Git history clean (Kairos).
 
 ### 5. Reference Dynamically
-Never write "Licensed under SRL v1.12" in a footer. Write "See SRL-LICENSE.yaml". This ensures old files remain valid when the license evolves.
+Identify the license or rights statement of each artifact explicitly. Link to `SRL-LICENSE.yaml` for framework architecture only. A framework update never changes the rights of an existing artifact automatically.
 
 ---
 
@@ -60,7 +61,7 @@ Never write "Licensed under SRL v1.12" in a footer. Write "See SRL-LICENSE.yaml"
 
 This policy is not just a wish; it is enforced by code.
 
-1.  **License Integrity:** `tools/enforce_version_refs.py` scans for hardcoded versions.
+1.  **License Integrity:** `tools/enforce_version_refs.py` rejects obsolete blanket grants. The license builder validates the master, license texts and generated outputs.
 2.  **Content Validation:** `modules/qa_engine.py` reads `VALIDATION_RULES.yaml` to reject non-compliant content.
 3.  **Interface Sync:** `modules/config_bridge.py` generates menus in Mission Control directly from `TAXONOMY_GRAPH.yaml`.
 
@@ -79,7 +80,7 @@ SRAGI maintains **Kairos Architecture** — a living, breathing system where the
 ---
 
 **© 2025 Rune Solberg / Neptunia Media AS**
-Licensed under CC BY 4.0 via the SRAGI Regenerative License (SRL).
-See SRL-LICENSE.yaml for current version and details.
+Licensed under CC-BY-4.0.
+The stated artifact license applies to this document. Framework: https://sragi.org/licensing/.
 
 **“One source for all time.”**

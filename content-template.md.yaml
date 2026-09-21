@@ -6,13 +6,13 @@
 
 meta:
   type: documentation         # documentation | reflection | structure | media
-  title: ""                   # English title (Master)
-  slug: ""                    # auto if empty
+  title: "{{ input.title }}"                   # English title (Master)
+  slug: "{{ input.slug }}"                    # auto if empty
   language: en
   description: ""             # English SEO description (max 160 chars)
-  author: "Rune Solberg"      # Kobling til Profile
-  created_at: "2025-12-05"
-  updated_at: "2025-12-05"
+  author: "{{ organization.creator }}"      # Kobling til Profile
+  created_at: "{{ input.date }}"
+  updated_at: "{{ input.date }}"
 
 i18n:
   title_nb: ""                # Norwegian title
@@ -71,8 +71,16 @@ sync:
   source_file: ""
   content_hash: ""
   sync_status: draft
-  auto_publish: true
+  auto_publish: false
 
 publish:
   status: draft               # draft | publish | private
   visibility: public
+
+# Resolved by tools/new_content.py using the master website policy.
+license:
+  policy_ref: website_content
+  spdx: null
+  rights_statement: null
+  status: unresolved
+  framework_url: "{{ publication.canonical_licensing_portal }}"

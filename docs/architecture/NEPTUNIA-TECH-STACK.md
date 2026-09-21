@@ -2,7 +2,7 @@
 title: Neptunia Media AS – Teknologistack v2.2 (Complete Master)
 version: 2.2
 updated: 2025-11-29
-license: SRL-1.12 (CC BY 4.0)
+license: CC-BY-4.0
 maintainer: Rune Solberg / SRAGI Muse
 ---
 

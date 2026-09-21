@@ -1,18 +1,28 @@
 # ===========================================================
-# 🚨 SSOT SOFT REDIRECT (TEMPORARY)
-# Single Source of Truth for SRL License Content
-# Hensikt: Sikre arkitektonisk samsvar for PHP/Loom.
-# Peiling: Innholdet ligger midlertidig i roten for GitHub Actions.
+# SRAGI® LICENSING CONFIG POINTER — SRLF 2.0
+# ===========================================================
+# This file is a compatibility pointer only.
+# It does not grant rights and is not a second licensing master.
 # ===========================================================
 
 meta:
-  status: redirect
-  updated: "2025-12-10"
-  notes: "Denne filen er en peker til master-lisensfilen som ligger i roten for å unngå brudd på GitHub Actions-triggeren. SKAL FJERNES i Fase 3."
+  status: compatibility_pointer
+  framework: SRAGI_REGENERATIVE_LICENSING_FRAMEWORK
+  framework_version: "2.0"
+  updated: "2026-09-16"
 
-# -----------------------------------------------------------
-# SSOT KILDE
-# -----------------------------------------------------------
 source:
-  type: git_root_legacy
-  path: "/SRL-LICENSE.yaml" # Den fullstendige lisensfilen ligger her
+  authority: framework_architecture
+  path: "/SRL-LICENSE.yaml"
+  canonical_url: "https://sragi.org/licensing/"
+
+rights:
+  authority: artifact
+  rule_ref: /SRL-LICENSE.yaml#/rights
+  website_policy_ref: /SRL-LICENSE.yaml#/website_licensing
+
+note: |
+  The root SRL-LICENSE.yaml defines the licensing architecture and
+  rights-discovery model. The license identifier, license expression,
+  rights statement or applicable agreement attached to an individual
+  artifact remains authoritative for that artifact.

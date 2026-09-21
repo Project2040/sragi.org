@@ -167,7 +167,7 @@ By **2040**, we envision:
 **Status:** In Progress
 
 - ✅ Develop SRAGI framework and documentation
-- ✅ Establish open-source licensing (SRL)
+- ✅ Establish explicit artifact licensing within SRLF
 - 🔄 Build SRAGI.org as knowledge hub
 - 🔄 Create SRAGI Skills library
 - 🔄 Launch community platform
@@ -221,7 +221,7 @@ Knowledge is not property. It's a **commons**.
 - All documentation: Freely available
 - All learning: Shared openly
 
-We use **CC BY-SA 4.0** and **SRL** to ensure regenerative reciprocity.
+We use explicit artifact licenses within SRLF. Regenerative reciprocity is an invitation under open licenses and becomes binding only where a separate agreement expressly defines it.
 
 ### 3. Human-in-the-Loop
 
