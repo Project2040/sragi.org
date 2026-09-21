@@ -21,6 +21,7 @@ EXPECTED_OUTPUTS = {
     'content/license/ai-policy.xml', 'ai-policy.txt', 'robots.txt', 'sitemap.xml',
     'content/license/WEBSITE-LICENSE.html',
     'LICENSES/LicenseRef-SRAGI-Commercial.txt',
+    'docs/_CONFIG/SRL-LICENSE.yaml',
 }
 PLACEHOLDER_RE = re.compile(r'\{\{[^{}]+\}\}')
 
@@ -89,7 +90,7 @@ def validate_v2(data):
     }
     for activity in ('allow_by_default', 'allow_crawling', 'allow_indexing', 'allow_retrieval', 'allow_search_discovery'):
         expected['machine_access.discovery.' + activity] = True
-    for kind in ('ai_policy_txt', 'ai_policy_xml', 'robots', 'commercial_reference'):
+    for kind in ('ai_policy_txt', 'ai_policy_xml', 'robots', 'commercial_reference', 'config_pointer'):
         expected[f'publication.generated_formats.{kind}.legal_license_grant'] = False
     errors = []
     version = data.get('meta', {}).get('version')
@@ -192,6 +193,10 @@ def verify_license_files(root, data):
         if Path(name).name != name:
             raise ValueError('License text names must be plain filenames')
         p = root / 'LICENSES' / name
+        if p.relative_to(root).as_posix() == data['publication']['generated_formats']['commercial_reference']['path']:
+            # This is generated output. --check detects a missing/stale reference;
+            # an ordinary build must be able to recreate it from the sources.
+            continue
         if not p.is_file() or not p.stat().st_size:
             raise ValueError(f'Missing or empty license text: {name}')
     lock = json.loads((root / 'LICENSES/SPDX-SOURCES.json').read_text(encoding='utf-8'))
@@ -213,9 +218,15 @@ def verify_output(outputs, data, rsl_records):
             ET.fromstring(content)
         if path.endswith('.json'):
             json.loads(content)
+        if path.endswith('.yaml'):
+            yaml.load(content, Loader=UniqueKeyLoader)
     exported = json.loads(outputs['content/license/license.json'])
     if exported != json.loads(json.dumps(data, default=str)):
         raise ValueError('JSON representation differs from the master')
+    pointer = yaml.load(outputs['docs/_CONFIG/SRL-LICENSE.yaml'], Loader=UniqueKeyLoader)
+    if (pointer['meta']['framework_version'] != data['meta']['version']
+            or pointer['source']['canonical_url'] != data['publication']['canonical_licensing_portal']):
+        raise ValueError('Compatibility pointer differs from the master')
     validate_projection(outputs['content/license/LICENSE-RSL.xml'], rsl_records, data)
     for path in ('content/license/ai-policy.xml',):
         root = ET.fromstring(outputs[path])

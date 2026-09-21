@@ -29,12 +29,32 @@ class WebsitePolicyTests(unittest.TestCase):
         self.assertEqual(value['spdx'], 'CC-BY-4.0')
         self.assertEqual(value['resolved_from'], 'website_licensing')
         diamond = self.data['dual_licensing']['canonical_instruction_expression']
+        verified = dict(self.context, commercial_relicensing_verified=True,
+                        commercial_relicensing_evidence='rights-register:framework/001')
         for profile in ['website_content', 'explicit_artifact']:
-            value = resolve_license(self.data, {'spdx': diamond}, profile, self.context, True)
+            value = resolve_license(self.data, {'spdx': diamond}, profile, verified, True)
             self.assertEqual(value['spdx'], diamond)
             self.assertEqual(value['resolved_from'], 'artifact')
         with self.assertRaises(ValueError):
             resolve_license(self.data, {}, 'explicit_artifact', self.context, True)
+
+    def test_commercial_publication_requires_recorded_rights_evidence(self):
+        dual = {'spdx': self.data['dual_licensing']['canonical_instruction_expression']}
+        for context in ({}, {'commercial_relicensing_verified': True},
+                        {'commercial_relicensing_verified': 'true', 'commercial_relicensing_evidence': 'rights:001'},
+                        {'commercial_relicensing_verified': True, 'commercial_relicensing_evidence': ' '}):
+            with self.subTest(context=context), self.assertRaisesRegex(ValueError, 'verified commercial rights'):
+                resolve_license(self.data, dual, 'explicit_artifact', context, True)
+        result = resolve_license(self.data, dual, 'explicit_artifact', {}, False)
+        self.assertFalse(result['commercial_relicensing_verified'])
+        result = resolve_license(self.data, dual, 'explicit_artifact', {
+            'commercial_relicensing_verified': True,
+            'commercial_relicensing_evidence': 'rights:001',
+        }, True)
+        self.assertTrue(result['commercial_relicensing_verified'])
+        self.assertEqual(result['commercial_relicensing_evidence'], 'rights:001')
+        result = resolve_license(self.data, {'spdx': 'CC-BY-SA-4.0'}, 'explicit_artifact', {}, True)
+        self.assertEqual(result['status'], 'explicit')
 
     def test_default_cannot_relicense_external_private_or_third_party_material(self):
         for override in [{'url': 'https://other.example/article/'}, {'public': False},

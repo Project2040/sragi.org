@@ -67,6 +67,16 @@ def resolve_license(data, supplied, profile, publication, require_resolved=False
             result.update(status='unresolved', resolved_from=None)
     if require_resolved and result['status'] == 'unresolved':
         raise ValueError('Publication requires artifact terms or verified website-default eligibility')
+    identifier = data['commercial']['identifier']
+    if identifier in re.findall(r'LicenseRef-[A-Za-z0-9.-]+', result['spdx'] or ''):
+        verified = publication.get('commercial_relicensing_verified') is True
+        evidence = publication.get('commercial_relicensing_evidence')
+        evidence = evidence.strip() if isinstance(evidence, str) else ''
+        if require_resolved and (not verified or not evidence):
+            raise ValueError('Publication of a commercial licensing path requires verified commercial rights and an evidence reference')
+        # Keep the reference for downstream publication review, never the private agreement.
+        result['commercial_relicensing_verified'] = verified
+        result['commercial_relicensing_evidence'] = evidence or None
     return result
 
 

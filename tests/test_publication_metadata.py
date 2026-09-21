@@ -123,6 +123,11 @@ class PublicationMetadataTests(unittest.TestCase):
         self.assertIn('Additional scope statement from master.', outputs['content/license/REGENERATIVE_LICENSE.md'])
         self.assertIn('Commercial activity alone does not imply', reference)
 
+    def test_publication_configurations_are_parseable_yaml_mappings(self):
+        for path in (ROOT / 'docs/_CONFIG').glob('*.yaml'):
+            with self.subTest(path=path.name):
+                self.assertIsInstance(yaml.safe_load(path.read_text()), dict)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 from string import Template
 from xml.etree import ElementTree as ET
+import yaml
 from rsl import render_rsl
 
 
@@ -140,6 +141,14 @@ def render(data, rsl_records):
         outputs[formats[kind]['path']] = text.rstrip() + '\n'
 
     put('json', json.dumps(data, indent=2, ensure_ascii=False, default=str))
+    put('config_pointer', '# Generated from SRL-LICENSE.yaml; edit the master and rebuild.\n' + yaml.safe_dump({
+        'meta': {'status': 'compatibility_pointer', 'framework': meta['id'],
+                 'framework_version': meta['version'], 'updated': str(meta['last_updated'])},
+        'source': {'authority': 'framework_architecture', 'path': '/SRL-LICENSE.yaml', 'canonical_url': portal},
+        'rights': {'authority': rights['authority'], 'rule_ref': '/SRL-LICENSE.yaml#/rights',
+                   'website_policy_ref': '/SRL-LICENSE.yaml#/website_licensing'},
+        'note': 'This compatibility pointer does not grant rights and is not a second licensing master. The root SRL-LICENSE.yaml defines the framework; artifact terms remain authoritative.',
+    }, sort_keys=False, allow_unicode=True))
     put('xml', xml_text(render_rsl(data, rsl_records)))
     for kind, tag in [('ai_policy_xml', 'sragi-ai-policy')]:
         root = ET.Element(tag, {'version': str(meta['version']), 'function': 'rights-discovery', 'legal-license-grant': 'false'})

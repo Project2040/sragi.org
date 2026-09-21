@@ -165,6 +165,19 @@ class LicensingTests(unittest.TestCase):
                 self.assertEqual(p.read_text(), 'stale policy\n')
                 p.write_bytes(original)
 
+    def test_build_recreates_missing_generated_reference(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / 'checkout'
+            shutil.copytree(ROOT, root, ignore=shutil.ignore_patterns('.git', '__pycache__'))
+            reference = root / 'LICENSES/LicenseRef-SRAGI-Commercial.txt'
+            reference.unlink()
+            with patch.object(builder, 'ROOT', root), patch.object(sys, 'argv', ['builder', '--check']), contextlib.redirect_stderr(io.StringIO()):
+                self.assertEqual(builder.main(), 1)
+            self.assertFalse(reference.exists())
+            with patch.object(builder, 'ROOT', root), patch.object(sys, 'argv', ['builder']), contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(builder.main(), 0)
+            self.assertEqual(reference.read_text(), render(self.data, self.records)['LICENSES/LicenseRef-SRAGI-Commercial.txt'])
+
     def test_guard_rejects_blanket_claims_but_preserves_explicit_artifact_licenses(self):
         forbidden = ['All SRAGI content is licensed under **CC BY-SA 4.0**.', 'Alt SRAGI-innhold er lisensiert under CC BY-SA 4.0.', 'Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL)', 'license: SRL-1.12 (CC BY 4.0)']
         for text in forbidden:
