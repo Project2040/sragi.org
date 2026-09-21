@@ -24,5 +24,7 @@
 <h2>Scope</h2>
 <p>$scope_rule</p>
 <p>Licensing contact: <a href="mailto:$contact">$contact</a></p>
+<p><a href="$portal">Licensing overview</a></p>
+<p><a href="$commercial_portal">Commercial licensing information</a> · <a href="mailto:$commercial_contact">$commercial_contact</a></p>
 </main></body>
 </html>

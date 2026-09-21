@@ -43,5 +43,10 @@
   <commercial-sharealike-exception>Where an eligible artifact is offered under CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial, an applicable commercial agreement may permit the licensee to use, modify and distribute the licensed material within the agreed scope without the ShareAlike conditions that would otherwise apply when Adapted Material is shared under the CC BY-SA 4.0 path. Private modification alone does not trigger those ShareAlike conditions.</commercial-sharealike-exception>
   <third-party-rights>Neptunia Media AS can grant only rights it owns, controls or is otherwise authorized to license. Third-party materials remain governed by their terms.</third-party-rights>
   <rsl-license-document>https://sragi.org/content/license/LICENSE-RSL.xml</rsl-license-document>
+  <general-contact>contact@sragi.org</general-contact>
   <licensing-contact>licensing@sragi.org</licensing-contact>
+  <commercial-license-name>SRAGI® Commercial Suite License</commercial-license-name>
+  <commercial-licensing>https://sragi.org/commercial-licensing/</commercial-licensing>
+  <commercial-contact>commercial@sragi.org</commercial-contact>
+  <commercial-agreement-basis>separate_written_agreement</commercial-agreement-basis>
 </sragi-ai-policy>

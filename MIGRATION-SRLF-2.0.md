@@ -4,7 +4,7 @@
 
 - Pure YAML master with artifact rights authority, an explicit conditional CC-BY website default and no ecosystem-wide default.
 - Five canonical SPDX license texts materialized from pinned revision `16f3aa6c3bdd62e50f8b1cf618f32d2a510250ee`, with SHA-256 verification.
-- Deterministic generator for nine Markdown, HTML, JSON, XML, TXT and sitemap outputs, including the exception-bearing website license policy.
+- Deterministic generator for ten Markdown, HTML, JSON, XML, TXT and sitemap outputs, including the exception-bearing website license policy and commercial LicenseRef.
 - Non-mutating `--check` detects stale output. YAML duplicate keys and fences, missing/altered texts and broken licensing invariants fail validation.
 - Complete JSON master representation, including SPDX machine-readable settings and future fields.
 - Open crawler access retained; AI policy preserves artifact authority, attribution guidance and the neutral position on AI training and adaptation.
@@ -18,7 +18,7 @@
 The owner confirmed that public sragi.org content is CC-BY-4.0 by default unless otherwise marked, within Neptunia Media AS's rights. This is an express website grant; it is not an ecosystem-wide license for all SRAGI products or repositories. Specific artifact terms, existing grants and third-party rights remain authoritative.
 
 - RSL includes a root record pointing to the conditional website policy, with attribution and no monetary fee. Its core `standard` and `terms` references carry the exceptions even when a client ignores SRAGI extensions. The two verified source-document records remain available separately. RSL payment semantics are derived from the configured license mapping; CC BY uses `attribution`, since `free` would also waive attribution.
-- Named crawler groups are generated from the master alongside `*`; the list is not exclusive. AI/search access has no crawler fee, registration or token requirement. Content use follows the applicable open or artifact-specific license.
+- `robots.txt` uses one wildcard group. Named crawlers are generated from the master as non-exclusive signals in AI/machine policy. AI/search access has no crawler fee, registration or token requirement. Content use follows the applicable open or artifact-specific license.
 - Content templates are registered in the master and rendered by `tools/new_content.py`. Eligible website content inherits the configured default; explicit terms win, and the product profile requires explicit terms. Missing licensing information stops the tool's publication-validation mode.
 - Business policy values and crawler names reside in the master. Generator presentation uses registered templates; tests exercise configuration changes without editing Python code. Protocol syntax and validation constraints remain in code.
 - CMS publication and indexing verification remain separate integration/deployment work, as described in the [deployment check](content/license/RSL_DEPLOYMENT.md).

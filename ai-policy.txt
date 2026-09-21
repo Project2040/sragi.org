@@ -33,4 +33,9 @@ Third-Party-Rights: Neptunia Media AS can grant only rights it owns, controls or
 Artifact-Manifest: https://github.com/Project2040/sragi.org/blob/main/content/license/RESOURCE_LICENSE_MANIFEST.yaml
 RSL-License-Document: https://sragi.org/content/license/LICENSE-RSL.xml
 Licensing: https://sragi.org/licensing/
+General-Contact: contact@sragi.org
 Licensing-Contact: licensing@sragi.org
+Commercial-License-Name: SRAGI® Commercial Suite License
+Commercial-Licensing: https://sragi.org/commercial-licensing/
+Commercial-Contact: commercial@sragi.org
+Commercial-Agreement-Basis: separate_written_agreement

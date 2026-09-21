@@ -67,7 +67,7 @@ For open-license artifacts this is a regenerative invitation, not an additional 
 
 ## Automation
 
-The license builder reads [`SRL-LICENSE.yaml`](SRL-LICENSE.yaml) and generates machine-readable and human-readable rights-discovery artifacts. Generated files must preserve the distinction between:
+The license builder reads [`SRL-LICENSE.yaml`](SRL-LICENSE.yaml) and generates machine-readable and human-readable rights-discovery artifacts, including the commercial LicenseRef. The licensing overview includes license-class and instruction-metadata tables. General, licensing and commercial contacts are rendered from `publication.contact_roles`; the overview and commercial portals retain their distinct roles. Validation rejects inconsistencies between those settings and the instruction frontmatter. Generated files must preserve the distinction between:
 
 1. technical access;
 2. rights discovery; and

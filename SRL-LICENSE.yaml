@@ -528,9 +528,11 @@ publication:
     html: {path: content/license/index.html, function: human_readable_framework}
     sitemap: {path: sitemap.xml, function: technical_discovery}
     website_policy: {path: content/license/WEBSITE-LICENSE.html, function: website_license_policy}
+    commercial_reference: {path: LICENSES/LicenseRef-SRAGI-Commercial.txt, function: commercial_licensing_reference, legal_license_grant: false}
   templates:
     robots: automation/license_builder/templates/robots.txt.tpl
     website_policy: automation/license_builder/templates/website-policy.html.tpl
+    commercial_reference: automation/license_builder/templates/commercial-reference.txt.tpl
   sitemap_urls:
     - https://sragi.org/
     - *sragi_licensing_url
@@ -607,4 +609,3 @@ history:
     date: 2025-11-07
     status: superseded
     summary: Previous layered model using CC BY 4.0 as ecosystem default.
-

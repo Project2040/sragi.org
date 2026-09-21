@@ -71,7 +71,7 @@ class LicensingTests(unittest.TestCase):
         data = copy.deepcopy(self.data)
         name = 'Project <demo> & "quoted"'
         data['meta']['name'] = name
-        data['organization']['licensing_email'] = 'test@example.invalid'
+        data['publication']['contact_roles']['licensing']['email'] = 'test@example.invalid'
         data['attribution']['preferred_machine_attribution']['value'] = name
         outputs = render(data, self.records)
         root = ET.fromstring(outputs['content/license/ai-policy.xml'])
@@ -156,11 +156,14 @@ class LicensingTests(unittest.TestCase):
                 path = root / name
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_bytes(content.encode())
-            p = root / 'ai-policy.txt'
-            p.write_text('stale policy\n')
-            with patch.object(builder, 'ROOT', root), patch.object(sys, 'argv', ['builder', '--check']), contextlib.redirect_stderr(io.StringIO()):
-                self.assertEqual(builder.main(), 1)
-            self.assertEqual(p.read_text(), 'stale policy\n')
+            for name in ('ai-policy.txt', 'LICENSES/LicenseRef-SRAGI-Commercial.txt'):
+                p = root / name
+                original = p.read_bytes()
+                p.write_text('stale policy\n')
+                with self.subTest(name=name), patch.object(builder, 'ROOT', root), patch.object(sys, 'argv', ['builder', '--check']), contextlib.redirect_stderr(io.StringIO()):
+                    self.assertEqual(builder.main(), 1)
+                self.assertEqual(p.read_text(), 'stale policy\n')
+                p.write_bytes(original)
 
     def test_guard_rejects_blanket_claims_but_preserves_explicit_artifact_licenses(self):
         forbidden = ['All SRAGI content is licensed under **CC BY-SA 4.0**.', 'Alt SRAGI-innhold er lisensiert under CC BY-SA 4.0.', 'Licensed under CC BY 4.0 via SRAGI Regenerative License (SRL)', 'license: SRL-1.12 (CC BY 4.0)']

@@ -20,6 +20,7 @@ EXPECTED_OUTPUTS = {
     'content/license/index.html', 'content/license/license.json',
     'content/license/ai-policy.xml', 'ai-policy.txt', 'robots.txt', 'sitemap.xml',
     'content/license/WEBSITE-LICENSE.html',
+    'LICENSES/LicenseRef-SRAGI-Commercial.txt',
 }
 PLACEHOLDER_RE = re.compile(r'\{\{[^{}]+\}\}')
 
@@ -69,6 +70,9 @@ def validate_v2(data):
         'dual_licensing.commercial_grant_by_reference': False,
         'dual_licensing.canonical_instruction_expression': 'CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial',
         'commercial.primary_function': 'sharealike_exception_within_licensed_scope',
+        'commercial.agreement_basis': 'separate_written_agreement',
+        'machine_readable.instruction_frontmatter.commercial_licensing.available': True,
+        'machine_readable.custom_license_references.LicenseRef-SRAGI-Commercial.url_role': 'commercial_licensing_information',
         'evolution.retroactive_relicensing': False,
         'machine_readable.rsl.enabled': True,
         'machine_readable.rsl.protocol_version': '1.0',
@@ -85,7 +89,7 @@ def validate_v2(data):
     }
     for activity in ('allow_by_default', 'allow_crawling', 'allow_indexing', 'allow_retrieval', 'allow_search_discovery'):
         expected['machine_access.discovery.' + activity] = True
-    for kind in ('ai_policy_txt', 'ai_policy_xml', 'robots'):
+    for kind in ('ai_policy_txt', 'ai_policy_xml', 'robots', 'commercial_reference'):
         expected[f'publication.generated_formats.{kind}.legal_license_grant'] = False
     errors = []
     version = data.get('meta', {}).get('version')
@@ -128,8 +132,59 @@ def validate_v2(data):
     serialized = json.dumps(data, ensure_ascii=False, default=str)
     if PLACEHOLDER_RE.search(serialized):
         errors.append('Master policy data must not contain unresolved presentation placeholders')
+    validate_metadata_consistency(data, errors)
     if errors:
         raise ValueError('SRLF validation failed:\n- ' + '\n- '.join(errors))
+
+
+def validate_metadata_consistency(data, errors):
+    """Check duplicated public metadata against its configured source, not literals."""
+    def value(path):
+        result = data
+        for part in path.split('.'):
+            if not isinstance(result, dict) or part not in result:
+                return None
+            result = result[part]
+        return result
+
+    groups = [
+        ('publication.canonical_licensing_portal', 'meta.canonical_url', 'machine_readable.instruction_frontmatter.license.licensing_url'),
+        ('publication.commercial_licensing_portal', 'licensing.commercial_path.url', 'commercial.licensing_url', 'license_classes.commercial.licensing_url', 'machine_readable.instruction_frontmatter.commercial_licensing.url', 'machine_readable.custom_license_references.LicenseRef-SRAGI-Commercial.url'),
+        ('commercial.license_name', 'license_classes.commercial.name', 'machine_readable.instruction_frontmatter.license.commercial_license', 'machine_readable.custom_license_references.LicenseRef-SRAGI-Commercial.name'),
+        ('commercial.identifier', 'licensing.commercial_path.identifier', 'license_classes.commercial.identifier'),
+        ('dual_licensing.canonical_instruction_expression', 'license_classes.open_frameworks.preferred_expression', 'machine_readable.instruction_frontmatter.license.spdx'),
+        ('commercial.agreement_basis', 'machine_readable.instruction_frontmatter.commercial_licensing.basis', 'machine_readable.custom_license_references.LicenseRef-SRAGI-Commercial.grant_basis'),
+        ('publication.contact_roles.general.email', 'organization.contact_email', 'machine_readable.instruction_frontmatter.contact'),
+        ('publication.contact_roles.licensing.email', 'organization.licensing_email', 'machine_readable.instruction_frontmatter.licensing_contact', 'trademark.licensing_contact'),
+        ('publication.contact_roles.commercial.email', 'organization.commercial_email', 'commercial.licensing_email', 'machine_readable.instruction_frontmatter.commercial_licensing.contact'),
+        ('publication.generated_formats.commercial_reference.path', 'machine_readable.custom_license_references.LicenseRef-SRAGI-Commercial.file'),
+    ]
+    for source, *aliases in groups:
+        expected = value(source)
+        if not isinstance(expected, str) or not expected.strip():
+            errors.append(f'Missing metadata source: {source}')
+        for alias in aliases:
+            if value(alias) != expected:
+                errors.append(f'Metadata mismatch: {alias} must match {source}')
+    front = data['machine_readable']['instruction_frontmatter']
+    expression = data['dual_licensing']['canonical_instruction_expression']
+    if data['machine_readable']['instruction_header']['license'] != 'SPDX-License-Identifier: ' + expression:
+        errors.append('Instruction header must match the canonical instruction expression')
+    config = data['machine_readable']['rsl']
+    identifier = config['expression_mappings'][expression]['open_license']
+    if front.get('license_url') != config['standard_licenses'][identifier]['url']:
+        errors.append('Instruction license_url must identify the open path, not the commercial portal')
+    for key in ('canonical_licensing_portal', 'commercial_licensing_portal'):
+        url = data['publication'].get(key)
+        parsed = urlsplit(url) if isinstance(url, str) else None
+        if not parsed or parsed.scheme != 'https' or not parsed.netloc or any(c.isspace() or c in '<>"' for c in url):
+            errors.append(f'Invalid publication URL: {key}')
+    for role in ('general', 'licensing', 'commercial'):
+        spec = data['publication'].get('contact_roles', {}).get(role, {})
+        if not re.fullmatch(r"[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", str(spec.get('email', ''))):
+            errors.append(f'Invalid contact email: {role}')
+        if not isinstance(spec.get('purpose'), str) or not spec['purpose'].strip():
+            errors.append(f'Missing contact purpose: {role}')
 
 
 def verify_license_files(root, data):

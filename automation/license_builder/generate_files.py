@@ -47,7 +47,7 @@ def human_sections(data):
         ('Rights authority', [data['rights']['principle'], data['rights']['unspecified_artifact_policy'], data['rights']['non_override_rule']]),
         ('Website default license', [website_grant(data), data['website_licensing']['exceptions'], data['website_licensing']['machine_use'], data['website_licensing']['scope_rule']]),
         ('Licensing paths', [data['licensing']['rule'], data['dual_licensing']['interpretation']]),
-        ('Commercial licensing', [commercial['grant_rule'], commercial['sharealike_exception']['rule'], commercial['profiles']['principle'], 'Commercial reference: ' + commercial['identifier']]),
+        ('Commercial licensing', [commercial['license_name'], commercial['grant_rule'], commercial['sharealike_exception']['rule'], commercial['sharealike_exception']['limits'], commercial['profiles']['principle'], 'Commercial reference: ' + commercial['identifier']]),
         ('Machine access', [data['machine_access']['access_policy'], data['machine_access']['rights_rule']]),
         ('Really Simple Licensing (RSL)', [data['machine_readable']['rsl']['rule'], data['machine_readable']['rsl']['url']]),
         ('AI training', [data['machine_access']['ai_training']['rule'], data['machine_access']['interpretation']['ai_training_and_adaptation']]),
@@ -58,13 +58,65 @@ def human_sections(data):
         ('Trademark and certification', [data['trademark']['principle'], 'Commercial brand licensing is separate from copyright licensing and requires an express agreement.']),
         ('Evolution', [data['evolution']['rule']]),
     ]
+    sections.insert(2, ('Available license classes (not grants)', ['These are available choices. The applicable license is selected for each artifact.']))
+    sections.insert(5, ('Instruction metadata', ['These fields describe eligible dual-licensed instructions. The information URLs and metadata do not themselves grant commercial rights.']))
+    sections.append(('Canonical information', ['Source: SRL-LICENSE.yaml. The website policy and artifact-specific terms define their respective scopes.']))
+    return sections
+
+
+def link(label, url):
+    return {'label': label, 'url': url}
+
+
+def markdown_value(value):
+    if isinstance(value, dict):
+        # Angle-delimited destinations preserve URI punctuation, including mailto:.
+        return f"[{markdown_value(value['label'])}](<{value['url']}>)"
+    text = html.escape(compact(value), quote=False)
+    for char in ('\\', '|', '[', ']', '*', '_', '`'):
+        text = text.replace(char, '\\' + char)
+    return text
+
+
+def html_value(value):
+    if isinstance(value, dict):
+        return f'<a href="{html.escape(value["url"], quote=True)}">{html_value(value["label"])}</a>'
+    return html.escape(compact(value))
+
+
+def human_tables(data):
     classes = []
     for name, record in data['license_classes'].items():
         choices = record.get('possible_licenses') or [record.get('preferred_expression') or record.get('identifier') or 'future artifact-specific selection']
-        classes.append(f"{name}: {', '.join(choices)}. {compact(record['description'])}")
-    sections.insert(2, ('Available license classes (not grants)', classes))
-    sections.append(('Canonical information', [data['publication']['canonical_licensing_portal'], data['organization']['licensing_email'], 'Source: SRL-LICENSE.yaml. The website policy and artifact-specific terms define their respective scopes.']))
-    return sections
+        classes.append([name.replace('_', ' '), ', '.join(choices), record['description']])
+    front = data['machine_readable']['instruction_frontmatter']
+    metadata = [
+        ['license.spdx', front['license']['spdx'], 'Alternative license paths for the artifact.'],
+        ['license.commercial_license', front['license']['commercial_license'], 'Name of the commercial license.'],
+        ['license.licensing_url', link(front['license']['licensing_url'], front['license']['licensing_url']), 'General licensing overview.'],
+        ['license_url', link(front['license_url'], front['license_url']), 'Terms of the open license path.'],
+        ['commercial_licensing.available', str(front['commercial_licensing']['available']).lower(), 'Availability of a commercial path; not a rights grant.'],
+        ['commercial_licensing.url', link(front['commercial_licensing']['url'], front['commercial_licensing']['url']), 'Commercial licensing information.'],
+        ['commercial_licensing.basis', front['commercial_licensing']['basis'], 'Basis required for commercial rights.'],
+    ]
+    for field_name, email in [('contact', front['contact']), ('licensing_contact', front['licensing_contact']), ('commercial_licensing.contact', front['commercial_licensing']['contact'])]:
+        metadata.append([field_name, link(email, 'mailto:' + email), 'Contact for this role.'])
+    contacts = [[role.capitalize(), link(spec['email'], 'mailto:' + spec['email']), spec['purpose']]
+                for role, spec in data['publication']['contact_roles'].items()]
+    return {
+        'Available license classes (not grants)': (['Class', 'Available licenses / expression', 'Description'], classes),
+        'Instruction metadata': (['Field', 'Configured value', 'Meaning'], metadata),
+        'Canonical information': (['Contact role', 'Email', 'Purpose'], contacts),
+    }
+
+
+def human_links(data):
+    publication = data['publication']
+    email = publication['contact_roles']['commercial']['email']
+    return {
+        'Commercial licensing': [link('Commercial licensing information', publication['commercial_licensing_portal']), link(email, 'mailto:' + email)],
+        'Canonical information': [link('Licensing overview', publication['canonical_licensing_portal']), link('Commercial licensing', publication['commercial_licensing_portal'])],
+    }
 
 
 def render(data, rsl_records):
@@ -76,7 +128,10 @@ def render(data, rsl_records):
     publication = data['publication']
     formats = publication['generated_formats']
     portal = publication['canonical_licensing_portal']
-    contact = data['organization']['licensing_email']
+    roles = publication['contact_roles']
+    contact = roles['licensing']['email']
+    commercial_portal = publication['commercial_licensing_portal']
+    commercial_contact = roles['commercial']['email']
     website = data['organization']['website'].rstrip('/')
     manifest = meta['repository'].rstrip('/') + '/blob/main/content/license/RESOURCE_LICENSE_MANIFEST.yaml'
     outputs = {}
@@ -117,7 +172,12 @@ def render(data, rsl_records):
         field(root, 'commercial-sharealike-exception', data['commercial']['sharealike_exception']['rule'])
         field(root, 'third-party-rights', data['third_party']['rule'])
         field(root, 'rsl-license-document', data['machine_readable']['rsl']['url'])
+        field(root, 'general-contact', roles['general']['email'])
         field(root, 'licensing-contact', contact)
+        field(root, 'commercial-license-name', data['commercial']['license_name'])
+        field(root, 'commercial-licensing', commercial_portal)
+        field(root, 'commercial-contact', commercial_contact)
+        field(root, 'commercial-agreement-basis', data['commercial']['agreement_basis'])
         put(kind, xml_text(root))
 
     lines = [
@@ -149,7 +209,12 @@ def render(data, rsl_records):
         'Commercial-ShareAlike-Exception: ' + compact(data['commercial']['sharealike_exception']['rule']),
         'Third-Party-Rights: ' + compact(data['third_party']['rule']),
         'Artifact-Manifest: ' + manifest, 'RSL-License-Document: ' + data['machine_readable']['rsl']['url'],
-        'Licensing: ' + portal, 'Licensing-Contact: ' + contact,
+        'Licensing: ' + portal, 'General-Contact: ' + roles['general']['email'],
+        'Licensing-Contact: ' + contact,
+        'Commercial-License-Name: ' + data['commercial']['license_name'],
+        'Commercial-Licensing: ' + commercial_portal,
+        'Commercial-Contact: ' + commercial_contact,
+        'Commercial-Agreement-Basis: ' + data['commercial']['agreement_basis'],
     ]
     put('ai_policy_txt', '\n'.join(lines))
 
@@ -174,24 +239,62 @@ def render(data, rsl_records):
         'framework_version': str(meta['version']),
         'effective_date': str(meta['last_updated']),
         'contact': contact,
+        'portal': portal,
+        'commercial_portal': commercial_portal,
+        'commercial_contact': commercial_contact,
     }
     put('website_policy', text_template(data, 'website_policy', {
         key: html.escape(compact(value), quote=True) for key, value in values.items()
     }))
 
+    commercial = data['commercial']
+    put('commercial_reference', text_template(data, 'commercial_reference', {
+        'license_name': commercial['license_name'],
+        'identifier': commercial['identifier'],
+        'rights_holder': data['organization']['rights_holder'],
+        'portal': portal,
+        'commercial_portal': commercial_portal,
+        'contact': contact,
+        'commercial_contact': commercial_contact,
+        'website': data['organization']['website'],
+        'repository': meta['repository'],
+        'expression': data['dual_licensing']['canonical_instruction_expression'],
+        'sharealike_rule': compact(commercial['sharealike_exception']['rule']),
+        'sharealike_limits': compact(commercial['sharealike_exception']['limits']),
+        'grant_rule': compact(commercial['grant_rule']),
+        'agreement_basis': commercial['agreement_basis'],
+        'profiles': compact(commercial['profiles']['principle']),
+    }))
+
     title = f"{meta['name']} v{meta['version']}"
     sections = human_sections(data)
+    tables = human_tables(data)
+    links = human_links(data)
     markdown = ['# ' + title, '', '<!-- Generated from SRL-LICENSE.yaml; edit the source, then rebuild. -->', '']
     for heading, paragraphs in sections:
         markdown.extend(['## ' + heading, ''])
         for paragraph in paragraphs:
             markdown.extend([compact(paragraph), ''])
+        if heading in tables:
+            columns, rows = tables[heading]
+            markdown.append('| ' + ' | '.join(columns) + ' |')
+            markdown.append('| ' + ' | '.join(['---'] * len(columns)) + ' |')
+            markdown.extend('| ' + ' | '.join(markdown_value(cell) for cell in row) + ' |' for row in rows)
+            markdown.append('')
+        for value in links.get(heading, []):
+            markdown.extend([markdown_value(value), ''])
     put('markdown', '\n'.join(markdown))
     esc = html.escape
     html_lines = ['<!doctype html>', '<html lang="en">', '<head>', '<meta charset="utf-8">', '<meta name="viewport" content="width=device-width, initial-scale=1">', f'<title>{esc(title)}</title>', f'<link rel="canonical" href="{esc(portal, quote=True)}">', '</head>', '<body><main>', f'<h1>{esc(title)}</h1>']
     for heading, paragraphs in sections:
         html_lines.append(f'<section><h2>{esc(heading)}</h2>')
         html_lines.extend(f'<p>{esc(compact(p))}</p>' for p in paragraphs)
+        if heading in tables:
+            columns, rows = tables[heading]
+            html_lines.append('<table><thead><tr>' + ''.join(f'<th scope="col">{esc(col)}</th>' for col in columns) + '</tr></thead><tbody>')
+            html_lines.extend('<tr>' + ''.join(f'<td>{html_value(cell)}</td>' for cell in row) + '</tr>' for row in rows)
+            html_lines.append('</tbody></table>')
+        html_lines.extend(f'<p>{html_value(value)}</p>' for value in links.get(heading, []))
         html_lines.append('</section>')
     html_lines.extend(['</main></body>', '</html>'])
     put('html', '\n'.join(html_lines))

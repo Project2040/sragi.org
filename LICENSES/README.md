@@ -18,6 +18,8 @@ The exact upstream revision and SHA-256 checksums are recorded in `SPDX-SOURCES.
 
 `LicenseRef-SRAGI-Commercial.txt` is maintained by Neptunia Media AS. It identifies the alternative SRAGI® Commercial Suite licensing path. Its presence does not itself grant commercial-license rights.
 
+The builder generates this reference from `SRL-LICENSE.yaml` and `automation/license_builder/templates/commercial-reference.txt.tpl`. Edit those sources and rebuild; do not hand-edit the generated reference. Commercial naming, routing, agreement basis and ShareAlike scope come from the master. The five standard SPDX texts remain unchanged and checksum-verified.
+
 ## Release preparation
 
 Run from repository root:

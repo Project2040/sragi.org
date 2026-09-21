@@ -22,17 +22,16 @@ This is an explicit website policy, not a license for every SRAGI artifact or re
 
 ## Available license classes (not grants)
 
-open_knowledge: CC-BY-4.0, CC-BY-SA-4.0. Knowledge, theory, articles, research and documentation.
+These are available choices. The applicable license is selected for each artifact.
 
-open_frameworks: CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial. SRAGI instruction frameworks, YAML resources and skills.
-
-software: AGPL-3.0-only, Apache-2.0, LicenseRef-SRAGI-Commercial. Executable software, source code, libraries and integrations.
-
-schemas_and_interoperability: Apache-2.0, CC0-1.0. Schemas, specifications and interoperability structures.
-
-commercial: LicenseRef-SRAGI-Commercial. Alternative commercial licensing terms available from Neptunia Media AS. For eligible CC BY-SA artifacts, the primary commercial function is an agreed exception from the ShareAlike obligation within the licensed scope, together with any additional rights expressly activated by agreement. ShareAlike applies when Adapted Material is shared under the open license; private modification alone does not trigger its ShareAlike conditions. The presence of this LicenseRef does not itself grant commercial rights.
-
-future: future artifact-specific selection. Additional license classes may be introduced without changing the core architecture.
+| Class | Available licenses / expression | Description |
+| --- | --- | --- |
+| open knowledge | CC-BY-4.0, CC-BY-SA-4.0 | Knowledge, theory, articles, research and documentation. |
+| open frameworks | CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial | SRAGI instruction frameworks, YAML resources and skills. |
+| software | AGPL-3.0-only, Apache-2.0, LicenseRef-SRAGI-Commercial | Executable software, source code, libraries and integrations. |
+| schemas and interoperability | Apache-2.0, CC0-1.0 | Schemas, specifications and interoperability structures. |
+| commercial | LicenseRef-SRAGI-Commercial | Alternative commercial licensing terms available from Neptunia Media AS. For eligible CC BY-SA artifacts, the primary commercial function is an agreed exception from the ShareAlike obligation within the licensed scope, together with any additional rights expressly activated by agreement. ShareAlike applies when Adapted Material is shared under the open license; private modification alone does not trigger its ShareAlike conditions. The presence of this LicenseRef does not itself grant commercial rights. |
+| future | future artifact-specific selection | Additional license classes may be introduced without changing the core architecture. |
 
 ## Licensing paths
 
@@ -42,13 +41,38 @@ OR denotes alternative licensing paths subject to the terms applicable to the se
 
 ## Commercial licensing
 
+SRAGI® Commercial Suite License
+
 Commercial-license rights arise only through an applicable commercial agreement with Neptunia Media AS and only within its licensed scope.
 
 Where an eligible artifact is offered under CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial, an applicable commercial agreement may permit the licensee to use, modify and distribute the licensed material within the agreed scope without the ShareAlike conditions that would otherwise apply when Adapted Material is shared under the CC BY-SA 4.0 path. Private modification alone does not trigger those ShareAlike conditions.
 
+The exception applies only to the Licensed Materials and scope expressly identified in the commercial agreement. It does not remove attribution, third-party, trademark, certification, partner or other obligations unless those rights are separately and expressly granted.
+
 Professional, Organization, Enterprise, Developer, OEM/Embedded, Vertical and Sovereign are scope, pricing and rights profiles under one commercial licensing architecture; they are not separate master licenses.
 
 Commercial reference: LicenseRef-SRAGI-Commercial
+
+[Commercial licensing information](<https://sragi.org/commercial-licensing/>)
+
+[commercial@sragi.org](<mailto:commercial@sragi.org>)
+
+## Instruction metadata
+
+These fields describe eligible dual-licensed instructions. The information URLs and metadata do not themselves grant commercial rights.
+
+| Field | Configured value | Meaning |
+| --- | --- | --- |
+| license.spdx | CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial | Alternative license paths for the artifact. |
+| license.commercial\_license | SRAGI® Commercial Suite License | Name of the commercial license. |
+| license.licensing\_url | [https://sragi.org/licensing/](<https://sragi.org/licensing/>) | General licensing overview. |
+| license\_url | [https://creativecommons.org/licenses/by-sa/4.0/](<https://creativecommons.org/licenses/by-sa/4.0/>) | Terms of the open license path. |
+| commercial\_licensing.available | true | Availability of a commercial path; not a rights grant. |
+| commercial\_licensing.url | [https://sragi.org/commercial-licensing/](<https://sragi.org/commercial-licensing/>) | Commercial licensing information. |
+| commercial\_licensing.basis | separate\_written\_agreement | Basis required for commercial rights. |
+| contact | [contact@sragi.org](<mailto:contact@sragi.org>) | Contact for this role. |
+| licensing\_contact | [licensing@sragi.org](<mailto:licensing@sragi.org>) | Contact for this role. |
+| commercial\_licensing.contact | [commercial@sragi.org](<mailto:commercial@sragi.org>) | Contact for this role. |
 
 ## Machine access
 
@@ -112,8 +136,14 @@ Framework changes are versioned. Existing artifacts remain governed by the terms
 
 ## Canonical information
 
-https://sragi.org/licensing/
-
-licensing@sragi.org
-
 Source: SRL-LICENSE.yaml. The website policy and artifact-specific terms define their respective scopes.
+
+| Contact role | Email | Purpose |
+| --- | --- | --- |
+| General | [contact@sragi.org](<mailto:contact@sragi.org>) | General questions about SRAGI and Neptunia Media AS. |
+| Licensing | [licensing@sragi.org](<mailto:licensing@sragi.org>) | License interpretation, attribution, permissions and reuse questions. |
+| Commercial | [commercial@sragi.org](<mailto:commercial@sragi.org>) | Commercial licensing enquiries, quotations and agreements. |
+
+[Licensing overview](<https://sragi.org/licensing/>)
+
+[Commercial licensing](<https://sragi.org/commercial-licensing/>)

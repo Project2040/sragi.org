@@ -1,62 +1,62 @@
-SRAGI® Commercial Suite License Reference
+$license_name Reference
 
 Generated from SRL-LICENSE.yaml and the commercial reference template.
 Edit those sources and rebuild; this reference is not a commercial agreement.
 
-License Reference Identifier: LicenseRef-SRAGI-Commercial
-Rights Holder: Neptunia Media AS
-Canonical Licensing Portal: https://sragi.org/licensing/
-Licensing Contact: licensing@sragi.org
-Commercial Licensing Portal: https://sragi.org/commercial-licensing/
-Commercial Contact: commercial@sragi.org
+License Reference Identifier: $identifier
+Rights Holder: $rights_holder
+Canonical Licensing Portal: $portal
+Licensing Contact: $contact
+Commercial Licensing Portal: $commercial_portal
+Commercial Contact: $commercial_contact
 
 Purpose
 -------
 
-LicenseRef-SRAGI-Commercial identifies the alternative commercial licensing
-path offered by Neptunia Media AS for eligible SRAGI® artifacts.
+$identifier identifies the alternative commercial licensing
+path offered by $rights_holder for eligible SRAGI® artifacts.
 
 Where an artifact carries a license expression such as:
 
-    CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial
+    $expression
 
 the recipient may use the artifact under the applicable open-license terms,
 or — where the recipient has a valid applicable commercial agreement with
-Neptunia Media AS — under the terms and scope of that commercial agreement.
+$rights_holder — under the terms and scope of that commercial agreement.
 
-Commercial activity alone does not imply that a SRAGI® Commercial Suite License
+Commercial activity alone does not imply that a $license_name
 is required. Where an open license permits commercial use, that use
 may proceed under the terms of the applicable open license.
 
 Core Commercial Function — ShareAlike Exception
 ================================================
 
-Where an eligible artifact is offered under CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial, an applicable commercial agreement may permit the licensee to use, modify and distribute the licensed material within the agreed scope without the ShareAlike conditions that would otherwise apply when Adapted Material is shared under the CC BY-SA 4.0 path. Private modification alone does not trigger those ShareAlike conditions.
+$sharealike_rule
 
 An applicable commercial agreement may therefore permit the licensee to use,
 modify, combine and distribute the Licensed Materials within the expressly
 licensed scope while keeping permitted adaptations or combined proprietary
 materials closed, subject to the agreement.
 
-The exception applies only to the Licensed Materials and scope expressly identified in the commercial agreement. It does not remove attribution, third-party, trademark, certification, partner or other obligations unless those rights are separately and expressly granted.
+$sharealike_limits
 
 No Grant by Reference
 =====================
 
-The presence of LicenseRef-SRAGI-Commercial in an artifact, repository,
+The presence of $identifier in an artifact, repository,
 metadata record, SPDX expression or other material does not itself grant any
-rights under the SRAGI® Commercial Suite License.
+rights under the $license_name.
 
-Commercial-license rights arise only through an applicable commercial agreement with Neptunia Media AS and only within its licensed scope.
+$grant_rule
 
-Agreement basis: separate_written_agreement. Commercial rights require a separate
+Agreement basis: $agreement_basis. Commercial rights require a separate
 written agreement identifying the Licensed Materials and scope. The information
 URL does not itself constitute an agreement or grant rights.
 
 One Commercial Architecture, Configurable Scope
 ================================================
 
-Professional, Organization, Enterprise, Developer, OEM/Embedded, Vertical and Sovereign are scope, pricing and rights profiles under one commercial licensing architecture; they are not separate master licenses.
+$profiles
 
 Depending on the applicable agreement, commercial licensing may include
 rights for internal commercial use, modification and adaptation for own use,
@@ -107,28 +107,28 @@ defined in the applicable commercial agreement.
 Contributor and Third-Party Rights
 ==================================
 
-Neptunia Media AS can grant only rights that it owns, controls or is otherwise
+$rights_holder can grant only rights that it owns, controls or is otherwise
 authorized to license. Third-party materials remain governed by their
 respective licenses, agreements and applicable rights.
 
 A contributed artifact may be represented as available under
-LicenseRef-SRAGI-Commercial only where Neptunia Media AS possesses sufficient
+$identifier only where $rights_holder possesses sufficient
 rights to offer that artifact under the applicable commercial terms.
 
 Trademark
 =========
 
-SRAGI® is a registered trademark of Neptunia Media AS (Reg. No. 342880).
+SRAGI® is a registered trademark of $rights_holder (Reg. No. 342880).
 
 Canonical Information
 =====================
 
-Licensing portal: https://sragi.org/licensing/
-Licensing contact: licensing@sragi.org
-Commercial licensing portal: https://sragi.org/commercial-licensing/
-Commercial contact: commercial@sragi.org
-Project: https://sragi.org/
-Repository: https://github.com/Project2040/sragi.org
+Licensing portal: $portal
+Licensing contact: $contact
+Commercial licensing portal: $commercial_portal
+Commercial contact: $commercial_contact
+Project: $website
+Repository: $repository
 
 This LicenseRef is a license reference and routing instrument. The applicable
 commercial agreement is authoritative for the commercial rights it grants.

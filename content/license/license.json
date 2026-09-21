@@ -515,11 +515,17 @@
       "website_policy": {
         "path": "content/license/WEBSITE-LICENSE.html",
         "function": "website_license_policy"
+      },
+      "commercial_reference": {
+        "path": "LICENSES/LicenseRef-SRAGI-Commercial.txt",
+        "function": "commercial_licensing_reference",
+        "legal_license_grant": false
       }
     },
     "templates": {
       "robots": "automation/license_builder/templates/robots.txt.tpl",
-      "website_policy": "automation/license_builder/templates/website-policy.html.tpl"
+      "website_policy": "automation/license_builder/templates/website-policy.html.tpl",
+      "commercial_reference": "automation/license_builder/templates/commercial-reference.txt.tpl"
     },
     "sitemap_urls": [
       "https://sragi.org/",
