@@ -37,9 +37,14 @@ title: Example framework
 version: "1.0"
 license:
   spdx: CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial
+publication_context:
+  commercial_relicensing_verified: true
+  commercial_relicensing_evidence: "internal-rights-register:example-framework/review-001"
 ```
 
 The product profile never inherits website licensing. Choose the expression appropriate to that artifact and verify the commercial rights chain before offering the commercial alternative. Rendering metadata neither grants missing contributor rights nor executes a commercial agreement.
+
+In `--for-publication` mode, an expression containing the configured commercial LicenseRef requires both `commercial_relicensing_verified: true` and a nonempty `commercial_relicensing_evidence` reference. Use the identifier of an actual rights review, assignment or accepted agreement; the example above is a placeholder, not evidence. Do not publish private agreements or personal contributor records in this field. The generated license metadata retains this reference so downstream publication review can trace the decision. These author assertions do not prove the underlying rights automatically. Draft rendering and the open-only path do not require a commercial-rights declaration.
 
 ## Template inputs and validation
 

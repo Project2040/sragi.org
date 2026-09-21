@@ -60,7 +60,7 @@ taxonomies:
   domain:    { required: false, source: "_CONFIG/TAXONOMY_GRAPH.yaml" }
   phase:     { required: false, source: "_CONFIG/TAXONOMY_GRAPH.yaml" }
   mode:      { required: false, source: "_CONFIG/TAXONOMY_GRAPH.yaml" }
-  actor_role:{ required: false, source: "_CONFIG/TAXONOMY_GRAPH.yaml" }
+  actor_role: { required: false, source: "_CONFIG/TAXONOMY_GRAPH.yaml" }
 
 # ===========================================================
 # SLUG VALIDATION

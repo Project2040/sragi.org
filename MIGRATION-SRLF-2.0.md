@@ -4,14 +4,14 @@
 
 - Pure YAML master with artifact rights authority, an explicit conditional CC-BY website default and no ecosystem-wide default.
 - Five canonical SPDX license texts materialized from pinned revision `16f3aa6c3bdd62e50f8b1cf618f32d2a510250ee`, with SHA-256 verification.
-- Deterministic generator for ten Markdown, HTML, JSON, XML, TXT and sitemap outputs, including the exception-bearing website license policy and commercial LicenseRef.
+- Deterministic generator for eleven Markdown, HTML, YAML, JSON, XML, TXT and sitemap outputs, including the exception-bearing website license policy, commercial LicenseRef and compatibility pointer.
 - Non-mutating `--check` detects stale output. YAML duplicate keys and fences, missing/altered texts and broken licensing invariants fail validation.
 - Complete JSON master representation, including SPDX machine-readable settings and future fields.
 - Open crawler access retained; AI policy preserves artifact authority, attribution guidance and the neutral position on AI training and adaptation.
 - Old unused v1 templates removed; Git history retains them.
 - Explicit existing CC-BY and CC-BY-SA notices retained at artifact level; old SRL wrappers and blanket claims removed from live documents and metadata.
 - Source and output checks run in GitHub Actions on Node 24 actions. CI is read-only and no longer auto-commits generated changes.
-- Nineteen regression tests cover grant boundaries, propagation/escaping, determinism, duplicate YAML, license integrity, drift detection, guard false positives, the RSL standard-license profile, website inheritance, named/wildcard crawler access and working content templates.
+- Regression tests cover grant boundaries, propagation/escaping, determinism, duplicate YAML, license integrity, drift detection, guard false positives, the RSL standard-license profile, website inheritance, named/wildcard crawler access and working content templates. The prepublication follow-up also covers commercial-rights evidence, clean regeneration and live-response verification.
 
 ## Website openness clarification
 
@@ -34,7 +34,7 @@ The earlier migration replaced Really Simple Licensing with custom XML while ret
 - Regression tests reject custom/wrong namespaces, incorrect RSL versions, unsupported core elements, added broad permissions, license substitutions, lost discovery, broad scopes and unresolved/changed source evidence. Dual-license mapping preserves the open path and requires commercial provenance.
 - Apache MIME configuration and a [deployment check](content/license/RSL_DEPLOYMENT.md) added. The public server/CDN and official online validator remain deployment checks, not claims established by local tests.
 
-## Local validation
+## Historical migration validation
 
 The source was read through the GitHub connector at commit `529b9a5e3964f10fe1464dbe817ab51913c4ae47`. All 115 text files were retrieved; existing binary assets were left unchanged in the remote base tree.
 
@@ -44,11 +44,11 @@ The source was read through the GitHub connector at commit `529b9a5e3964f10fe146
 - Regression suite: 19/19 passed after the website-policy clarification (12 tests at the earlier RSL correction).
 - At the earlier RSL repair, 37 YAML/workflow files, 2 JSON files and 3 XML files parsed successfully. Current checks also render all four registered content templates and validate the generated XML/JSON.
 
-## Required review before merge
+## Remaining publication review
 
 1. **Conflicting existing notices:** `docs/core/ETHICAL-CONTACT-PROTOCOL.md` and `docs/standards/VISUAL-PROTOCOL.md` each carried CC-BY-SA-4.0 in the header and CC-BY-4.0 in the footer. Both were preserved and registered; no OR expression or new license choice was invented.
 2. **Different scoped notices:** The PHP snippet in `BUNNY-CDN-INTEGRATION.md` carries CC-BY-SA-4.0, while the surrounding document carries CC-BY-4.0. These scopes remain separate.
-3. **Commercial/contributor instruments:** The commercial LicenseRef is a routing/reference document, not an executed commercial agreement. The CLA file is a contributor-rights notice, not evidence that a contributor has signed. Review these alongside the intended agreements and provenance records.
+3. **Commercial/contributor instruments:** The commercial LicenseRef is a routing/reference document, not an executed commercial agreement. `CLA.md` contains the actual CLA v2.1 marked REVIEW; `CONTRIBUTOR_RIGHTS_FRAMEWORK.md` is the separate contributor notice. File presence does not demonstrate acceptance. Review these alongside the intended agreements and provenance records.
 4. **Output and deployment review:** Confirm wording and the actual serving of `/licensing/`, policy files and licensing contact before website deployment. Repository changes do not establish WordPress routes or email mailboxes.
 
-PR #9 remains draft for this review. No merge or WordPress deployment is performed by this migration.
+PR #10, including PR #9, was merged into `main` at `afbdc04b68566b43e46d269d3c70553b2b662d0c`. WordPress publication is a separate action. See the current [prepublication review](docs/qa/SRLF-2.0.1-PREPUBLICATION.md) for tested scope and unresolved publication gates.

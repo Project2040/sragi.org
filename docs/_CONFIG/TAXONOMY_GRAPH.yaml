@@ -826,7 +826,7 @@ validation:
     - ✅ Actor Type: 8 terms
     - ✅ Actor Role: 12 terms
     - ✅ Relations: 9 terms
-    - **Total: 89 terms**
+    - "**Total: 89 terms**"
   
   seo:
     - ✅ Templates defined for Pillars, Domains

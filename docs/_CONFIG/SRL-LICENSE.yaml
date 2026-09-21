@@ -1,28 +1,16 @@
-# ===========================================================
-# SRAGI® LICENSING CONFIG POINTER — SRLF 2.0
-# ===========================================================
-# This file is a compatibility pointer only.
-# It does not grant rights and is not a second licensing master.
-# ===========================================================
-
+# Generated from SRL-LICENSE.yaml; edit the master and rebuild.
 meta:
   status: compatibility_pointer
   framework: SRAGI_REGENERATIVE_LICENSING_FRAMEWORK
-  framework_version: "2.0"
-  updated: "2026-09-16"
-
+  framework_version: 2.0.1
+  updated: '2026-09-21'
 source:
   authority: framework_architecture
-  path: "/SRL-LICENSE.yaml"
-  canonical_url: "https://sragi.org/licensing/"
-
+  path: /SRL-LICENSE.yaml
+  canonical_url: https://sragi.org/licensing/
 rights:
   authority: artifact
   rule_ref: /SRL-LICENSE.yaml#/rights
   website_policy_ref: /SRL-LICENSE.yaml#/website_licensing
-
-note: |
-  The root SRL-LICENSE.yaml defines the licensing architecture and
-  rights-discovery model. The license identifier, license expression,
-  rights statement or applicable agreement attached to an individual
-  artifact remains authoritative for that artifact.
+note: This compatibility pointer does not grant rights and is not a second licensing
+  master. The root SRL-LICENSE.yaml defines the framework; artifact terms remain authoritative.

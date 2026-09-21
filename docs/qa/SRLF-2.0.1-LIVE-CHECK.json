@@ -1,0 +1,378 @@
+{
+  "checked_at_utc": "2026-09-21T04:44:03.238633+00:00",
+  "framework_version": "2.0.1",
+  "all_passed": false,
+  "checks": [
+    {
+      "url": "https://sragi.org/content/license/license.json",
+      "effective_url": "https://sragi.org/content/license/license.json",
+      "http_status": 200,
+      "content_type": "application/json",
+      "sha256": "7972691c66a1f0f49064049412fd64b41f0afd885ad19afd9b4b383c89e05ca6",
+      "expected_sha256": "5dc2c4c8c24376767be5a64777a82ae875b9c25ff52a23b7afa6df7e7868f5b5",
+      "expected_media_types": [
+        "application/json"
+      ],
+      "headers": {
+        "last-modified": "Fri, 07 Nov 2025 16:18:40 GMT",
+        "cache-control": "max-age=0",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "0",
+        "etag": "W/\"a03-6430388e128cf-gzip\""
+      },
+      "status": "fail",
+      "issues": [
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/content/license/LICENSE-RSL.xml",
+      "effective_url": "https://sragi.org/content/license/LICENSE-RSL.xml",
+      "http_status": 200,
+      "content_type": "application/xml",
+      "sha256": "2e07ad8368ff0787af547ea39bda9babcf74a77e48e47fe02a501642b580467a",
+      "expected_sha256": "563c9acd92734f272f15d9fd7290176bdea9a3c6dcd406ce283858e43fe052c6",
+      "expected_media_types": [
+        "application/rsl+xml"
+      ],
+      "headers": {
+        "last-modified": "Sat, 08 Nov 2025 02:20:28 GMT",
+        "cache-control": "max-age=0",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "0",
+        "etag": "W/\"9af-6430bf1189ab3-gzip\""
+      },
+      "status": "fail",
+      "issues": [
+        "Content-Type 'application/xml'; expected ['application/rsl+xml']",
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/content/license/ai-policy.xml",
+      "effective_url": "https://sragi.org/content/license/ai-policy.xml",
+      "http_status": 200,
+      "content_type": "application/xml",
+      "sha256": "ef62b07df3adfa9fa84202df1233021b4b6d0e58cd5f28e862b468d2f664fc93",
+      "expected_sha256": "45a949f60ed4313bc7b33ddac251eb599c210bf6803e3f378b9ce37bdeb719ef",
+      "expected_media_types": [
+        "application/xml",
+        "text/xml"
+      ],
+      "headers": {
+        "last-modified": "Sat, 08 Nov 2025 03:38:52 GMT",
+        "cache-control": "max-age=0",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "0",
+        "etag": "W/\"5e3-6430d09751bc4-gzip\""
+      },
+      "status": "fail",
+      "issues": [
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/ai-policy.txt",
+      "effective_url": "https://sragi.org/ai-policy.txt",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "sha256": "a6a5a2bf274587ba457d9ddd829da824180f7f3aa21b99983125f198af6e6efc",
+      "expected_sha256": "39ef9cc5b40cd551db8791288623bfcfa226b6c257b3ef6b08d438f9d42bf3e6",
+      "expected_media_types": [
+        "text/plain"
+      ],
+      "headers": {
+        "last-modified": "Fri, 07 Nov 2025 16:16:08 GMT",
+        "cache-control": "max-age=2592000",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "183290",
+        "etag": "W/\"802-643037fd3727c-gzip\""
+      },
+      "status": "fail",
+      "issues": [
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/robots.txt",
+      "effective_url": "https://sragi.org/robots.txt",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "sha256": "9c97c36d439ab9f96cfb6001142c1a9d962bd36b104fbc14aa259ad58caca64c",
+      "expected_sha256": "726f0e411986a13cb73a472fd9716a24862bf443fb389a4c54f0bd53c77b88c9",
+      "expected_media_types": [
+        "text/plain"
+      ],
+      "headers": {
+        "last-modified": "Fri, 07 Nov 2025 16:51:52 GMT",
+        "cache-control": "max-age=2592000",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "193342",
+        "etag": "W/\"672-64303ff9b9f2e-gzip\""
+      },
+      "status": "fail",
+      "issues": [
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/content/license/WEBSITE-LICENSE.html",
+      "effective_url": "https://www.sragi.org/content/license/WEBSITE-LICENSE.html",
+      "http_status": 404,
+      "content_type": "text/html",
+      "sha256": "a9521dad8bd52e41fd9bbec877d5e2cd89c38ae518175e692e56ec73bedb5f48",
+      "expected_sha256": "397843178f66f038c418ef740ea6d86fe1eedb846d3e469af485e37c4c3ecd6c",
+      "expected_media_types": [
+        "text/html"
+      ],
+      "headers": {
+        "cache-control": "no-cache, must-revalidate, max-age=0, no-store, private",
+        "link": "<https://www.sragi.org/wp-json/>; rel=\"https://api.w.org/\"",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "0"
+      },
+      "status": "fail",
+      "issues": [
+        "HTTP 404; expected 200",
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/content/license/REGENERATIVE_LICENSE.md",
+      "effective_url": "https://sragi.org/content/license/REGENERATIVE_LICENSE.md",
+      "http_status": 200,
+      "content_type": "text/markdown",
+      "sha256": "4337155d62286e53ec7334a7595473e67ab5dfae7ff5f0b9df5715d6cc1fd167",
+      "expected_sha256": "db20e7775bb0e009f1575936a75ecfb0377a902baaa1bf06c304d1dddaca5717",
+      "expected_media_types": [
+        "text/markdown",
+        "text/plain"
+      ],
+      "headers": {
+        "last-modified": "Fri, 07 Nov 2025 16:18:40 GMT",
+        "cache-control": "max-age=2592000",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "153099",
+        "etag": "W/\"a16-6430388e2b728-gzip\""
+      },
+      "status": "fail",
+      "issues": [
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/content/license/index.html",
+      "effective_url": "https://sragi.org/content/license/index.html",
+      "http_status": 200,
+      "content_type": "text/html",
+      "sha256": "d5f2da824f5fdfb525498512212bb644b2e2bf9ea20448cd213d532a9cec8c22",
+      "expected_sha256": "28bb827298f5dfe08e520bb724af5983ff662f7cdd36e854cda7fb1bc57392cc",
+      "expected_media_types": [
+        "text/html"
+      ],
+      "headers": {
+        "last-modified": "Sat, 08 Nov 2025 03:33:49 GMT",
+        "cache-control": "max-age=0",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "0",
+        "etag": "W/\"2104-6430cf7645d66-gzip\""
+      },
+      "status": "fail",
+      "issues": [
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/sitemap.xml",
+      "effective_url": "https://sragi.org/sitemap.xml",
+      "http_status": 200,
+      "content_type": "application/xml",
+      "sha256": "faa7eff500d00255f665586bc1eeec0cd772dff87e1782e23341dca79044a401",
+      "expected_sha256": "4d932822823ed5cbe036281105410af0301a7caa9cddc678ca604a2c51ca7352",
+      "expected_media_types": [
+        "application/xml",
+        "text/xml"
+      ],
+      "headers": {
+        "last-modified": "Fri, 07 Nov 2025 16:16:08 GMT",
+        "cache-control": "max-age=0",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "0",
+        "etag": "W/\"671-643037fd2edb0-gzip\""
+      },
+      "status": "fail",
+      "issues": [
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/content/license/no/regenerative-principles.md",
+      "effective_url": "https://www.sragi.org/content/license/no/regenerative-principles.md",
+      "http_status": 404,
+      "content_type": "text/html",
+      "sha256": "5d40c6987d20940c830110a1fa370049d71e738030d0452bcaf6b4a1a9059df8",
+      "expected_sha256": "1dcadb4b0d27bf6764d711a8996f6b68e2c2ee94e55ee5118c089cc9567b12d0",
+      "expected_media_types": [
+        "text/markdown",
+        "text/plain"
+      ],
+      "headers": {
+        "cache-control": "no-cache, must-revalidate, max-age=0, no-store, private",
+        "link": "<https://www.sragi.org/wp-json/>; rel=\"https://api.w.org/\"",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "0"
+      },
+      "status": "fail",
+      "issues": [
+        "HTTP 404; expected 200",
+        "Content-Type 'text/html'; expected ['text/markdown', 'text/plain']",
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/content/license/regenerative-principles.md",
+      "effective_url": "https://sragi.org/content/license/regenerative-principles.md",
+      "http_status": 200,
+      "content_type": "text/markdown",
+      "sha256": "2211e3367aaa22424ba7a2e2d10ecf3260ee29a1d4009cd02a69244f39c94888",
+      "expected_sha256": "2419192e5b44f650be08eb95745753daed25b21d727779371ff4fcab55915ea9",
+      "expected_media_types": [
+        "text/markdown",
+        "text/plain"
+      ],
+      "headers": {
+        "last-modified": "Fri, 07 Nov 2025 16:18:40 GMT",
+        "cache-control": "max-age=2592000",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "473",
+        "etag": "W/\"1186-6430388e0a005-gzip\""
+      },
+      "status": "fail",
+      "issues": [
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/LICENSE-RSL.xml",
+      "effective_url": "https://sragi.org/LICENSE-RSL.xml",
+      "http_status": 200,
+      "content_type": "application/xml",
+      "sha256": "2e07ad8368ff0787af547ea39bda9babcf74a77e48e47fe02a501642b580467a",
+      "expected_sha256": "563c9acd92734f272f15d9fd7290176bdea9a3c6dcd406ce283858e43fe052c6",
+      "expected_media_types": [
+        "application/rsl+xml"
+      ],
+      "headers": {
+        "last-modified": "Sat, 08 Nov 2025 02:20:28 GMT",
+        "cache-control": "max-age=0",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "0",
+        "etag": "W/\"9af-6430bf1189ab3-gzip\""
+      },
+      "status": "fail",
+      "issues": [
+        "Content-Type 'application/xml'; expected ['application/rsl+xml']",
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/ai-policy.xml",
+      "effective_url": "https://sragi.org/ai-policy.xml",
+      "http_status": 200,
+      "content_type": "application/xml",
+      "sha256": "ef62b07df3adfa9fa84202df1233021b4b6d0e58cd5f28e862b468d2f664fc93",
+      "expected_sha256": "45a949f60ed4313bc7b33ddac251eb599c210bf6803e3f378b9ce37bdeb719ef",
+      "expected_media_types": [
+        "application/xml",
+        "text/xml"
+      ],
+      "headers": {
+        "last-modified": "Sat, 08 Nov 2025 03:38:52 GMT",
+        "cache-control": "max-age=0",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "0",
+        "etag": "W/\"5e3-6430d09751bc4-gzip\""
+      },
+      "status": "fail",
+      "issues": [
+        "Served bytes do not match the reviewed release"
+      ]
+    },
+    {
+      "url": "https://sragi.org/licensing/",
+      "effective_url": "https://www.sragi.org/licensing/",
+      "http_status": 404,
+      "content_type": "text/html",
+      "sha256": "cd0fedaf16b539e960b8f0bb04258ab1e374456eeff7d54cbe36bde4c81d7ddf",
+      "expected_sha256": null,
+      "expected_media_types": [
+        "text/html"
+      ],
+      "headers": {
+        "cache-control": "no-cache, must-revalidate, max-age=0, no-store, private",
+        "link": "<https://www.sragi.org/wp-json/>; rel=\"https://api.w.org/\"",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "0"
+      },
+      "status": "fail",
+      "issues": [
+        "HTTP 404; expected 200",
+        "Public page missing expected content: SRAGI® Commercial Suite License",
+        "Public page missing expected content: commercial@sragi.org"
+      ]
+    },
+    {
+      "url": "https://sragi.org/commercial-licensing/",
+      "effective_url": "https://www.sragi.org/commercial-licensing/",
+      "http_status": 404,
+      "content_type": "text/html",
+      "sha256": "38fbc81d8322118318f2ce3dd210baf77bcc04b9e71afd2dbd9f6bbc3924c199",
+      "expected_sha256": null,
+      "expected_media_types": [
+        "text/html"
+      ],
+      "headers": {
+        "cache-control": "no-cache, must-revalidate, max-age=0, no-store, private",
+        "link": "<https://www.sragi.org/wp-json/>; rel=\"https://api.w.org/\"",
+        "x-license": "CC-BY-4.0",
+        "x-license-url": "https://sragi.org/LICENSE-RSL.xml",
+        "x-ai-policy": "https://sragi.org/ai-policy.xml",
+        "age": "0"
+      },
+      "status": "fail",
+      "issues": [
+        "HTTP 404; expected 200",
+        "Public page missing expected content: SRAGI® Commercial Suite License",
+        "Public page missing expected content: commercial@sragi.org"
+      ]
+    }
+  ]
+}

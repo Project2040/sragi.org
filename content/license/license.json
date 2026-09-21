@@ -520,6 +520,11 @@
         "path": "LICENSES/LicenseRef-SRAGI-Commercial.txt",
         "function": "commercial_licensing_reference",
         "legal_license_grant": false
+      },
+      "config_pointer": {
+        "path": "docs/_CONFIG/SRL-LICENSE.yaml",
+        "function": "compatibility_pointer",
+        "legal_license_grant": false
       }
     },
     "templates": {
