@@ -1,5 +1,5 @@
 # ===========================================================
-# SRAGI® REGENERATIVE LICENSING FRAMEWORK — v2.0
+# SRAGI® REGENERATIVE LICENSING FRAMEWORK — v2.0.1
 # Design horizon: 2026–2036+
 # ===========================================================
 # This file defines the SRAGI licensing architecture.
@@ -13,12 +13,12 @@ meta:
   id: SRAGI_REGENERATIVE_LICENSING_FRAMEWORK
   name: "SRAGI® Regenerative Licensing Framework"
   abbreviation: SRLF
-  version: "2.0"
+  version: "2.0.1"
   status: active
   architecture: artifact_based
   extensibility: open
-  last_updated: 2026-09-17
-  canonical_url: https://sragi.org/licensing/
+  last_updated: 2026-09-21
+  canonical_url: &sragi_licensing_url https://sragi.org/licensing/
   repository: https://github.com/Project2040/sragi.org
   principles:
     - artifact_specific_licensing
@@ -38,6 +38,11 @@ rights:
   artifact_license_authoritative: true
   ecosystem_default_license: null
   principle: |
+    SRAGI uses artifact-specific licensing. Start with the license or terms
+    attached to the material you want to use. Eligible public website content
+    without a different notice follows the website default below. Alternative
+    commercial terms are available for eligible artifacts by separate agreement.
+
     The website_licensing section records the explicit default license for
     eligible public sragi.org content. It does not license the wider ecosystem.
     Rights are determined by the license identifier, license expression,
@@ -67,6 +72,7 @@ licensing:
   commercial_path:
     enabled: true
     identifier: LicenseRef-SRAGI-Commercial
+    url: &sragi_commercial_url https://sragi.org/commercial-licensing/
   future_compatibility: |
     New artifact classes, technologies, media, AI systems, distribution
     mechanisms, business models and licensing approaches may be added
@@ -120,7 +126,7 @@ license_classes:
     license_selected_per_artifact: true
   open_frameworks:
     description: SRAGI instruction frameworks, YAML resources and skills.
-    preferred_expression: "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial"
+    preferred_expression: &sragi_instruction_expression "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial"
     license_selected_per_artifact: true
     commercial_expression_requires_sufficient_rights: true
   software:
@@ -137,12 +143,14 @@ license_classes:
   commercial:
     identifier: LicenseRef-SRAGI-Commercial
     name: "SRAGI® Commercial Suite License"
-    licensing_url: https://sragi.org/licensing/
+    licensing_url: *sragi_commercial_url
     description: |
       Alternative commercial licensing terms available from Neptunia Media AS.
       For eligible CC BY-SA artifacts, the primary commercial function is an
       agreed exception from the ShareAlike obligation within the licensed scope,
       together with any additional rights expressly activated by agreement.
+      ShareAlike applies when Adapted Material is shared under the open license;
+      private modification alone does not trigger its ShareAlike conditions.
       The presence of this LicenseRef does not itself grant commercial rights.
   future:
     enabled: true
@@ -150,7 +158,7 @@ license_classes:
 
 dual_licensing:
   enabled: true
-  canonical_instruction_expression: "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial"
+  canonical_instruction_expression: *sragi_instruction_expression
   commercial_grant_by_reference: false
   interpretation: |
     OR denotes alternative licensing paths subject to the terms applicable to
@@ -158,12 +166,15 @@ dual_licensing:
     Commercial Suite. For eligible artifacts on the CC BY-SA path, the commercial
     path may provide an agreed exception from ShareAlike within the licensed scope,
     plus other expressly activated rights or terms.
+    ShareAlike conditions apply when Adapted Material is shared as defined by
+    CC BY-SA 4.0. Private modification alone does not trigger those conditions.
 
 commercial:
   identifier: LicenseRef-SRAGI-Commercial
   license_name: "SRAGI® Commercial Suite License"
-  licensing_url: https://sragi.org/licensing/
-  licensing_email: licensing@sragi.org
+  licensing_url: *sragi_commercial_url
+  licensing_email: &sragi_commercial_email commercial@sragi.org
+  agreement_basis: separate_written_agreement
   primary_function: sharealike_exception_within_licensed_scope
   grant_rule: |
     Commercial-license rights arise only through an applicable commercial
@@ -174,8 +185,9 @@ commercial:
       Where an eligible artifact is offered under CC-BY-SA-4.0 OR
       LicenseRef-SRAGI-Commercial, an applicable commercial agreement may permit
       the licensee to use, modify and distribute the licensed material within
-      the agreed scope without the ShareAlike obligation that would otherwise
-      apply under the CC BY-SA 4.0 path.
+      the agreed scope without the ShareAlike conditions that would otherwise
+      apply when Adapted Material is shared under the CC BY-SA 4.0 path.
+      Private modification alone does not trigger those ShareAlike conditions.
     limits: |
       The exception applies only to the Licensed Materials and scope expressly
       identified in the commercial agreement. It does not remove attribution,
@@ -243,7 +255,7 @@ machine_readable:
       including its configured default and artifact/third-party exceptions.
       Verified artifact records may reference their standard license directly.
       No crawler fee or license token is introduced. SPDX identifies licenses;
-      RSL 1.0 and SRLF 2.0 remain independently versioned.
+      RSL and SRLF remain independently versioned.
     standard_licenses:
       CC-BY-4.0: {url: https://creativecommons.org/licenses/by/4.0/, payment_type: attribution}
       CC-BY-SA-4.0: {url: https://creativecommons.org/licenses/by-sa/4.0/, payment_type: attribution}
@@ -255,15 +267,32 @@ machine_readable:
     copyright: "SPDX-FileCopyrightText: 2024-2026 Neptunia Media AS"
     license: "SPDX-License-Identifier: CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial"
   instruction_frontmatter:
+    contact: &sragi_general_email contact@sragi.org
+    licensing_contact: &sragi_licensing_email licensing@sragi.org
+    # Retain the existing nested license mapping for current consumers.
     license:
-      spdx: "CC-BY-SA-4.0 OR LicenseRef-SRAGI-Commercial"
+      spdx: *sragi_instruction_expression
       commercial_license: "SRAGI® Commercial Suite License"
-      licensing_url: https://sragi.org/licensing/
+      licensing_url: *sragi_licensing_url
+    # This URL describes the open branch of the license expression.
+    license_url: https://creativecommons.org/licenses/by-sa/4.0/
+    commercial_licensing:
+      available: true
+      url: *sragi_commercial_url
+      contact: *sragi_commercial_email
+      basis: separate_written_agreement
   custom_license_references:
     LicenseRef-SRAGI-Commercial:
       name: "SRAGI® Commercial Suite License"
       file: LICENSES/LicenseRef-SRAGI-Commercial.txt
-      url: https://sragi.org/licensing/
+      url: *sragi_commercial_url
+      url_role: commercial_licensing_information
+      grant_basis: separate_written_agreement
+      rule: |
+        The reference file must identify the commercial licensing path and
+        explain how its applicable terms are established. The information URL
+        does not itself constitute a commercial agreement or grant rights.
+        Each commercial grant must identify the applicable agreement and scope.
   license_files:
     directory: LICENSES/
     expected:
@@ -446,7 +475,7 @@ trademark:
     - trademark_registration
     - domain_registration
   rights_holder: Neptunia Media AS
-  licensing_contact: licensing@sragi.org
+  licensing_contact: *sragi_licensing_email
 
 third_party:
   rule: |
@@ -459,16 +488,36 @@ organization:
   creator: Rune Solberg
   rights_holder: Neptunia Media AS
   project: SRAGI.org
-  licensing_email: licensing@sragi.org
+  contact_email: *sragi_general_email
+  licensing_email: *sragi_licensing_email
+  commercial_email: *sragi_commercial_email
   website: https://sragi.org/
   org_number: "932481375"
 
 publication:
-  canonical_licensing_portal: https://sragi.org/licensing/
+  canonical_licensing_portal: *sragi_licensing_url
+  commercial_licensing_portal: *sragi_commercial_url
+  contact_roles:
+    general:
+      email: *sragi_general_email
+      purpose: General questions about SRAGI and Neptunia Media AS.
+    licensing:
+      email: *sragi_licensing_email
+      purpose: License interpretation, attribution, permissions and reuse questions.
+    commercial:
+      email: *sragi_commercial_email
+      purpose: Commercial licensing enquiries, quotations and agreements.
   generation_principle: |
     Generated representations may contain relevant subsets of this framework.
     They must preserve the distinction between technical access, rights discovery
     and legal license grants and must not alter artifact-specific rights.
+    The public licensing overview must distinguish the website default from
+    artifact-specific terms and present license classes as available choices,
+    not automatic grants. Display those classes as a table for readability.
+    General, licensing and commercial contacts and links must be generated
+    from their configured roles. The commercial section must include the
+    commercial licensing portal and commercial contact. Markdown or HTML
+    email links must use the mailto: URI scheme without an escaped colon.
   generated_formats:
     markdown: {path: content/license/REGENERATIVE_LICENSE.md, function: human_readable_framework}
     json: {path: content/license/license.json, function: machine_readable_framework}
@@ -484,7 +533,8 @@ publication:
     website_policy: automation/license_builder/templates/website-policy.html.tpl
   sitemap_urls:
     - https://sragi.org/
-    - https://sragi.org/licensing/
+    - *sragi_licensing_url
+    - *sragi_commercial_url
     - https://sragi.org/ai-policy.txt
     - https://sragi.org/robots.txt
     - https://sragi.org/regenerative-principles/
@@ -531,11 +581,22 @@ evolution:
   retroactive_relicensing: false
   rule: |
     Framework changes are versioned. Existing artifacts remain governed by the
-    terms applicable to their released version unless an authorized rights holder
-    expressly relicenses them. New framework versions do not retroactively change
-    previously granted rights.
+    terms applicable to their released version. An authorized rights holder may
+    offer additional or alternative terms where sufficient rights exist, but
+    doing so does not revoke or replace existing open-license grants for
+    recipients who comply with their terms. New framework versions do not
+    retroactively change previously granted rights.
 
 history:
+  - version: "2.0.1"
+    date: 2026-09-21
+    summary: |
+      Separate general, licensing and commercial contact roles; canonical
+      overview and commercial URLs; aligned instruction frontmatter; explicit
+      commercial reference-document role; ShareAlike trigger clarification;
+      preservation of existing open-license grants; reader guidance and
+      generated-publication presentation requirements. Website default,
+      artifact authority, machine openness and RSL protocol version preserved.
   - version: "2.0"
     date: 2026-09-17
     summary: |
@@ -546,3 +607,4 @@ history:
     date: 2025-11-07
     status: superseded
     summary: Previous layered model using CC BY 4.0 as ecosystem default.
+
